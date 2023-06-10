@@ -11,7 +11,7 @@
     display:grid;
     grid-template-rows: 0.05fr 0.01fr 0.2fr 0.01fr 0.5fr;
     grid-template-columns: 3fr 3fr 3fr 3fr;
-    background-color: yellow;
+    /* background-color: yellow; */
     grid-template-areas: "head head head head"
                          "nav nav nav nav"
                          "section section section section"
@@ -27,23 +27,23 @@ header{
 }
 nav{
     grid-area: nav;
-    background-color: #f78cff;
+    /* background-color: #f78cff; */
 }
 section{
     grid-area: section;
-    background-color: rgb(205, 240, 224);
+    /* background-color: rgb(205, 240, 224); */
     height: fit-content;
 }
 main{
     grid-area:main;
-    background-color: #ffff64;
+    /* background-color: #ffff64; */
 }
 aside{
     grid-area: side;
 }
 footer{
     grid-area: foot;
-    background-color: #8cffa0;
+    background-color: #e7ecfb;
 }
 
 .top-search{
@@ -98,7 +98,7 @@ ul{
     margin: 0;
     padding: 0;
     text-align: center;
-    z-index:1;
+    z-index:1000;
 }
 li{
     display: inline-block;
@@ -106,12 +106,14 @@ li{
 }
 
 li .sub-menu{
-    background-color: #f7f7f7;
+    background-color: #ffff;
     width: max-content;
     display: none;
     margin-top: 48px;
     z-index: 99;
     position: absolute;
+    border: 1px solid rgb(235, 235, 235);
+
 }
 
 .topnav ul>li:hover .sub-menu{
@@ -125,12 +127,13 @@ li a{
 }
 
 li .inner-sub-menu{
-    background-color: #f7f7f7;
+    background-color: #ffff;
     width: auto;
 	display: none;
     z-index:-1;
     position: absolute;
     margin-left: 14.7rem;
+    border: 1px solid rgb(235, 235, 235);
 }
 
 .topnav ul ul>li:hover .inner-sub-menu{
@@ -148,12 +151,12 @@ li a{
 }
 
 li a:hover {
-    background-color: #bcd1f3;
+    color: rgb(47, 5, 95);
     width:max-content;
 }
 
 .topnav{
-    background-color: #e7ecfb;
+    background-color: #e7ecfb59;
     position: relative;
     justify-content: center;
     display: flex;
@@ -206,7 +209,7 @@ li a:hover {
 }
 
 .left-section{
-    background-color: rgb(186, 205, 217);
+    /* background-color: rgb(186, 205, 217); */
     padding: 10px;
 }
 
@@ -242,7 +245,7 @@ li a:hover {
 }
 
 .right-section{
-    background-color: rgb(249, 201, 194);
+    /* background-color: rgb(249, 201, 194); */
     padding: 10px;
 }
 
@@ -278,4 +281,27 @@ li a:hover {
     width: 45%;
     height: auto;
     padding: 10px;
+}
+
+.site-logo-footer{
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    background-color:transparent;
+}
+
+.footer-post{
+    display: block;
+    text-align: center;
+    font-size: large;
+    padding: 0rem 2rem 2rem 2rem;
+}
+
+.footer-icons{
+    text-align: center;
+    padding: 5px;
+}
+
+.footer-icon-padding{
+    padding: 5px 5px 0px 0px;
 }
