@@ -18,6 +18,26 @@
                          "main main side side"
                          "foot foot foot foot";
 }
+
+.contentpage-container{
+    height:-webkit-fill-available;
+    width:100%;
+    display:grid;
+    grid-template-rows: 9fr;
+    grid-template-columns: 1fr 4fr;
+    background-color: yellow;
+    grid-template-areas: "sidebar mainContent";
+    grid-gap: 10px;
+}
+
+.menubar{
+    grid-area: sidebar;
+}
+
+.content-main{
+    grid-area: mainContent;
+}
+
 header,nav,section,main,aside,footer{
     border: 0px solid grey;
 }
@@ -160,6 +180,10 @@ li a:hover {
     position: relative;
     justify-content: center;
     display: flex;
+}
+
+.DetailPage{
+    justify-content:left;
 }
 
 .img-div{
