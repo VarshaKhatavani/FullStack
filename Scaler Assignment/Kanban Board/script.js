@@ -46,5 +46,7 @@ let ticketsArr = [
       ticketsArr.push({ ticketTask, ticketColor, ticketID: id });
       localStorage.setItem("tickets", JSON.stringify(ticketsArr));
     }
+
+    console.log(ticketsArr);
   }
   
