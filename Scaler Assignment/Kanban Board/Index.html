@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Please NOTE that the link to assets (like images) need to be set in global context.
+For example:
+To access an image from assets folder correct way to set src attribute is 
+
+src = 'profile.png'
+
+instead of 
+
+src = './assets/profile.png'
+-->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <!-- TOOL BOX ELEMENTS -->
+    <div class="toolbox-cont">
+        <div class="toolbox-priority-cont">
+            <div class="lightpink color"></div>
+            <div class="lightgreen color"></div>
+            <div class="lightblue color"></div>
+            <div class="black color"></div>
+        </div>
+
+        <div class="action-btn-cont">
+            <div class="remove-btn">
+                <img src="cross-logo.png" alt="color-logo" height="50%">
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER - Tickets holder -->
+    <div class="main-cont">
+        <!-- <div class="ticket-color ${ticketColor}"></div>
+       <div class="ticket-id">${id}</div>
+       <div class="task-area">${ticketTask}</div> -->
+    </div>
+    </div>
+
+    <script src="script.js">
+    </script>
+   <script>
+        // Write your solution here ====================================================
+        let btnRemove = document.querySelector(".remove-btn");
+        let ticketCont ;
+        let removeBtnClicked = false;
+        btnRemove.addEventListener("click",function(){
+                
+            if(removeBtnClicked){
+                btnRemove.style.backgroundColor = "inherit";
+                removeBtnClicked = false;
+            }
+            else{
+                alert("delete button has been activated");
+                btnRemove.style.backgroundColor = "red";     
+                removeBtnClicked = true;
+            }
+
+        })
+
+    ticketCont =  document.querySelectorAll(".ticket-cont");
+
+
+    console.log(ticketCont);
+    for(let i=0;i<ticketCont.length; i++){
+        ticketCont[i].addEventListener("click",function(){
+                if(removeBtnClicked){
+                    ticketCont[i].remove();
+                }
+        })
+    }
+
+
+    </script>
+
+</body>
+
+</html>
