@@ -70,6 +70,7 @@ src = './assets/profile.png'
         // Write your solution here ===============
 
         // Solution 1
+        /*
         let filterColorPicker = document.querySelectorAll(".color");
 
         // get all the colors from tool box
@@ -79,14 +80,12 @@ src = './assets/profile.png'
             filterColorPicker[i].addEventListener("click",function(){
             
                  //console.log(filterColorPicker[i].classList[0]);
-
                  let selectedColor = filterColorPicker[i].classList[0];
 
                  // No of tickets available
                  let allTickets = document.querySelectorAll(".ticket-color");
 
                  for(let j=0;j<allTickets.length;j++){
-                 
                     let currentTicketColor = allTickets[j].classList[1];
                     console.log(currentTicketColor);
                     if(currentTicketColor == selectedColor){
@@ -95,14 +94,62 @@ src = './assets/profile.png'
                     else{
                         allTickets[j].parentElement.style.display = "none";
                     }
-
                  }
-
             })
-
         }
+        */
 
+        // Solution 2 
+        let toolBoxColors = document.querySelectorAll(".color");
+        console.log(toolBoxColors);
 
+        for(let i=0;i<toolBoxColors.length;i++){
+            toolBoxColors[i].addEventListener("click",function(){
+                console.log(toolBoxColors[i].classList[0]);
+                let selectedColor = toolBoxColors[i].classList[0];
+
+                //filter selected color ticket
+                let filteredTickets = ticketsArr.filter(function (ticketObj) {
+                    console.log(ticketObj);
+                    return selectedColor === ticketObj.ticketColor;
+                });
+
+                console.log(filteredTickets);
+
+                // Remove all the tickets
+                let allTickets = document.querySelectorAll(".ticket-cont");
+
+                for (let i = 0; i < allTickets.length; i++) {
+                    allTickets[i].remove();
+                }
+
+                filteredTickets.forEach(function (filteredObj) {
+                    createTicket(
+                        filteredObj.ticketTask,
+                        filteredObj.ticketColor,
+                        filteredObj.ticketID
+                    );
+                 });
+            });
+
+            // On duble click display all the tickets
+            toolBoxColors[i].addEventListener("dblclick",function(){
+
+                let allTickets = document.querySelectorAll(".ticket-cont");
+                
+                for (let j = 0; j < allTickets.length; j++) {
+                     allTickets[j].remove();
+                }
+    
+                ticketsArr.forEach(function (ticketObj) {
+                    createTicket(
+                        ticketObj.ticketTask,
+                        ticketObj.ticketColor,
+                        ticketObj.ticketID
+                    );
+                });
+            });
+        }
     </script>
 
 
