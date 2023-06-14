@@ -43,16 +43,17 @@
     height:-webkit-fill-available;
     width:100%;
     display:grid;
-    grid-template-columns: 0.2fr 1fr;
-    background-color: yellow;
+    grid-template-columns: 0.25fr 1fr;
+    /* background-color: yellow; */
     grid-template-areas: "sidebar mainContent";
-    grid-gap: 10px;
+    grid-gap: 5px;
     grid-column: 1 / -1;
+
 }
 
 #inner-grid > div {
-    background: lightgreen;
-    padding: 8px;
+    background: #ededed1a;
+    /* padding: 8px; */
     overflow:hidden;
     word-wrap: break-word;
   }
@@ -91,6 +92,7 @@ aside{
 footer{
     grid-area: foot;
     background-color: #e7ecfb;
+    padding: 1rem;
 }
 
 .top-search{
@@ -156,7 +158,7 @@ li .sub-menu{
     background-color: #ffff;
     width: max-content;
     display: none;
-    margin-top: 48px;
+    margin-top: 35px;
     z-index: 99;
     position: absolute;
     border: 1px solid rgb(235, 235, 235);
@@ -166,6 +168,7 @@ li .sub-menu{
 .topnav ul>li:hover .sub-menu{
     display:flex;
     flex-direction: column;
+    width:max-content;
 }
 
 li a{
@@ -179,8 +182,12 @@ li .inner-sub-menu{
 	display: none;
     z-index:-1;
     position: absolute;
-    margin-left: 14.7rem;
+    margin-left: 12.1rem;
     border: 1px solid rgb(235, 235, 235);
+}
+.sub-menu li>a{
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .topnav ul ul>li:hover .inner-sub-menu{
@@ -189,12 +196,13 @@ li .inner-sub-menu{
 }
 
 li a{
-    padding: 14px 16px;
+    padding: 8px 1.5rem;
     font-size: 0.9rem;
     font-weight: 500;
     float: left;
     text-decoration: none;
     display: block;
+    color:black;
 }
 
 li a:hover {
@@ -355,4 +363,21 @@ li a:hover {
 
 .footer-icon-padding{
     padding: 5px 5px 0px 0px;
+}
+
+.menulist{
+    display: block;
+    padding: 5px 0.5rem;
+    border-bottom: 1px solid #8080805c;
+}
+
+.menulist a{
+    text-decoration: none;
+    color: black;
+}
+
+.content-div{
+    background-color: pink;
+    word-wrap: break-word;
+    padding: 1rem;
 }
