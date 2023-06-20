@@ -1,0 +1,60 @@
+<html>
+<head>
+    <style>
+        .tooltip {
+            background-color: #ffaffc;
+            border-radius: 10px;
+            padding: 10px 15px;
+            position: relative;
+            margin: 15px;
+            text-align: center;
+        }
+
+        .tooltip::after {
+            background-color: #333;
+            border-radius: 10px;
+            color: #b254ff;
+            display: none;
+            padding: 10px 15px;
+            position: absolute;
+            text-align: center;
+            z-index: 999;
+        }
+        
+        .tooltip.left::after {
+            content: 'left';
+            top: 0;
+            left: 0;
+            transform: translateX(calc(-100% - 10px));
+        }
+
+        .tooltip:hover::after {
+            display: block;
+        }
+
+        .tooltip::before {
+            background-color: #333;
+            content: ' ';
+            display: none;
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            z-index: 999;
+        }
+        
+        .tooltip:hover::before {
+            display: block;
+        }
+        
+        .tooltip.left::before {
+            top: 50%;
+            left: 0;
+            transform: translate(calc(-100% - 5px), -50%) rotate(45deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="tooltip left">Show Left</div>
+</body>
+</html>
