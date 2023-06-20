@@ -418,3 +418,46 @@ pre{
 .copy-icon:hover{
     color:#0e2a34;
 }
+
+.tooltip::after {
+    background-color: #0e2a34;
+    border-radius: 10px;
+    color: #ffff;
+    /* display: none; */
+    padding: 10px 15px;
+    position: absolute;
+    text-align: center;
+    z-index: 999;
+}
+
+.tooltip.left::after {
+    content: 'Text Copied!';
+    top: 0;
+    left: 0;
+    width: max-content;
+    transform: translateX(calc(-100% - 10px));
+}
+
+.tooltip:hover::after {
+    display: block;
+}
+
+.tooltip::before {
+    background-color: #0e2a34;
+    content: ' ';
+    /* display: none; */
+    position: absolute;
+    height: 15px;
+    z-index: 999;
+    margin-top: 0.5rem;
+}
+
+.tooltip:hover::before {
+    display: block;
+}
+
+.tooltip.left::before {
+    top: 50%;
+    left: 10px;
+    transform: translate(calc(-100% - 5px), -50%) rotate(45deg);
+}
