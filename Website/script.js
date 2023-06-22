@@ -25,7 +25,6 @@ copyBtn.onclick = e => {
          let icon =  document.querySelector(".copy-icon");
          icon.classList.add("tooltip","left");
          var anchor = document.querySelector('.tooltip');
-         anchor.title = 'new tooltip';
         
          let removeTooltip = setTimeout(function removeTooltipClass(){
             icon.classList.remove("tooltip","left");
