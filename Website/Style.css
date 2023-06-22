@@ -421,10 +421,10 @@ pre{
 
 .tooltip::after {
     background-color: #0e2a34;
-    border-radius: 10px;
+    border-radius: 3px;
     color: #ffff;
-    /* display: none; */
-    padding: 10px 15px;
+    display: none;
+    padding: 5px 10px;
     position: absolute;
     text-align: center;
     z-index: 999;
@@ -445,11 +445,13 @@ pre{
 .tooltip::before {
     background-color: #0e2a34;
     content: ' ';
-    /* display: none; */
+    display: none;
     position: absolute;
-    height: 15px;
+    width: 8px;
+    height: 8px;
     z-index: 999;
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
+    margin-right: 2.5rem !important;
 }
 
 .tooltip:hover::before {
@@ -458,6 +460,6 @@ pre{
 
 .tooltip.left::before {
     top: 50%;
-    left: 10px;
+    left: -2px;
     transform: translate(calc(-100% - 5px), -50%) rotate(45deg);
 }

@@ -27,9 +27,9 @@ copyBtn.onclick = e => {
          var anchor = document.querySelector('.tooltip');
          anchor.title = 'new tooltip';
         
-        //  let removeTooltip = setTimeout(function removeTooltipClass(){
-        //     icon.classList.remove("tooltip","left");
-        //  }, 2000);
+         let removeTooltip = setTimeout(function removeTooltipClass(){
+            icon.classList.remove("tooltip","left");
+         }, 2000);
     });
 
 };
