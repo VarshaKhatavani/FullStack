@@ -8,7 +8,7 @@
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
-    <body>
+    <body id="uidesign">
         <div class="container">
             <header>
                 <div class="top-search"></div>
@@ -104,13 +104,30 @@
                                 <b>Internal</b> - by using a &lt;style&gt; element in the &lt;head&gt; section <br/>
                                 <b>External</b> - by using a &lt;link&gt; element to link to an external CSS file
                             </p>
-                            <h1>Inline CSS</h1>
+                            <h2>Inline CSS</h2>
                             <p>An inline CSS uses the style attribute of an HTML element.</p>
                             <p>The following example sets the text color of the &lt;h1&gt; element to blue, and the text color of the &lt;p&gt; element to red:</p>
                             
                             <div class="code-example">
                                 <pre>
                                     <img src="Code-Examples/css-example-inline.png" id="css-example-inline" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="copy-icon1" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+
+                            <h2>Internal CSS</h2>
+                            <p>An internal CSS is defined in the &lt;head&gt; section of an HTML page, within a &lt;style&gt; element.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/internal-css.png" id="internal-css" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="copy-icon1" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+                            <h2>External CSS</h2>
+                            <p>To use an external style sheet, add a link to it in the <head> section of each HTML page:</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/external-css.png" id="external-css" width="400px" height="400px"/>
                                 </pre>
                                 <button type="button" id="copy-icon1" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
                             </div>

@@ -64,6 +64,8 @@
 
 .content-main{
     grid-area: mainContent;
+    overflow: scroll !important;
+    height: 13.5%;
 }
 
 header,nav,section,main,aside,footer{
@@ -99,6 +101,7 @@ footer{
     width:100%;
     height: 5rem;
     background-color: black;
+    display: none;
 }
 
 .topbar-section{
@@ -211,7 +214,7 @@ li a:hover {
 }
 
 .topnav{
-    background-color: #e7ecfb59;
+    background-color: rgb(231, 236, 251);
     position: relative;
     justify-content: center;
     display: flex;
@@ -219,6 +222,10 @@ li a:hover {
 
 .DetailPage{
     justify-content:left;
+}
+
+#uidesign{
+    overflow: hidden;
 }
 
 .img-div{
