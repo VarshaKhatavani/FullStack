@@ -401,7 +401,7 @@ h2{
 }
 
 pre{
-    background-color: #f2f1f1;
+    background-color: #f2f1f17a;
     border: 1px solid transparent;
     margin: 1rem 0 2rem;
     padding: 1rem 2.5rem 1rem 1rem;
@@ -409,6 +409,12 @@ pre{
     font-size:0.833rem;
     word-wrap: break-word;
     white-space: pre-wrap;
+}
+
+pre div{
+    font-family: monospace;
+    font-size: large;
+    text-align: left;
 }
 
 .copy-icon{
