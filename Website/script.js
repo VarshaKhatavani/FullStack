@@ -1,7 +1,12 @@
 console.log('Hello! Best of Luck Varsha. You will be successful!');
 
 const copyBtn = document.querySelector("#copy-icon1");
-const img = document.querySelector("#image1");
+
+var parentDiv = copyBtn.parentElement;
+console.log(parentDiv);
+let imageId = parentDiv.childNodes[1].childNodes[1].id;
+
+const img = document.getElementById(imageId);
 
 copyBtn.onclick = e => {
     
