@@ -64,7 +64,7 @@
 
 .content-main{
     grid-area: mainContent;
-    overflow: scroll !important;
+    overflow-y: scroll !important;
     height: 13.5%;
 }
 
