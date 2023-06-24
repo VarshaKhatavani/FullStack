@@ -1,7 +1,7 @@
 console.log('Hello! Best of Luck Varsha. You will be successful!');
 
 const copyBtn = document.getElementsByTagName("button");
-console.log(copyBtn)
+console.log(copyBtn);
 
 // const buttonPressed = e => {
 //     console.log(e.target.id);  // Get ID of Clicked Element

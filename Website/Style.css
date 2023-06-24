@@ -484,3 +484,15 @@ pre div{
     left: -2px;
     transform: translate(calc(-100% - 5px), -50%) rotate(45deg);
 }
+
+/* JS -Page */
+
+.leftImage{
+    float:left;
+    margin-top: 2.3rem;
+    display: inline-block;
+    padding: 15px 15px 15px 0px;
+}
+.rightImage{
+    padding: 15px 15px 15px 0px;
+}
