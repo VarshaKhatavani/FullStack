@@ -65,7 +65,7 @@
 .content-main{
     grid-area: mainContent;
     overflow-y: scroll !important;
-    height: 13.5%;
+    max-height: 500px;
 }
 
 header,nav,section,main,aside,footer{
@@ -165,7 +165,6 @@ li .sub-menu{
     z-index: 99;
     position: absolute;
     border: 1px solid rgb(235, 235, 235);
-
 }
 
 .topnav ul>li:hover .sub-menu{
@@ -224,7 +223,7 @@ li a:hover {
     justify-content:left;
 }
 
-#uidesign{
+#bodyOverflow{
     overflow: hidden;
 }
 
