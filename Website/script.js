@@ -36,6 +36,45 @@ for (let button of copyBtn) {
     });
 }
 
+var anchors = document.querySelectorAll('.anchor-js');
+
+for (var i=0; i<anchors.length; i++) {
+    anchors[i].addEventListener('click', e=> { handler(e) });
+}
+
+function handler(e){
+    
+    let allDiv = document.querySelectorAll(".section-div");
+    console.log('clicked anchor...', e.currentTarget.dataset.id);
+    let contentId = e.currentTarget.dataset.id ; 
+    let displayDiv = document.getElementById(contentId); 
+
+    for(let i=0;i<allDiv.length;i++){
+      let isVisible =  allDiv[i].getAttribute("data-id") ; 
+      if(isVisible != null){
+        console.log(displayDiv.getAttribute("style"))
+        displayDiv.style.display = "none";
+      }
+    }
+
+    displayDiv.style.display = "block";
+    displayDiv.setAttribute("data-id","hide");  
+
+    // console.log('clicked anchor...', e.currentTarget.dataset.id);
+    // let contentId = e.currentTarget.dataset.id ; 
+    // let displayDiv = document.getElementById(contentId);
+    // if(displayDiv.getAttribute("data-id") == null){
+    //     displayDiv.style.display = "block";
+    //     console.log(displayDiv.getAttribute("data-id"));
+    // }
+    // else{
+    //     displayDiv.style.display = "hide";
+    // }
+    // displayDiv.setAttribute("data-id","hide");
+
+}
+
+
 //var parentDiv = copyBtn.parentElement;
 //console.log(parentDiv);
 //let imageId = parentDiv.childNodes[1].childNodes[1].id;

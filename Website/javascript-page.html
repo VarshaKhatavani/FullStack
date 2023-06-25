@@ -32,30 +32,32 @@
             <!-- Grid inside grid -->
             <div class="contentpage-container" id="inner-grid">
                 <div class="menubar">
-                    <span class="menulist"><a href="#">Introduction to JavaScript</a></span>
-                    <span class="menulist"><a href="#">JavaScript (ES6)</a></span>
-                    <span class="menulist"><a href="#">JavaScript (Functional Programming)</a></span>
-                    <span class="menulist"><a href="#">Introduction to Document Object Model</a></span>
-                    <span class="menulist"><a href="#">Events and Event Handling</a></span>
-                    <span class="menulist"><a href="#">Dynamic DOM (Use of Web API)</a></span>
-                    <span class="menulist"><a href="#">Machine Coding</a></span>
-                    <span class="menulist"><a href="#">Debouncing, Throttling and async/defer</a></span>
-                    <span class="menulist"><a href="#">JavaScript - OOPS</a></span>
-                    <span class="menulist"><a href="#">Call Apply Bind and Memory of Objects</a></span>
-                    <span class="menulist"><a href="#">Asynchronous Programming</a></span>
+                    <span class="menulist"><a class="anchor-js" data-id="js-intoduction" href="#">Introduction to JavaScript</a></span>
+                    <span class="menulist"><a class="anchor-js" data-id="js-engine-working" href="#">How does Js Works?</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">JavaScript (ES6)</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">JavaScript (Functional Programming)</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Introduction to Document Object Model</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Events and Event Handling</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Dynamic DOM (Use of Web API)</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Machine Coding</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Debouncing, Throttling and async/defer</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">JavaScript - OOPS</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Call Apply Bind and Memory of Objects</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Asynchronous Programming</a></span>
                 </div>
                 <div class="content-main">
+
                     <div class="content-div"> 
-                        <div class="section-div" id="JsIntoduction">
-                            
+                        <div class="section-div" id="js-intoduction">
                             <h1>What is JavaScript?</h1>
                             <p> JavaScript is a very powerful client-side scripting language. JavaScript was initially created to “make web pages alive”. JavaScript is used mainly for enhancing the interaction of a user with the webpage. In other words, you can make your webpage more lively and interactive, with the help of JavaScript. JavaScript is also being used widely in game development and Mobile application development.</p>
-                            <p><b>JavaScript is an interpreted language.</b></p>
                             <h2>Javascript History</h2>
-                            <p>JavaScript was developed by Brendan Eich in 1995, which appeared in Netscape, a popular browser of that time.The language was initially called "LiveScript" and was later renamed JavaScript.</p>
+                            <p>JavaScript was developed by Brendan Eich in 1995, which appeared in Netscape, a popular browser of that time.The language was initially called Mocha, then "LiveScript" and was later renamed JavaScript.</p>
                             <h2>How to Run JavaScript?</h2>
                             <p>Being a scripting language, <b>JavaScript cannot run on its own. In fact, the browser is responsible for running JavaScript code.</b> When a user requests an HTML page with JavaScript in it, the script is sent to the browser and it is up to the browser to execute it. The main advantage of JavaScript is that <b>all modern web browsers support</b> JavaScript. So, you do not have to worry about whether your site visitor uses Internet Explorer, Google Chrome, Firefox or any other browser.</p>
-                            <p>Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called the JavaScript engine.</p>
+                            <p>Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called the JavaScript engine. There are different ways to include javascript.</p>
+                            <h2>#1 Internal JS:</h2>
+                            <p>Internal Js can be written in script tag.</p>
                             <div class="code-example">
                                 <pre>
                                     <img src="Code-Examples/js-intro.png" class="leftImage" id="js-intro" width="400px" height="400px"/>
@@ -63,16 +65,33 @@
                                 </pre>
                                 <button type="button" id="js-intro-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
                             </div>
-                            <p>Above example shows the internal javascript. Same like css we can add external javascript file as well.</p>
+                            <h2>#2 External JS:</h2>
                             <div class="code-example">
                                 <pre>
-                                    <img src="Code-Examples/js-intro-externalscript.png" class="leftImage" id="js-intro-externalscript" width="400px" height="400px"/>
+                                    <img src="Code-Examples/js-intro-externalscript.png" id="js-intro-externalscript" width="400px" height="400px"/>
                                 </pre>
                                 <button type="button" id="js-intro-externalscript-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
                             </div>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/js-intro-externalscript-demo.png" id="js-intro-externalscript-demo" width="400px" height="400px"/>
+                                </pre>
+                            </div>
+                        </div>
+                        
+                        <div class="section-div" id="js-engine-working">
+                            <h1>How javaScript Code Runs? Working of js Engine</h1>
+                            <p><b>JavaScript is an interpreted language.</b>The JavaScript engine runs each line of code in a JavaScript file sequentially as soon as it is loaded into the browser.</p>
+                            <h2>#1 Components of JavaScript</h2>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Engine</span><br/>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Runtime Environment</span><br/>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Call Stack</span><br/>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Concurrency and Event Loop Mechanism</span><br/>
+                            <br/><br/>
+                            <h2><i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Engine</span></h2>
+                        </div>
+                        </div>
 
-                        </div>
-                        </div>
                         <footer>
                             <div class="site-logo-footer">
                                 <img src="Images/Black logo - no background.png" width="200px" height="200px"></img>

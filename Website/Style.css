@@ -402,6 +402,11 @@ h2{
     margin-bottom: 1.5rem;
 }
 
+h3{
+    --type-heading-h1-font-size: 1.088rem;
+    margin-bottom: 1.5rem;
+}
+
 .code-example{
     position: relative;
 }
@@ -491,8 +496,18 @@ pre div{
     float:left;
     margin-top: 2.3rem;
     display: inline-block;
-    padding: 15px 15px 15px 0px;
 }
-.rightImage{
-    padding: 15px 15px 15px 0px;
+
+img{
+    padding: 1rem;
+    border-radius: 1.5rem;
+}
+
+.components{
+    padding: 10px;
+    line-height: 2rem;
+}
+
+.section-div{
+    display: none;
 }
