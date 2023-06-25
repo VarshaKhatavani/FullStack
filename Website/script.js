@@ -17,6 +17,7 @@ for (let button of copyBtn) {
         console.log(imageId);
 
         const img = document.getElementById(imageId);
+        console.log(img);
 
         // Convert image to text 
         Tesseract.recognize(img).then(function(result){

@@ -47,9 +47,10 @@
                 <div class="content-main">
                     <div class="content-div"> 
                         <div class="section-div" id="JsIntoduction">
+                            
                             <h1>What is JavaScript?</h1>
-                            <p> JavaScript is a very powerful client-side scripting language. JavaScript was initially created to “make web pages alive”. JavaScript is used mainly for enhancing the interaction of a user with the webpage. In other words, you can make your webpage more lively and interactive, with the help of JavaScript. JavaScript is also being used widely in game development and Mobile application development.
-                            </p>
+                            <p> JavaScript is a very powerful client-side scripting language. JavaScript was initially created to “make web pages alive”. JavaScript is used mainly for enhancing the interaction of a user with the webpage. In other words, you can make your webpage more lively and interactive, with the help of JavaScript. JavaScript is also being used widely in game development and Mobile application development.</p>
+                            <p><b>JavaScript is an interpreted language.</b></p>
                             <h2>Javascript History</h2>
                             <p>JavaScript was developed by Brendan Eich in 1995, which appeared in Netscape, a popular browser of that time.The language was initially called "LiveScript" and was later renamed JavaScript.</p>
                             <h2>How to Run JavaScript?</h2>
@@ -59,10 +60,17 @@
                                 <pre>
                                     <img src="Code-Examples/js-intro.png" class="leftImage" id="js-intro" width="400px" height="400px"/>
                                     <img src="Code-Examples/js-intro-console.png" class="rightImage" id="js-intro-console" width="400px" height="400px"/>
-
                                 </pre>
                                 <button type="button" id="js-intro-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
                             </div>
+                            <p>Above example shows the internal javascript. Same like css we can add external javascript file as well.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/js-intro-externalscript.png" class="leftImage" id="js-intro-externalscript" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="js-intro-externalscript-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+
                         </div>
                         </div>
                         <footer>
@@ -81,7 +89,7 @@
                 </div>
             </div> 
         </div>
-        <script type="text/javascript" src="script.js" async/>
-        <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+        <script type="text/javascript" src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js' defer></script>
+        <script type="text/javascript" src="script.js" defer />
     </body>
 </html>
