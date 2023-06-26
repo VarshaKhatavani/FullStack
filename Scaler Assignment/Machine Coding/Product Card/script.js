@@ -39,7 +39,7 @@ const products = data.map( products => {
     allStarDiv.className = "all_star";
 
     for(let i=0;i<coloredRatingStar;i++){
-        allStarDiv.innerHTML += `<span class="star_filled">&#9733;</span>` ;
+        allStarDiv.innerHTML += `<span class="star__filled">&#9733;</span>` ;
     }
 
     for(let i=0;i<notColoredRatingStar;i++){
