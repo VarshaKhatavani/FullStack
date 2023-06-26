@@ -375,6 +375,7 @@ li a:hover {
     display: block;
     padding: 5px 0.5rem;
     border-bottom: 1px solid #8080805c;
+    cursor: pointer;
 }
 
 .menulist a{
@@ -510,8 +511,4 @@ img{
 
 .section-div:not(:first-child){
     display: none;
-}
-
-.anchor-js{
-    cursor: pointer;
 }
