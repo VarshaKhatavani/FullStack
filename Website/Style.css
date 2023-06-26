@@ -508,6 +508,10 @@ img{
     line-height: 2rem;
 }
 
-.section-div{
+.section-div:not(:first-child){
     display: none;
+}
+
+.anchor-js{
+    cursor: pointer;
 }

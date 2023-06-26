@@ -53,12 +53,12 @@ function handler(e){
       let isVisible =  allDiv[i].getAttribute("data-id") ; 
       if(isVisible != null){
         console.log(displayDiv.getAttribute("style"))
-        displayDiv.style.display = "none";
+        allDiv[i].style.display = "none";
       }
     }
 
     displayDiv.style.display = "block";
-    displayDiv.setAttribute("data-id","hide");  
+    displayDiv.setAttribute("data-id","show");  
 
     // console.log('clicked anchor...', e.currentTarget.dataset.id);
     // let contentId = e.currentTarget.dataset.id ; 
