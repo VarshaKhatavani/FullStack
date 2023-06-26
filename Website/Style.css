@@ -499,7 +499,7 @@ pre div{
     display: inline-block;
 }
 
-img{
+.code-example img{
     padding: 1rem;
     border-radius: 1.5rem;
 }
