@@ -73,6 +73,31 @@
      </script>
      <script>
          // Write your solution here =====================================================
+
+         let lockUnlockBtn = document.querySelectorAll(".ticket-lock button");
+
+         let contentArea =  document.querySelectorAll(".task-area");
+
+        for(let i=0;i<lockUnlockBtn.length;i++){
+
+         lockUnlockBtn[i].addEventListener("click", function(){
+            console.log("hello");
+            if(lockUnlockBtn[i].parentElement.classList.contains("ticket-lock")){
+                lockUnlockBtn[i].parentElement.classList.add("ticket-unlock");  
+                lockUnlockBtn[i].parentElement.classList.remove("ticket-lock");
+                lockUnlockBtn[i].innerHTML = "Unlocked";
+                contentArea[i].setAttribute("contenteditable","true");
+            }
+            else{
+                lockUnlockBtn[i].parentElement.classList.add("ticket-lock");
+                lockUnlockBtn[i].parentElement.classList.remove("ticket-unlock");
+                lockUnlockBtn[i].innerHTML = "Locked";
+                contentArea[i].setAttribute("contenteditable","false");
+            }
+         })
+
+        }
+
      </script>
 
 
