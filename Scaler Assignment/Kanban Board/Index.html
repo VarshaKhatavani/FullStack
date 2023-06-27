@@ -46,8 +46,7 @@ src = './assets/profile.png'
     </div>
     </div>
 
-    <script src="script.js">
-    </script>
+   <script src="script.js" defer> </script>
    <script>
         // Write your solution here ====================================================
 
@@ -80,6 +79,65 @@ src = './assets/profile.png'
                 }
         })
     }
+
+    let allColors = document.querySelectorAll(".color");
+    console.log(allColors);
+
+    for(let i=0;i<allColors.length;i++){
+
+            // Ticket Filter By Color
+            allColors[i].addEventListener("click",function(){
+                console.log(allColors[i].classList[0]);
+
+                let selectedColor = allColors[i].classList[0];
+
+                let filteredTicketArr = ticketsArr.filter(function(ticketObj){
+                    console.log(ticketObj);
+                   return selectedColor === ticketObj.ticketColor;
+                });
+
+                console.log(filteredTicketArr);
+
+                let allTickets = document.querySelectorAll(".ticket-cont");
+
+                for(let j=0;j<allTickets.length;j++){
+                    allTickets[j].remove();
+                }
+
+                filteredTicketArr.forEach(filteredObj => {
+                    createTicket(
+                        filteredObj.ticketTask,
+                        filteredObj.ticketColor,
+                        filteredObj.ticketID
+                    );
+                });
+                
+
+            });
+
+            // Show all tickets on double click
+            allColors[i].addEventListener("dblclick",function(){
+
+                let allTickets = document.querySelectorAll(".ticket-cont");
+
+                for(let i=0;i<allTickets.length;i++){
+                    allTickets[i].remove();
+                }
+
+                ticketsArr.forEach( arrObj => {
+                    createTicket(
+                        arrObj.ticketTask,
+                        arrObj.ticketColor,
+                        arrObj.ticketID
+                    );
+                });
+
+            });
+    }
+
+
+    
+
 
 
     </script>
