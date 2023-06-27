@@ -173,3 +173,7 @@
   
   .remove-btn { background:transparent;}
   
+  
+.remove-btn:hover {
+  background-color: #4BB543;
+}
