@@ -29,8 +29,65 @@
             company.shift("Google");
             console.log(company);
 
-            
+            // objects 
+            let obj={}
+            console.log(obj);
 
+            let person = {
+                name:"varsha",
+                age:29,
+                phone:+91-9712236850,
+                isFemale:true
+            }
+
+            console.log(person);
+
+            // access object key/values
+            console.log(person.age);
+
+            console.log(person["name"]);
+
+            // Operations with Object
+
+            let developer = {
+                name:"varsha khatavani",
+                age:"29",
+                languagesKnown : ["Core Java","Javascript","React","Node"],
+                sayHi : function() {
+                    console.log("Hi");
+                },
+                address:{
+                    country : "India",
+                    city : {
+                        state :"Banglore",
+                        pincode : "12345"
+                    }
+                },
+                isFemale :true
+            }
+
+            // access key value of object
+            console.log(developer.name);
+            console.log(developer["languagesKnown"][2]);
+            console.log(developer.address.state) // won't work
+
+            // update the object
+            developer.languagesKnown.push("C") ;
+            console.log(developer)
+
+            // add new key to array
+            developer.company = ["Microsoft", "Google"];
+            console.log(developer)
+
+            // call function of object
+            console.log(developer.sayHi); // won't call the function
+
+            developer.sayHi();
+
+            // delete key from object
+            delete developer.sayHi;
+
+            console.log(developer);
 
         </script>
     </head>
