@@ -46,7 +46,7 @@
                 allInput[i].addEventListener("keyup",function(e) {
                         let value = e.target.value ;
 
-                        if(inputCount < 3 && e.keyCode >= 48 && e.keyCode <= 57 || (e.keyCode >= 96 && e.keyCode <= 105)){
+                        if(inputCount < 3 && !isNaN(value) ) { //e.keyCode >= 48 && e.keyCode <= 57 || (e.keyCode >= 96 && e.keyCode <= 105)){
                             allInput[i].nextElementSibling.focus();
                             inputCount++;
                         }
