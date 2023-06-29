@@ -40,7 +40,7 @@
                     <span class="menulist"><a class="anchor-js" href="#">Events and Event Handling</a></span>
                     <span class="menulist"><a class="anchor-js" href="#">Dynamic DOM (Use of Web API)</a></span>
                     <span class="menulist"><a class="anchor-js" href="#">Machine Coding</a></span>
-                    <span class="menulist"><a class="anchor-js" href="#">Debouncing, Throttling and async/defer</a></span>
+                    <span class="menulist"><a class="anchor-js" data-id="js-debouncing-throtlling" href="#">Debouncing, Throttling and async/defer</a></span>
                     <span class="menulist"><a class="anchor-js" href="#">JavaScript - OOPS</a></span>
                     <span class="menulist"><a class="anchor-js" href="#">Call Apply Bind and Memory of Objects</a></span>
                     <span class="menulist"><a class="anchor-js" href="#">Asynchronous Programming</a></span>
@@ -89,6 +89,27 @@
                             <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Concurrency and Event Loop Mechanism</span><br/>
                             <br/><br/>
                             <h2><i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Engine</span></h2>
+                        </div>
+
+                        <div class="section-div" id="js-debouncing-throtlling">
+                            <h1>JavaScript Debounce vs. Throttle</h1>
+                            <p> Performance is one of the most crucial aspect of mordern web application.As developers, 
+                                we follow various techniques to enhance application performance and provide better user experience.
+                                For example, debouncing and throtlling are two simple, yet powerful techniques 
+                                we can use in javascript applications to optimise and improve performance. 
+                            </p>
+                            <h2>Why do we need to debounce and throttle?</h2>
+                            <p>Usually, developers have freedom to decide when to call the function. But sometimes, they have 
+                                to hand over control to users. For example, event triggers are widely used in application 
+                                to trigger functions based on the events like key press, button clicks and mouse movements.
+                                In such situations, users can trigger those events far more than required and cause 
+                                significant performance issues in the application.
+                            </p>
+                            <p>For example, consider a search bar where we need to display suggestion list as the user types.
+                               We can implement this using event listener to bring data from the backend on each key press. 
+                               However, it will negatively impact application performance, since it will make API call each time
+                               user press the key.     
+                            </p>
                         </div>
                         </div>
 
