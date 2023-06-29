@@ -175,6 +175,45 @@
             //console.log(c);
             fxn(b,c); // reference type call by sharing.
 
+            // Use of map,filter,reduce
+
+            let radiusArr = [1,2,3,4,5,9];
+
+            function calculateCircumference(r) {
+                return Math.PI*r*r;
+            }
+
+            // cf will call the calculateCircumference
+
+            function calculate(radiusArr,cf) {
+                let arr = [];
+                for(let i=0;i<radiusArr.length;i++){
+                    let cal = cf(radiusArr[i]);  // cf will call the calculateCircumference
+                    arr.push(cal);
+                }
+                return arr ;
+            }
+
+            // passed radius array & circumference 
+            // let circumferenceOfCircle = calculate(radiusArr,calculateCircumference);
+            // console.log(circumferenceOfCircle)
+
+            
+            // Use of map - Syntax 1 
+             
+            let circumferenceOfCircle1 = radiusArr.map(calculateCircumference)
+            console.log(circumferenceOfCircle1)
+
+            // Use of map - Syntax 2
+
+            let circumferenceOfCircle = radiusArr.map(function(r) {
+                return Math.PI*r*r;
+            })
+            console.log(circumferenceOfCircle)
+
+
+
+
         </script>
     </head>
     <body>
