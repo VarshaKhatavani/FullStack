@@ -8,10 +8,6 @@
 
         <script>
 
-            let inputText =  document.getElementById("search-bar");
-            let noOfKeyPress = 0; 
-            let noOfTimesApiCall = 0 ;
-
             // example 1
             // inputText.addEventListener("input", function(e){
             //     console.log("Entered Val:",e.target.value);
@@ -34,6 +30,11 @@
             // }
 
             // example 2 
+
+            let inputText =  document.getElementById("search-bar");
+            let noOfKeyPress = 0; 
+            let noOfTimesApiCall = 0 ;
+
             let usingDebounceFunc  = debounce(getSearchResult,1000);
 
             function getSearchResult(){
