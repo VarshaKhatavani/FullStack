@@ -110,7 +110,30 @@
                                However, it will negatively impact application performance, since it will make API call each time
                                user press the key.     
                             </p>
+                            <p>Let's understand it with example.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/Javascript-Examples/js-debounce-1.png" id="js-debounce-1" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="js-debounce-1-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+
+                            <h2>What is debounce?</h2>
+                            <p>It delays the function invocation by a defined period of time to avoid unneccessary invocations.
+                                So, the <b><i>function will only be invoked if no event is triggered within that time. If the user triggers 
+                                a new event during that time, the time will be reset.</i></b>
+                            </p>
+                            <p>Let's consider pervious example, the issue with above scenario was unneccessary API calls. 
+                            So, if we define a debounce function with delay of one second, it will hold back the API Call
+                            untill one second passes without any user events. <b><i>If the user presses a key within that second, 
+                            the debounce function will reset the delay and wait for another second to make the API call.</i></b> 
+                            </p>
+                            <h2>How to implement a debounce function</h2>
+                            <p>We can easily implement debounce function using the <b>setTimeout()</b> and <b>clearTimeOut()</b>
+                            functions. It should also take a callback function and delay as input parameters.</p>
+                            
                         </div>
+                        
                         </div>
 
                         <footer>

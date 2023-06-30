@@ -503,7 +503,13 @@ pre div{
 .code-example img{
     padding: 1rem;
     border-radius: 1.5rem;
+    /* transition: transform .5s ease; */
 }
+
+/* 
+.code-example img:hover {
+    transform: scale(1.2);
+} */
 
 .components{
     padding: 10px;
