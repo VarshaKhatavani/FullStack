@@ -184,7 +184,7 @@ li .inner-sub-menu{
 	display: none;
     z-index:-1;
     position: absolute;
-    margin-left: 12.1rem;
+    margin-left: 14.1rem;
     border: 1px solid rgb(235, 235, 235);
 }
 .sub-menu li>a{
@@ -424,6 +424,11 @@ pre{
     border: 1px solid #e6ebff;
 }
 
+.nobackground{
+    background-color: white !important; 
+    border: none;
+}
+
 pre div{
     font-family: monospace;
     font-size: large;
@@ -496,8 +501,11 @@ pre div{
 
 .leftImage{
     float:left;
-    margin-top: 2.3rem;
     display: inline-block;
+}
+
+.rightImage{
+    margin-top: -2.2rem;
 }
 
 .code-example img{
