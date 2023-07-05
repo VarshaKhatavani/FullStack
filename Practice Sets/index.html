@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function processArray(array){
+            const result=[];
+            for(const item of array){
+                const processedItem = await processItem(item);
+                result.push(processedItem);
+            }
+            return result;
+        }
+        const data = [1,2,3];
+        //console.log(processArray(data));
+
+        async function getData(){
+            return 'Hello';
+        }
+
+        //console.log(await getData()); // Hello
+
+        async function fetchData(){
+            return Promise.reject('Error Occurred');
+        }
+
+        fetchData().then((result) => {
+            console.log(result);
+        }).catch((err) => {
+            console.log(err); // Error occurred
+        });
+
+    </script>
+</body>
+</html>
