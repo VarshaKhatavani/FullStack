@@ -1,0 +1,18 @@
+
+
+ => Progress Till 25/06/2023
+ 
+	 Page Design
+	 
+	 Index
+	 CSS
+	 JS
+ 
+	 Functionality :
+
+	 1. Dynamic Copy Button Logic
+	 2. Dynamic ToolTip 
+	 3. Dynamic Image To Text Copy 
+	 4. Scrollbar Styling
+	 5. Show/Hide Division (Continue)
+ 

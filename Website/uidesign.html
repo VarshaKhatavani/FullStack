@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Hub</title>
+        <link rel="stylesheet" href="Style.css"></link>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body id="bodyOverflow">
+        <div class="container">
+            <header>
+                <div class="top-search"></div>
+                <div class="topbar-section">
+                    <div>social icons</div>
+                    <div class="text-center"></div>
+                    <div class="text-right"><a> <i class="fa fa-search icon-size"></i> Search</a></div>
+                </div>
+            </header>
+            <nav>
+                <div class="topnav DetailPage">
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="uidesign.html">HTML & CSS</a></li>
+                        <li><a href="javascript-page.html">JAVASCRIPT</a></li>
+                        <li><a href="#">REACT</a></li>
+                        <li><a href="#">ABOUT</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Grid inside grid -->
+            <div class="contentpage-container" id="inner-grid">
+                <div class="menubar">
+                    <span class="menulist">Web Fundamentals</span>
+                    <span class="menulist">HTML Tables and forms</span>
+                    <span class="menulist">Introduction To CSS</span>
+                    <span class="menulist"><a href="#">CSS Display</a></span>
+                    <span class="menulist"><a href="#">CSS Box Model</a></span>
+                    <span class="menulist"><a href="#">CSS Positioning</a></span>
+                    <span class="menulist"><a href="#">CSS Flexbox</a></span>
+                    <span class="menulist"><a href="#">CSS Media Queries</a></span>
+                    <span class="menulist"><a href="#">CSS Responsive Layout</a></span>
+                    <span class="menulist"><a href="#">CSS Grid</a></span>
+                    <span class="menulist"><a href="#">CSS z-index</a></span>
+                    <span class="menulist"><a href="#">CSS Pseudo</a></span>
+                    <span class="menulist"><a href="#">CSS Animations and Keyframes</a></span>
+                    <span class="menulist"><a href="#">Advance CSS</a></span>
+                </div>
+                <div class="content-main">
+                    <div class="content-div"> 
+                       
+                        <div class="section-div" id="introduction">
+                            <h1>What are the Basic Fundamentals of Web Development?</h1>
+                            <p> In simple terms, web development includes web designing, development, and maintenance of a website.
+                                Three technologies that rule the world of web development are HTML, JavaScript, and CSS which explain what web development is. </p>
+                            <!-- <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/psudo-code.png" id="image1" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="copy-icon1" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div> -->
+                            <h2>1. What is HTML?</h2>
+                            <p> HTML (HyperText Markup Language) is the most basic building block of the Web. It defines the meaning and structure of web content. Other technologies besides HTML are generally used to describe a web page's appearance/presentation (CSS) or functionality/behavior (JavaScript).
+                            </p>
+                            <p>HTML uses "markup" to annotate text, images, and other content for display in a Web browser. HTML markup includes special "elements" such as &lt;head&gt;, &lt;title&gt;, &lt;body&gt;, &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;, &lt;section&gt;, &lt;p&gt;, &lt;div&gt;, &lt;span&gt;, &lt;img&gt;, &lt;aside&gt;, &lt;audio&gt;, &lt;canvas&gt;, &lt;datalist&gt;, &lt;details&gt;, &lt;embed&gt;, &lt;nav&gt;, &lt;output&gt;, &lt;progress&gt;, &lt;video&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt; and many others.</p>
+                            <p>The name of an element inside a tag is case-insensitive. That is, it can be written in uppercase, lowercase, or a mixture. For example, the &lt;title&gt; tag can be written as &lt;Title&gt;, &lt;TITLE&gt;, or in any other way. However, the recommended practice is to write tags in lowercase. As mentioned below, we can use tags.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/tag-structure.png" id="tag-structure" width="400px" height="400px"/>
+                                </pre>
+                            </div>
+                            <p> Please find below HTML Structure,</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/html-structure.jpeg" id="html-structure" width="400px" height="400px"/>
+                                </pre>
+                            </div>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/basic-html-example.png" id="basic-html-example" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="basic-html-example-btn" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+                            <h2>1. What is CSS?</h2>
+                            <p>Cascading Style Sheets, fondly referred to as CSS, is a simple design language intended to simplify the process of making web pages presentable.</p>
+                            <p>CSS handles the look and feel part of a web page. Using CSS, you can control the color of the text, the style of fonts, the spacing between paragraphs, how columns are sized and laid out, what background images or colors are used, layout designs,variations in display for different devices and screen sizes as well as a variety of other effects.</p>
+                            <p>A CSS comprises of style rules that are interpreted by the browser and then applied to the corresponding elements in your document. A style rule is made of three parts</p>
+                            <p>
+                                <b>Selector</b> − A selector is an HTML tag at which a style will be applied. This could be any tag like &lt;h1&gt; or &lt;table&gt; etc.<br/>
+                                <b>Property</b> − A property is a type of attribute of HTML tag. Put simply, all the HTML attributes are converted into CSS properties. They could be color, border etc.<br/>
+                                <b>Value</b> − Values are assigned to properties. For example, color property can have value either red or #F1F1F1 etc.<br/>
+                            </p>
+                            <pre>
+                               <div>
+                                selector { <br/>
+                                    property: value <br/>
+                                } 
+                               </div>
+                            </pre>
+                            <p>CSS can be added to HTML documents in 3 ways:</p>
+                            <p>
+                                <b>Inline</b> - by using the style attribute inside HTML elements <br/>
+                                <b>Internal</b> - by using a &lt;style&gt; element in the &lt;head&gt; section <br/>
+                                <b>External</b> - by using a &lt;link&gt; element to link to an external CSS file
+                            </p>
+                            <h2>Inline CSS</h2>
+                            <p>An inline CSS uses the style attribute of an HTML element.</p>
+                            <p>The following example sets the text color of the &lt;h1&gt; element to blue, and the text color of the &lt;p&gt; element to red:</p>
+                            
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/css-example-inline.png" id="css-example-inline" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="css-example-inline-btn" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+
+                            <h2>Internal CSS</h2>
+                            <p>An internal CSS is defined in the &lt;head&gt; section of an HTML page, within a &lt;style&gt; element.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/internal-css.png" id="internal-css" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="internal-css-btn" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+                            <h2>External CSS</h2>
+                            <p>To use an external style sheet, add a link to it in the <head> section of each HTML page:</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/external-css.png" id="external-css" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="external-css-btn" title="Copy Text"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+
+                        </div>
+                        </div>
+                        <footer>
+                            <div class="site-logo-footer">
+                                <img src="Images/Black logo - no background.png" width="200px" height="200px"></img>
+                            </div>
+                            <div class="footer-post">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis asperiores consectetur, ipsam doloribus cum impedit porro labore eveniet, ullam libero nostrum ducimus! Qui, est. Nemo modi aut ducimus ipsa laborum.
+                            </div>
+                            <div class="footer-icons">
+                                <i class="fa-brands fa-linkedin fa-2xl footer-icon-padding"></i>
+                                <i class="fa-brands fa-instagram fa-2xl footer-icon-padding"></i>
+                                <i class="fa-brands fa-facebook fa-2xl footer-icon-padding"></i>
+                            </div>
+                        </footer>
+                </div>
+            </div> 
+        </div>
+        <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js'></script>
+        <script type="text/javascript" src="script.js" async></script>
+    </body>
+</html>

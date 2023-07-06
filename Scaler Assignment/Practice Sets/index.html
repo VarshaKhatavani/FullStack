@@ -1,0 +1,222 @@
+<html>
+    <head>
+        <title> Practice Sets</title>
+        <script>
+
+            // array & array methods
+            let arr=[];
+            console.log(arr);
+
+            let arr1 = [0,1,2,'s','scaler',true,[30,'varsha','45','Microsoft','Yes']];
+            console.log(arr1);
+            
+            arr1[2] = "Aman";
+            console.log(arr1);
+
+            let company = ["Meta","Apple","Amazon","Microsoft"];
+
+            company.push("Netflix");
+            
+            company.push("Salesforce");
+            console.log(company);
+
+            company.pop();
+            console.log(company);
+
+            company.unshift("Microsoft");
+            console.log(company);
+
+            company.shift("Google");
+            console.log(company);
+
+            // objects 
+            let obj={}
+            console.log(obj);
+
+            let person = {
+                name:"varsha",
+                age:29,
+                phone:+91-9712236850,
+                isFemale:true
+            }
+
+            console.log(person);
+
+            // access object key/values
+            console.log(person.age);
+
+            console.log(person["name"]);
+
+            // Operations with Object
+
+            let developer = {
+                name:"varsha khatavani",
+                age:"29",
+                languagesKnown : ["Core Java","Javascript","React","Node"],
+                sayHi : function() {
+                    console.log("Hi");
+                },
+                address:{
+                    country : "India",
+                    city : {
+                        state :"Banglore",
+                        pincode : "12345"
+                    }
+                },
+                isFemale :true
+            }
+
+            // access key value of object
+            console.log(developer.name);
+            console.log(developer["languagesKnown"][2]);
+            console.log(developer.address.state) // won't work
+
+            // update the object
+            developer.languagesKnown.push("C") ;
+            console.log(developer)
+
+            // add new key to array
+            developer.company = ["Microsoft", "Google"];
+            console.log(developer)
+
+            // call function of object
+            console.log(developer.sayHi); // won't call the function
+
+            developer.sayHi();
+
+            // delete key from object
+            delete developer.sayHi;
+
+            console.log(developer);
+
+            // functions 
+
+            function print(){
+                console.log('Hey, lets learn functions!');
+            }
+
+            print();
+
+            // expression function
+            let sum = function(a,b){
+                return a+b;
+            }
+
+            console.log(sum(5,40));
+
+            //arrow function
+            let mul = (a) => {
+                console.log("Hello arrow function")
+                return a*a;
+            }
+
+            console.log(mul(10));
+
+            // execution context
+
+            console.log('execution context starts.....');
+
+            console.log(a); // accessible but undefined
+            var a = 10 ; 
+            console.log(a);
+
+            // console.log(bb); //   Cannot access 'bb' before initialization
+            // let bb = 10 ; 
+            // console.log(bb);
+
+            // console.log(c); //  Cannot access 'c' before initialization
+            // const c = 10;
+            // console.log(c);
+
+            fun(); // accessible
+
+            function fun(){
+                console.log('function called');
+            }
+
+            // funExpr(); // We cannot access 'funExpr' before initialization
+
+            let funExpr = function(){
+                console.log('This is function expr');
+            }
+
+            funExpr();
+
+            //arrowFun(); // We cannot access 'arrowFun' before initialization
+
+            let arrowFun = () => {
+                console.log('Arrow Function');
+            }
+
+            arrowFun();
+
+            // pass by value -> no change in original one a new copy will be created 
+            function fxn(num,obj){
+                
+                obj.city ="Delhi"; // change will persist in the original c object as both are refrencingt to the same address.
+                console.log(obj);
+                console.log("Inside fxn -> ", num);
+                
+                // Reassign parameters
+                num = 20;
+                obj = {    // new assignmnet will point to different address in heap and change won't persist in the original object. 
+                    name:"Mrunal"
+                }
+                console.log("Inside fxn-> ",num)
+                console.log(obj);
+            }
+
+            let b = 10;
+            let c = {
+                name:"Aman"
+            }
+
+            // console.log("Outside fxn ->",b);
+            //console.log(c);
+            fxn(b,c); // reference type call by sharing.
+
+            // Use of map,filter,reduce
+
+            let radiusArr = [1,2,3,4,5,9];
+
+            function calculateCircumference(r) {
+                return Math.PI*r*r;
+            }
+
+            // cf will call the calculateCircumference
+
+            function calculate(radiusArr,cf) {
+                let arr = [];
+                for(let i=0;i<radiusArr.length;i++){
+                    let cal = cf(radiusArr[i]);  // cf will call the calculateCircumference
+                    arr.push(cal);
+                }
+                return arr ;
+            }
+
+            // passed radius array & circumference 
+            // let circumferenceOfCircle = calculate(radiusArr,calculateCircumference);
+            // console.log(circumferenceOfCircle)
+
+            
+            // Use of map - Syntax 1 
+             
+            let circumferenceOfCircle1 = radiusArr.map(calculateCircumference)
+            console.log(circumferenceOfCircle1)
+
+            // Use of map - Syntax 2
+
+            let circumferenceOfCircle = radiusArr.map(function(r) {
+                return Math.PI*r*r;
+            })
+            console.log(circumferenceOfCircle)
+
+
+
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
