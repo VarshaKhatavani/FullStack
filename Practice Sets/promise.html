@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Use Of Promises</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+
+        // Use Of Promises
+        async function processArray(array){
+                  const result=[];
+                  for(const item of array){
+                      const processedItem = await processItem(item);
+                      result.push(processedItem);
+                  }
+                  return result;
+              }
+              const data = [1,2,3];
+              //console.log(processArray(data));
+
+              async function getData(){
+                  return 'Hello';
+              }
+
+              //console.log(await getData()); // Hello
+
+              async function fetchData(){
+                  return Promise.reject('Error Occurred 1');
+              }
+
+              fetchData().then((result) => {
+                  //console.log(result);
+              }).catch((err) => {
+                  console.log(err); // Error occurred - because we have rejected the promise
+              });
+
+              // 06-07-2023
+
+              async function fetchDataNew(){
+                throw new Error('Error Ocurred New');
+              }
+
+              (async () => {
+                    try {
+                        await fetchDataNew();
+                    } catch (error) {
+                        console.log(error.message);
+                    }
+              })
+
+    </script>
+</head>
+<body>
+    
+</body>
