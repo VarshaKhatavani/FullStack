@@ -15,4 +15,4 @@
 	 3. Dynamic Image To Text Copy 
 	 4. Scrollbar Styling
 	 5. Show/Hide Division (Continue)
- 
+
