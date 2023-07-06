@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <title>OOPS - 1 Assignment</title>
+    </head>
+    <body>
+        <script>
+            /* Example - 1 */
+            function Person(name){
+                this.name = name ;
+            }
+
+            Person.prototype.sayHello = function(){
+                console.log("Hello, "+ this.name + "!");
+            }
+
+            var person1 = new Person("John");
+            person1.sayHello();
+
+            /* Example - 2 */
+            function Circle(radius){
+                this.radius = radius;
+            }
+
+            Circle.prototype.getArea = function(){
+                return Math.PI * this.radius * this.radius;
+            }
+
+            var circle = new Circle(5);
+            console.log(circle.getArea());
+
+            /* Example - 3 */
+
+            class Car{
+                constructor(brand){
+                    this.brand = brand ;
+                }
+                static getBrand(){
+                    return this.brand;
+                }
+            }
+            console.log(Car.getBrand());
+
+             /* Example - 4 */
+
+             class Animal{
+                constructor(name){
+                    this.name = name ;
+                }
+                speak(){
+                    console.log(this.sound);
+                }
+             }
+
+
+             class Dog extends Animal{
+                constructor(name){
+                    super(name);
+                    this.sound = "Woof!"
+                }
+             }
+
+             var dog = new Dog("Buddy");
+             dog.speak();
+
+             /* Example - 5 */
+
+             function Vehicle(){
+                this.engine = true ;
+             }
+
+             Vehicle.prototype.start = function(){
+                console.log("engine started");
+             }
+
+             function Car(){
+                Vehicle.call(this);   
+             }
+
+             Car.prototype = Object.create(Vehicle.prototype);
+             Car.prototype.constructor = Car ;
+
+             var car = new Car();
+             console.log(car.engine);
+
+        </script>
+    </body>
+</html>
