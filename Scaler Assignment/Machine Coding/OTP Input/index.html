@@ -1,0 +1,70 @@
+<!-- 
+
+    Que - 
+    
+    1. Each of the fields only takes a single-digit number as input.
+    2. When a number is entered, the focus moves to the next input field.
+    3. Pressing Backspace or Delete key removes the input of the current field, and the focus moves to the previous field.
+
+    You can utilise methods like isNan(value), Element.focus(), Element.nextElementSibling and Element.previousElementSibling to make the above-mentioned features work.
+
+    Use the above information to write the entire JS program in the script.js file or script tag.
+    Refer to the test cases to further understand the criteria to submit the problem successfully.
+
+ -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Management App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="inputs" class="inputs">
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+            <input class="input" type="text" inputmode="numeric" maxlength="1" />
+        </div>
+    </div>
+    <script src="script.js"></script>
+
+    <script>
+
+            let allInput = document.querySelectorAll(".input");
+            let inputCount = 0 ;
+
+            for(let i=0;i<allInput.length;i++){
+
+                allInput[i].addEventListener("keyup",function(e) {
+                        let value = e.target.value ;
+
+                        if(inputCount < 3 && !isNaN(value) ) { //e.keyCode >= 48 && e.keyCode <= 57 || (e.keyCode >= 96 && e.keyCode <= 105)){
+                            allInput[i].nextElementSibling.focus();
+                            inputCount++;
+                        }
+
+                        console.log(e.keyCode);
+                        const key = e.key; 
+                        if (inputCount > 0 && key === "Backspace" || key === "Delete") {
+                            e.target.value = "";
+                            allInput[i].previousElementSibling.focus();
+                            inputCount--;
+                        }
+                        console.log(inputCount);
+                })
+
+            }
+
+
+    </script>
+</body>
+
+</html>
