@@ -1,0 +1,201 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Hub</title>
+        <link rel="stylesheet" href="Style.css"></link>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css"></link> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body id="bodyOverflow">
+        <div class="container">
+            <header>
+                <div class="top-search"></div>
+                <div class="topbar-section">
+                    <div>social icons</div>
+                    <div class="text-center"></div>
+                    <div class="text-right"><a> <i class="fa fa-search icon-size"></i> Search</a></div>
+                </div>
+            </header>
+            <nav>
+                <div class="topnav DetailPage">
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="uidesign.html">HTML & CSS</a></li>
+                        <li><a href="javascript-page.html">JAVASCRIPT</a></li>
+                        <li><a href="#">REACT</a></li>
+                        <li><a href="#">ABOUT</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- Grid inside grid -->
+            <div class="contentpage-container" id="inner-grid">
+                <div class="menubar">
+                    <span class="menulist"><a class="anchor-js" data-id="js-intoduction" href="#">Introduction to JavaScript</a></span>
+                    <span class="menulist"><a class="anchor-js" data-id="js-engine-working" href="#">How does Js Works?</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">JavaScript (ES6)</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">JavaScript (Functional Programming)</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Introduction to Document Object Model</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Events and Event Handling</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Dynamic DOM (Use of Web API)</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Machine Coding</a></span>
+                    <span class="menulist"><a class="anchor-js" data-id="js-debouncing-throtlling" href="#">Debouncing, Throttling and async/defer</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">JavaScript - OOPS</a></span>
+                    <span class="menulist"><a class="anchor-js" href="#">Call Apply Bind and Memory of Objects</a></span>
+                    <span class="menulist"><a class="anchor-js" data-id="js-async" href="#">Asynchronous Programming</a></span>
+                </div>
+                <div class="content-main">
+
+                    <div class="content-div"> 
+                        <div class="section-div" id="js-intoduction" data-id="show">
+                            <h1>What is JavaScript?</h1>
+                            <p> JavaScript is a very powerful client-side scripting language. JavaScript was initially created to “make web pages alive”. JavaScript is used mainly for enhancing the interaction of a user with the webpage. In other words, you can make your webpage more lively and interactive, with the help of JavaScript. JavaScript is also being used widely in game development and Mobile application development.</p>
+                            <h2>Javascript History</h2>
+                            <p>JavaScript was developed by Brendan Eich in 1995, which appeared in Netscape, a popular browser of that time.The language was initially called Mocha, then "LiveScript" and was later renamed JavaScript.</p>
+                            <h2>How to Run JavaScript?</h2>
+                            <p>Being a scripting language, <b>JavaScript cannot run on its own. In fact, the browser is responsible for running JavaScript code.</b> When a user requests an HTML page with JavaScript in it, the script is sent to the browser and it is up to the browser to execute it. The main advantage of JavaScript is that <b>all modern web browsers support</b> JavaScript. So, you do not have to worry about whether your site visitor uses Internet Explorer, Google Chrome, Firefox or any other browser.</p>
+                            <p>Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called the JavaScript engine. There are different ways to include javascript.</p>
+                            <h2>#1 Internal JS:</h2>
+                            <p>Internal Js can be written in script tag.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/js-intro.png" class="leftImage" id="js-intro" width="400px" height="400px"/>
+                                    <img src="Code-Examples/js-intro-console.png" class="rightImage" id="js-intro-console" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="js-intro-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+                            <h2>#2 External JS:</h2>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/js-intro-externalscript.png" id="js-intro-externalscript" width="400px" height="400px"/>
+                                </pre>
+                                <button type="button" id="js-intro-externalscript-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/js-intro-externalscript-demo.png" id="js-intro-externalscript-demo" width="400px" height="400px"/>
+                                </pre>
+                            </div>
+                        </div>
+                        
+                        <div class="section-div" id="js-engine-working">
+                            <h1>How javaScript Code Runs? Working of js Engine</h1>
+                            <p><b>JavaScript is an interpreted language.</b>The JavaScript engine runs each line of code in a JavaScript file sequentially as soon as it is loaded into the browser.</p>
+                            <h2>#1 Components of JavaScript</h2>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Engine</span><br/>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Runtime Environment</span><br/>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Call Stack</span><br/>
+                            <i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Concurrency and Event Loop Mechanism</span><br/>
+                            <br/><br/>
+                            <h2><i class="fa fa-circle-chevron-right"></i><span class="components">JavaScript Engine</span></h2>
+                        </div>
+
+                        <div class="section-div" id="js-debouncing-throtlling">
+                            <h1>JavaScript Debounce vs. Throttle</h1>
+                            <p> Performance is one of the most crucial aspect of mordern web application.As developers, 
+                                we follow various techniques to enhance application performance and provide better user experience.
+                                For example, debouncing and throtlling are two simple, yet powerful techniques 
+                                we can use in javascript applications to optimise and improve performance. 
+                            </p>
+                            <h2>Why do we need to debounce and throttle?</h2>
+                            <p>Usually, developers have freedom to decide when to call the function. But sometimes, they have 
+                                to hand over control to users. For example, event triggers are widely used in application 
+                                to trigger functions based on the events like key press, button clicks and mouse movements.
+                                In such situations, users can trigger those events far more than required and cause 
+                                significant performance issues in the application.
+                            </p>
+                            <p>For example, consider a search bar where we need to display suggestion list as the user types.
+                               We can implement this using event listener to bring data from the backend on each key press. 
+                               However, it will negatively impact application performance, since it will make API call each time
+                               user press the key.     
+                            </p>
+                            <p>Let's understand it with example.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/Javascript-Examples/js-debounce-1.png" id="js-debounce-1" width="650px" height="400px"/>
+                                </pre>
+                                <button type="button" id="js-debounce-1-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+
+                            <h2>What is debounce?</h2>
+                            <p>It delays the function invocation by a defined period of time to avoid unneccessary invocations.
+                                So, the <b><i>function will only be invoked if no event is triggered within that time. If the user triggers 
+                                a new event during that time, the time will be reset.</i></b>
+                            </p>
+                            <p>Let's consider pervious example, the issue with above scenario was unneccessary API calls. 
+                            So, if we define a debounce function with delay of one second, it will hold back the API Call
+                            untill one second passes without any user events. <b><i>If the user presses a key within that second, 
+                            the debounce function will reset the delay and wait for another second to make the API call.</i></b> 
+                            </p>
+                            <h2>How to implement a debounce function</h2>
+                            <p>We can easily implement debounce function using the <b>setTimeout()</b> and <b>clearTimeOut()</b>
+                            functions. It should also take a callback function and delay as input parameters.</p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/Javascript-Examples/js-debounce-use.png" id="js-debounce-use" width="650px" height="400px"/>
+                                </pre>
+                                <button type="button" id="js-debounce-use-btn"  class="icon copy-icon"><i class="fa fa-clipboard fa-2x"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="section-div" id="js-async">
+                            <h1>Asynchronous Programming in JavaScript</h1>
+                            <p>In JavaScript, tasks can be classified into <b>synchronous</b> and <b>asynchronous</b> types.
+                            </p>
+                            <p><b>Synchronous</b> tasks are the ones that execute sequentially, one after the other, and while they're being executed nothing else is being done. At each line of the program, the browser waits for the task to finish before jumping to the next one.
+                                We say this kind of tasks are <b>"blocking"</b>, because while they execute they block the execution thread, preventing it from doing anything else.
+                            </p>
+                            <p><b>Asynchronous</b> tasks, on the other hand, are the ones that, while they execute, they <b>don't block</b> the execution thread. So the program can still perform other tasks while the asynchronous task is being executed.
+                            This is why we say this kind of tasks are <b>"non blocking"</b>. This technique comes in handy specially for tasks that take long time to execute, as by not blocking the execution thread the program is able to execute more efficiently.</p>
+                            <p><i><b>Asynchronous programming</b> is a technique that enables your program to start a potentially long-running task and still be able to be responsive to other events while that task runs, rather than having to wait until that task has finished. Once that task has finished, your program is presented with the result.
+                            </i></p>
+
+                            <p> <b><i>JavaScript is a single threaded</i></b> language. <b>"Single threaded"</b> means it has a single thread of execution. This means that JavaScript programs can only execute a single task at a time.</p>
+                            <p>This isn't the case for languages like Java or Ruby, which can create various execution threads and in that way execute many tasks simultaneously.</p>
+                            
+                            <div class="code-example">
+                                <pre class="nobackground">
+                                    <img src="Code-Examples/Javascript-Examples/js-single-multi-thread.png" id="js-single-multi-thread" width="650px" height="400px"/>
+                                </pre>
+                            </div>
+                            <p>Now if JavaScript can only execute only one task at a time, how come synchronous tasks can execute while asynchronous tasks complete "in the background"?</p>
+                            <p>To explain this, we need to briefly describe how web browsers execute JavaScript code and some of its core components: <b>The call stack, web APIs, the callback queue, and the event loop.</b></p>
+                            <h2>What is the Call Stack? </h2>
+                            <p>As you may now, a stack is a type of data structure where elements are added and removed following a LIFO(last in, first out) fashion. 
+                                Browsers use something called the call stack to read and execute each task contained in a Javascript program.
+                                Let's understand with it example below.
+                            </p>
+                            <div class="code-example">
+                                <pre class="nobackground" >
+                                    <img src="Code-Examples/Javascript-Examples/js-callstack-add-func.png" id="js-callstack-add-func" class="leftImage" width="400px" height="400px"/>
+                                    <img src="Code-Examples/Javascript-Examples/js-callstack-add.png" id="js-callstack-add" class="rightImage" width="260px" height="200px"/>
+                                </pre>
+                            </div>
+                            <p>Here we can see function <b>first()</b> is being called which inturn calls another function <b>second()</b> and so on. When a JavaScript program first starts executing, the <b>Call Stack is empty</b>. When the first function call is made, a new frame is <b>pushed onto the top of the Call Stack.</b> When that function returns, its frame is <b>popped off of the Call Stack.</b> </p>
+                           
+
+                        </div>
+                        
+                        </div>
+
+                        <footer>
+                            <div class="site-logo-footer">
+                                <img src="Images/Black logo - no background.png" width="200px" height="200px"></img>
+                            </div>
+                            <div class="footer-post">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis asperiores consectetur, ipsam doloribus cum impedit porro labore eveniet, ullam libero nostrum ducimus! Qui, est. Nemo modi aut ducimus ipsa laborum.
+                            </div>
+                            <div class="footer-icons">
+                                <i class="fa-brands fa-linkedin fa-2xl footer-icon-padding"></i>
+                                <i class="fa-brands fa-instagram fa-2xl footer-icon-padding"></i>
+                                <i class="fa-brands fa-facebook fa-2xl footer-icon-padding"></i>
+                            </div>
+                        </footer>
+                </div>
+            </div> 
+        </div>
+        <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js' defer></script>
+        <script type="text/javascript" src="script.js" charset="utf-8" defer></script>
+    </body>
+</html>

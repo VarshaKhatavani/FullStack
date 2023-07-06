@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title> Debouncing Example</title>
+    </head>
+    <body>
+        <label>Search here :</label>
+        <input type="text" id="search-bar"/>
+
+        <script>
+
+            // example 1
+            // inputText.addEventListener("input", function(e){
+            //     console.log("Entered Val:",e.target.value);
+            //     console.log("No Of Times Key Pressed:",noOfKeyPress);
+            //     noOfKeyPress++; 
+            //     getSearchResult();   
+            // })
+
+            // const getSearchResult = debounce(() => {
+            //     console.log("No Of Times Api Called:",noOfTimesApiCall);
+            //     noOfTimesApiCall++;
+            // },1000);
+
+            // function debounce(getSearchResult, delay){
+            //     let timer;
+            //     return function(){
+            //         clearTimeout(timer);
+            //         timer = setTimeout(getSearchResult,delay)
+            //     }
+            // }
+
+            // example 2 
+
+            let inputText =  document.getElementById("search-bar");
+            let noOfKeyPress = 0; 
+            let noOfTimesApiCall = 0 ;
+
+            let usingDebounceFunc  = debounce(getSearchResult,1000);
+
+            function getSearchResult(){
+                console.log("Network call :", noOfTimesApiCall);
+                noOfTimesApiCall++;
+            }
+
+            function debounce(getSearchResult, delay){
+                let timer;
+                return function(){
+                    clearTimeout(timer);
+                    timer = setTimeout(getSearchResult,delay)
+                }
+            }
+            
+            inputText.addEventListener("input", function(e){
+                console.log("Entered Val:",e.target.value);
+                console.log("No Of Times Key Pressed:",noOfKeyPress);
+                noOfKeyPress++; 
+                usingDebounceFunc();
+            });
+
+        </script>
+
+    </body>
+</html>
