@@ -45,5 +45,58 @@
             ulEle.style.display = "none";
         });
 
+
+        // Interview Ques
+        function multiplyBy(num){ // 20 
+            return function(x){
+                //console.log(num * x );
+                return num * x ;  // 20 * x 
+                var num = 2 ;
+            }
+        }
+
+        var multiplyByTwo = multiplyBy(20);
+        //console.log(multiplyByTwo(5));
+
+        var result = multiplyByTwo(5);
+        console.log(result);
+
+        function magic() {
+            return function calc(x) {
+                return x * 42;
+            };
+        }
+
+        const answer = magic();
+        //console.log(answer);
+
+        // 2. 
+
+        function outer(){
+            var x= 10;
+            function inner(){
+                console.log(x);
+            }
+            return inner;
+        }
+
+        var closureFunc = outer();
+        closureFunc();
+
+        //3. 
+
+        function multiplyByNew(num){
+            return function(x){
+                //console.log(num * x );
+                return num * x ;  // 2 * x 
+            }
+        }
+
+        var multiplyByTwoNew = multiplyByNew(2);
+        //console.log(multiplyByTwo(5));
+
+        var resultNew = multiplyByTwoNew(5);
+        console.log(resultNew);
+
     </script>
 </body>
