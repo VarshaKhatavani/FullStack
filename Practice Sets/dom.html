@@ -98,5 +98,52 @@
         var resultNew = multiplyByTwoNew(5);
         console.log(resultNew);
 
+        // 1. Homework - Start
+
+        function add1(x) {
+            return function(y){
+                return function(z){
+                    return x+y+z;
+                }
+            }
+        }
+
+        var result1 = add1(2,3)(4);
+
+        console.log(result1);
+
+        // output 
+
+        /*
+        ƒ (z){
+            return x+y+z;
+        }*/
+
+        // 2. 
+        function outer1(x){
+            return function(y){
+                return function(z){
+                    return x+y+z;
+                }
+            }
+        }
+
+        var res = outer1(2)(3)(4);
+
+        console.log(res); // o/p => 9
+
+        //3.
+        function multiplyBy1(num) {
+            return function(x){
+                return num * x ;
+            }
+        }
+
+        var mulByTwo = multiplyBy1(2);
+        var mulByThree = mulByTwo(3);
+        var ans = mulByTwo(mulByThree(4));
+
+        console.log(ans);
+
     </script>
 </body>
