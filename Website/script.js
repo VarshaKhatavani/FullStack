@@ -112,6 +112,3 @@ function handler(e){
 //};
 
 
-
-
-

@@ -173,10 +173,55 @@
                                 </pre>
                             </div>
                             <p>Here we can see function <b>first()</b> is being called which inturn calls another function <b>second()</b> and so on. When a JavaScript program first starts executing, the <b>Call Stack is empty</b>. When the first function call is made, a new frame is <b>pushed onto the top of the Call Stack.</b> When that function returns, its frame is <b>popped off of the Call Stack.</b> </p>
-                           
-
-                        </div>
-                        
+                            <h2>Web APIs, the Callback Queue, and the Event Loop</h2>
+                            <p>Using the call stack, JavaScript takes account of each task, executes it, and then moves on to the next.</p>
+                            <p>Now let's check the following example:</p>
+                            <div class="code-example">
+                                <pre class="nobackground">
+                                    <img src="Code-Examples/Javascript-Examples/js-async-setTimeOut.png" id="js-async-setTimeOut" width="400px" height="400px"/>                                
+                                </pre>
+                            </div>
+                            <p>Here we're logging three seperate things. According to logic, it should console "task1", "task2", "task3". As on the second one we're using setTimeout to log it after 0 milliseconds. </p>
+                            <p>But that's not what happens:</p>
+                            <div class="code-example">
+                                <pre class="nobackground">
+                                    <img src="Code-Examples/Javascript-Examples/js-async-execution.png" id="js-async-execution" width="800px" height="800px"/>                               
+                                </pre>
+                            </div>
+                            <p>And if we had a look at our call stack during the program, It would look like this:</p>
+                            <h3><i>How come we got console of task1,task3,task2 ?</i></h3>
+                            <p>To explain this "mysterious" disappearance and reappearance of setTimeout task, we need to introduce three more components that 
+                                are part of the browser runtime: <b>Web APIs, the callback queue and the event loop.</b>
+                            </p>
+                            <h2>What are Web APIs?</h2>
+                            <p>Web API's are used to handle javascript operations whenever there is a task taking long 
+                               time to execute in Call Stack by implementing few Web Api's method such as.
+                                <br/>
+                                <i class="fa fa-circle-chevron-right"></i><span class="components">setTimeout</span><br/>
+                                <i class="fa fa-circle-chevron-right"></i><span class="components">setInterval</span><br/>
+                                <i class="fa fa-circle-chevron-right"></i><span class="components">AJAX Call (xmlhttprequest)</span><br/>
+                            </p>
+                            <div class="code-example">
+                                <pre>
+                                    <img src="Code-Examples/Javascript-Examples/js-webAPI-code.png" id="js-async-webapi" width="400px" height="400px"/>                               
+                                </pre>
+                            </div>
+                            <p>In Javascript, the execution take place from top to bottom or line by line.</p>
+                            <span class="components">1. The interpreter will point to message method but didn't find callable function.</span><br/>
+                            <span class="components">2. After that it will point to setTimeout method and setTimeout is a WebAPI so it will move to Web API from Call Stack.</span><br/>
+                            <span class="components">3. And then interpreter will point to callable message() method it call message method and return the string 'Good Morning'.</span><br/><br/>
+                            <p>Here two times the entry is made into Call Stack and pop from Call Stack once the message returns.Meanwhile in Web API’s, after 5 ms the Web API push timeout() method to Callback Queue.</p>
+                            <h2>What are the callback queue and the event loop?</h2>
+                            <p><b>Callback Queue</b> is a place where all the functions popout from WebAPI's will reside, it follows queue data structure 
+                            which is FIFO(First In First Out) that means the first function push to Callback queue from Web API’s will be the first function will pop from Callable queue to Call Stack through Event Loop. </p>
+                            <p><b>Event Loop</b> check the Call Stack continuously to push partially executed function from Callback Queue to Call Stack for further execution.
+                                For this the Event Loop need to be confirm that there is no active running function in Call Stack and it should be empty.
+                            </p>
+                            <div class="code-example">
+                                <pre class="nobackground">
+                                    <img src="Code-Examples/Javascript-Examples/js-architecture.png" id="js-architecture" width="600px" height="600px"/>                               
+                                </pre>
+                            </div>
                         </div>
 
                         <footer>
@@ -197,5 +242,6 @@
         </div>
         <script src='https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js' defer></script>
         <script type="text/javascript" src="script.js" charset="utf-8" defer></script>
+        <script src="test-code.js" charset="utf-8" defer></script>
     </body>
 </html>
