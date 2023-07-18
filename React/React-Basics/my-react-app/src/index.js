@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM  from "react-dom/client";
 //import App from './App';
-import {App,MyComponent, mapComponent} from './App'; 
+import {App,MyComponent, MapCmp, DataFetcher, DataFetcherWithLoader} from './App'; 
 
 //const element = <h1>Hello World!</h1> ;
 //ReactDOM.render(element, document.getElementById('root'));
@@ -13,6 +13,8 @@ root.render(
     <>  
         <App />
         <MyComponent/>
-        <mapComponent/>    
+        <MapCmp/>    
+        <DataFetcher/>
+        <DataFetcherWithLoader/>
     </>
 );
