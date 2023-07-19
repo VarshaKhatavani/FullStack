@@ -53,28 +53,86 @@ const DataFetcher = () => {
     return <div>Data Fetcher</div>;
 };
 
-const DataFetcherWithLoader = () =>{
-    const [data,setData] = useState(null);
-    const [loading, setLoading] = useState(true);
+// const DataFetcherWithLoader = () =>{
+//     const [data,setData] = useState(null);
+//     const [loading, setLoading] = useState(true);
+
+//     useEffect(()=>{
+//         fetch('https://reqres.in/api/users/2/data')
+//             .then((response)=>response.json())
+//                 .then((data)=>{
+//                     console.log(data);
+//                     setData(data);
+//                     setLoading(false);
+//                 });
+//     },[]);
+
+
+//     if (loading) {
+//         return <div>Loading...</div>;
+//     }
+    
+//     return <div>Data: {data}</div>;
+// };
+
+// const FetchData = async () =>{        
+//     const response = await fetch('https://reqres.in/api/users/2');
+//     const data = await response.json();
+//     return data;
+// }
+
+// const result = FetchData();
+// console.log(result);
+
+const MyExample = () => {
+
+    const [apiData, setData] = useState([]);
 
     useEffect(()=>{
-        fetch('https://reqres.in/api/users/2')
-            .then((response)=>response.json())
-                .then((data)=>{
-                    setData(data);
-                    setLoading(false);
-                });
+        fetchDataNew().then((result) => 
+            setData(result));
     },[]);
 
+    const fetchDataNew = async() =>{
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        const data = await response.json();
+        return data;
+    };
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    
-    return <div>Data: {data}</div>;
+    return ( 
+        <main>
+            <ul>
+                {apiData && apiData.length > 0 && apiData.map((userObj, index) => (
+                    <li key={userObj.id}>{userObj.title}</li>
+                ))}
+            </ul>
+        </main>
+    ) 
+
+};
+
+const MyComponent2 = ({items}) => {
+    return (
+        <ul>
+            {
+                items.map((item)=> (<li key={item.id}>{item.name}</li>))
+            }
+        </ul>
+    );
+};
+
+const App1 =() => {
+    const products = [
+        { id: 1, name: 'Product A' },
+        { id: 2, name: 'Product B' },
+        { id: 3, name: 'Product C' },    
+    ];
+
+    return <MyComponent2 items={products}/>
 }
+
 
 // export default App;
 
-export {App, MyComponent, MapCmp, DataFetcher, DataFetcherWithLoader};
+export {App, MyComponent, MapCmp, DataFetcher, MyExample, App1}; //DataFetcherWithLoader , FetchData
 
