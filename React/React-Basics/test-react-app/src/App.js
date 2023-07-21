@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const App = () => {
 
@@ -13,6 +13,14 @@ const App = () => {
       setCount(prevCount => prevCount+1);
   }
 
+  useEffect(()=>{
+      console.log('Component mouned')  ;
+  },[])
+
+  const handleClickWithEffect = useCallback(() => {
+    console.log('Button clicked');
+  },[]);
+
   return (
     <>
     <h1>Hello, React!</h1>
@@ -25,6 +33,8 @@ const App = () => {
         )}
     </ul>
     <h1>{name}</h1><p>{age} years old</p>
+    <button onClick={handleClickWithEffect}>Click me</button>
+
     </>
   );
 }
