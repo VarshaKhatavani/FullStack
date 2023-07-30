@@ -1,8 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: [
+            "./src/**/*.{js,jsx,ts,tsx}",
+          ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'pattern': "url('https://assets-in.bmscdn.com/discovery-catalog/events/et00311714-ewdhvajezf-landscape.jpg')",    
+      }
+    },
   },
   plugins: [],
 }
