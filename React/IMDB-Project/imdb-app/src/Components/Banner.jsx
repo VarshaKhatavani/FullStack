@@ -18,6 +18,7 @@ export default function Banner(){
         });
     },[])
 
+    // in console it was showing error so added check if data is there then only renders
     if(movieObj.poster_path === undefined){
         return <>Loading...</>
     }
