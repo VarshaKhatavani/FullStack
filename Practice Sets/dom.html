@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <button id="all">Remove All</button>
+    <ul>
+        <li>
+            <p>Task - 1</p>
+            <button>delete</button>
+        </li>
+        <li>
+            <p>Task - 2</p>
+            <button>delete</button>
+        </li>
+        <li>
+            <p>Task - 3</p>
+            <button>delete</button>
+        </li>
+        <li>
+            <p>Task - 4</p>
+            <button>delete</button>
+        </li>
+    </ul>
+    <script>
+        // Write your JS program here =========
+
+        let allTaskButton = document.querySelectorAll("ul button");
+
+        for(let i=0;i<allTaskButton.length;i++){
+            allTaskButton[i].addEventListener("click",function(e){
+                e.target.parentElement.style.display = "none";
+            })
+        }
+
+        let removeAll =  document.querySelector("#all");
+
+        let ulEle = document.querySelector("ul");
+        
+        removeAll.addEventListener("click", function(e){
+            ulEle.style.display = "none";
+        });
+
+
+        // Interview Ques
+        function multiplyBy(num){ // 20 
+            return function(x){
+                //console.log(num * x );
+                return num * x ;  // 20 * x 
+                var num = 2 ;
+            }
+        }
+
+        var multiplyByTwo = multiplyBy(20);
+        //console.log(multiplyByTwo(5));
+
+        var result = multiplyByTwo(5);
+        console.log(result);
+
+        function magic() {
+            return function calc(x) {
+                return x * 42;
+            };
+        }
+
+        const answer = magic();
+        //console.log(answer);
+
+        // 2. 
+
+        function outer(){
+            var x= 10;
+            function inner(){
+                console.log(x);
+            }
+            return inner;
+        }
+
+        var closureFunc = outer();
+        closureFunc();
+
+        //3. 
+
+        function multiplyByNew(num){
+            return function(x){
+                //console.log(num * x );
+                return num * x ;  // 2 * x 
+            }
+        }
+
+        var multiplyByTwoNew = multiplyByNew(2);
+        //console.log(multiplyByTwo(5));
+
+        var resultNew = multiplyByTwoNew(5);
+        console.log(resultNew);
+
+        // 1. Homework - Start
+
+        function add1(x) {
+            return function(y){
+                return function(z){
+                    return x+y+z;
+                }
+            }
+        }
+
+        var result1 = add1(2,3)(4);
+
+        console.log(result1);
+
+        // output 
+
+        /*
+        ƒ (z){
+            return x+y+z;
+        }*/
+
+        // 2. 
+        function outer1(x){
+            return function(y){
+                return function(z){
+                    return x+y+z;
+                }
+            }
+        }
+
+        var res = outer1(2)(3)(4);
+
+        console.log(res); // o/p => 9
+
+        //3.
+        function multiplyBy1(num) {
+            return function(x){
+                return num * x ;
+            }
+        }
+
+        var mulByTwo = multiplyBy1(2);
+        var mulByThree = mulByTwo(3);
+        var ans = mulByTwo(mulByThree(4));
+
+        console.log(ans);
+
+    </script>
+</body>
