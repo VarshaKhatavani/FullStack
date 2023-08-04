@@ -7,11 +7,19 @@ export default function Banner(){
 
     let [movieObj, setMovieObj] = useState({});
 
-    const[loading,setLoading] = useState(true);    
+    const[loading,setLoading] = useState(true);   
+    const[textLoader,setTextLoader] = useState(true);    
+ 
 
     if (loading) {
         setTimeout(()=>{
             setLoading(false);            
+        },1000);        
+    }
+
+    if (textLoader) {
+        setTimeout(()=>{
+            setTextLoader(false);            
         },1000);        
     }
     
@@ -30,18 +38,21 @@ export default function Banner(){
 
     // in console it was showing error so added check if data is there then only renders
     if(movieObj.poster_path === undefined){
-        return <>Loading...</>
+        return <><Skeleton height={400} className="h-screen w-auto"/></>
     }
 
     // bg-pattern , h-screen  in class
     return(
         <>
             {
-                loading ? (<Skeleton height={400} className="h-screen w-auto"/>) : (                    
-                    <div className="h-[70vh] bg-cover bg-center bg-no-repeat flex items-end" style = {{backgroundImage:`url(http://image.tmdb.org/t/p/original/${movieObj.poster_path})`}} > 
-                        
-                    <div className="bg-stone-900/60 w-full p-2 text-center text-white">{movieObj.name}</div>
-                </div>
+                loading ? ( <Skeleton height={400} /> ) : (                    
+                    <div className="h-[70vh] bg-cover bg-center bg-no-repeat flex items-end" style = {{backgroundImage:`url(http://image.tmdb.org/t/p/original/${movieObj.poster_path})`}} >                         
+                       <div className="bg-stone-900/60 w-full p-2 text-center text-white">  
+                            { textLoader ? ( <Skeleton baseColor="colors.grey" width={10} height={10} containerClassName="bg-stone-900/60 w-full p-2" /> ) 
+                            : ( movieObj.name ) 
+                            }
+                        </div> 
+                    </div>
                 )
             }
         </>
