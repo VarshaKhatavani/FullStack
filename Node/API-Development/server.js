@@ -9,6 +9,12 @@
 
 //server.listen(8080);
 
+// **** Issues in below code ****
+// Data is not persistant
+// Code Architecture
+// Authentication 
+// Error handling is not there 
+
 const express = require("express");
 const app = express();
 
