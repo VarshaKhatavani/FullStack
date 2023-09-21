@@ -21,9 +21,9 @@ export default function Ueffect() {
 
   return (
     <>
-      <p>Hello, I am use effect component</p>
+      <h1>Hello, I am use effect component</h1>
       <div>
-        <h1> Count is : {count}</h1>
+        <h3> Count is : {count}</h3>
         <button onClick={handleClick}>Increment Count</button>
 
         <h2>Form</h2>
