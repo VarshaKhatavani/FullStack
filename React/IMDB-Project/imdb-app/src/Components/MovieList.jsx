@@ -18,7 +18,7 @@ export default function MovieList() {
         //moviesObj = response.data ;
         setMovieObj(response.data.results);
       });
-  }, []);
+  }, [currentPage]);
 
   console.log(moviesObj);
 
@@ -49,6 +49,8 @@ export default function MovieList() {
         totalPages={totalPages}
         onPageChanges={handlePageChange}
         calculatePagesToShow={calculatePagesToShow}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
       />
     </div>
   );
@@ -77,5 +79,13 @@ export default function MovieList() {
 
   function handlePageChange(pageNumber) {
     setCurrentPage(pageNumber);
+  }
+
+  function handleNext() {
+    setCurrentPage(currentPage + 1);
+  }
+
+  function handlePrev() {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   }
 }
