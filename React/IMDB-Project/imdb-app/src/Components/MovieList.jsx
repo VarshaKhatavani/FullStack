@@ -6,7 +6,16 @@ import axios from "axios";
 export default function MovieList() {
   let [moviesObj, setMovieObj] = useState(undefined);
   let [currentPage, setCurrentPage] = useState(1);
+  let [watchlist, setWatchList] = useState([]);
   const totalPages = 500;
+
+  let handleAddToWatchList = (id) => {
+    let newWatchList = [...watchlist];
+    newWatchList.push(id);
+    console.log(newWatchList);
+    setWatchList(newWatchList);
+    localStorage.setItem("movies-app", JSON.stringify(newWatchList));
+  };
 
   useEffect(() => {
     axios
@@ -36,9 +45,12 @@ export default function MovieList() {
         {moviesObj.map((mObject) => {
           return (
             <MovieCard
+              id={mObject.id}
               key={mObject.id}
               title={mObject.title}
+              watchList={watchlist}
               poster_path={mObject.poster_path}
+              handleAddToWatchList={handleAddToWatchList}
             />
           );
         })}
