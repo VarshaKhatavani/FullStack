@@ -29,6 +29,13 @@ export default function MovieList() {
       });
   }, [currentPage]);
 
+  useEffect(() => {
+    let favouriteMoviesLocalStorage = JSON.parse(
+      localStorage.getItem("movies-app")
+    );
+    setWatchList(favouriteMoviesLocalStorage);
+  }, []);
+
   console.log(moviesObj);
 
   if (moviesObj === undefined) {
