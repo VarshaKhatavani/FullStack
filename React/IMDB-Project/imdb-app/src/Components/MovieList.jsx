@@ -10,9 +10,14 @@ export default function MovieList() {
   const totalPages = 500;
 
   let handleAddToWatchList = (id) => {
-    let newWatchList = [...watchlist];
-    newWatchList.push(id);
-    console.log(newWatchList);
+    console.log("hello", watchlist);
+    //let newWatchList = [...watchlist];
+    //newWatchList.push(id);
+
+    //same thing in one line
+    let newWatchList = watchlist === null ? [id] : [...watchlist, id];
+    // copy watchlist array to newWatchList & push the latest id to newWatchList array
+    console.log("newWatchList----", newWatchList);
     setWatchList(newWatchList);
     localStorage.setItem("movies-app", JSON.stringify(newWatchList));
   };
@@ -38,6 +43,16 @@ export default function MovieList() {
 
   console.log(moviesObj);
 
+  let handleRemoveFromWatchList = (id) => {
+    // newWatchList contains all the elements from the original watchlist
+    // array except for the one with the id value that matches the one passed as an argument to the function
+    let newWatchList = watchlist.filter((movieId) => {
+      return movieId !== id;
+    });
+    localStorage.setItem("movies-app", JSON.stringify(newWatchList));
+    setWatchList(newWatchList);
+  };
+
   if (moviesObj === undefined) {
     return <div>Loading...</div>;
   }
@@ -58,6 +73,7 @@ export default function MovieList() {
               watchList={watchlist}
               poster_path={mObject.poster_path}
               handleAddToWatchList={handleAddToWatchList}
+              handleRemoveFromWatchList={handleRemoveFromWatchList}
             />
           );
         })}

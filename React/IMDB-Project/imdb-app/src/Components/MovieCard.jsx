@@ -27,11 +27,14 @@ export default function MovieCard(props) {
               <p className="w-40 break-words"> {props.title} </p>
 
               <span
-                onClick={() => props.handleAddToWatchList(props.id)}
+                // onClick={() => props.handleAddToWatchList(props.id)}
                 className="m-2 bottom-0 right-0  w-6 absolute   hover:cursor-pointer"
               >
-                {props.watchList.includes(props.id) ? (
+                {" "}
+                {console.log(props.watchList)}
+                {props.watchList && props.watchList.includes(props.id) ? (
                   <svg
+                    onClick={() => props.handleRemoveFromWatchList(props.id)}
                     className="w-6 h-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -45,6 +48,7 @@ export default function MovieCard(props) {
                   </svg>
                 ) : (
                   <svg
+                    onClick={() => props.handleAddToWatchList(props.id)}
                     className="w-6 h-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
