@@ -34,7 +34,7 @@ export default function MovieList(props) {
         {moviesObj.map((mObject) => {
           return (
             <MovieCard
-              id={mObject.id}
+              movieObj={mObject}
               key={mObject.id}
               title={mObject.title}
               watchList={watchList}

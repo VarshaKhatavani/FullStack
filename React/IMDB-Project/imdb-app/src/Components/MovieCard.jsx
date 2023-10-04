@@ -3,12 +3,23 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 export default function MovieCard(props) {
+  let { watchList } = props;
   const [loading, setLoading] = useState(true);
   console.log(props);
+
   if (loading) {
     setTimeout(() => {
       setLoading(false);
     }, 2500);
+  }
+
+  function isContains(moviesObj) {
+    for (let i = 0; i < watchList.length; i++) {
+      if (moviesObj.id === watchList[i].id) {
+        return true;
+      }
+    }
+    return false;
   }
 
   return (
@@ -32,9 +43,11 @@ export default function MovieCard(props) {
               >
                 {" "}
                 {console.log(props.watchList)}
-                {props.watchList && props.watchList.includes(props.id) ? (
+                {props.watchList && isContains(props.movieObj) ? (
                   <svg
-                    onClick={() => props.handleRemoveFromWatchList(props.id)}
+                    onClick={() =>
+                      props.handleRemoveFromWatchList(props.movieObj)
+                    }
                     className="w-6 h-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +61,7 @@ export default function MovieCard(props) {
                   </svg>
                 ) : (
                   <svg
-                    onClick={() => props.handleAddToWatchList(props.id)}
+                    onClick={() => props.handleAddToWatchList(props.movieObj)}
                     className="w-6 h-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
