@@ -59,9 +59,7 @@ export default function MovieList() {
 
   return (
     <div className="flex-auto p-3">
-      <div className="text-3xl font-bold text-center p-3">
-        I am Trending Movie List
-      </div>
+      <div className="text-3xl font-bold text-center p-3">Trending Movies</div>
 
       <div className="flex flex-wrap gap-4 justify-evenly">
         {moviesObj.map((mObject) => {
