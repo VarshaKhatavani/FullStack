@@ -1,3 +1,5 @@
+import genreids from "../Utility/genre";
+
 export default function WatchList() {
   let movies = [
     {
@@ -145,7 +147,7 @@ export default function WatchList() {
                   <td class="px-6 py-4">
                     {" "}
                     <span class="py-2 px-4 shadow-md no-underline rounded-full bg-slate-100 text-grey font-sans font-semibold text-sm  focus:outline-none mr-2">
-                      Action
+                      {genreids[movieObj.genre_ids[0]]}
                     </span>
                   </td>
                   <td class="px-6 py-4">{movieObj.release_date}</td>

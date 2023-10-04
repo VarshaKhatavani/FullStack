@@ -3,24 +3,12 @@ import MovieCard from "./MovieCard";
 import Pagination from "./Pagination";
 import axios from "axios";
 
-export default function MovieList() {
+export default function MovieList(props) {
+  let { watchList, handleAddToWatchList, handleRemoveFromWatchList } = props;
+
   let [moviesObj, setMovieObj] = useState(undefined);
   let [currentPage, setCurrentPage] = useState(1);
-  let [watchlist, setWatchList] = useState([]);
   const totalPages = 500;
-
-  let handleAddToWatchList = (id) => {
-    console.log("hello", watchlist);
-    //let newWatchList = [...watchlist];
-    //newWatchList.push(id);
-
-    //same thing in one line
-    let newWatchList = watchlist === null ? [id] : [...watchlist, id];
-    // copy watchlist array to newWatchList & push the latest id to newWatchList array
-    console.log("newWatchList----", newWatchList);
-    setWatchList(newWatchList);
-    localStorage.setItem("movies-app", JSON.stringify(newWatchList));
-  };
 
   useEffect(() => {
     axios
@@ -33,25 +21,6 @@ export default function MovieList() {
         setMovieObj(response.data.results);
       });
   }, [currentPage]);
-
-  useEffect(() => {
-    let favouriteMoviesLocalStorage = JSON.parse(
-      localStorage.getItem("movies-app")
-    );
-    setWatchList(favouriteMoviesLocalStorage);
-  }, []);
-
-  console.log(moviesObj);
-
-  let handleRemoveFromWatchList = (id) => {
-    // newWatchList contains all the elements from the original watchlist
-    // array except for the one with the id value that matches the one passed as an argument to the function
-    let newWatchList = watchlist.filter((movieId) => {
-      return movieId !== id;
-    });
-    localStorage.setItem("movies-app", JSON.stringify(newWatchList));
-    setWatchList(newWatchList);
-  };
 
   if (moviesObj === undefined) {
     return <div>Loading...</div>;
@@ -68,7 +37,7 @@ export default function MovieList() {
               id={mObject.id}
               key={mObject.id}
               title={mObject.title}
-              watchList={watchlist}
+              watchList={watchList}
               poster_path={mObject.poster_path}
               handleAddToWatchList={handleAddToWatchList}
               handleRemoveFromWatchList={handleRemoveFromWatchList}
