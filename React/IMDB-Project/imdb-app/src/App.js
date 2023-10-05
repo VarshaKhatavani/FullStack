@@ -5,6 +5,7 @@ import Banner from './Components/Banner';
 import WatchList from './Components/WatchList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import MovieDetails from './Components/MovieDetails';
 
 function App() {
 
@@ -61,6 +62,9 @@ function App() {
                           handleRemoveFromWatchList={handleRemoveFromWatchList}
                 />}>                
               </Route>
+              
+              <Route path="/movie/:id" element={<MovieDetails />} />
+              
               {/* Note - Path is specified in Navbar anchor-->Link tag */}
             </Routes>
         </BrowserRouter>  
