@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import StarRatings from "./StarRatings";
+
 // import genreids from "../Utility/genre";
 
 export default function MovieDetails() {
@@ -33,19 +35,22 @@ export default function MovieDetails() {
     return null; // Return null or a loading indicator if data is not yet available
   }
 
-  const maxRating = 10;
+  // const maxRating = 10;
 
-  const starIcons = [];
+  // const starIcons = [];
 
-  for (let i = 1; i <= maxRating; i++) {
-    starIcons.push(
-      <FontAwesomeIcon
-        icon={faStar}
-        key={i}
-        className={i <= rating ? "text-yellow-500" : "text-gray-400"}
-      />
-    );
-  }
+  // for (let i = 1; i <= maxRating; i++) {
+  //   starIcons.push(
+  //     <FontAwesomeIcon
+  //       icon={faStar}
+  //       key={i}
+  //       className={i <= rating ? "text-yellow-500" : "text-gray-400"}
+  //     />
+  //   );
+  // }
+
+  let rating;
+  rating = Math.round(movieData.vote_average);
 
   return (
     <>
@@ -74,12 +79,19 @@ export default function MovieDetails() {
           <p className="text-gray-700 mb-2">
             <b>Genre:</b>{" "}
             {movieData.genres.map((type) => {
-              return type.name + " ";
+              return (
+                <>
+                  <span class="px-3 py-1 mr-2 rounded-full bg-slate-100 justify-between text-black font-semibold">
+                    {" "}
+                    {type.name}
+                  </span>
+                </>
+              );
             })}
           </p>
           <p className="text-gray-700 mb-2">
             {" "}
-            <b>Ratings:</b> {movieData.vote_average}{" "}
+            <b>Ratings:</b> <StarRatings rating={rating} />
           </p>
           <br />
           <p className="text-gray-700">{movieData.overview}</p>
