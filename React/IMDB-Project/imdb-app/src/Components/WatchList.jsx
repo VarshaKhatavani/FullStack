@@ -29,6 +29,7 @@ export default function WatchList(props) {
   let { watchList, handleRemoveFromWatchList } = props;
   let [genreList, setGenreList] = useState(["All Genres"]);
   let [currGenre, setCurrGenre] = useState("All Genre");
+  let [search, setSearch] = useState("");
 
   useEffect(() => {
     let temp = watchList.map((movieObj) => {
@@ -40,6 +41,10 @@ export default function WatchList(props) {
 
   let handleFilter = (genre) => {
     setCurrGenre(genre);
+  };
+
+  let handleSearch = (e) => {
+    setSearch(e.target.value);
   };
 
   return (
@@ -72,10 +77,12 @@ export default function WatchList(props) {
 
       <div className="flex justify-center my-4 ">
         <input
+          onChange={handleSearch}
           className=" relative w-[18rem] bg-slate-100
                  outline-none p-3 rounded-md  px-4 text-base"
           placeholder="Search Movies"
           type="text"
+          value={search}
         />
       </div>
 
@@ -111,6 +118,11 @@ export default function WatchList(props) {
                   return true;
                 }
                 return genreids[movieObj.genre_ids[0]] === currGenre;
+              })
+              .filter((movieObj) => {
+                return movieObj.title
+                  .toLowerCase()
+                  .includes(search.toLowerCase());
               })
               .map((movieObj) => {
                 return (
