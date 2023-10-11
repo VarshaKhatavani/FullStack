@@ -10,6 +10,8 @@ import MovieDetails from './Components/MovieDetails';
 function App() {
 
   let [watchlist, setWatchList] = useState([]);
+  let [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 500;
 
   let handleAddToWatchList = (movieObj) => {
     console.log("hello", watchlist);
@@ -44,6 +46,43 @@ function App() {
     setWatchList(favouriteMoviesLocalStorage);
   }, []);
 
+  // Pagination
+
+  
+  // For example, show 5 pages centered around the current page
+  function calculatePagesToShow() {
+    const pagesToShow = [];
+    const pagesToDisplay = 5;
+
+    // start page will be
+    let startPage = Math.max(currentPage - Math.floor(pagesToDisplay / 2), 1);
+    let endPage = startPage + pagesToDisplay - 1;
+
+    // handle edge case for last page
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(endPage - pagesToDisplay + 1, 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pagesToShow.push(i);
+    }
+
+    return pagesToShow;
+  }
+
+  function handlePageChange(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
+
+  function handleNext() {
+    setCurrentPage(currentPage + 1);
+  }
+
+  function handlePrev() {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  }
+
   return (
         <BrowserRouter>
             <Navbar/> 
@@ -54,7 +93,13 @@ function App() {
                   <MovieList watchList={watchlist}
                              setWatchList={setWatchList}
                              handleAddToWatchList={handleAddToWatchList}
-                             handleRemoveFromWatchList={handleRemoveFromWatchList}/>           
+                             handleRemoveFromWatchList={handleRemoveFromWatchList}
+                             currentPage={currentPage}
+                             totalPages={totalPages}
+                             onPageChanges={handlePageChange}
+                             calculatePagesToShow={calculatePagesToShow}
+                             handleNext={handleNext}
+                             handlePrev={handlePrev}/>           
                 </>
               }></Route>
               <Route path="/watchlist" element={

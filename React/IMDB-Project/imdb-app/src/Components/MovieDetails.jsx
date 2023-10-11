@@ -91,7 +91,8 @@ export default function MovieDetails() {
           </p>
           <p className="text-gray-700 mb-2">
             {" "}
-            <b>Ratings:</b> <StarRatings rating={rating} />
+            <b>Ratings:</b> <StarRatings rating={rating} />{" "}
+            <b className="text-amber-300">{rating}</b>/10
           </p>
           <br />
           <p className="text-gray-700">{movieData.overview}</p>

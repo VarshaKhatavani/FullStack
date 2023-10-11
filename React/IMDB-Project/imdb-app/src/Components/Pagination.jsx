@@ -1,5 +1,5 @@
 export default function Pagination(props) {
-  let { handleNext, handlePrev } = props;
+  let { handleNext, handlePrev, onPageChanges } = props;
 
   let current = props.currentPage;
   console.log(current);
@@ -20,7 +20,7 @@ export default function Pagination(props) {
   const pageButtons = pagesToShow.map((page) => (
     <span
       key={page}
-      onClick={() => props.onPageChanges(page)}
+      onClick={() => onPageChanges(page)}
       //   className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
       className={getClassDynamically(page)}
     >

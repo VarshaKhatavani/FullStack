@@ -4,11 +4,19 @@ import Pagination from "./Pagination";
 import axios from "axios";
 
 export default function MovieList(props) {
-  let { watchList, handleAddToWatchList, handleRemoveFromWatchList } = props;
+  let {
+    watchList,
+    handleAddToWatchList,
+    handleRemoveFromWatchList,
+    currentPage,
+    totalPages,
+    onPageChanges,
+    calculatePagesToShow,
+    handleNext,
+    handlePrev,
+  } = props;
 
   let [moviesObj, setMovieObj] = useState(undefined);
-  let [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 500;
 
   useEffect(() => {
     axios
@@ -49,45 +57,11 @@ export default function MovieList(props) {
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChanges={handlePageChange}
+        onPageChanges={onPageChanges}
         calculatePagesToShow={calculatePagesToShow}
         handleNext={handleNext}
         handlePrev={handlePrev}
       />
     </div>
   );
-
-  // For example, show 5 pages centered around the current page
-  function calculatePagesToShow() {
-    const pagesToShow = [];
-    const pagesToDisplay = 5;
-
-    // start page will be
-    let startPage = Math.max(currentPage - Math.floor(pagesToDisplay / 2), 1);
-    let endPage = startPage + pagesToDisplay - 1;
-
-    // handle edge case for last page
-    if (endPage > totalPages) {
-      endPage = totalPages;
-      startPage = Math.max(endPage - pagesToDisplay + 1, 1);
-    }
-
-    for (let i = startPage; i <= endPage; i++) {
-      pagesToShow.push(i);
-    }
-
-    return pagesToShow;
-  }
-
-  function handlePageChange(pageNumber) {
-    setCurrentPage(pageNumber);
-  }
-
-  function handleNext() {
-    setCurrentPage(currentPage + 1);
-  }
-
-  function handlePrev() {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  }
 }
