@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import genreids from "../Utility/genre";
 
 export default function WatchList(props) {
@@ -26,16 +27,35 @@ export default function WatchList(props) {
   // ];
 
   let { watchList, handleRemoveFromWatchList } = props;
+  let [genreList, setGenreList] = useState(["All Genres"]);
+
+  useEffect(() => {
+    let temp = watchList.map((movieObj) => {
+      return genreids[movieObj.genre_ids[0]];
+    });
+    temp = new Set(temp);
+    setGenreList(["All Genres", ...temp]);
+  }, [watchList]);
 
   return (
     <>
-      <div className="flex justify-center ">
+      {/* <div className="flex justify-center ">
         <div className=" w-[15rem] text-center bg-sky-100 text-sky-600 rounded-md p-3 m-2 justify-center items-center flex ">
           All
         </div>
         <div className=" w-[15rem] text-center bg-slate-100 text-slate-500 rounded-md p-3 m-2 justify-center items-center flex">
           All
         </div>
+      </div> */}
+
+      <div className="flex justify-center flex-wrap ">
+        {genreList.map((genre) => {
+          return (
+            <div className=" w-[15rem] text-center bg-sky-100 text-sky-600 rounded-md p-3 m-2 justify-center items-center flex ">
+              {genre}
+            </div>
+          );
+        })}
       </div>
 
       <div className="flex justify-center my-4 ">
