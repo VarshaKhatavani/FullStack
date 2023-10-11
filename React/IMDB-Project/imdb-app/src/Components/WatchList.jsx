@@ -28,6 +28,7 @@ export default function WatchList(props) {
 
   let { watchList, handleRemoveFromWatchList } = props;
   let [genreList, setGenreList] = useState(["All Genres"]);
+  let [currGenre, setCurrGenre] = useState("All Genre");
 
   useEffect(() => {
     let temp = watchList.map((movieObj) => {
@@ -36,6 +37,10 @@ export default function WatchList(props) {
     temp = new Set(temp);
     setGenreList(["All Genres", ...temp]);
   }, [watchList]);
+
+  let handleFilter = (genre) => {
+    setCurrGenre(genre);
+  };
 
   return (
     <>
@@ -51,7 +56,14 @@ export default function WatchList(props) {
       <div className="flex justify-center flex-wrap ">
         {genreList.map((genre) => {
           return (
-            <div className=" w-[15rem] text-center bg-sky-100 text-sky-600 rounded-md p-3 m-2 justify-center items-center flex ">
+            <div
+              onClick={() => handleFilter(genre)}
+              className={
+                currGenre === genre
+                  ? "w-[15rem] text-center bg-sky-100 text-sky-600 rounded-md p-3 m-2 justify-center items-center flex"
+                  : "w-[15rem] text-center bg-slate-100 text-slate-500 rounded-md p-3 m-2 justify-center items-center flex"
+              }
+            >
               {genre}
             </div>
           );
@@ -93,47 +105,54 @@ export default function WatchList(props) {
           <tbody>
             {console.log("Hello")}
             {console.log(watchList)}
-            {watchList.map((movieObj) => {
-              return (
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <th
-                    scope="row"
-                    class="pl-3 pr-0 py-2 font-medium flex text-gray-900 whitespace-nowrap dark:text-white"
-                  >
-                    <img
-                      className="h-[5rem] w-[6rem] rounded-md"
-                      src={
-                        "https://image.tmdb.org/t/p/original/" +
-                        movieObj.poster_path
-                      }
-                      alt=""
-                    />{" "}
-                    &nbsp;&nbsp;&nbsp;
-                    <div className="justify-items-center px-4 py-9">
-                      {movieObj.title}
-                    </div>
-                  </th>
-                  <td class="px-6 py-4">
-                    <i class="fa-solid fa-star text-yellow-300"></i>{" "}
-                    &nbsp;&nbsp;
-                    {movieObj.vote_average}
-                  </td>
-                  <td class="px-6 py-4">
-                    {" "}
-                    <span class="py-2 px-4 shadow-md no-underline rounded-full bg-slate-100 text-grey font-sans font-semibold text-sm  focus:outline-none mr-2">
-                      {genreids[movieObj.genre_ids[0]]}
-                    </span>
-                  </td>
-                  <td class="px-6 py-4">{movieObj.release_date}</td>
-                  <td class="px-6 py-4 text-red-500 items-center">
-                    <i
-                      class="fa-solid fa-trash"
-                      onClick={() => handleRemoveFromWatchList(movieObj)}
-                    ></i>
-                  </td>
-                </tr>
-              );
-            })}
+            {watchList
+              .filter((movieObj) => {
+                if (currGenre === "All Genres") {
+                  return true;
+                }
+                return genreids[movieObj.genre_ids[0]] === currGenre;
+              })
+              .map((movieObj) => {
+                return (
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <th
+                      scope="row"
+                      class="pl-3 pr-0 py-2 font-medium flex text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      <img
+                        className="h-[5rem] w-[6rem] rounded-md"
+                        src={
+                          "https://image.tmdb.org/t/p/original/" +
+                          movieObj.poster_path
+                        }
+                        alt=""
+                      />{" "}
+                      &nbsp;&nbsp;&nbsp;
+                      <div className="justify-items-center px-4 py-9">
+                        {movieObj.title}
+                      </div>
+                    </th>
+                    <td class="px-6 py-4">
+                      <i class="fa-solid fa-star text-yellow-300"></i>{" "}
+                      &nbsp;&nbsp;
+                      {movieObj.vote_average}
+                    </td>
+                    <td class="px-6 py-4">
+                      {" "}
+                      <span class="py-2 px-4 shadow-md no-underline rounded-full bg-slate-100 text-grey font-sans font-semibold text-sm  focus:outline-none mr-2">
+                        {genreids[movieObj.genre_ids[0]]}
+                      </span>
+                    </td>
+                    <td class="px-6 py-4">{movieObj.release_date}</td>
+                    <td class="px-6 py-4 text-red-500 items-center">
+                      <i
+                        class="fa-solid fa-trash"
+                        onClick={() => handleRemoveFromWatchList(movieObj)}
+                      ></i>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
