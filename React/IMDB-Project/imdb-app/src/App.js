@@ -104,6 +104,7 @@ function App() {
               }></Route>
               <Route path="/watchlist" element={
                 <WatchList watchList={watchlist} 
+                          setWatchList={setWatchList}
                           handleRemoveFromWatchList={handleRemoveFromWatchList}
                 />}>                
               </Route>

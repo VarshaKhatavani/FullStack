@@ -26,7 +26,7 @@ export default function WatchList(props) {
   //   },
   // ];
 
-  let { watchList, handleRemoveFromWatchList } = props;
+  let { watchList, setWatchList, handleRemoveFromWatchList } = props;
   let [genreList, setGenreList] = useState(["All Genres"]);
   let [currGenre, setCurrGenre] = useState("All Genre");
   let [search, setSearch] = useState("");
@@ -45,6 +45,20 @@ export default function WatchList(props) {
 
   let handleSearch = (e) => {
     setSearch(e.target.value);
+  };
+
+  let sortAscending = () => {
+    let sortedArr = watchList.sort((movieA, movieB) => {
+      return movieA.vote_average - movieB.vote_average;
+    });
+    setWatchList([...sortedArr]);
+  };
+
+  let sortDescending = () => {
+    let sortedArr = watchList.sort((movieA, movieB) => {
+      return movieB.vote_average - movieA.vote_average;
+    });
+    setWatchList([...sortedArr]);
   };
 
   return (
@@ -94,9 +108,9 @@ export default function WatchList(props) {
                 Movie Name
               </th>
               <th scope="col" class="px-6 py-3">
-                <i class="fa-solid fa-up-long"></i> &nbsp;&nbsp;Ratings{" "}
-                &nbsp;&nbsp;
-                <i class="fa-solid fa-down-long"></i>
+                <i onClick={sortAscending} class="fa-solid fa-up-long"></i>{" "}
+                &nbsp;&nbsp;Ratings &nbsp;&nbsp;
+                <i onClick={sortDescending} class="fa-solid fa-down-long"></i>
               </th>
               <th scope="col" class="px-6 py-3">
                 Genre
