@@ -8,7 +8,7 @@ export default function Navbar(){
             <div>
                 <Link className="navLink" to="/">Home</Link>
                 <Link className="navLink" to="/cart">Cart</Link>
-                <spant className="cartCount">Cart Items : 0</spant>
+                <span className="cartCount">Cart Items : 0</span>
             </div>
         </div>
     </>

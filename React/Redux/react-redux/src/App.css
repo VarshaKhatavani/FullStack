@@ -10,6 +10,36 @@
   margin-left: 20px;
 }
 
+.productsWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  height: 50vh;
+}
+
+.btn {
+  border: none;
+  outline: none;
+  background: gold;
+  padding: 5px 10px;
+  color: black;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: yellowgreen;
+}
+
 .App {
   text-align: center;
 }
