@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.star-rating {
+  display: inline-block;
+}
+
+.star-rating .empty {
+  color: gray;
+}
+
+.star-rating .filled {
+  color: gold;
+}
