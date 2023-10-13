@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import cartSlice from "../Store/CartSlice"; // default import
 
 export default function Product(){
 
@@ -13,18 +15,24 @@ export default function Product(){
         })
     },[])
 
+    let dispatch = useDispatch();
+
+    let handleClick = (product) =>{
+        dispatch(cartSlice.actions.add(product))
+    }
+
     return(
         <>
     <div>
     <div className="productsWrapper">
         {products.map((product, index) => { 
-            return <><div key="product.id" className="card">
+            return <><div key={product.id} className="card">
                 <img src={product.image} alt="" style={{width:"30%", height:"70px"}}></img>
                 <h6>{product.title}</h6>
             <h5>{product.price}$</h5>                      
           
         
-          <button className="btn">Add to Cart</button>
+          <button className="btn" onClick={()=>handleClick(product)}>Add to Cart</button>
           </div>
           </> 
         })}
