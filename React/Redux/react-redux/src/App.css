@@ -1,3 +1,4 @@
+/* Home Page CSS */
 .cartCount {
   font-weight: bold;
   text-transform: uppercase;
@@ -39,6 +40,7 @@
 .btn:hover {
   background: yellowgreen;
 }
+
 
 .App {
   text-align: center;

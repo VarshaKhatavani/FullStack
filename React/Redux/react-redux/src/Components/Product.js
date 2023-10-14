@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import cartSlice from "../Store/CartSlice"; // default import
+import { add } from "../Store/CartSlice"; // default import
 
 export default function Product(){
 
@@ -18,7 +18,7 @@ export default function Product(){
     let dispatch = useDispatch();
 
     let handleClick = (product) =>{
-        dispatch(cartSlice.actions.add(product))
+        dispatch(add(product))
     }
 
     return(

@@ -8,6 +8,8 @@ import store from './Store/Store';
 
 function App() {
   return (
+    // pass the Redux store as a prop to the <Provider> component, 
+    //making it available to all components in your application via the context API.
         <Provider store={store}>
           <BrowserRouter>        
           <Navbar/>
