@@ -2,7 +2,7 @@ import { useEffect } from "react"; //useState
 // import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import { add } from "../Store/CartSlice"; // default import
-import { fetchProducts } from "../Store/productSlice";
+import { fetchProducts, STATUSES } from "../Store/productSlice";
 
 export default function Product(){
 
@@ -25,10 +25,10 @@ export default function Product(){
         dispatch(fetchProducts());
     },[dispatch])
 
-    if(status==="loading"){
+    if(status === STATUSES.LOADING){
         return <h2>...Loading</h2>
     }
-    if(status==="error"){
+    if(status === STATUSES.ERROR){
         return <h2>Oops, Something went wrong</h2>
     }    
 
