@@ -1,3 +1,68 @@
+.body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
+    /* background-color: #f2f2f2; */
+}
+
 #heading{
     color: goldenrod;
+}
+
+.nav-items > ul  {
+    display: flex;
+}
+
+.nav-items > ul > li {
+    padding: 15px;
+    list-style-type: none;
+    font-size: larger;
+    margin-right: 10px;
+    font-weight:400;
+}
+
+.nav-items > ul > li:hover {
+    color: #ffec40; /* Yellow color on hover, adjust as needed */
+    cursor: pointer;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 20px;
+    background-color: #fff; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow */
+    align-items: center;
+    /* position: sticky; */
+}
+
+.logo-container{
+    display: flex;
+}
+
+.res-content{
+    display:inline-flex;
+    justify-content: space-between;  
+    margin: 5px;
+}
+
+.foodCard{
+    width: 289px;
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+    margin: 10px 10px 0px 10px auto;
+    padding: 5px;
+}
+
+.card-img{
+    width: 100%;
+    border-radius: 15px;
+}
+
+.title{
+    font-size:medium;
+    font-weight: bold;
+}
+
+.cuisine{
+    font-size:small;
+    color: grey;
 }
