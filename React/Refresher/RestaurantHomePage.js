@@ -32,7 +32,9 @@ const Content = () =>{
     return ( 
         <>
             <div className="search">search</div>        
-            <RestaurantCard/> 
+            <div className="res-container"> 
+                <RestaurantCard/> 
+            </div>
         </>
     )
 }
