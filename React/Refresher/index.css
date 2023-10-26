@@ -1,6 +1,6 @@
 .body{
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;    
-    background-color: #f4f4f466;
+    /* background-color: #f4f4f466; */
 }
 
 #heading{
@@ -38,10 +38,12 @@
     display: flex;
 }
 
-.res-container .res-content{
-    display:inline-flex;
-    justify-content:space-evenly;  
-    margin: 5px ;
+.res-container {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+   gap: 10;
+   flex-wrap: wrap;
 }
 
 .foodCard{
@@ -102,4 +104,31 @@
 
 .filter-btn:hover{
     cursor: pointer;
+}
+
+.shimmer-card{
+    width: 286px;    
+    border-radius: 15px;
+    height:45vh;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;;
+}
+
+.shimmer-container{
+    display: flex;  
+    flex-wrap: wrap;
+    gap: 10 ;
+    margin-top: 6%;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
 }

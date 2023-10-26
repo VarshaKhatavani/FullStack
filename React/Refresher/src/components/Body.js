@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import {resList} from "../utils/mockData";
+// import {resList} from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 
 const Content = () =>{
 
@@ -13,7 +14,7 @@ const Content = () =>{
 
     const fetchData = async() => {
         try{
-        const data =  await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=20.9375588&lng=72.9364598&page_type=DESKTOP_WEB_LISTING");
+        const data = await  fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
         if(!data.ok){
             throw new Error("Network response was not ok");
         }
@@ -27,6 +28,11 @@ const Content = () =>{
         }
     }
 
+    //conditional rendering
+    if(listOfRestaurants.length===0){
+        return <Shimmer/>
+    }
+
     return ( 
         <>           
             <div className="filter">
@@ -35,8 +41,7 @@ const Content = () =>{
                         (res)=>res.info.avgRating > 4
                     ); 
                     console.log(filteredlist);
-                    setListOfRestaurants(filteredlist);
-                    
+                    setListOfRestaurants(filteredlist);                    
                 }} className="filter-btn">Top Rated Restaurants</button>
             </div>        
             <div className="res-container">{
