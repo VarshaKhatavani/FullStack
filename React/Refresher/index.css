@@ -68,11 +68,11 @@
 .cost{
     position: absolute;
     bottom: 6;
-    right: 7;
+    left: 7;
     margin-top: 3px;
-    background-color: rgb(250, 194, 40);
+    /* background-color: rgb(250, 194, 40); */
     color: white;
-    font-weight:bolder;
+    font-weight:900;
     border-radius: 5px;
     padding: 2px 5px;
     
@@ -114,6 +114,7 @@
     background-size: 200% 100%;
     animation: shimmer 1.5s infinite;
     margin-right: 20px; /* Add margin to separate cards */
+    margin-bottom: 40px;
 }
 
 .shimmer-content {
@@ -127,7 +128,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 60px;
+    gap: 30px;
     margin-top: 6%;
 }
 
