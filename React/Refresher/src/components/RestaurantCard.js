@@ -5,8 +5,13 @@ const RestaurantCard = (props) =>{
     const {resData} = props ;
 
     //way to access properties or methods of an object without triggering an error if the object is null or undefined.
-    const { cloudinaryImageId, name, avgRating, sla , cuisines , costForTwo  } = resData?.info
+    const { cloudinaryImageId, name, avgRating, sla , cuisines , costForTwo, aggregatedDiscountInfoV3  } = resData?.info
+    // {
+    //     "header": "EVERY ITEM",
+    //     "subHeader": "@ ₹179"
+    // }
     // access array inside object
+    const {header,subHeader} = aggregatedDiscountInfoV3 || {};
     const {deliveryTime} = sla || {};
     return <div className="res-content">
             <div className="foodCard">
@@ -14,7 +19,8 @@ const RestaurantCard = (props) =>{
                 {/* <img className="card-img" src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${cloudinaryImageId}`} alt=""/> */}        
                 <div className="card-img" style={{backgroundImage: `url(${CDN_URL + cloudinaryImageId})`}}>
                     {/* <img className="card-img" src={CDN_URL + cloudinaryImageId} alt=""></img>  */}
-                    <span className="cost">{costForTwo}</span>
+                    <span className="cost"> {header} &nbsp;{subHeader}</span> 
+                    {/* {costForTwo} */}
                 </div> 
                 
                 <span className="title">{name}</span><br/>

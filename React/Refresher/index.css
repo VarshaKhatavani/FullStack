@@ -42,13 +42,13 @@
     display:flex;
     align-items: center;
     justify-content: center;
-   gap: 10;
-   flex-wrap: wrap;
+    gap: 30;
+    flex-wrap: wrap;
 }
 
 .foodCard{
-    width: 286px;
-    border: 1px solid lightgrey;
+    width: 240px;
+    /* border: 1px solid lightgrey; */
     border-radius: 15px;
     margin: 10px 10px 0px 10px auto;
     padding: 5px;
@@ -59,7 +59,7 @@
 .card-img{
     width: 100%;
     height: 30vh;
-    border-radius: 15px 15px 0px 0px;
+    border-radius: 15px;
     position: relative;  
     background-size: cover;
     background-position: center;  
@@ -70,9 +70,9 @@
     bottom: 6;
     right: 7;
     margin-top: 3px;
-    background-color: rgb(232, 179, 32);
+    background-color: rgb(250, 194, 40);
     color: white;
-    font-weight: 600;
+    font-weight:bolder;
     border-radius: 5px;
     padding: 2px 5px;
     
@@ -106,22 +106,29 @@
     cursor: pointer;
 }
 
-.shimmer-card{
-    width: 286px;    
+.shimmer-card {
+    width: 240px;
     border-radius: 15px;
-    height:45vh;
+    height: 30vh;
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;;
+    animation: shimmer 1.5s infinite;
+    margin-right: 20px; /* Add margin to separate cards */
 }
 
-.shimmer-container{
-    display: flex;  
+.shimmer-content {
+    width: 100%;
+    margin-bottom: 20px; /* Add margin to separate content blocks */
+    margin-top:12rem;
+}
+
+.shimmer-container {
+    display: flex !important;
     flex-wrap: wrap;
-    gap: 10 ;
-    margin-top: 6%;
     align-items: center;
     justify-content: center;
+    gap: 60px;
+    margin-top: 6%;
 }
 
 @keyframes shimmer {
@@ -131,4 +138,17 @@
     100% {
         background-position: 200% 0;
     }
+}
+
+.shimmer-text {
+    width: 240px;
+    height: 10px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    margin-bottom: 10px;
+}
+
+.shimmer-text.long {
+    width: 70%;
 }
