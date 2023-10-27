@@ -3,16 +3,12 @@
     background-color: #f4f4f466;    
 }
 
-#heading{
-    color: goldenrod;
-}
-
 .nav-items > ul  {
     display: flex;
 }
 
 .nav-items > ul > li {
-    padding: 15px;
+    padding: 5px;
     list-style-type: none;
     font-size:18px;
     margin-right: 10px;
@@ -29,9 +25,12 @@
     justify-content: space-between;
     padding: 5px 20px;
     background-color: #fff; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow */
+    /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); Shadow */
     align-items: center;
-    /* position: sticky; */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 4rem;
 }
 
 .logo-container{
