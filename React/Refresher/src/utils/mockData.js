@@ -1691,3 +1691,105 @@ export const resList = [
       subtype: "basic",
     },
   ];
+
+
+  // swiggys's json used to render data
+  
+const data = [{
+    "info": {
+        "id": "21395",
+        "name": "Brahma Garden",
+        "cloudinaryImageId": "uvltlhppkqfium1fpuay",
+        "locality": "Sinhagad Road",
+        "areaName": "Sinhagad Road",
+        "costForTwo": "₹350 for two",
+        "cuisines": [
+            "North Indian",
+            "South Indian",
+            "Chinese",
+            "Juices",
+            "Biryani",
+            "Punjabi"
+        ],
+        "avgRating": 4.3,
+        "veg": true,
+        "feeDetails": {
+            "restaurantId": "21395",
+            "fees": [
+                {
+                    "name": "BASE_DISTANCE",
+                    "fee": 7900
+                },
+                {
+                    "name": "BASE_TIME"
+                },
+                {
+                    "name": "ANCILLARY_SURGE_FEE"
+                }
+            ],
+            "totalFee": 7900
+        },
+        "parentId": "49529",
+        "avgRatingString": "4.3",
+        "totalRatingsString": "10K+",
+        "sla": {
+            "deliveryTime": 34,
+            "lastMileTravel": 7.7,
+            "serviceability": "SERVICEABLE",
+            "slaString": "34 mins",
+            "lastMileTravelString": "7.7 km",
+            "iconType": "ICON_TYPE_EMPTY"
+        },
+        "availability": {
+            "nextCloseTime": "2023-10-27 23:30:00",
+            "opened": true
+        },
+        "badges": {
+            "imageBadges": [
+                {
+                    "imageId": "v1695133679/badges/Pure_Veg111.png",
+                    "description": "pureveg"
+                }
+            ]
+        },
+        "isOpen": true,
+        "type": "F",
+        "badgesV2": {
+            "entityBadges": {
+                "imageBased": {
+                    "badgeObject": [
+                        {
+                            "attributes": {
+                                "description": "pureveg",
+                                "imageId": "v1695133679/badges/Pure_Veg111.png"
+                            }
+                        }
+                    ]
+                },
+                "textBased": {},
+                "textExtendedBadges": {}
+            }
+        },
+        "aggregatedDiscountInfoV3": {
+            "header": "10% OFF",
+            "subHeader": "ABOVE ₹900",
+            "discountTag": "FLAT DEAL"
+        },
+        "differentiatedUi": {
+            "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+            "differentiatedUiMediaDetails": {
+                "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+                "lottie": {},
+                "video": {}
+            }
+        },
+        "reviewsSummary": {},
+        "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+        "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {},
+    "cta": {
+        "link": "https://www.swiggy.com/restaurants/brahma-garden-sinhagad-road-pune-21395",
+        "type": "WEBLINK"
+    }
+}]; 

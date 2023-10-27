@@ -1,4 +1,4 @@
-import myImage from '../../logo.png';
+import myImage from '../../Swiggy-2.png';
 
 const Header = () =>{
     // logo
@@ -14,7 +14,7 @@ const Header = () =>{
                     <li>About Us</li>
                     <li>Cart</li>
                 </ul>
-            </div>
+            </div>            
         </div>
     )
 }
