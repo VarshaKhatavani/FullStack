@@ -12,12 +12,21 @@
     list-style-type: none;
     font-size:18px;
     margin-right: 10px;
-    font-weight:600;
+    font-weight:550;
 }
 
 .nav-items > ul > li:hover {
     color: #ff8c40; /* Yellow color on hover, adjust as needed */
     cursor: pointer;
+}
+
+.nav-items-menu{
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-items-menu:hover{
+    color: #ff8c40;
 }
 
 .header{
@@ -191,3 +200,200 @@
     width: 70%;
 }
   
+/* detail page css */
+
+.res-detail-info{
+    padding: 50px;
+    margin: 0 auto;
+    width: 70%;    
+}
+
+.res-info{
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    border-bottom: 1px dashed lightgrey;
+    padding-bottom: 20px;
+}
+
+.detail-info{
+    justify-content: flex-start;  
+}
+
+.detail-rating{
+    width: 6%;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    height: fit-content;
+    justify-content: flex-end;
+    /* margin-right: 20rem; */
+
+}
+
+.delivery-info{
+
+}
+
+.menu-list{
+
+}
+
+.rate{
+    font-size: small;
+    padding: 4px 0px 4px 0px;
+    display: block;
+    border-bottom: 1px solid lightgrey;
+}
+
+.rate-info{
+    font-size: 0.6em;
+    padding: 4px 0px 4px 0px;
+    margin-top: 2px;
+    display: block;
+}
+
+.res-subtitle{
+    font-size: 12px;
+    color: gray;
+}
+
+.distance{
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.latest-offers{
+    padding-top: 20px;
+}
+
+.offers{
+    border-radius: 10px;
+    padding: 20px; 
+    border: 1px solid #d3d3d3;  
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    position: relative;
+}
+
+.beverages{
+    display: inline-block;
+    transform: rotate(-90deg);
+    position: absolute; 
+    /* top: 50%; */
+    left: -5px;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 1px solid lightgray;
+    padding: 2px;
+    color: rgba(255, 68, 0, 0.709);
+    /* transform-origin: top left; */
+}
+
+.offer{
+    font-size: 15px; 
+    margin-left: 20px; 
+    color: darkslategray;
+}
+
+.offer-container {
+    display: block; /* Change to block-level container */
+    line-height:150%;
+    font-weight: bolder;
+    text-transform: capitalize;
+    font-size: 12px; 
+    font-weight: bold;
+    display: block;
+    margin-left: 1rem;
+    font-stretch:extra-condensed;
+    color: grey;
+  }
+
+  .vegan-header{
+    padding: 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: rgb(45, 59, 59);
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .menu{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid lightgrey;
+  }
+
+  .left-menu{
+    display: block;
+  }
+
+  .bestSeller{
+    color: orange;
+    font-size: 12px;
+    font-weight: bold;
+    justify-content: center;
+  }
+
+  .menu-title{
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .price{
+    display: inline-block;
+    padding: 5px 0px 10px 0px;
+  }
+
+  .menu-item-desc{
+    color: darkgray;
+    font-size: small;
+  }
+
+  
+  .right-menu{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .menu-image{
+    position: relative;
+    border:1px solid lightgrey;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+
+  .counter{
+    position:absolute;
+    padding: 5px;
+    border: 1px solid lightgray;    
+    background-color:white;
+    color: green;
+    border-radius: 5px;
+    justify-content: center;
+    margin-left: 10px;
+    bottom: -30;
+    align-items: center;
+    display: flex; /* Add this to enable flexbox layout */
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    justify-items: center;
+    transition: box-shadow 0.3s; /* Add a transition for smooth animation */
+  }
+
+  .qty-btn{
+    border:none;
+    background:none;
+    cursor: pointer;    
+  }
+
+  .counter:hover{
+    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.3);
+  }

@@ -25,7 +25,7 @@ const RestaurantCard = (props) =>{
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20">
                         <path d="M10 1l2.4 6.6h7.6l-6 4.8 2.4 6.6-6-4.8-6 4.8 2.4-6.6-6-4.8h7.6z"/>
                     </svg>&nbsp;
-                    <span className="rate"><b>{avgRating}</b></span>&nbsp;&nbsp;&nbsp;
+                    <span ><b>{avgRating}</b></span>&nbsp;&nbsp;&nbsp;
                     <span className="reachingTime"><b>{deliveryTime} MINS</b></span><br/>
                     <span className="cuisine">{cuisines.join(", ")}</span>
                 </div>

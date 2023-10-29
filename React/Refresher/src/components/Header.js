@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import myImage from '../../Swiggy-2.png';
 
 const Header = () =>{
@@ -10,9 +11,10 @@ const Header = () =>{
             </div>
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Cart</li>
+                    <li><Link className="nav-items-menu" to={"/"}>Home</Link></li>
+                    <li><Link className="nav-items-menu" to={"/about"}>About Us</Link></li>
+                    <li><Link className="nav-items-menu" to={"/contact"}>Contact Us</Link></li>
+                    <li className='nav-items-menu'>Cart</li>
                 </ul>
             </div>            
         </div>
