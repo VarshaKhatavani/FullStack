@@ -1,6 +1,18 @@
+import { useEffect } from 'react';
 import myImage from '../../Swiggy-2.png';
 
 const RestaurantMenu = () =>{
+
+    useEffect(()=>{
+        fetchMenu();
+    },[])
+
+    const fetchMenu = async() =>{
+        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=378117");
+        const json = await data.json();
+        console.log(json);
+    }
+
     return(
         <div className="res-detail-info">
             <div className="res-info"> 
@@ -24,7 +36,7 @@ const RestaurantMenu = () =>{
                 <div className="latest-offers">
                     <div className="offers">
                         <span className="beverages">LUNCH</span>
-                        <div class="offer-container">
+                        <div className="offer-container">
                             <span className="offer">FLAT Rs.125 OFF</span><br/>
                             <span className="coupon-offer">USE LUNCHBINGE | ABOVE 249 Rs.</span>
                         </div>

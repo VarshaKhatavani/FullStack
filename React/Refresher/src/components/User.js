@@ -4,7 +4,7 @@ const User = (props) => {
 
     const [count] = useState(0);
     const [count2] = useState(2);
-
+    console.log(useState());
     console.log(props);
 
     const { name, location }  = props;
