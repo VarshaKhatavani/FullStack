@@ -232,9 +232,7 @@
 
 }
 
-.delivery-info{
 
-}
 
 .menu-list{
 
@@ -245,6 +243,8 @@
     padding: 4px 0px 4px 0px;
     display: block;
     border-bottom: 1px solid lightgrey;
+    color: green;
+    font-weight: bolder;
 }
 
 .rate-info{
@@ -252,6 +252,9 @@
     padding: 4px 0px 4px 0px;
     margin-top: 2px;
     display: block;
+    font-stretch: condensed;
+    font-weight: bold;
+    color:grey
 }
 
 .res-subtitle{
@@ -264,11 +267,33 @@
     font-weight: bold;
 }
 
-.latest-offers{
-    padding-top: 20px;
+.delivery-info{
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap; 
+    scrollbar-width: none;  /*firefox*/
 }
 
-.offers{
+.delivery-info::-webkit-scrollbar {
+    display: none;
+}
+  
+.delivery-info::-webkit-scrollbar-thumb {
+    display: none;
+}
+  
+.delivery-info::-webkit-scrollbar-track {
+    display: none;
+}
+  
+.latest-offers{
+    padding-top: 20px;
+    display: flex; 
+    gap: 25;   
+    width: 100%; 
+}
+
+.offers{    
     border-radius: 10px;
     padding: 20px; 
     border: 1px solid #d3d3d3;  
@@ -323,12 +348,16 @@
   .menu{
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    border-bottom: 1px solid lightgrey;
+    padding: 20px;   
   }
 
   .left-menu{
-    display: block;
+    display: block;    
+  }
+
+  .list-menu{
+    border-bottom: 1px solid lightgrey;
+    padding: 20px;
   }
 
   .bestSeller{
@@ -353,20 +382,22 @@
   .menu-item-desc{
     color: darkgray;
     font-size: small;
+    display: block;
+    width: 80%;
   }
 
   
   .right-menu{
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+    float: right;
+    margin-top: -100px;
   }
 
   .menu-image{
     position: relative;
     border:1px solid lightgrey;
-    padding: 20px;
     border-radius: 10px;
+    height: 90px;
+    width: 100px;
   }
 
 
