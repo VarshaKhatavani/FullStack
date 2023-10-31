@@ -54,6 +54,11 @@
     flex-wrap: wrap;
 }
 
+.res-container  a {
+    text-decoration: none;
+    color: #000;
+}
+
 .foodCard{
     width: 240px;
     /* border: 1px solid lightgrey; */
@@ -206,6 +211,7 @@
     padding: 50px;
     margin: 0 auto;
     width: 70%;    
+    font-family: ProximaNova,arial,Helvetica Neue,sans-serif;
 }
 
 .res-info{
@@ -231,8 +237,6 @@
     /* margin-right: 20rem; */
 
 }
-
-
 
 .menu-list{
 
@@ -381,9 +385,9 @@
 
   .menu-item-desc{
     color: darkgray;
-    font-size: small;
+    font-size: 12px;
     display: block;
-    width: 80%;
+    width: 80%;    
   }
 
   
@@ -396,8 +400,17 @@
     position: relative;
     border:1px solid lightgrey;
     border-radius: 10px;
-    height: 90px;
-    width: 100px;
+    height: 100px;
+    width: 120px;
+  }
+
+  .offer-menu-list{
+    color: rgb(219, 103, 66);
+    font-size: 8px;
+    font-weight: bold;
+    background-color: rgb(250, 232, 227);
+    border-left-color:rgb(133, 53, 26);
+    padding: 3px;
   }
 
 

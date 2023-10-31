@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import myImage from '../../Swiggy-2.png';
+import { useParams } from 'react-router-dom';
+import { MENU_URL } from '../utils/constants';
 
 const RestaurantMenu = () =>{
 
@@ -10,9 +12,12 @@ const RestaurantMenu = () =>{
         fetchMenu();
     },[])
 
+    const {resId} = useParams();
+
     const fetchMenu = async() =>{
-        const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5204303&lng=73.8567437&restaurantId=378117");
-        const json = await data.json();
+        const data = await fetch( MENU_URL + resId);
+        console.log(MENU_URL + resId);
+        const json = await data.json();        
         console.log(json);
         setResInfo(json.data.cards);
     }
@@ -84,7 +89,7 @@ const RestaurantMenu = () =>{
                        { newMenuList!=undefined && newMenuList.map((menu)=>{
                             return (
                                 <div>                                     
-                                    <h4> { menu?.card?.card?.title != undefined  ?  menu?.card?.card?.title+ "("+menu?.card?.card?.itemCards?.length+")" : ""}</h4>
+                                    <h4> { menu?.card?.card?.title != undefined  ?  menu?.card?.card?.itemCards?.length != undefined ? menu?.card?.card?.title+ "("+menu?.card?.card?.itemCards?.length+")" : menu?.card?.card?.title : ""}</h4>
                                     
                                             { menu?.card?.card?.itemCards!=undefined && menu?.card?.card?.itemCards?.map((list)=>{
                                                 return (
@@ -106,21 +111,26 @@ const RestaurantMenu = () =>{
                                                         {list?.card?.info?.ribbon?.text != undefined ? <span className="bestSeller">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 20 20">
                                                             <path d="M10 1l2.4 6.6h7.6l-6 4.8 2.4 6.6-6-4.8-6 4.8 2.4-6.6-6-4.8h7.6z" style={{  fill: "orange"}} ></path>
-                                                        </svg> {list?.card?.info?.ribbon?.text}</span> : "" }
+                                                        </svg> {list?.card?.info?.ribbon?.text} </span> : "" }
                                                         <br/>
                                     
                                                         <span className="menu-title">{ list?.card?.info.name}</span><br/>
-                                                        <span className="price">{ list?.card?.info?.price/100}</span><br/>
+                                                        <span className="price">{  list?.card?.info?.price/100 || list?.card?.info?.defaultPrice/100}</span>  &nbsp;&nbsp;
+                                                        { list?.card?.info?.offerTags!=undefined ? 
+                                                         <span className="offer-menu-list">{ list?.card?.info?.offerTags[0]?.title +" | "+ list?.card?.info?.offerTags[0]?.subTitle}</span> : "" }
+                                                        <br/> 
+                                                        {/* <span className="offer-menu-list">{list.card.info.offerTags[0].title}</span> */}
                                                         <span className="menu-item-desc">{list?.card?.info?.description}</span><br/>
                                                         
-                                                        <div className="right-menu">            
-                                                          <img className='menu-image' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${list?.card?.info?.imageId}`} alt="" /> 
+                                                        <div className="right-menu"> 
+                                                        { list?.card?.info?.imageId != undefined ? <img className='menu-image' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${list?.card?.info?.imageId}`} alt={list?.card?.info.name} />  : "" }          
+                                                          
                                                             {/* <div className="counter"> */}
                                                                 {/* <button className='qty-btn'>&nbsp;&nbsp;&nbsp;&nbsp; ADD &nbsp;&nbsp;&nbsp;</button> */}
                                                                 {/* <span>
                                                                     <button className="qty-btn">-</button> &nbsp; 1 &nbsp; <button className="qty-btn">+</button>
                                                                 </span> */}
-                                                                {/* </div>                         */}
+                                                                {/* </div> */} 
                                                         </div>
                                                         </div>
                                                        
