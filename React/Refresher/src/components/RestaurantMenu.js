@@ -1,26 +1,18 @@
 import { useEffect, useState } from 'react';
 import myImage from '../../Swiggy-2.png';
 import { useParams } from 'react-router-dom';
-import { MENU_URL } from '../utils/constants';
+import useRestaurantMenu from '../utils/useRestaurantMenu';
 
 const RestaurantMenu = () =>{
 
-    const [resInfo, setResInfo] = useState([]);    
     // const [isVegOnly, setIsVegOnly] = useState(false);
-
-    useEffect(()=>{
-        fetchMenu();
-    },[])
 
     const {resId} = useParams();
 
-    const fetchMenu = async() =>{
-        const data = await fetch( MENU_URL + resId);
-        console.log(MENU_URL + resId);
-        const json = await data.json();        
-        console.log(json);
-        setResInfo(json.data.cards);
-    }
+    const resInfo = useRestaurantMenu(resId);
+    
+    if(resInfo === null)
+        return;
 
     console.log(resInfo)
     let resHeaderInfo = resInfo[0]?.card?.card.info;
