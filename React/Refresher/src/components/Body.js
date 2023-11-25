@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Content = () =>{
 
@@ -31,6 +32,16 @@ const Content = () =>{
         catch(error){
             console.error("An error occurred while fetching data:",error);
         }
+    }
+
+    const onlineStatus = useOnlineStatus();
+
+    if(!onlineStatus){
+        return(
+            <div className="container">
+                <h1>Looks like you're offline, please check your internet connection!</h1>
+            </div>
+        )
     }
 
     //conditional rendering
