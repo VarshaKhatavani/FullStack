@@ -9,17 +9,17 @@ const Header = () =>{
     // logo
     // navigation menu
     return (
-        <div className="header">
-            <div className="logo-container">
-                <img src={myImage} alt="" width={60} height={60}/>
+        <div className="flex justify-between bg-white shadow-lg mb-2">
+            <div >
+                <img className="w-26 h-24"  src={myImage} alt="" />
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li>{onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}</li>
-                    <li><Link className="nav-items-menu" to={"/"}>Home</Link></li>
-                    <li><Link className="nav-items-menu" to={"/about"}>About Us</Link></li>
-                    <li><Link className="nav-items-menu" to={"/contact"}>Contact Us</Link></li>
-                    <li className='nav-items-menu'>Cart</li>
+            <div className='flex items-center' >
+                <ul className="flex p-4 m-4">
+                    <li className='px-4'>{onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}</li>
+                    <li className='px-4'><Link className="nav-items-menu" to={"/"}>Home</Link></li>
+                    <li className='px-4'><Link className="nav-items-menu" to={"/about"}>About Us</Link></li>
+                    <li className='px-4'><Link className="nav-items-menu" to={"/contact"}>Contact Us</Link></li>
+                    <li className='nav-items-menu'>Cart</li>                
                 </ul>
             </div>            
         </div>

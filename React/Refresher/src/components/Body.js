@@ -19,7 +19,7 @@ const Content = () =>{
 
     const fetchData = async() => {
         try{
-        const data = await  fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
+        const data = await  fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
         if(!data.ok){
             throw new Error("Network response was not ok");
         }
@@ -51,14 +51,13 @@ const Content = () =>{
 
     return listOfRestaurants.length===0 ?  <Shimmer/>  : ( 
         <>  
-            <div className="container">
-                <div className="search-box">
-                    <input type="text" className="search-input" placeholder="search here.." value={searchText} onChange={(e)=>{
+            <div className="container p-1 flex justify-between">
+                <div className="search-box p-4 ml-8">
+                    <input type="text" className="search-input p-2 border border-solid border-slate-400 rounded-md" placeholder="search here.." value={searchText} onChange={(e)=>{
                         setsearchText(e.target.value); 
-
                         }}></input>
                     &nbsp;&nbsp;
-                    <button className="search-btn" onClick={()=>{
+                    <button className="search-btn ml-4 p-2 w-24 rounded-lg bg-gray-200" onClick={()=>{
                         console.log(searchText);
                         const filterRestaurant = listOfRestaurants.filter(
                             (res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -66,17 +65,17 @@ const Content = () =>{
                         setFilteredRestaurant(filterRestaurant); 
                         }}>Search</button>
                 </div>
-                <div className="filter">
+                <div className="filter flex px-4 py-3 ">
                     <button onClick={()=>{ 
                         const filteredlist = listOfRestaurants.filter(
                             (res)=>res.info.avgRating > 4
                         ); 
                         console.log(filteredlist);
                         setListOfRestaurants(filteredlist);                    
-                    }} className="filter-btn">Top Rated Restaurants</button>
+                    }} className="filter-btn px-6 mr-8 items-center border rounded-lg bg-slate-200 ">Top Rated Restaurants</button>
+                    </div>
                 </div>        
-            </div>      
-            <div className="res-container">{
+            <div className="res-container flex justify-start flex-wrap">{
                 // console.log(filteredRestaurant)
                 filteredRestaurant.map((restaurant)=>(
                         // console.log(restaurant)
@@ -89,5 +88,4 @@ const Content = () =>{
         </>
     )
 }
-
 export default Content;

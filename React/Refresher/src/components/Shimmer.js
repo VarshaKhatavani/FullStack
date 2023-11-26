@@ -56,9 +56,7 @@ const Shimmer = () =>{
                     <div className="shimmer-text long"></div>
                     <div className="shimmer-text"></div>
                 </div>            
-            </div>
-       
-      
+            </div>             
     </div> 
 
 }
