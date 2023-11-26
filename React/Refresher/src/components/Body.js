@@ -57,7 +57,7 @@ const Content = () =>{
                         setsearchText(e.target.value); 
                         }}></input>
                     &nbsp;&nbsp;
-                    <button className="search-btn ml-4 p-2 w-24 rounded-lg bg-gray-200" onClick={()=>{
+                    <button className="search-btn ml-4 p-2 w-24 rounded-lg font-semibold bg-orange-100" onClick={()=>{
                         console.log(searchText);
                         const filterRestaurant = listOfRestaurants.filter(
                             (res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -65,14 +65,14 @@ const Content = () =>{
                         setFilteredRestaurant(filterRestaurant); 
                         }}>Search</button>
                 </div>
-                <div className="filter flex px-4 py-3 ">
+                <div className="filter flex px-4 py-4 ">
                     <button onClick={()=>{ 
                         const filteredlist = listOfRestaurants.filter(
                             (res)=>res.info.avgRating > 4
                         ); 
                         console.log(filteredlist);
                         setListOfRestaurants(filteredlist);                    
-                    }} className="filter-btn px-6 mr-8 items-center border rounded-lg bg-slate-200 ">Top Rated Restaurants</button>
+                    }} className="filter-btn px-6 py-2 mr-8 items-center font-semibold rounded-lg bg-orange-100 ">Top Rated Restaurants</button>
                     </div>
                 </div>        
             <div className="res-container flex justify-start flex-wrap">{
