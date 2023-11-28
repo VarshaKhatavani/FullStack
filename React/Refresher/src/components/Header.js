@@ -9,7 +9,7 @@ const Header = () =>{
     // logo
     // navigation menu
     return (
-        <div className="flex justify-between bg-white shadow-lg mb-2">
+        <div className="flex justify-between bg-white shadow-lg mb-2 ">
             <div >
                 <img className="w-26 h-24"  src={myImage} alt="" />
             </div>
