@@ -1,10 +1,21 @@
+import ItemList from "./ItemList";
+
 const RestaurantCategory = ({data}) =>{
 
     return(
-        <div className="m-2 p-2 bg-gray-100 rounded-sm flex justify-between ">
+        <>
+        {/* // Accordian Header */}
+        <div className="m-2 p-2 rounded-sm   ">
+          <div className="flex justify-between ">
             <span className="font-bold">{data.title} ({data.itemCards.length})</span>
             <span>⬇️</span>
-        </div>
+          </div>
+          {/* // Accordian Body */}
+          <div>
+            <ItemList key={data.title}  items={data.itemCards} />
+          </div>
+        </div>       
+        </>
     )
 
 }
