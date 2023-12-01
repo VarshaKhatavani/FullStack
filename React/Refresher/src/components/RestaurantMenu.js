@@ -10,8 +10,16 @@ const RestaurantMenu = () =>{
 
     const {resId} = useParams();
     const resInfo = useRestaurantMenu(resId);
-    const [showIndex, setShowIndex] = useState(0);
-    const [showItems, setShowItems] = useState(true);
+    const [showIndex, setShowIndex] = useState(0);    
+    const [showIndices, setShowIndices] = useState([]);
+
+    const handleShowIndex = (index) =>{
+    const updatedIndex =  showIndices.includes(index) ? showIndices.filter((i)=> i !== index) :
+                           [...showIndices, index];
+
+    setShowIndices(updatedIndex);                          
+    
+  }
     
     if(resInfo === null)
         return;
@@ -97,12 +105,13 @@ const RestaurantMenu = () =>{
                                     // controlled component
                                     <RestaurantCategory key = {category?.card?.card.title}  
                                         data = {category?.card?.card}
-                                        showItems = { index === showIndex ? true : false }
+                                        showItems = { showIndices.includes(index) }
                                         setShowIndex = {()=> {
                                               console.log('before' , index); 
                                               console.log('showIndex', showIndex);  
-                                              setShowIndex(index);
+                                              //setShowIndex(index);
                                               console.log('after', index); 
+                                              handleShowIndex(index);
                                             }
                                         }
                                     />
