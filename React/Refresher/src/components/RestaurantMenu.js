@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import myImage from '../../Swiggy-2.png';
 import { useParams } from 'react-router-dom';
 import useRestaurantMenu from '../utils/useRestaurantMenu';
@@ -6,11 +6,12 @@ import RestaurantCategory from './RestaurantCategory';
 
 const RestaurantMenu = () =>{
 
-    // const [isVegOnly, setIsVegOnly] = useState(false);
+    // const [isVegOnly, setIsVegOnly ] = useState(false);
 
     const {resId} = useParams();
-
     const resInfo = useRestaurantMenu(resId);
+    const [showIndex, setShowIndex] = useState(0);
+    const [showItems, setShowItems] = useState(true);
     
     if(resInfo === null)
         return;
@@ -69,10 +70,10 @@ const RestaurantMenu = () =>{
                     offers != undefined && offers.map((offer, index)=>{
                         return( 
                             <div key={offer?.info?.offerIds} className="offers relative border border-solid mr-8 rounded-lg ">
-                                <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-xs text-red-500 font-bold border-b-[1px]">{offer?.info?.offerTag}</span>
+                                <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-[11px] text-red-500 font-bold border-b-[1px]">{offer?.info?.offerTag}</span>
                                 <div className="offer-container p-4">
-                                    <span className="offer font-bold text-sm ml-8">{offer?.info?.header}</span><br/>
-                                    <span className="coupon-offer text-sm ml-2">{offer?.info?.couponCode} | {offer?.info?.description}</span>
+                                    <span className="offer font-bold text-xs ml-8">{offer?.info?.header}</span><br/>
+                                    <span className="coupon-offer text-xs ml-2">{offer?.info?.couponCode} | {offer?.info?.description}</span>
                                 </div>
                             </div> 
                         );
@@ -90,9 +91,21 @@ const RestaurantMenu = () =>{
                     <div className="menu p-2 ">
                         <div className="left-menu">                
                               {
-                                category.map((category)=>{
+                                category.map((category, index)=>{
+                                  // console.log(category);
                                   return(
-                                    <RestaurantCategory  data = {category?.card?.card}/>
+                                    // controlled component
+                                    <RestaurantCategory key = {category?.card?.card.title}  
+                                        data = {category?.card?.card}
+                                        showItems = { index === showIndex ? true : false }
+                                        setShowIndex = {()=> {
+                                              console.log('before' , index); 
+                                              console.log('showIndex', showIndex);  
+                                              setShowIndex(index);
+                                              console.log('after', index); 
+                                            }
+                                        }
+                                    />
                                   )
                                 })
                               }                                                
