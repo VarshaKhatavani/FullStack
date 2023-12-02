@@ -19,18 +19,16 @@ const Content = () =>{
 
     const fetchData = async() => {
         try{
-        const data = await  fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
-        if(!data.ok){
-            throw new Error("Network response was not ok");
+            const data = await  fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
+            if(!data.ok){
+                throw new Error("Network response was not ok");
+            }
+            const json = await data.json();
+            console.log(json);
+            console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+            setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         }
-        const json = await data.json();
-        console.log('before');
-        console.log(json);
-        console.log('after');
-        console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    }
         catch(error){
             console.error("An error occurred while fetching data:",error);
         }
@@ -59,7 +57,7 @@ const Content = () =>{
                         setsearchText(e.target.value); 
                         }}></input>
                     &nbsp;&nbsp;
-                    <button className="search-btn ml-4 p-2 w-24 rounded-lg font-semibold bg-orange-100" onClick={()=>{
+                    <button className="search-btn ml-4 p-2 w-24 rounded-lg font-semibold bg-orange-50" onClick={()=>{
                         console.log(searchText);
                         const filterRestaurant = listOfRestaurants.filter(
                             (res)=> res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -74,7 +72,7 @@ const Content = () =>{
                         ); 
                         console.log(filteredlist);
                         setListOfRestaurants(filteredlist);                    
-                    }} className="filter-btn px-6 py-2 mr-8 items-center font-semibold rounded-lg bg-orange-100 ">Top Rated Restaurants</button>
+                    }} className="filter-btn px-6 py-2 mr-8 items-center font-semibold rounded-lg bg-orange-50 ">Top Rated Restaurants</button>
                     </div>
                 </div>        
             <div className="res-container flex justify-start flex-wrap">{

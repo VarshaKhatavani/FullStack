@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
 import myImage from '../../Swiggy-2.png';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import { useContext, useState } from 'react';
+import UserContext from "../utils/UserContext";
 
 const Header = () =>{
 
     const onlineStatus = useOnlineStatus();
+    const [btnLogin, setBtnLoginLogout] = useState("Sign In");
+
+    const {loggedInUser} = useContext(UserContext);
+    console.log(loggedInUser);
 
     // logo
     // navigation menu
@@ -14,12 +20,20 @@ const Header = () =>{
                 <img className="w-26 h-24"  src={myImage} alt="" />
             </div>
             <div className='flex items-center font-semibold ' >
-                <ul className="flex p-4 m-4 ">
+                <ul className="flex p-4 m-4 items-center ">
                     <li className='px-4'>{onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}</li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/"}>Home</Link></li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/about"}>About Us</Link></li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/contact"}>Contact Us</Link></li>
-                    <li className='hover:text-orange-500 cursor-pointer nav-items-menu'>Cart</li>                
+                    <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'>Cart</li>
+                    <li className='px-4 hover:text-orange-500'>
+                    <button onClick={()=>{
+                        btnLogin === "Sign In" ? setBtnLoginLogout("Sign Out") : setBtnLoginLogout("Sign In");
+                    }}>
+                        {btnLogin}
+                    </button>                
+                    </li>
+                    <li className="px-4 font-bold">{loggedInUser}</li>
                 </ul>
             </div>            
         </div>
