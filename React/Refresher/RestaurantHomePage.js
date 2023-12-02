@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import ReactDOM  from "react-dom/client";
 import Header from "./src/components/Header";
 import Content from "./src/components/Body";
@@ -7,6 +7,7 @@ import About from "./src/components/About";
 import Error from "./src/components/Error";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import UserContext from "./src/utils/UserContext";
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 
 // Moved resList array object to mockData.js
@@ -16,10 +17,23 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 //lazy loading
 const Grocery = lazy(()=> import("./src/components/Grocery"));
 
+
 const AppLayout = () =>{
+
+    const [userName, setUserName] = useState();
+
+    useEffect(()=>{
+      const data = {
+        name: "Varsha Khatavani"
+      };
+      setUserName(data.name);
+    })
+
    return <div className="body">
-            <Header/>
-            <Outlet/>             
+            <UserContext.Provider value={{ loggedInUser : userName}}>
+              <Header/>
+              <Outlet/>     
+            </UserContext.Provider>        
           </div> 
 }
 

@@ -32,6 +32,7 @@ class About extends Component{
                {/* Using Context API */}
                <UserContext.Consumer>
                 {({loggedInUser})=>{
+                  console.log(loggedInUser)
                   return <span className="font-semibold">{loggedInUser}</span>
                 }}
                </UserContext.Consumer>
