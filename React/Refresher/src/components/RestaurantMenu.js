@@ -37,7 +37,7 @@ const RestaurantMenu = () =>{
     // is using @type : itemCategory
 
     let category = menuList.filter((c)=>{
-        return c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
+        return c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" || c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory" ;
     });
 
     console.log(category);

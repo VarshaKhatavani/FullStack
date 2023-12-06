@@ -16,12 +16,12 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) =>{
         {/* // Accordian Header */}
         <div className="m-2 p-2 rounded-sm   ">
           <div className="flex justify-between  cursor-pointer" onClick={handleClick}>
-            <span className="font-bold">{data.title} ({data.itemCards.length})</span>
+            <span className="font-bold">{data?.title} ({data?.itemCards?.length})</span>
             <span>⬇️</span>
           </div>
           {/* // Accordian Body */}
           <div>
-            { showItems && <ItemList key={data.title}  items={data.itemCards} /> }
+            { showItems &&  data?.itemCards?.length!=0 ? <ItemList key={data?.title}  items={data?.itemCards} /> :  <ItemList key={data?.title}  items={data?.categories}/> }
           </div>
         </div>       
         </>

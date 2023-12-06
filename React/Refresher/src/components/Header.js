@@ -3,6 +3,7 @@ import myImage from '../../Swiggy-2.png';
 import useOnlineStatus from '../utils/useOnlineStatus';
 import { useContext, useState } from 'react';
 import UserContext from "../utils/UserContext";
+import { useSelector } from 'react-redux';
 
 const Header = () =>{
 
@@ -11,6 +12,9 @@ const Header = () =>{
 
     const {loggedInUser} = useContext(UserContext);
     console.log(loggedInUser);
+
+    const cartItems = useSelector((store)=>store.cart.items);
+    console.log(cartItems);
 
     // logo
     // navigation menu
@@ -25,7 +29,7 @@ const Header = () =>{
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/"}>Home</Link></li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/about"}>About Us</Link></li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/contact"}>Contact Us</Link></li>
-                    <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'>Cart</li>
+                    <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'>Cart ({cartItems.length} items)</li>
                     <li className='px-4 hover:text-orange-500'>
                     <button onClick={()=>{
                         btnLogin === "Sign In" ? setBtnLoginLogout("Sign Out") : setBtnLoginLogout("Sign In");

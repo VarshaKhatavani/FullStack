@@ -8,6 +8,8 @@ import Error from "./src/components/Error";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import UserContext from "./src/utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/appStore";
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 
 // Moved resList array object to mockData.js
@@ -29,12 +31,14 @@ const AppLayout = () =>{
       setUserName(data.name);
     })
 
-   return <div className="body">
+   return <Provider store={appStore} >
+          <div className="body">
             <UserContext.Provider value={{ loggedInUser : userName}}>
               <Header/>
               <Outlet/>     
             </UserContext.Provider>        
           </div> 
+          </Provider>
 }
 
 const AppRouter = createBrowserRouter([
