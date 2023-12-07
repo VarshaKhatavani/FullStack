@@ -14,14 +14,15 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) =>{
     return(
         <>
         {/* // Accordian Header */}
-        <div className="m-2 p-2 rounded-sm   ">
-          <div className="flex justify-between  cursor-pointer" onClick={handleClick}>
-            <span className="font-bold">{data?.title} ({data?.itemCards?.length})</span>
+        <div className="m-2 p-2 rounded-sm">
+          <div className="flex justify-between cursor-pointer" onClick={handleClick}>
+            <span className="font-bold">{data?.title}  ({data?.itemCards ? data?.itemCards?.length  :  data?.categories?.length })</span>
             <span>⬇️</span>
           </div>
           {/* // Accordian Body */}
           <div>
-            { showItems &&  data?.itemCards?.length!=0 ? <ItemList key={data?.title}  items={data?.itemCards} /> :  <ItemList key={data?.title}  items={data?.categories}/> }
+            { console.log(data?.itemCards) } { console.log(data?.categories) }
+            { showItems &&  data?.itemCards!=undefined ? <ItemList key={data?.title}  items={data?.itemCards} /> :  <ItemList key={data?.title}  items={data?.categories}/> }
           </div>
         </div>       
         </>

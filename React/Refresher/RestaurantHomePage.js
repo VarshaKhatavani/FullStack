@@ -10,6 +10,7 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 import UserContext from "./src/utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./src/utils/appStore";
+import Cart from "./src/components/cart";
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 
 // Moved resList array object to mockData.js
@@ -67,6 +68,9 @@ const AppRouter = createBrowserRouter([
       {
         path:"/restaurants/:resId",
         element:<RestaurantMenu/>
+      },{
+        path:"/cart",
+        element:<Cart/>
       }
     ],
     errorElement:<Error/>

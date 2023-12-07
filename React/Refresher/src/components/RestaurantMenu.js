@@ -24,7 +24,7 @@ const RestaurantMenu = () =>{
     if(resInfo === null)
         return;
 
-    console.log(resInfo)
+    //console.log(resInfo)
     let resHeaderInfo = resInfo[0]?.card?.card.info;
     let offers = resInfo[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
     let menuList = resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
@@ -100,7 +100,7 @@ const RestaurantMenu = () =>{
                         <div className="left-menu">                
                               {
                                 category.map((category, index)=>{
-                                  // console.log(category);
+                                  //  console.log(category);
                                   return(
                                     // controlled component
                                     <RestaurantCategory key = {category?.card?.card.title}  

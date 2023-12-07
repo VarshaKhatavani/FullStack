@@ -26,10 +26,10 @@ const Header = () =>{
             <div className='flex items-center font-semibold ' >
                 <ul className="flex p-4 m-4 items-center ">
                     <li className='px-4'>{onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}</li>
-                    <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/"}>Home</Link></li>
-                    <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/about"}>About Us</Link></li>
-                    <li className='px-4 hover:text-orange-500 cursor-pointer'><Link className="nav-items-menu" to={"/contact"}>Contact Us</Link></li>
-                    <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'>Cart ({cartItems.length} items)</li>
+                    <li className='px-4 hover:text-orange-500 cursor-pointer'><Link to={"/"}>Home</Link></li>
+                    <li className='px-4 hover:text-orange-500 cursor-pointer'><Link to={"/about"}>About Us</Link></li>
+                    <li className='px-4 hover:text-orange-500 cursor-pointer'><Link to={"/contact"}>Contact Us</Link></li>
+                    <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'><Link to={"/cart"}> Cart ({cartItems.length} items) </Link></li>
                     <li className='px-4 hover:text-orange-500'>
                     <button onClick={()=>{
                         btnLogin === "Sign In" ? setBtnLoginLogout("Sign Out") : setBtnLoginLogout("Sign In");

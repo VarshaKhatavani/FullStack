@@ -24,6 +24,7 @@ const Content = () =>{
                 throw new Error("Network response was not ok");
             }
             const json = await data.json();
+            console.log('Hey, I looking for restaurants' );
             console.log(json);
             console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             setListOfRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
