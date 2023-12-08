@@ -21,8 +21,8 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) =>{
           </div>
           {/* // Accordian Body */}
           <div>
-            { console.log(data?.itemCards) } { console.log(data?.categories) }
-            { showItems &&  data?.itemCards!=undefined ? <ItemList key={data?.title}  items={data?.itemCards} /> :  <ItemList key={data?.title}  items={data?.categories}/> }
+            {/* { console.log(data?.itemCards) } { console.log(data?.categories) } */}
+            { data?.itemCards!=undefined ? showItems && <ItemList key={data?.title}  items={data?.itemCards} /> : showItems && <ItemList key={data?.title}  items={data?.categories}/> }
           </div>
         </div>       
         </>

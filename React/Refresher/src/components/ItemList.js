@@ -6,17 +6,16 @@ import { useDispatch } from "react-redux";
 const ItemList =({items})=>{    
 
     const {resId} = useParams();
-    console.log('resId...',resId)
-    
+    console.log('resId...',resId)    
 
     const dispatch = useDispatch();
 
     const handleAddItem = (item) =>{
-        console.log('button click');
-        console.log(item);
+        // console.log('button click');
+        // console.log(item);
         const restArr = {...item, resId:resId};
         dispatch(addItem(restArr));    
-        console.log(restArr);
+        // console.log(restArr);
     }
 
     return(
@@ -24,14 +23,13 @@ const ItemList =({items})=>{
         <div>
         {
            items!=undefined && items.map((item)=>{
-                console.log(item);
+                // console.log(item);
 
                  return Array.isArray(item.itemCards) ? 
                  (
                     <div key={item?.title} className="w-full flex justify-between py-4 border-b-[1px]">
                             <div className="py-2 w-full">
                             <div className="flex justify-between cursor-pointer p-2 bg-slate-50">{item?.title} ({item?.itemCards.length})                                
-                                <span>⬇️</span>
                             </div>
                               {
                                     //let arr = [...item.itemCards];

@@ -14,12 +14,11 @@ const RestaurantMenu = () =>{
     const [showIndices, setShowIndices] = useState([]);
 
     const handleShowIndex = (index) =>{
-    const updatedIndex =  showIndices.includes(index) ? showIndices.filter((i)=> i !== index) :
+        const updatedIndex = showIndices.includes(index) ? showIndices.filter((i)=> i !== index) :
                            [...showIndices, index];
-
-    setShowIndices(updatedIndex);                          
-    
-  }
+        setShowIndices(updatedIndex);           
+        console.log(showIndices) ;              
+    }
     
     if(resInfo === null)
         return;
