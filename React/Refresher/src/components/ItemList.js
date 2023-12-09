@@ -24,7 +24,6 @@ const ItemList =({items})=>{
         {
            items!=undefined && items.map((item)=>{
                 // console.log(item);
-
                  return Array.isArray(item.itemCards) ? 
                  (
                     <div key={item?.title} className="w-full flex justify-between py-4 border-b-[1px]">
@@ -47,15 +46,13 @@ const ItemList =({items})=>{
                                         </div>
                                         <div className="w-3/12 p-8 relative">
                                             <div className="absolute">
-                                                <button className="p-1 absolute bg-white text-green-500 rounded-md shadow-sm border-green-400 w-16 mt-20 left-10" onClick={()=> handleAddItem(item)}>                                    
+                                                <button className="p-1 absolute bg-white text-green-500 rounded-md shadow-sm border-green-400 w-16 mt-20 left-10" id={nestedItem.card.info.id} onClick={()=> handleAddItem( nestedItem )}>                                    
                                                     Add + 
                                                 </button>
                                             </div>
                                             <img src={CDN_URL+nestedItem?.card?.info?.imageId} className="w-44 rounded-lg" alt={nestedItem?.card?.info?.name} />
                                         </div>
                                     </div>
-
-
                                         )
                                     })
                                 }
@@ -72,9 +69,9 @@ const ItemList =({items})=>{
                                     {item?.card?.info?.description}
                                 </div>
                             </div>
-                            <div className="w-3/12 p-8 relative">
+                            <div className="w-3/12 p-2 relative">
                                 <div className="absolute">
-                                    <button className="p-1 absolute bg-white text-green-500 rounded-md shadow-sm border-green-400 w-16 mt-20 left-10" onClick={()=> handleAddItem(item)}>                                    
+                                    <button className="p-1 absolute bg-white text-green-500 rounded-md shadow-sm border-green-400 w-16 mt-20 left-10" onClick={()=> handleAddItem( Array.isArray(item.itemCards) ? item.itemCards : item )}>                                    
                                         Add + 
                                     </button>
                                 </div>
