@@ -1,4 +1,6 @@
 import { CDN_URL } from "../utils/constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const RestaurantCard = (props) =>{
 
@@ -7,6 +9,8 @@ const RestaurantCard = (props) =>{
     //way to access properties or methods of an object without triggering an error if the object is null or undefined.
     const { cloudinaryImageId, name, avgRating, sla , cuisines , costForTwo, aggregatedDiscountInfoV3  } = resData?.info
    
+    // const starCount = Math.round(avgRating);
+
     // access array inside object
     const {header,subHeader} = aggregatedDiscountInfoV3 || {};
     const {deliveryTime} = sla || {};
@@ -18,8 +22,14 @@ const RestaurantCard = (props) =>{
                         <span className="cost"> {header} &nbsp;{subHeader}</span>   
                     </div> 
                     <div className="p-2">                    
-                        <span className="title font-bold">{name}</span><br/>                        
-                        <span >star {avgRating}</span>&nbsp;&nbsp;&nbsp;
+                        <span className="title font-bold">{name}</span><br/>      
+                        <div className="flex  bg-green-600 w-[18px] h-[18px] items-center rounded-full">                           
+                                <FontAwesomeIcon
+                                    icon={faStar}
+                                    className="text-white text-xs p-1 -ml-[2px]"
+                                /> <span className="mt-[1px] ml-2 font-bold text-sm " > {avgRating}   </span>                      
+                        </div>
+                        
                         <span className="reachingTime"><b>{deliveryTime} MINS</b></span><br/>
                         <span className="cuisine">{cuisines.join(", ")}</span>                    
                     </div>

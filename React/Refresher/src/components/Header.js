@@ -4,6 +4,9 @@ import useOnlineStatus from '../utils/useOnlineStatus';
 import { useContext, useState } from 'react';
 import UserContext from "../utils/UserContext";
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+
 
 const Header = () =>{
 
@@ -29,7 +32,7 @@ const Header = () =>{
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link to={"/"}>Home</Link></li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link to={"/about"}>About Us</Link></li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer'><Link to={"/contact"}>Contact Us</Link></li>
-                    <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'><Link to={"/cart"}> Cart ({cartItems.length} items) </Link></li>
+                    
                     <li className='px-4 hover:text-orange-500'>
                     <button onClick={()=>{
                         btnLogin === "Sign In" ? setBtnLoginLogout("Sign Out") : setBtnLoginLogout("Sign In");
@@ -38,6 +41,11 @@ const Header = () =>{
                     </button>                
                     </li>
                     <li className="px-4 font-bold">{loggedInUser}</li>
+                    <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'><Link to={"/cart"}>   <FontAwesomeIcon icon={faShoppingCart} className=" text-2xl mt-2" /> 
+                        <span className="bg-orange-500 text-white rounded-full w-4 h-4 absolute -mt-8 ml-4 flex items-center justify-center text-xs">
+                            {cartItems.length}
+                        </span>             
+                    </Link></li>
                 </ul>
             </div>            
         </div>

@@ -50,7 +50,7 @@ const Content = () =>{
     //     return <Shimmer/>
     // }
 
-    return listOfRestaurants.length===0 ?  <Shimmer/>  : ( 
+    return listOfRestaurants !=undefined &&  listOfRestaurants.length === 0 ?  <Shimmer/>  : ( 
         <>  
             <div className="container p-1 flex justify-between">
                 <div className="search-box p-4 ml-8">
