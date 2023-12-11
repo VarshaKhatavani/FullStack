@@ -46,11 +46,21 @@ const ItemList =({items})=>{
                                         </div>
                                         <div className="w-3/12 p-8 relative">
                                             <div className="absolute">
-                                                <button className="p-1 absolute bg-white text-green-500 rounded-md shadow-sm border-green-400 w-16 mt-20 left-10" id={nestedItem.card.info.id} onClick={()=> handleAddItem( nestedItem )}>                                    
+                                                {/* <button className="p-1 absolute bg-white text-green-500 rounded-md shadow-sm border-green-400 w-16 mt-20 left-10" id={nestedItem.card.info.id} onClick={()=> handleAddItem( nestedItem )}>                                    
                                                     Add + 
-                                                </button>
+                                                </button> */}
+                                                
+                                                  { nestedItem?.card?.info?.imageId ?                                
+                                                        <button className="p-2 absolute shadow-lg border border-solid  bg-white text-xs text-green-500 rounded-md w-16 left-10 mt-[70px]" id={nestedItem.card.info.id}  onClick={()=> handleAddItem( nestedItem )}>                                    
+                                                            ADD + 
+                                                        </button>
+                                                        : 
+                                                        <button className="p-2  mt-4 absolute border border-solid  bg-white text-xs text-green-500 rounded-md shadow-lg  w-16 left-10" id={nestedItem.card.info.id}  onClick={()=> handleAddItem( nestedItem)}>                                    
+                                                            ADD + 
+                                                        </button>
+                                                    }
                                             </div>
-                                            <img src={CDN_URL+nestedItem?.card?.info?.imageId} className="w-44 rounded-lg" alt={nestedItem?.card?.info?.name} />
+                                           { nestedItem?.card?.info?.imageId ? <img src={CDN_URL+nestedItem?.card?.info?.imageId} className="w-44 rounded-lg" alt={nestedItem?.card?.info?.name} /> : "" }
                                         </div>
                                     </div>
                                         )
@@ -61,7 +71,7 @@ const ItemList =({items})=>{
                     )
                     :
                     ( <div key={item?.card?.info?.id} className="w-full flex justify-between py-4 border-b-[1px]">
-                            <div className="py-2 w-9/12">
+                            <div className="py-2 w-11/12">
                                 <div className="font-bold">{item?.card?.info?.name}</div>
                                 
                                 <div className="text-sm"> ₹ {item?.card?.info?.price ? item?.card?.info?.price/100 : item?.card?.info?.defaultPrice/100} </div>
@@ -71,11 +81,18 @@ const ItemList =({items})=>{
                             </div>
                             <div className="w-3/12 p-2 relative">
                                 <div className="absolute">
-                                    <button className="p-1 absolute bg-white text-green-500 rounded-md shadow-sm border-green-400 w-16 mt-20 left-10" onClick={()=> handleAddItem( Array.isArray(item.itemCards) ? item.itemCards : item )}>                                    
-                                        Add + 
+                                    { item?.card?.info?.imageId ?                                
+                                    <button className="p-2 absolute shadow-lg border border-solid  bg-white text-xs text-green-500 rounded-md w-16 left-10 mt-[70px] " onClick={()=> handleAddItem( Array.isArray(item.itemCards) ? item.itemCards : item )}>                                    
+                                        ADD + 
                                     </button>
+                                    : 
+                                    <button className="p-2  mt-4 absolute border border-solid  bg-white text-xs text-green-500 rounded-md shadow-lg  w-16 left-10" onClick={()=> handleAddItem( Array.isArray(item.itemCards) ? item.itemCards : item )}>                                    
+                                        ADD + 
+                                    </button>
+                                    }
+                                    
                                 </div>
-                                <img src={CDN_URL+item?.card?.info?.imageId} className="w-44 rounded-lg" alt={item?.card?.info?.name} />
+                                { item?.card?.info?.imageId ? <img src={CDN_URL+item?.card?.info?.imageId} className="w-36 rounded-lg" alt={item?.card?.info?.name} /> : "" }
                             </div>
                         </div>
                     );                

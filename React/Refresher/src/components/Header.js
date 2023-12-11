@@ -19,6 +19,9 @@ const Header = () =>{
     const cartItems = useSelector((store)=>store.cart.items);
     console.log(cartItems);
 
+    const totalItems =  useSelector((store)=> store.cart.totalItems);
+    console.log(totalItems);
+
     // logo
     // navigation menu
     return (
@@ -43,7 +46,7 @@ const Header = () =>{
                     <li className="px-4 font-bold">{loggedInUser}</li>
                     <li className='px-4 hover:text-orange-500 cursor-pointer nav-items-menu'><Link to={"/cart"}>   <FontAwesomeIcon icon={faShoppingCart} className=" text-2xl mt-2" /> 
                         <span className="bg-orange-500 text-white rounded-full w-4 h-4 absolute -mt-8 ml-4 flex items-center justify-center text-xs">
-                            {cartItems.length}
+                            {totalItems}
                         </span>             
                     </Link></li>
                 </ul>

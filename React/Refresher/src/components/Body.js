@@ -69,7 +69,7 @@ const Content = () =>{
                 <div className="filter flex px-4 py-4 ">
                     <button onClick={()=>{ 
                         const filteredlist = listOfRestaurants.filter(
-                            (res)=>res.info.avgRating > 4
+                            (res)=>res.info.avgRating > 4.5
                         ); 
                         console.log(filteredlist);
                         setListOfRestaurants(filteredlist);                    
