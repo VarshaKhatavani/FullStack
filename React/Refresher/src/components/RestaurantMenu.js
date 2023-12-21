@@ -101,7 +101,8 @@ const RestaurantMenu = () =>{
                                 category.map((category, index)=>{
                                   //  console.log(category);
                                   return(
-                                    // controlled component
+                                    <>
+                                     {/* controlled component */}
                                     <RestaurantCategory key = {category?.card?.card.title}  
                                         data = {category?.card?.card}
                                         showItems = { showIndices.includes(index) }
@@ -114,9 +115,19 @@ const RestaurantMenu = () =>{
                                             }
                                         }
                                     />
+                                    
+                                  
+                                  </>
                                   )
                                 })
-                              }                                                
+                              }   
+                              {/* <div className="bg-green-500 w-8/12 ml-2 m-auto justify-between text-white font-semibold rounded-sm flex items-center p-2 absolute bottom-0">
+                                     <div className='flex'>
+                                        <div className=' p-[1px]'> 2 items  </div>
+                                        <div className=' p-[1px]'> &nbsp; | 350 </div>
+                                     </div>
+                                     <div> View Cart</div>
+                              </div>                                               */}
                         </div>                    
                     </div>
                 

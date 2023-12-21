@@ -19,7 +19,13 @@ const Content = () =>{
 
     const fetchData = async() => {
         try{
-            const data = await  fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING");
+            const data = await  fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5204303&lng=73.8567437&page_type=DESKTOP_WEB_LISTING",
+            {
+              headers: {
+                    'Origin': 'http://localhost:1234/', // Replace with your React app's origin
+              },  
+            });
+
             if(!data.ok){
                 throw new Error("Network response was not ok");
             }

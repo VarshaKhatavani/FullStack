@@ -23,8 +23,9 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) =>{
           <div>
             {/* { console.log(data?.itemCards) } { console.log(data?.categories) } */}
             { data?.itemCards!=undefined ? showItems && <ItemList key={data?.title}  items={data?.itemCards} /> : showItems && <ItemList key={data?.title}  items={data?.categories}/> }
-          </div>
-        </div>       
+          </div>                
+        </div>      
+        
         </>
     )
 }
