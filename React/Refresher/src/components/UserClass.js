@@ -4,30 +4,41 @@ class UserClass extends React.Component{
 
     constructor(props){
         super(props);
-        console.log(props);
+        console.log(props);        
+        console.log('Child Constructor');
 
-        // multiple state variables
         this.state = {
-            count : 0 ,
-            count2 : 2 ,
-        }
-    }    
-
-    render(){
+            userInfo:{
+                name : "Dummy",
+                location : "Default",
+            }
+        };
+    }  
     
-    // destructuring 
-     const {count, count2} = this.state;
-     const {name, location} = this.props;
+    async componentDidMount(){
+        console.log('Child DidMount');
+        const data = await fetch("https://api.github.com/users/varsha0501");
+        const json = await data.json();
 
-      return  <div className="user-card">
-            <h1>Count : {count}</h1>   {/* {this.state.count}*/}
-            <h1>Count2 : {count2}</h1>
-            <h2>Name : {name}</h2>     {/* {this.props.name}*/}
-            <h3>Location : {location}</h3>
-            <h4>Contact : varshakhatwani013@gmail.com</h4>
-        </div>
+        this.setState({
+            userInfo:json,
+        })
+
+        console.log(json);        
     }
 
+    render(){
+        console.log('Child Render');
+        // destructuring 
+        const {name, location, avatar_url} = this.state.userInfo ;  // this.props;
+
+        return  <div className="user-card"> 
+                    <img src={avatar_url}/>
+                    <h2>Name : {name}</h2>     {/* {this.props.name}*/}
+                    <h3>Location : {this.props.location}</h3>
+                    <h4>Contact : varshakhatwani013@gmail.com</h4>
+                </div>
+    }
 }
 
 export  default UserClass ;

@@ -10,7 +10,7 @@ const User = (props) => {
     const { name, location }  = props;
 
     return (
-        <div className="user-card">
+        <div className="text-3xl font-bold underline">
             <h1>Count : {count}</h1>
             <h1>Count : {count2}</h1>
             <h2>Name : {name}</h2>
