@@ -33,12 +33,47 @@ const Course = mongoose.model('Course', courseSchema);
 
 async function createCourse(){
     const course = new Course({
-        name : "Java",
-        creator:"James Gosling",
+        name : "Salesforce",
+        creator:"XYZ",
         isPublished:true,
-        rating:4.5       
+        rating:4.8       
     })
     const courseCreated = await course.save();
 }
 
 //createCourse();
+
+// operators 
+// $lt
+// lte 
+// gte 
+// gt 
+// in
+// not in
+
+async function getCourse(){
+    const course = await Course.findById("65a2c6502388344df8ab7251");
+    console.log(course);
+}
+
+getCourse();
+
+async function updateCourse(id){
+    let course = await Course.findById(id);
+    if(!course){
+        return;
+    }
+    course.name="Scala"
+    course.creator="Carey"
+    const updatedCourse = await course.save();
+    console.log(updateCourse)
+}
+
+updateCourse("65a2c805f89a4cf5dd82e24e");
+
+async function deleteCourse(id){
+    const deletedCourse = await Course.findByIdAndDelete(id);
+    console.log(deletedCourse);
+}
+
+deleteCourse("65a2cdd37ad5097c992ce649");
