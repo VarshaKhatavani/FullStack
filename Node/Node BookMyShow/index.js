@@ -14,3 +14,31 @@ mongoose.connect(db).then(()=>{
 }).catch((err)=>{
     console.log(err);
 })
+
+// schema create
+
+const courseSchema = new mongoose.Schema({
+    name:String,
+    creator:String,
+    publishedDate:{type:Date, default:Date.now},
+    isPublished:Boolean,
+    rating:Number
+})
+
+// Model
+
+const Course = mongoose.model('Course', courseSchema);
+
+// CRUD
+
+async function createCourse(){
+    const course = new Course({
+        name : "Java",
+        creator:"James Gosling",
+        isPublished:true,
+        rating:4.5       
+    })
+    const courseCreated = await course.save();
+}
+
+//createCourse();
