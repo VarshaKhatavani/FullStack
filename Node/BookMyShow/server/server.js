@@ -4,6 +4,8 @@ const PORT = 5001;
 
 const app = express();
 
+const dbConfig = require("./config/dbConfig");
+
 app.get("/",(req,res)=>{
     res.send("Hello world");
 })
