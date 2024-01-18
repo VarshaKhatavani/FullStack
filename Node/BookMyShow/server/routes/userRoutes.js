@@ -7,10 +7,21 @@ const router = require("express").Router();
 const user = require("../models/userModel");
 
 router.post('/register', async (req,res)=>{
-    const newUser = new user(req.body);
-    console.log(newUser);
-    await newUser.save();
-    res.send("got the data");
+    try {
+        const userExists = await user.findOne({email:req.body.email});
+        if(userExists){
+            return res.send({
+                success:false,
+                message:"User with this email already exist"
+            })
+        }
+        const newUser = new user(req.body);
+        console.log(newUser);
+        await newUser.save();
+        res.send("got the data");
+    } catch (error) {
+        console.log(error); 
+    }   
 })
 
 module.exports = router ;
