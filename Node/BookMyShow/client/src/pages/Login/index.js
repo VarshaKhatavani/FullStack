@@ -1,10 +1,11 @@
 import React from 'react';
-import {Button, Form, Input } from 'antd';
+import {Button, Form, Input, message } from 'antd';
 import backgroundImage from '../../images/login-bg.jpg';
 import {Link} from 'react-router-dom';
 
 const onFinish = (values) =>{
     console.log('Success:',values);
+    message.success("hello");
 }
 
 const onFinishFailed = (errorInfo) =>{
@@ -40,7 +41,7 @@ export default function Login(){
                                     message: 'Please enter your email!',
                                 },]}                        
                     >
-                    <Input style={{padding:"12px", width:"15rem" }} placeholder='Enter Email' />
+                    <Input style={{padding:"12px", width:"17rem" }} placeholder='Enter Email' />
                     </Form.Item>
 
                     <Form.Item                        
@@ -51,7 +52,7 @@ export default function Login(){
                             message: 'Please enter your password!',
                             },
                         ]} >
-                    <Input.Password style={{padding:"12px", width:"15rem" }} placeholder='Enter Password' />
+                    <Input.Password style={{padding:"12px", width:"17rem" }} placeholder='Enter Password' />
                     </Form.Item><br/>
                     
                     <Form.Item
