@@ -1,9 +1,24 @@
 import React from "react"
-import { Button, Form, Input } from "antd"
+import { Button, Form, Input, message } from "antd"
 import backgroundImage from "../../images/login-bg.jpg"
+import axios from "axios"
 
-const onFinish = (values) =>{
+const onFinish = async (values) =>{
     console.log('Success:',values);
+
+    const response = await axios.post('http://localhost:5001/api/users/register',values,{
+        headers:{
+            'Content-Type':'application/json'
+        }
+    });
+    console.log(response);
+    const res = response.data;
+    if(res.success){
+        message.success(res.message);
+    }
+    else{
+        message.error(res.message);
+    }
 }
 
 const onFinishFailed = (errorInfo) =>{

@@ -8,7 +8,7 @@ const user = require("../models/userModel");
 
 router.post('/register', async (req,res)=>{
     try {
-        const userExists = await user.findOne({email:req.body.email});
+        const userExists = await user.findOne({email:req.body.email});        
         if(userExists){
             return res.send({
                 success:false,
@@ -38,6 +38,8 @@ router.post('/register', async (req,res)=>{
 router.post('/login', async (req,res)=>{
     try {
         const userInput = await user.findOne({email:req.body.email});
+        //console.log(userInput);
+        // userInput - stores user object
         if(!userInput){
             return res.send({
                 success:false,

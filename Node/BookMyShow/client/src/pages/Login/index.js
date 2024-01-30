@@ -2,10 +2,27 @@ import React from 'react';
 import {Button, Form, Input, message } from 'antd';
 import backgroundImage from '../../images/login-bg.jpg';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
-const onFinish = (values) =>{
-    console.log('Success:',values);
-    message.success("hello");
+const onFinish = async (values) =>{
+    try {        
+            console.log('Success:',values);
+            const response = await axios.post('http://localhost:5001/api/users/login',values,{
+                headers : {
+                    'Content-Type':'application/json'
+                }
+            });
+            console.log(response);
+            const res = response.data ;
+            if(res.success){
+                message.success(res.message);
+            }
+            else{
+                message.error(res.message);
+            }           
+    } catch (error) {
+            message.error(error.message);
+    }
 }
 
 const onFinishFailed = (errorInfo) =>{
@@ -35,7 +52,7 @@ export default function Login(){
              >
                  <span style={{ fontWeight:"bolder", fontSize:"28px", padding:"0rem 1rem 1rem 0rem", justifyContent:"center", display:"block", color:"white" }}>Sign In</span>
                     <Form.Item 
-                        name="username"
+                        name="email"
                         rules={[{
                                     required: true,
                                     message: 'Please enter your email!',
