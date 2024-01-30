@@ -28,7 +28,7 @@ router.post('/register', async (req,res)=>{
         await newUser.save();
         res.send({
             success:true,
-            message:"User has been created!"
+            message:"User has been created! Please Sign Up."
         });
     } catch (error) {
         console.log(error); 
@@ -55,7 +55,7 @@ router.post('/login', async (req,res)=>{
         }
         res.send({
             success:true,
-            message:"User Logged In"
+            message:"Welcome " + userInput.name + ", to BookMyShow."
         })
     } catch (error) {
         console.log(error);

@@ -2,30 +2,37 @@ import React from "react"
 import { Button, Form, Input, message } from "antd"
 import backgroundImage from "../../images/login-bg.jpg"
 import axios from "axios"
-
-const onFinish = async (values) =>{
-    console.log('Success:',values);
-
-    const response = await axios.post('http://localhost:5001/api/users/register',values,{
-        headers:{
-            'Content-Type':'application/json'
-        }
-    });
-    console.log(response);
-    const res = response.data;
-    if(res.success){
-        message.success(res.message);
-    }
-    else{
-        message.error(res.message);
-    }
-}
+import { useNavigate } from "react-router-dom"
 
 const onFinishFailed = (errorInfo) =>{
     console.log('error:',errorInfo);
 }
 
 export default function Register(){
+
+    const navigate = useNavigate();
+
+    const onFinish = async (values) =>{
+    try {
+                console.log('Success:',values);
+                const response = await axios.post('http://localhost:5001/api/users/register',values,{
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                });
+                console.log(response);
+                const res = response.data;
+                if(res.success){
+                    message.success(res.message);
+                    navigate('/login');
+                }
+                else{
+                    message.error(res.message);
+                }
+            } catch (error) {
+               message.error(error.message);
+        }
+    }
     return(
            <>
             <div style={{ border: "1px solid grey", 
@@ -58,7 +65,7 @@ export default function Register(){
                     <Input style={{padding:"12px", width:"17rem" }} placeholder='Enter Name' />
                     </Form.Item>
                     <Form.Item 
-                        name="useremail"
+                        name="email"
                         rules={[{
                                     required: true,
                                     message: 'Please enter your email!',

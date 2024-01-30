@@ -1,10 +1,18 @@
 import React from 'react';
 import {Button, Form, Input, message } from 'antd';
 import backgroundImage from '../../images/login-bg.jpg';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-const onFinish = async (values) =>{
+const onFinishFailed = (errorInfo) =>{
+    console.log('error:',errorInfo);
+}
+
+export default function Login(){
+
+    const navigate = useNavigate();
+
+    const onFinish = async (values) =>{
     try {        
             console.log('Success:',values);
             const response = await axios.post('http://localhost:5001/api/users/login',values,{
@@ -16,20 +24,15 @@ const onFinish = async (values) =>{
             const res = response.data ;
             if(res.success){
                 message.success(res.message);
+                navigate('/');
             }
             else{
                 message.error(res.message);
             }           
-    } catch (error) {
-            message.error(error.message);
+        } catch (error) {
+                message.error(error.message);
+        }
     }
-}
-
-const onFinishFailed = (errorInfo) =>{
-    console.log('error:',errorInfo);
-}
-
-export default function Login(){
     return(
             <>
             <div style={{ border: "1px solid grey", 
