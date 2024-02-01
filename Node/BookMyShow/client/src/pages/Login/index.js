@@ -2,7 +2,6 @@ import React from 'react';
 import {Button, Form, Input, message } from 'antd';
 import backgroundImage from '../../images/login-bg.jpg';
 import {Link, useNavigate} from 'react-router-dom';
-import axios from 'axios';
 import { LoginUser } from '../../apicalls/users';
 
 const onFinishFailed = (errorInfo) =>{
@@ -17,8 +16,11 @@ export default function Login(){
     try {        
             console.log('Success:',values);
             const res = await LoginUser(values);           
+            console.log(res);
+            
             if(res.success){
                 message.success(res.message);
+                localStorage.setItem('token', res.token);
                 navigate('/');
             }
             else{

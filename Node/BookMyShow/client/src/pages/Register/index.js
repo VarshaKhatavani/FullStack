@@ -1,7 +1,6 @@
 import React from "react"
 import { Button, Form, Input, message } from "antd"
 import backgroundImage from "../../images/login-bg.jpg"
-import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { RegisterUser } from "../../apicalls/users"
 
