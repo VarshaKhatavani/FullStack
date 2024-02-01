@@ -3,6 +3,7 @@ import { Button, Form, Input, message } from "antd"
 import backgroundImage from "../../images/login-bg.jpg"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { RegisterUser } from "../../apicalls/users"
 
 const onFinishFailed = (errorInfo) =>{
     console.log('error:',errorInfo);
@@ -15,13 +16,7 @@ export default function Register(){
     const onFinish = async (values) =>{
     try {
                 console.log('Success:',values);
-                const response = await axios.post('http://localhost:5001/api/users/register',values,{
-                    headers:{
-                        'Content-Type':'application/json'
-                    }
-                });
-                console.log(response);
-                const res = response.data;
+                const res = await RegisterUser(values);                
                 if(res.success){
                     message.success(res.message);
                     navigate('/login');
