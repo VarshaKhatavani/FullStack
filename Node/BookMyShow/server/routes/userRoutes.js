@@ -55,7 +55,7 @@ router.post('/login', async (req,res)=>{
         }
         res.send({
             success:true,
-            message:"Welcome " + userInput.name + ", to BookMyShow."
+            message:"Welcome " + userInput.name + ", to BookMyShow!"
         })
     } catch (error) {
         console.log(error);
