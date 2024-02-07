@@ -20,7 +20,7 @@ export default function Login(){
             
             if(res.success){
                 message.success(res.message);
-                localStorage.setItem('token', res.token);
+                localStorage.setItem('token', res.tokens);
                 navigate('/');
             }
             else{

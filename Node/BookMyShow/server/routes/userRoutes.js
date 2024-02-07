@@ -55,18 +55,15 @@ router.post('/login', async (req,res)=>{
                 message:"Invalid password"
             })
         }
+    
+         const jwt_token = jwt.sign({userId:userInput._id},process.env.JWT_SECRET_KEY,{expiresIn:"1d"});
 
-        const token = jwt.sign(
-                    {userId:user._id}, 
-                    process.env.JWT_SECRET_KEY,
-                    {expiresIn:"1d"}
-        );
-        console.log(token);
+        console.log("jwt_token....",jwt_token);
 
         res.send({
             success:true,
             message:"Welcome " + userInput.name + ", to BookMyShow!",
-            token:token
+            tokens:jwt_token
         })
     } catch (error) {
         console.log(error);
@@ -77,7 +74,7 @@ router.post('/login', async (req,res)=>{
 router.get("/get-current-user", authMiddleware, async(req,res)=>{
     try {
         console.log('req.body.userId....',req.body.userId);
-        const loggendInUser = await user.findById(req.body.userId);
+        const loggendInUser = await user.findById(req.body.userId).select('-password');
          console.log(loggendInUser);
         res.send({
             success:true,
@@ -91,5 +88,4 @@ router.get("/get-current-user", authMiddleware, async(req,res)=>{
         })
     }
 })
-
 module.exports = router ;
