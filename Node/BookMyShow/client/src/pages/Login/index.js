@@ -20,8 +20,9 @@ export default function Login(){
             
             if(res.success){
                 message.success(res.message);
+                console.log(res.tokens);
                 localStorage.setItem('token', res.tokens);
-                navigate('/');
+                navigate('/'); // due to protected route it check authentication
             }
             else{
                 message.error(res.message);
