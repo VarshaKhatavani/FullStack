@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Button, Form, Input, message } from 'antd';
 import backgroundImage from '../../images/login-bg.jpg';
 import {Link, useNavigate} from 'react-router-dom';
@@ -22,7 +22,7 @@ export default function Login(){
                 message.success(res.message);
                 console.log(res.tokens);
                 localStorage.setItem('token', res.tokens);
-                navigate('/'); // due to protected route it check authentication
+                window.location.href = '/'; // due to protected route it check authentication
             }
             else{
                 message.error(res.message);
@@ -31,6 +31,13 @@ export default function Login(){
                 message.error(error.message);
         }
     }
+
+    useEffect(()=>{    
+        if(localStorage.getItem("token")){
+            navigate('/');
+        }        
+    });
+
     return(
             <>
             <div style={{ border: "1px solid grey", 

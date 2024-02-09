@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.ant-menu.ant-menu-horizontal .ant-menu-submenu-selected{
+    color: white;
+    background-color: transparent;
+}

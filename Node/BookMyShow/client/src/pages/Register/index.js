@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Button, Form, Input, message } from "antd"
 import backgroundImage from "../../images/login-bg.jpg"
 import { useNavigate } from "react-router-dom"
@@ -27,6 +27,13 @@ export default function Register(){
                message.error(error.message);
         }
     }
+
+     useEffect(()=>{    
+        if(localStorage.getItem("token")){
+            navigate('/');
+        }        
+    });
+
     return(
            <>
             <div style={{ border: "1px solid grey", 
