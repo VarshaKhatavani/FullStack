@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-.ant-menu.ant-menu-horizontal .ant-menu-submenu-selected{
+.ant-menu-light .ant-menu-submenu-selected>.ant-menu-submenu-title{
     color: white;
     background-color: transparent;
 }

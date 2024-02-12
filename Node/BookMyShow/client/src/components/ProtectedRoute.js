@@ -1,15 +1,15 @@
-import { message } from "antd";
-import { useCallback, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
-import { GetCurrentUser } from "../apicalls/users";
-import { useDispatch, useSelector } from "react-redux";
-import { SetUser } from "../redux/usersSlice";
-import { ShowLoading, HideLoading } from "../redux/loadersSlice";
-import React, { useState } from 'react';
-import {  LogoutOutlined, ProfileOutlined, UserOutlined } from '@ant-design/icons';
+import React, { useState, useCallback, useEffect } from "react";
+
 import { Menu } from 'antd';
+import { message } from "antd";
+import { useNavigate } from "react-router-dom"; 
+import { useDispatch, useSelector } from "react-redux";
+import {  LogoutOutlined, ProfileOutlined, UserOutlined } from '@ant-design/icons';
+
 import '../index.css';
-import Banner from "../pages/Home/banner";
+import { SetUser } from "../redux/usersSlice";
+import { GetCurrentUser } from "../apicalls/users";
+import { ShowLoading, HideLoading } from "../redux/loadersSlice";
 
     function ProtectedRoute({ children }) {
 
@@ -36,7 +36,7 @@ import Banner from "../pages/Home/banner";
 
         const items = [       
             {
-            label: 'VARSHA',
+            label: `${user?.name}`,
             icon: <UserOutlined />,
             key: 'SubMenu',          
             children: [
@@ -85,8 +85,6 @@ import Banner from "../pages/Home/banner";
             };
             checkUserAuthentication();
         },[getpresentUser, navigate]);
-
-   
 
         return(
                 user && 
