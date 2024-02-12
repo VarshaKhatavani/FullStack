@@ -13,6 +13,10 @@ const moviesSchema =  new mongoose.Schema({
         type:String,
         required:true
     },
+    duration:{
+        type:Number,
+        required:true
+    },
     language:{
         type:String,
         required:true
