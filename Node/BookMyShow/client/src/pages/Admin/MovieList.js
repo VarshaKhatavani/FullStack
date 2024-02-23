@@ -1,16 +1,21 @@
 import { Button, Flex, message,Table } from "antd";
 import { useDispatch } from "react-redux";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 
 import { ShowLoading, HideLoading } from "../../redux/loadersSlice";
-import { GetAllMovies } from "../../apicalls/movies";
+import { DeleteMovie, GetAllMovies } from "../../apicalls/movies";
+import MovieForm from "./MovieForm";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export default function MovieList(){
 
     const [movies, setMovies] = React.useState([]);
-
+    const [ShowMovieFormModal, setShowMovieFormModal] = useState(false);
+    const [formType, setFormType] = useState("add");
+    const [selectedMovie, setSelectedMovie] = useState(null);
     const dispatch = useDispatch();
+
     const getData = async() =>{
         try {
             dispatch(ShowLoading());
@@ -25,6 +30,25 @@ export default function MovieList(){
         } catch (error) {
             dispatch(HideLoading());
             message.error(error.message);
+        }
+    }
+
+    const handleDelete = async (movieId) =>{
+        try {
+            console.log(movieId);
+            dispatch(ShowLoading());
+            const response = await DeleteMovie({movieId});
+            if(response.success){
+                message.success(response.message);
+                getData();
+            }
+            else{
+                message.error(response.message);
+            }
+            dispatch(HideLoading());
+        } catch (error) {
+             dispatch(HideLoading());
+             message.error(error.message);            
         }
     }
 
@@ -69,7 +93,21 @@ export default function MovieList(){
         },
         {
             title:"Action",
-            dataIndex:"action"
+            dataIndex:"action",
+            render:(text,record)=>{
+                 return (
+                <div>               
+                    <EditOutlined style={{cursor:"pointer", color:"darkblue", fontSize:"16px"}} onClick={()=>{
+                        setSelectedMovie(record);
+                        setFormType("edit"); 
+                        setShowMovieFormModal(true);                       
+                    }} /> &nbsp;
+                     <DeleteOutlined style={{cursor:"pointer", color:"red", fontSize:"16px"}} onClick={() => {
+                        handleDelete(record._id);
+                    }}/> 
+                </div>
+                 )
+            }            
         }
     ];
 
@@ -82,11 +120,23 @@ export default function MovieList(){
     return(
         <>
                 <Flex gap="small" style={{"float":"right", "marginBottom":"1rem"}} wrap="wrap">
-                    <Button type="default" size='medium'>
+                    <Button type="default" size='medium' onClick={()=>{
+                        setShowMovieFormModal(true);
+                        setFormType("add");
+                    }}>
                         Add Movie
                     </Button>
                 </Flex>
                 <Table dataSource={movies} columns={columns} />
+
+                {ShowMovieFormModal && ( 
+                    <MovieForm ShowMovieFormModal={ShowMovieFormModal}
+                               setShowMovieFormModal =  {setShowMovieFormModal}
+                               formType={formType}
+                               selectedMovie={selectedMovie}
+                               setSelectedMovie={setSelectedMovie}
+                               getData={getData} /> 
+                )}
         </>
     )
 }
