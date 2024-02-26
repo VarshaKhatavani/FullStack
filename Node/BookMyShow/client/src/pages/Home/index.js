@@ -1,7 +1,11 @@
+import Theatres from "../Theatres";
 import Banner from "./banner";
 
 export default function Home(){
     return(
-        <div> <Banner/></div>
+        <div> 
+            <Banner/>
+            <Theatres/>
+        </div>
     )
 }
