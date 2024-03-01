@@ -7,6 +7,7 @@ function x(){  // stored in seperate block
 x();
 console.log(a); // 100 ;
 
+/************************************/
 
 var b = 100 ; // global block
 function xb(){  // stored in seperate block
@@ -16,6 +17,7 @@ function xb(){  // stored in seperate block
 xb();
 console.log(b); // 100
 
+/************************************/
 
 var c = 100 ; // global block
 {  // stored in  block scope
@@ -25,6 +27,7 @@ var c = 100 ; // global block
 xb();
 console.log(c); // 10  here c is shadowing the value / var 
 
+/************************************/
 
 // illegal shadowing
 // let a1 = 10;
@@ -32,10 +35,20 @@ console.log(c); // 10  here c is shadowing the value / var
 //     var a1 = 200 ;
 // }
 
-// Note : scope for arrow function & normal function is same only
+/************************************/
 
 function A(){
     console.log(Z);
 }
 var Z = 22 ;
-A();
+A(); // output: 22
+
+/************************************/
+
+function A1(){
+    var Z1 = 22 ;  // assign to seperate scope  
+}
+A1(); 
+console.log(Z1); // ReferenceError: Z is not defined
+
+// Note : scope for arrow function & normal function is same only
