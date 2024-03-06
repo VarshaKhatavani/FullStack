@@ -17,11 +17,12 @@ console.log(diceImage);
 
 let audio, currentScore, activePlayer, score, isGameRunning;
 
+//initialize
 const init = function () {
   audio = document.getElementById('myAudio');
   currentScore = 0;
   activePlayer = 0;
-  score = [0, 0];
+  score = [0, 0]; // added array as will update the score according to 0 to 1 player
   isGameRunning = true;
 
   player1Score.textContent = 0;
@@ -70,6 +71,7 @@ btnRoll.addEventListener('click', function () {
   }
 });
 
+// hold score & switch the player
 btnHold.addEventListener('click', function () {
   if (isGameRunning) {
     // 1. Add current score to active player's score
@@ -96,4 +98,5 @@ btnHold.addEventListener('click', function () {
   }
 });
 
+//Reset game
 btnNew.addEventListener('click', init);
