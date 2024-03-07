@@ -93,3 +93,28 @@ console.log(logo.getAttribute('src'));
 
 // data attribute
 console.log(logo.dataset.version);
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function () {
+  section1.scrollIntoView({
+    behavior: 'smooth',
+  });
+});
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('you are reading heading!');
+};
+
+//h1.addEventListener('mouseenter', alertH1);
+
+// 2nd way
+// h1.onmouseenter = function (e) {
+//   alert('onmouseenter : you are reading heading ES6!');
+// };
+
+// Remove Event Listener
+//h1.removeEventListener('mouseenter', alertH1);
