@@ -109,3 +109,44 @@ const alertH1 = function (e) {
 
 // Remove Event Listener
 //h1.removeEventListener('mouseenter', alertH1);
+
+/****************** select parent child elements  *****************/
+
+// Select Child elements
+console.log(document.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+// {
+//     "0": {span.highlight},
+//     "1": {br},
+//     "2": {span.highlight}
+// }
+
+h1.firstElementChild.style.color = 'yellow';
+h1.lastElementChild.style.color = 'pink';
+
+// Select Parent elements
+console.log(h1.parentNode); // div.header__title
+console.log(h1.parentElement); // div.header__title
+
+// Closest
+h1.closest('.header').style.background = 'red';
+
+/**
+ * <div class="header__title">
+ *
+ *    <h1></h1>
+ *    <h4></h4>
+ *    <button></button>
+ *    <img/>
+ *
+ * </div>
+ *
+ */
+
+const h1 = document.querySelector('h1');
+
+console.log(h1.previousElementSibling); // null : no siblings are there before h1
+console.log(h1.nextElementSibling); // h4
+console.log(h1.parentElement.children);
+// HTMLCollection(4) [h1, h4, button.btn--text.btn--scroll-to, img.header__img]
