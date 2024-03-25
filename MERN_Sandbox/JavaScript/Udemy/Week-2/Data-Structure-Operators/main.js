@@ -13,6 +13,11 @@ export const restaurant = {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },
 
+  orderPizza(mainIngredients, ...otherIngredients) {
+    console.log(mainIngredients);
+    console.log(otherIngredients);
+  },
+
   openingHours: {
     thu: {
       open: 12,
