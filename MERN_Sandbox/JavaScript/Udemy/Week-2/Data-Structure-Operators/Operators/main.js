@@ -9,6 +9,18 @@ export const restaurant = {
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
   },
 
+  // object destructuring in parameter
+  orderDelivery: function ({
+    starterIndex,
+    mainIndex,
+    time = '20:00',
+    address,
+  }) {
+    console.log(
+      `Order Confirmed! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
+
   orderPasta(ing1, ing2, ing3) {
     console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
   },

@@ -2,7 +2,7 @@
 
 import { restaurant } from './main.js';
 
-console.log(restaurant);
+console.log('**************** rest operators called *************');
 
 //SPREAD
 const arr = [1, 2, ...[3, 4]];
