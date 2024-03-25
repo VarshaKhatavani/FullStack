@@ -21,6 +21,8 @@ GOOD LUCK 😀
 
 import { game } from './game-object.js';
 
+console.log(game);
+
 const [player1, player2] = game.players;
 console.log(player1, player2);
 

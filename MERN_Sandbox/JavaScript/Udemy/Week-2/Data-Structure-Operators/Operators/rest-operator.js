@@ -3,6 +3,7 @@
 import { restaurant } from './main.js';
 
 console.log('**************** rest operators called *************');
+console.log(restaurant);
 
 //SPREAD
 const arr = [1, 2, ...[3, 4]];

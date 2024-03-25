@@ -13,6 +13,8 @@
 
 import { restaurant } from './main.js';
 
+console.log(restaurant);
+
 // Short Circuiting (||)
 
 // || operator left to right (if left falsy ignores & print right value (whether it's falsy or truthy))

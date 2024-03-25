@@ -24,6 +24,8 @@ GOOD LUCK 😀
 
 import { game } from './game-object.js';
 
+console.log(game);
+
 //1. Loop over the game.scored array and print each player name to the console,
 //along with the goal number (Example: "Goal 1: Lewandowski")
 

@@ -1,6 +1,7 @@
 import { restaurant } from './main.js';
 
 console.log('**************** spread operators called *************');
+console.log(restaurant);
 
 const arr = [7, 8, 9];
 const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
