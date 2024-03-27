@@ -82,3 +82,13 @@ console.log(rest1); // {name: 'Capri', numGuests: 0}
 console.log(rest2); // {name: 'La Pizza', owner: '<ANONYMOUS>', numGuests: 10}
 
 // Optional Chaining
+//console.log(restaurant.openingHours.mon.open);
+// other-operators.js:85 Uncaught TypeError: Cannot read properties of undefined (reading 'open')
+console.log(restaurant.openingHours?.mon?.open); // undefined
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open ?? 'closed';
+  console.log(`On ${day}, we open at ${open}`);
+}
