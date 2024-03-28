@@ -23,7 +23,6 @@ GOOD LUCK 😀
 */
 
 const calcAverageHumanAge = ages => {
-  console.log(ages);
   let humanAge = ages.map(function (age) {
     console.log(age);
     return age <= 2 ? 2 * age : 16 + age * 4;
