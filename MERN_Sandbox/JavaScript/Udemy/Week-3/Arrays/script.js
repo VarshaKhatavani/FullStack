@@ -89,3 +89,111 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+// const user = 'Steven Thomas Williams';
+
+// const username = user
+//   .toLowerCase()
+//   .split(' ')
+//   .map(function (name) {
+//     return name[0];
+//   })
+//   .join('');
+
+// console.log(username); // stw
+
+// sample username
+const createUsernames = function (user) {
+  return user
+    .toLowerCase()
+    .split(' ')
+    .map(function (name) {
+      return name[0];
+    })
+    .join('');
+};
+console.log(createUsernames('Steven Thomas Williams'));
+
+// add username key to account object
+const createAccountUsernames = function (accts) {
+  accts.forEach(function (acc) {
+    // add key
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(function (name) {
+        return name[0];
+      })
+      .join('');
+  });
+};
+
+// console.log(createAccountUsernames(accounts));
+console.log(accounts);
+
+/**
+ *  {
+    "owner": "Jonas Schmedtmann",
+    "movements": [
+        200,
+        450,
+        -400,
+        3000,
+        -650,
+        -130,
+        70,
+        1300
+    ],
+    "interestRate": 1.2,
+    "pin": 1111,
+    "username": "js"
+}
+ * 
+ */
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, bal) => {
+    return acc + bal;
+  }, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
+let eurToUsd = 1.1;
+
+const totalDepositUSD = account1.movements
+  .filter(mov => mov < 0)
+  .map((mov, i) => {
+    return Math.abs(mov * eurToUsd);
+  });
+console.log(totalDepositUSD);
+// [-400, -650, -130]
+
+// using chaining
+const calDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => {
+      return acc + mov;
+    }, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => {
+      return acc + mov;
+    }, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    //calculate interest
+    .map((deposit, mov) => {
+      return (deposit * 1.2) / 100;
+    })
+    .filter((int, i, arr) => int >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+calDisplaySummary(account1.movements);
