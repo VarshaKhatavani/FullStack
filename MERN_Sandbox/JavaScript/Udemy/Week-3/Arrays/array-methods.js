@@ -81,3 +81,32 @@ const deposit = mov => mov > 0;
 console.log(accounts[3].movements.some(deposit)); // true
 console.log(accounts[3].movements.every(deposit)); // true
 console.log(accounts[3].movements.filter(deposit)); // [430, 1000, 700, 50, 90]
+
+//flat - deep till one level of an array
+const flatArr = [1, [2, 3], 4, [5, [6, 7]], [8, 9], 10];
+console.log(flatArr.flat()); // by default 1
+/**
+ * [ 1,2,3,4,5,[6,7],8, 9,10]
+ */
+
+const deepFlat = flatArr.flat(2);
+console.log(deepFlat);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+const accountMovements = accounts.map(acc => acc.movements);
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+// using chaining
+const accMovements = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, cur) => acc + cur, 0);
+console.log(accMovements); // 17840
+
+//flatMap
+const accMov = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, cur) => acc + cur, 0);
+console.log(accMov); // 17840
