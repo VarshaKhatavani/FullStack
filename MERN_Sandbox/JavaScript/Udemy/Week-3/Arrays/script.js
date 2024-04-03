@@ -2,37 +2,13 @@
 
 /////////////////////////////////////////////////
 // BANKIST APP
+import { accounts } from './Bankist-data.js';
 
-// Data
-const account1 = {
-  owner: 'Jonas Schmedtmann',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-  interestRate: 1.2, // %
-  pin: 1111,
-};
+console.log(accounts);
 
-const account2 = {
-  owner: 'Jessica Davis',
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-  interestRate: 1.5,
-  pin: 2222,
-};
+const account1 = accounts[0];
 
-const account3 = {
-  owner: 'Steven Thomas Williams',
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
-  interestRate: 0.7,
-  pin: 3333,
-};
-
-const account4 = {
-  owner: 'Sarah Smith',
-  movements: [430, 1000, 700, 50, 90],
-  interestRate: 1,
-  pin: 4444,
-};
-
-const accounts = [account1, account2, account3, account4];
+//console.log(account1);
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -88,7 +64,6 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
 
 // const user = 'Steven Thomas Williams';
 
@@ -128,8 +103,9 @@ const createAccountUsernames = function (accts) {
   });
 };
 
-// console.log(createAccountUsernames(accounts));
+createAccountUsernames(accounts);
 console.log(accounts);
+//console.log(createAccountUsernames(accounts)); it will return undefined
 
 /**
  *  {
@@ -151,14 +127,14 @@ console.log(accounts);
  * 
  */
 
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, bal) => {
+// Display overall balance
+let balance;
+const calcDisplayBalance = function (accts) {
+  accts.balance = accts.movements.reduce((acc, bal) => {
     return acc + bal;
   }, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${accts.balance} EUR`;
 };
-
-calcDisplayBalance(account1.movements);
 
 let eurToUsd = 1.1;
 
@@ -170,30 +146,90 @@ const totalDepositUSD = account1.movements
 console.log(totalDepositUSD);
 // [-400, -650, -130]
 
-// using chaining
-const calDisplaySummary = function (movements) {
-  const incomes = movements
+// using chaining - display balance summary
+const calDisplaySummary = function (currAcc) {
+  const incomes = currAcc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => {
       return acc + mov;
     }, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = currAcc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => {
       return acc + mov;
     }, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`;
 
-  const interest = movements
+  const interest = currAcc.movements
     .filter(mov => mov > 0)
     //calculate interest
     .map((deposit, mov) => {
-      return (deposit * 1.2) / 100;
+      return (deposit * currAcc.interestRate) / 100;
     })
     .filter((int, i, arr) => int >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${interest}€`;
 };
-calDisplaySummary(account1.movements);
+
+//Implement Login
+let currentAccount;
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount.pin === Number(inputLoginPin.value)) {
+    console.log('LOGIN');
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    containerApp.style.opacity = 100;
+    updateUI(currentAccount);
+  }
+});
+
+const updateUI = function (acc) {
+  // Display movements
+  displayMovements(acc.movements);
+
+  // Display total balance
+  calcDisplayBalance(acc);
+
+  // Display Summary
+  calDisplaySummary(acc);
+};
+
+// Transfer Amount to another account
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  let amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(
+    acc => acc.username === inputTransferTo.value
+  );
+  console.log(receiverAcc, amount);
+  console.table(currentAccount);
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    console.log('Transfer Valid');
+    currentAccount.movements.push(-amount); // auto updated total balance
+    receiverAcc.movements.push(amount);
+
+    updateUI(currentAccount);
+    inputTransferAmount.value = inputTransferTo.value = '';
+  }
+});
