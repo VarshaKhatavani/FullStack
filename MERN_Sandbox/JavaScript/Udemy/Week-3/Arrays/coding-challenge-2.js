@@ -22,7 +22,7 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
-const calcAverageHumanAge = ages => {
+const calcAverageHumanAgeSimple = ages => {
   let humanAge = ages.map(function (age) {
     console.log(age);
     return age <= 2 ? 2 * age : 16 + age * 4;
@@ -36,4 +36,4 @@ const calcAverageHumanAge = ages => {
   console.log(average); // 7.2857142857142865
 };
 
-calcAverageHumanAge([1, 2, 4, 18, 15, 8, 3]);
+calcAverageHumanAgeSimple([1, 2, 4, 18, 15, 8, 3]);
