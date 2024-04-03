@@ -1,3 +1,7 @@
+import { accounts } from './Bankist-data.js';
+
+console.log(accounts);
+
 let arr = ['a', 'b', 'c', 'd', 'e'];
 
 //slice : does not mutate original array
@@ -44,3 +48,23 @@ console.log(numArr.at(-2)); // last element of array 20
 // at also works on string
 const string = 'varsha'.at(1);
 console.log(string); // a
+
+// use of find
+const firstWithdrawal = accounts[0].movements.find(mov => mov < 0);
+console.log(firstWithdrawal);
+
+// find record from object
+const acc = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(acc); // {owner: 'Jessica Davis', movements: Array(8), interestRate: 1.5, pin: 2222, username: 'jd'}
+
+// find record from object
+const accInd = accounts.findIndex(acc => acc.owner === 'Jessica Davis');
+console.log(accInd); // 1
+
+//some
+console.log(accounts[0].movements);
+// [200, 450, -400, 3000, -650, -130, 70, 1300]
+console.log(accounts[0].movements.some(mov => mov === -130)); // true
+
+const anyDeposit = accounts[0].movements.some(mov => mov > 0);
+console.log(anyDeposit); // true
