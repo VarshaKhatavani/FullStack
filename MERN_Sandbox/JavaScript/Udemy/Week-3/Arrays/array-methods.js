@@ -110,3 +110,52 @@ const accMov = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, cur) => acc + cur, 0);
 console.log(accMov); // 17840
+
+// Sorting Arrays
+const owners = [
+  'Bob',
+  'Jonas',
+  'Varsha',
+  'Mac',
+  'Sam',
+  'Jasmine',
+  'Meillany',
+  'Martha',
+];
+console.log(owners.sort());
+/**[
+    "Bob",
+    "Jasmine",
+    "Jonas",
+    "Mac",
+    "Martha",
+    "Meillany",
+    "Sam",
+    "Varsha"
+] */
+
+let acc1_Movements = accounts[0].movements;
+console.log(acc1_Movements); // [200, 450, -400, 3000, -650, -130, 70, 1300]
+
+console.log(acc1_Movements.sort()); // [-130, -400, -650, 1300, 200, 3000, 450, 70]
+// it will take it as alphabetically
+
+//Ascending Order
+acc1_Movements.sort((a, b) => {
+  if (a > b) return 1;
+  if (a < b) return -1;
+});
+console.log(acc1_Movements); // [-650, -400, -130, 70, 200, 450, 1300, 3000]
+//or
+acc1_Movements.sort((a, b) => a - b);
+console.log(acc1_Movements); // [-650, -400, -130, 70, 200, 450, 1300, 3000]
+
+//Descending Order
+acc1_Movements.sort((a, b) => {
+  if (a > b) return -1;
+  if (a < b) return 1;
+});
+console.log(acc1_Movements); // [3000, 1300, 450, 200, 70, -130, -400, -650]
+//or
+acc1_Movements.sort((a, b) => b - a);
+console.log(acc1_Movements); //[3000, 1300, 450, 200, 70, -130, -400, -650]
