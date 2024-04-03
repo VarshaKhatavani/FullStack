@@ -68,3 +68,16 @@ console.log(accounts[0].movements.some(mov => mov === -130)); // true
 
 const anyDeposit = accounts[0].movements.some(mov => mov > 0);
 console.log(anyDeposit); // true
+
+// every
+console.log(accounts[0].movements.every(mov => mov > 0));
+
+console.log(accounts[3]);
+//[430, 1000, 700, 50, 90]
+console.log(accounts[3].movements.every(mov => mov > 0));
+
+//seperate call back
+const deposit = mov => mov > 0;
+console.log(accounts[3].movements.some(deposit)); // true
+console.log(accounts[3].movements.every(deposit)); // true
+console.log(accounts[3].movements.filter(deposit)); // [430, 1000, 700, 50, 90]
