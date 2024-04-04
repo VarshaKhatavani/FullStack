@@ -159,3 +159,61 @@ console.log(acc1_Movements); // [3000, 1300, 450, 200, 70, -130, -400, -650]
 //or
 acc1_Movements.sort((a, b) => b - a);
 console.log(acc1_Movements); //[3000, 1300, 450, 200, 70, -130, -400, -650]
+
+// create array using differnt ways
+console.log([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+let emptyArr = new Array(9);
+console.log(emptyArr);
+
+// fill - modifies orginial array
+//emptyArr.fill(1);
+
+// Can be implemented likewise splice
+//first index: value
+//second index: start from 1
+//third index: till 2 (3-1)
+
+//while map creates new array that's why implemented like this
+emptyArr.fill(0);
+emptyArr = emptyArr.map((_, i) => i + 1);
+console.log(emptyArr);
+emptyArr.fill(22, 1, 3);
+console.log(emptyArr);
+
+//Array.from()
+const y = Array.from({ length: 5 }, () => 1);
+console.log(y);
+
+let n = Array.from({ length: 10 }, (curr, i) => i);
+console.log(n);
+n = Array.from({ length: 10 }, (curr, i) => i + 5);
+console.log(n);
+
+//Small Program
+const convertTitleCase = function (str) {
+  const exceptions = [
+    'is',
+    'the',
+    'a',
+    'an',
+    'of',
+    'with',
+    'on',
+    'or',
+    'in',
+    'out',
+    'and',
+  ];
+  const capitalize = st => st[0].toUpperCase() + st.slice(1);
+  const titleCase = str
+    .toLowerCase()
+    .split(' ')
+    .map(word => (exceptions.includes(word) ? word : capitalize(word)))
+    .join(' ');
+  return capitalize(titleCase); // for first letter added result in a function
+};
+
+console.log(convertTitleCase('garden looks vibrant.'));
+console.log(convertTitleCase('yoga and painting is my hobby.'));
+console.log(convertTitleCase('the taj mahal is very pretty!'));
