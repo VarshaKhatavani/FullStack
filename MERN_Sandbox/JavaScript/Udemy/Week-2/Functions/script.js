@@ -114,3 +114,111 @@ const greetHi = greetArr('Hi');
 greetHi('Child');
 //or
 greetArr('Hi')('Child');
+
+//call, apply and bind
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode} ${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode} ${flightNum}`, name });
+  },
+};
+
+// Varsha booked a seat on Lufthansa flight LH 100
+lufthansa.book(100, 'Varsha');
+// Julie Khatavani booked a seat on Lufthansa flight LH 100
+lufthansa.book(101, 'Julie Khatavani');
+console.log(lufthansa);
+/**{
+    "airline": "Lufthansa",
+    "iataCode": "LH",
+    "bookings": [
+        {
+            "flight": "LH 100",
+            "name": "Varsha"
+        },
+        {
+            "flight": "LH 101",
+            "name": "Julie Khatavani"
+        }
+    ]
+} */
+
+// *************** Call ****************
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+const book = lufthansa.book;
+//does not work
+//book(16, 'Jack Davis'); // Uncaught TypeError: Cannot read properties of undefined (reading 'airline')
+book.call(eurowings, 16, 'Jack Davis');
+console.log(eurowings);
+/**
+ * {
+    "airline": "Eurowings",
+    "iataCode": "EW",
+    "bookings": [
+        {
+            "flight": "EW 16",
+            "name": "Jack Davis"
+        }
+    ]
+}
+ */
+
+// the call() method is used to invoke a function
+// and allows you to specify the value of this explicitly.
+
+// *************** Apply ****************
+// apply() accepts array as parameter
+const flightData = [580, 'Merry Gonsalvis'];
+book.apply(eurowings, flightData);
+console.log(eurowings);
+/**
+ * {
+    "airline": "Eurowings",
+    "iataCode": "EW",
+    "bookings": [
+        {
+            "flight": "EW 16",
+            "name": "Jack Davis"
+        },
+        {
+            "flight": "EW 580",
+            "name": "Merry Gonsalvis"
+        }
+    ]
+}
+ */
+
+// *************** Bind ****************
+
+// bind() method is used to create a new function
+//with a specified this value and optionally some initial arguments.
+
+const person = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullName: function () {
+    return this.firstName + ' ' + this.lastName;
+  },
+};
+
+const users = {
+  firstName: 'Mike',
+  lastName: 'Roy',
+};
+
+// Bind the fullName function to the person object
+const getFullName = person.fullName.bind(users);
+console.log(users); // {firstName: 'Mike', lastName: 'Roy'}
+
+// Call the bound function
+console.log(getFullName()); // Output: Mike Roy
