@@ -222,3 +222,92 @@ console.log(users); // {firstName: 'Mike', lastName: 'Roy'}
 
 // Call the bound function
 console.log(getFullName()); // Output: Mike Roy
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// .bind(lufthansa), you ensure that this inside the buyPlane method refers to the lufthansa object,
+// regardless of how the method is called.
+
+// **** Immediately Invoked Function Expression (IIFE ) *****
+
+const runOnce = (function () {
+  console.log('This will never runs again.');
+})();
+
+(function () {
+  console.log('This will also never runs again.');
+})();
+
+(() => {
+  console.log('IIFE using Arrow function');
+})();
+
+// developed to create new scopes for let/const
+// in ES6 blocks are introduced
+
+// *************** Closures ***************
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+booker();
+booker();
+console.dir(booker);
+
+// Example 1
+let f;
+
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+g();
+f();
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+h();
+f();
+
+//Example 2
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3; // closure has more priority
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+const perGroup = 1000; // it will not be considered
+
+boardPassengers(180, 3);
+
+/*
+Will start boarding in 3 seconds
+We are now boarding all 180 passengers
+There are 3 groups, each with 60 passengers
+ */
