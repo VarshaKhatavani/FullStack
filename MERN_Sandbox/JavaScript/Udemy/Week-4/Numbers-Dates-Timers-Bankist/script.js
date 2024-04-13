@@ -79,6 +79,10 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
+
+const locale = navigator.language;
+console.log(locale);
+
 // Functions
 
 const formatMovementDate = function (date) {};
@@ -102,7 +106,8 @@ const displayDate = dt => {
   const year = dt.getFullYear();
   const hour = `${dt.getHours()}`.padStart(2, 0);
   const min = `${dt.getMinutes()}`.padStart(2, 0);
-  return `${day}/${month}/${year}`;
+  return new Intl.DateTimeFormat(locale).format(dt);
+  //return `${day}/${month}/${year}`;
 };
 
 const displayMovements = function (acc, sort = false) {
@@ -211,7 +216,23 @@ btnLogin.addEventListener('click', function (e) {
     const year = now.getFullYear();
     const hour = `${now.getHours()}`.padStart(2, 0);
     const min = `${now.getMinutes()}`.padStart(2, 0);
-    labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+
+    //labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
+    const today = new Date();
+    const options = {
+      hour: 'numeric',
+      minute: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      weekday: 'long',
+    };
+
+    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(
+      today
+    );
+    // en-US Friday, April 12, 2024 at 10:37 PM
+    // pt-BR sexta-feira, 12 de abril de 2024 às 22:37
   }
 });
 
