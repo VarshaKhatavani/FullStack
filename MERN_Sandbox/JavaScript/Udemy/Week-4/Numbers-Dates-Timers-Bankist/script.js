@@ -30,7 +30,7 @@ const account1 = {
 };
 
 const account2 = {
-  owner: 'Jessica Davis',
+  owner: 'Varsha Khatavani',
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, 1600000],
   interestRate: 1.5,
   pin: 2222,
@@ -45,7 +45,7 @@ const account2 = {
     '2024-04-10T09:48:16.867Z',
     '2020-04-10T14:43:26.374Z',
   ],
-  currency: 'USD',
+  currency: 'INR',
   locale: 'en-US',
 };
 
@@ -128,7 +128,10 @@ const displayMovements = function (acc, sort = false) {
           new Date(acc.movementsDates[i]),
           new Date()
         )}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value"> ${new Intl.NumberFormat(acc.locale, {
+          style: 'currency',
+          currency: `${acc.currency}`,
+        }).format(mov)}</div>
       </div>
     `;
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -137,19 +140,29 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+
+  labelBalance.textContent = new Intl.NumberFormat(navigator.language, {
+    style: 'currency',
+    currency: `${acc.currency}`,
+  }).format(acc.balance.toFixed(2)); // `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = `${new Intl.NumberFormat(acc.locale, {
+    style: 'currency',
+    currency: `${acc.currency}`,
+  }).format(incomes.toFixed(2))}`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = `${new Intl.NumberFormat(acc.locale, {
+    style: 'currency',
+    currency: `${acc.currency}`,
+  }).format(Math.abs(out).toFixed(2))}`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -159,7 +172,10 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = `${new Intl.NumberFormat(acc.locale, {
+    style: 'currency',
+    currency: `${acc.currency}`,
+  }).format(interest.toFixed(2))}`;
 };
 
 const createUsernames = function (accs) {
@@ -211,13 +227,14 @@ btnLogin.addEventListener('click', function (e) {
     // Update UI
     updateUI(currentAccount);
 
-    const day = `${now.getDate()}`.padStart(2, 0);
-    const month = `${now.getMonth() + 1}`.padStart(2, 0);
-    const year = now.getFullYear();
-    const hour = `${now.getHours()}`.padStart(2, 0);
-    const min = `${now.getMinutes()}`.padStart(2, 0);
+    const todaydt = new Date();
+    const day = `${todaydt.getDate()}`.padStart(2, 0);
+    const month = `${todaydt.getMonth() + 1}`.padStart(2, 0);
+    const year = todaydt.getFullYear();
+    const hour = `${todaydt.getHours()}`.padStart(2, 0);
+    const min = `${todaydt.getMinutes()}`.padStart(2, 0);
+    console.log(`${day}/${month}/${year}, ${hour}:${min}`);
 
-    //labelDate.textContent = `${day}/${month}/${year}, ${hour}:${min}`;
     const today = new Date();
     const options = {
       hour: 'numeric',

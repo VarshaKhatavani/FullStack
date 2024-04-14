@@ -37,3 +37,18 @@ const calDaysPassed = (date1, date2) =>
 
 const days1 = calDaysPassed(new Date(2024, 5, 15), Date.now());
 console.log(days1);
+
+const browser_locale = navigator.language;
+console.log(browser_locale);
+
+const opt = {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+  weekday: 'long',
+};
+
+const dte = new Intl.DateTimeFormat(browser_locale, opt).format(now);
+console.log('formatted Date...', dte); // Sunday, April 14, 2024 at 12:33 PM

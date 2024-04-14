@@ -136,3 +136,19 @@ console.log(20n === 20); // false
 console.log(typeof 20n, typeof 20); // bigint number
 console.log(20n == 20); // true
 console.log(22n / 2n); // 11n
+
+const num1 = 1615974.0;
+console.log('US : ', new Intl.NumberFormat('en-US').format(num1)); //  1,615,974
+console.log('PT-BR : ', new Intl.NumberFormat('pt-BR').format(num1)); //   1.615.974
+console.log('Germany : ', new Intl.NumberFormat('de-DE').format(num1)); //   1.615.974
+
+const option = {
+  style: 'currency',
+  currency: 'INR',
+  useGrouping: true,
+};
+
+console.log(
+  navigator.language,
+  new Intl.NumberFormat(navigator.language, option).format(num1)
+); // en-US ₹1,615,974.00
