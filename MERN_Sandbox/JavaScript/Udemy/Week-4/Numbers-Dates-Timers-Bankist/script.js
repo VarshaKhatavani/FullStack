@@ -110,6 +110,13 @@ const displayDate = dt => {
   //return `${day}/${month}/${year}`;
 };
 
+const formatNumber = (value, locale, currency) => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+  }).format(value);
+};
+
 const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
 
@@ -128,10 +135,11 @@ const displayMovements = function (acc, sort = false) {
           new Date(acc.movementsDates[i]),
           new Date()
         )}</div>
-        <div class="movements__value"> ${new Intl.NumberFormat(acc.locale, {
-          style: 'currency',
-          currency: `${acc.currency}`,
-        }).format(mov)}</div>
+        <div class="movements__value"> ${formatNumber(
+          mov,
+          acc.locale,
+          acc.currency
+        )} </div>
       </div>
     `;
     containerMovements.insertAdjacentHTML('afterbegin', html);
@@ -141,28 +149,31 @@ const displayMovements = function (acc, sort = false) {
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
 
-  labelBalance.textContent = new Intl.NumberFormat(navigator.language, {
-    style: 'currency',
-    currency: `${acc.currency}`,
-  }).format(acc.balance.toFixed(2)); // `${acc.balance.toFixed(2)}€`;
+  labelBalance.textContent = formatNumber(
+    acc.balance.toFixed(2),
+    acc.locale,
+    acc.currency
+  ); // `${acc.balance.toFixed(2)}€`;
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${new Intl.NumberFormat(acc.locale, {
-    style: 'currency',
-    currency: `${acc.currency}`,
-  }).format(incomes.toFixed(2))}`;
+  labelSumIn.textContent = formatNumber(
+    incomes.toFixed(2),
+    acc.locale,
+    acc.currency
+  );
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${new Intl.NumberFormat(acc.locale, {
-    style: 'currency',
-    currency: `${acc.currency}`,
-  }).format(Math.abs(out).toFixed(2))}`;
+  labelSumOut.textContent = formatNumber(
+    Math.abs(out).toFixed(2),
+    acc.locale,
+    acc.currency
+  );
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -172,10 +183,11 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${new Intl.NumberFormat(acc.locale, {
-    style: 'currency',
-    currency: `${acc.currency}`,
-  }).format(interest.toFixed(2))}`;
+  labelSumInterest.textContent = formatNumber(
+    interest.toFixed(2),
+    acc.locale,
+    acc.currency
+  );
 };
 
 const createUsernames = function (accs) {
@@ -288,7 +300,6 @@ btnLoan.addEventListener('click', function (e) {
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
     currentAccount.movements.push(Math.trunc(amount));
-
     // Update UI
     updateUI(currentAccount);
   }
@@ -306,11 +317,9 @@ btnClose.addEventListener('click', function (e) {
       acc => acc.username === currentAccount.username
     );
     console.log(index);
-    // .indexOf(23)
 
     // Delete account
-    accounts.splice(index, 1);
-
+    accounts.splice(index, 1); // .indexOf(23)
     // Hide UI
     containerApp.style.opacity = 0;
   }
