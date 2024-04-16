@@ -63,3 +63,68 @@ console.log(jovitha.hasOwnProperty('species')); // false as it's in person objec
 
 let fullname = {};
 console.log(fullname);
+
+console.log(jovitha.__proto__);
+console.log(jovitha.__proto__.__proto__);
+
+console.log(Person.prototype.constructor);
+
+// ƒ (birthYear) {
+//   this.birthYear = birthYear;
+// }
+
+// array inherit method from it's prototype
+const arr = [2, 8, 9, 21, 4, 7, 8, 9];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype); // true
+console.log(arr.__proto__.__proto__);
+
+/**
+at()
+concat()
+copyWithin()
+entries()
+every()
+fill()
+filter()
+find()
+findIndex()
+findLast()
+findLastIndex()
+flat()
+flatMap()
+forEach()
+includes()
+indexOf()
+join()
+keys()
+lastIndexOf()
+map()
+pop()
+push()
+reduce()
+reduceRight()
+reverse()
+shift()
+slice()
+some()
+sort()
+splice()
+toLocaleString()
+toReversed()
+toSorted()
+toSpliced()
+toString()
+unshift()
+values()
+ */
+
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(Array);
+console.log(arr.unique()); //[2, 8, 9, 21, 4, 7]
+
+const h1 = document.querySelector('h1');
+console.dir(x => x + 1);
