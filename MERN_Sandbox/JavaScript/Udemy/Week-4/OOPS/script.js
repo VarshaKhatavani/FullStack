@@ -1,6 +1,6 @@
 'use strict';
 
-//Constructor Function
+// ************* Constructor Function ***************
 const User = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -128,3 +128,71 @@ console.log(arr.unique()); //[2, 8, 9, 21, 4, 7]
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
+
+// ****** ES6 Class Syntax **********
+
+// Class expression
+// const PersonCl = class {}
+
+// Class declaration
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // Instance methods
+  // Methods will be added to .prototype property
+  calcAge() {
+    console.log(new Date().getFullYear() - this.birthYear);
+  }
+
+  sayHello() {
+    console.log(`Hey ${this.firstName}`);
+  }
+
+  static Hey() {
+    console.log('Hey there👋');
+    console.log(this);
+  }
+}
+
+const varsha = new PersonCl('varsha', 1993);
+console.log(varsha);
+
+varsha.calcAge(); // 31
+console.log(varsha.__proto__ === PersonCl.prototype); // true
+
+PersonCl.prototype.greet = function () {
+  console.log(`Hey ${this.firstName}`);
+};
+
+varsha.greet();
+varsha.sayHello();
+console.log(varsha.__proto__);
+
+// *********** Static method ************
+PersonCl.Hey();
+
+// *********** Object.create ************
+const personProto = {
+  calAge() {
+    console.log(new Date().getFullYear() - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(personProto);
+console.log(steven);
+steven.name = 'Steven';
+steven.birthYear = 1997;
+steven.calAge();
+
+const harsh = Object.create(personProto);
+harsh.init('harsh', 1991);
+harsh.calAge();
+console.log(harsh);
