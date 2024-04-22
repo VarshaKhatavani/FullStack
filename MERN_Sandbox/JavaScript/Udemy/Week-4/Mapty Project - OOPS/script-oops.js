@@ -12,6 +12,7 @@ class Workout {
 
 // Cadence : the number of steps a runner takes per minute
 class Running extends Workout {
+  workoutType = 'running';
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
@@ -26,6 +27,7 @@ class Running extends Workout {
 
 // elevation gain : the total amount of feet climbed in a ride
 class Cycling extends Workout {
+  workoutType = 'cycling';
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
     this.elevationGain = elevationGain;
@@ -162,19 +164,7 @@ class App {
     console.log(this.#workouts);
 
     // Render workout on map as marker
-    L.marker([lat, lng])
-      .addTo(this.#map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 230,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: `${type}-popup`,
-        })
-      )
-      .setPopupContent('Workout')
-      .openPopup();
+    this._renderWorkoutMarker(workout);
 
     // Render workout on list
 
@@ -186,6 +176,22 @@ class App {
       inputElevation.value =
       inputCadence.value =
         '';
+  }
+
+  _renderWorkoutMarker(workout) {
+    L.marker(workout.coords)
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 230,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: `${this.workoutType}-popup`,
+        })
+      )
+      .setPopupContent('Workout')
+      .openPopup();
   }
 }
 const app = new App();
