@@ -8,6 +8,14 @@ class Workout {
     this.distance = distance; // in km
     this.duration = duration; // in min
   }
+
+  _setDescription() {
+    // prettier-ignore
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    this.description = `${this.workoutType[0].toUpperCase()}${this.workoutType.slice(
+      1
+    )} on ${months[this.date.getMonth()]} ${this.date.getDate()}`;
+  }
 }
 
 // Cadence : the number of steps a runner takes per minute
@@ -17,6 +25,7 @@ class Running extends Workout {
     super(coords, distance, duration);
     this.cadence = cadence;
     this.calculatePace();
+    this._setDescription();
   }
 
   calculatePace() {
@@ -32,6 +41,7 @@ class Cycling extends Workout {
     super(coords, distance, duration);
     this.elevationGain = elevationGain;
     this.calculateSpeed();
+    this._setDescription();
   }
 
   calculateSpeed() {
@@ -46,9 +56,6 @@ class Cycling extends Workout {
 
 ///////////////////////////////////////
 // APPLICATION ARCHITECTURE
-
-// prettier-ignore
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
@@ -167,6 +174,7 @@ class App {
     this._renderWorkoutMarker(workout);
 
     // Render workout on list
+    this._renderWorkout(workout);
 
     // Hide form + clear input fields
 
@@ -187,11 +195,93 @@ class App {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: `${this.workoutType}-popup`,
+          className: `${workout.workoutType}-popup`,
         })
       )
-      .setPopupContent('Workout')
+      .setPopupContent(
+        `${workout.workoutType === 'running' ? '🏃‍♂️' : '🚴‍♀️'}
+      ${workout.description}`
+      )
       .openPopup();
+  }
+
+  _renderWorkout(workout) {
+    let html = ` <li class="workout workout--${workout.workoutType}" data-id="${
+      workout.id
+    }">
+          <h2 class="workout__title">${workout.description}</h2>
+          <div class="workout__details">
+            <span class="workout__icon"> ${
+              workout.workoutType === 'running' ? '🏃‍♂️' : '🚴‍♀️'
+            } </span>
+            <span class="workout__value">${workout.distance}</span>
+            <span class="workout__unit">km</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">⏱</span>
+            <span class="workout__value">${workout.duration}</span>
+            <span class="workout__unit">min</span>
+          </div>      
+          `;
+
+    if (workout.workoutType === 'running') {
+      html += `<div class="workout__details">
+            <span class="workout__icon">⚡️</span>
+            <span class="workout__value">${workout.pace.toFixed(2)}</span>
+            <span class="workout__unit">min/km</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">🦶🏼</span>
+            <span class="workout__value">${workout.cadence}</span>
+            <span class="workout__unit">spm</span>
+          </div>  </li>`;
+    }
+
+    if (workout.workoutType === 'cycling') {
+      html += `  <div class="workout__details">
+            <span class="workout__icon">⚡️</span>
+            <span class="workout__value">${workout.speed.toFixed(1)}</span>
+            <span class="workout__unit">km/h</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">⛰</span>
+            <span class="workout__value">${workout.elevationGain}</span>
+            <span class="workout__unit">m</span>
+          </div>   </li>`;
+    }
+    form.insertAdjacentHTML('afterend', html);
   }
 }
 const app = new App();
+
+/**
+ *  Cycling
+ * {
+    "date": "2024-04-22T14:56:06.799Z",
+    "id": "3797766799",
+    "coords": [
+        20.933894207664252,
+        72.91660308837892
+    ],
+    "distance": 2,
+    "duration": 20,
+    "workoutType": "cycling",
+    "elevationGain": 200,
+    "speed": 6
+}
+ */
+
+/***running
+ * {
+    "date": "2024-04-22T14:57:34.404Z",
+    "id": "3797854404",
+    "coords": [
+        21.220430810451184,
+        72.82047271728517
+    ],
+    "distance": 10,
+    "duration": 11,
+    "workoutType": "running",
+    "cadence": 100,
+    "pace": 1.1
+} */
