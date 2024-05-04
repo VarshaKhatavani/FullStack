@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "./03-date-helper";
+import { formatDate } from "../utils/date-helper";
 
 const message = {
   content: "Just ate at “Les Corbeaux En Colère”. Wonderful little venue!",
