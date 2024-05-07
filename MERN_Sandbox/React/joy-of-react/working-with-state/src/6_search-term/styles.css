@@ -1,0 +1,12 @@
+.search-form {
+  display: flex;
+}
+input, button {
+  height: 3rem;
+}
+input {
+  flex: 1;
+}
+button {
+  padding: 0 24px;
+}
