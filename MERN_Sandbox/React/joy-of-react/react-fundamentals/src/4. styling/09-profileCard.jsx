@@ -1,4 +1,5 @@
 import React from "react";
+import "./09-profileCard.css";
 
 // GOAL:
 // Render an unordered list with the class
@@ -18,9 +19,19 @@ const ProfileCard = ({ profile }) => {
     <article className="profile-card">
       <header>
         <img alt={profile.imageAlt} src={profile.imageSrc} />
-
         <h2>{profile.name}</h2>
         <p className="joined">Joined {profile.joinDate}</p>
+        {profile.badges.length > 0 && (
+          <ul
+            className={
+              profile.badges.length >= 3 ? "badge-list golden" : "badge-list"
+            }
+          >
+            {profile.badges.map((badge, index) => (
+              <li key={badge.slug}>{badge.label}</li>
+            ))}
+          </ul>
+        )}
       </header>
     </article>
   );
