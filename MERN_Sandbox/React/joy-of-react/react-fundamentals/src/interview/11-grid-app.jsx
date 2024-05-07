@@ -1,7 +1,7 @@
 import Grid from "./11-grid";
 
-function App() {
-  return <Grid numRows={8} numCols={6} />;
+function GridApp() {
+  return <Grid numRows={4} numCols={4} />;
 }
 
-export default App;
+export default GridApp;

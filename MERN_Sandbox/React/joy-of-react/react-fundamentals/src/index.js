@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import ProfileCardApp from "./4. styling/09-profileCard-app";
+// import ProfileCardApp from "./4. styling/09-profileCard-app";
+// import GraphApp from "./interview/10-graph-app";
+import GridApp from "./interview/11-grid-app";
 // import ShoppingCart from "./3. map/08-shoppingCart";
 // import ShoppingList from "./1. render/01-render-shoppingList";
 // import FriendlyGreeting from "./2. props/02-props-friendlyGreeting";
@@ -35,6 +37,8 @@ root.render(
     <MapContactCard />
     <AvatarApp />
     <ShoppingCart /> */}
-    <ProfileCardApp />
+    {/* <ProfileCardApp /> */}
+    {/* <GraphApp /> */}
+    <GridApp />
   </>
 );
