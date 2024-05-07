@@ -1,0 +1,48 @@
+.art-wrapper {
+  border: 3px solid;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+svg {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.row:not(:last-of-type) {
+  margin-bottom: 16px;
+}
+.col {
+  flex: 1;
+  min-width: 155px;
+}
+input[type=range], select {
+  display: block;
+  width: 100%;
+}
+.control-heading {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.125rem;
+}
+.radio-wrapper {
+  display: flex;
+  gap: 24px;
+}
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 440px) {
+  .row {
+    flex-direction: column;
+  }
+}
