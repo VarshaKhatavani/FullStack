@@ -16,6 +16,26 @@ This should be done without modifying the HTML: No additional classes should be 
     <style>
       /* TODO */
 
+      /*Main article links should have a color of deeppink, with no underline. */
+      article > p a {
+        color: deeppink;
+        text-decoration: none;
+      }
+
+      /* Hovering will show an underline  */
+      article a:hover {
+        text-decoration: underline;
+      }
+
+      /* Links in the aside should be black, with an underline. */
+      aside a {
+        color: black;
+      }
+
+      /* Hovering will hide the underline. */
+      aside a:hover {
+        text-decoration: none;
+      }
       /* CSS */
       body {
         padding: 16px 32px;
