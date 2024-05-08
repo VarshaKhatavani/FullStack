@@ -15,7 +15,6 @@ This should be done without modifying the HTML: No additional classes should be 
     <title>Document</title>
     <style>
       /* TODO */
-
       /*Main article links should have a color of deeppink, with no underline. */
       article > p a {
         color: deeppink;
@@ -40,12 +39,10 @@ This should be done without modifying the HTML: No additional classes should be 
       body {
         padding: 16px 32px;
       }
-
       h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
       }
-
       p {
         margin-bottom: 24px;
       }
@@ -59,6 +56,35 @@ This should be done without modifying the HTML: No additional classes should be 
         background: peachpuff;
         border: 2px solid;
         padding: 16px;
+      }
+
+      /*** Transparency ***/
+      .box {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+      }
+      .first.box {
+        background-color: hsl(340deg 100% 50% / 1);
+      }
+      .second.box {
+        background-color: hsl(340deg 100% 50% / 0.75);
+      }
+      .third.box {
+        background-color: hsl(340deg 100% 50% / 0.5);
+      }
+      .fourth.box {
+        background-color: hsl(340deg 100% 50% / 0.25);
+      }
+
+      p {
+        /* Change me! */
+        font-size: 16px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      p {
+        line-height: 20px;
+        letter-spacing: 3px;
       }
     </style>
   </head>
@@ -82,5 +108,20 @@ This should be done without modifying the HTML: No additional classes should be 
         </p>
       </aside>
     </article>
+    <br />
+    <div class="first box"></div>
+    <div class="second box"></div>
+    <div class="third box"></div>
+    <div class="fourth box"></div>
+
+    <br />
+    <p>
+      <span style="font-size: 1em"> This </span>
+      <span style="font-size: 0.8em"> sentence </span>
+      <span style="font-size: 0.64em"> gets </span>
+      <span style="font-size: 0.5em"> quieter </span>
+      <span style="font-size: 0.4em"> and </span>
+      <span style="font-size: 0.32em"> quieter </span>
+    </p>
   </body>
 </html>
