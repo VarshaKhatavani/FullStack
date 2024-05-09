@@ -94,7 +94,6 @@ firstFunction();
 //**** Nested Scopes and Their Impact on the Scope Chain ****/
 
 var x = 10;
-
 function outer() {
   var x = 20;
 
@@ -102,10 +101,61 @@ function outer() {
     var x = 30;
     console.log(x); // Accesses x from the innermost scope (x = 30)
   }
-
   inner();
   console.log(x); // Accesses x from the outer scope (x = 20)
 }
 console.log(x); // Accesses x from the global scope (x = 10)
 
+console.log("...................................");
 // ***  Closures and Function Scope ****
+
+function outerFunctionClosure() {
+  let outerVariable = "I'm in outerFunction";
+
+  return function innerFunction() {
+    console.log(outerVariable);
+  };
+}
+var closure = outerFunctionClosure();
+closure();
+
+console.log("...................................");
+
+// ** Practical Examples of Closures **
+// 1. Data Encapsulation
+function createCounter() {
+  var count = 0;
+  return {
+    increment: function () {
+      count++;
+    },
+    getCount: function () {
+      return count;
+    },
+  };
+}
+const counter = createCounter();
+counter.increment();
+console.log(counter.getCount()); // Accesses the count variable via closures
+
+// 2. Event Handlers
+function setupEvent() {
+  var message = "Hello, world!";
+  document.getElementById("myButton").addEventListener("click", function () {
+    alert(message);
+  });
+}
+//setupEvent();
+console.log("...................................");
+
+// 3. Module Pattern
+var module = (function () {
+  var privateVariable = "I'm private";
+
+  return {
+    publicFunction: function () {
+      console.log(privateVariable);
+    },
+  };
+})();
+module.publicFunction();
