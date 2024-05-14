@@ -8,15 +8,19 @@ function CharacterApp() {
   const [intelligence, setIntelligence] = React.useState(15);
 
   function triggerLevelUp() {
-    setStrength(strength + 1);
-    setDexterity(dexterity + 2);
-    setIntelligence(intelligence + 3);
+    const nextStrength = strength + 1;
+    const nextDexterity = dexterity + 2;
+    const nextIntelligence = intelligence + 3;
+
+    setStrength(nextStrength);
+    setDexterity(nextDexterity);
+    setIntelligence(nextIntelligence);
 
     window.alert(`
       Congratulations! Your hero now has the following stats:
-      Str: ${strength}
-      Dex: ${dexterity}
-      Int: ${intelligence}
+      Str: ${nextStrength}
+      Dex: ${nextDexterity}
+      Int: ${nextIntelligence}
     `);
   }
 
