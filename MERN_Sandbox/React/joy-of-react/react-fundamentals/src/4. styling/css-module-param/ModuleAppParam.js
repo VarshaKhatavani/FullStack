@@ -10,6 +10,12 @@ function ModuleAppParam() {
       <Sidenote type="success" title="This is success!">
         Yay!
       </Sidenote>
+      <Sidenote type="warning" title="This is warning!">
+        warning!
+      </Sidenote>
+      <Sidenote type="error" title="This is error!">
+        error!
+      </Sidenote>
     </>
   );
 }

@@ -22,14 +22,7 @@ const userProfiles = [
       },
     ],
   },
-  {
-    id: "baron-montgomerie-9si39d",
-    imageSrc: "https://sandpack-bundler.vercel.app/img/fancy-cat.png",
-    imageAlt: "A very distinguished gentleman cat, with top hat and monocle",
-    name: "Baron Montgomerie of Eglinton III",
-    joinDate: "August 3rd, 1924",
-    badges: [],
-  },
+
   {
     id: "joan-clawmaker-5xch41",
     imageSrc: "https://sandpack-bundler.vercel.app/img/punk-cat.png",
@@ -46,6 +39,14 @@ const userProfiles = [
         label: "🎸 Musician",
       },
     ],
+  },
+  {
+    id: "baron-montgomerie-9si39d",
+    imageSrc: "https://sandpack-bundler.vercel.app/img/fancy-cat.png",
+    imageAlt: "A very distinguished gentleman cat, with top hat and monocle",
+    name: "Baron Montgomerie of Eglinton III",
+    joinDate: "August 3rd, 1924",
+    badges: [],
   },
 ];
 
