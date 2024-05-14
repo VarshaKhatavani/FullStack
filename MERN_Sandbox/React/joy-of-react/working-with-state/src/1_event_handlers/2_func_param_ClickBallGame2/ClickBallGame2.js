@@ -14,7 +14,7 @@ function ClickBallGame2() {
 
   return (
     <div className="wrapper">
-      <button className="ball" onClick={handleClick}>
+      <button className="ball" onClick={() => handleClick("win")}>
         <VisuallyHidden>Ball</VisuallyHidden>
       </button>
       <button className="bomb" onClick={handleClick}>

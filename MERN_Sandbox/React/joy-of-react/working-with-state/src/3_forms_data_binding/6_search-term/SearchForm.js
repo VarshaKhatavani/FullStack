@@ -1,18 +1,16 @@
-import React from 'react';
+import React from "react";
 
 function SearchForm({ runSearch }) {
-  const [searchTerm, setSearchTerm] = React.useState('');
-  
+  const [searchTerm, setSearchTerm] = React.useState("");
+
   return (
     <div className="search-form">
       <input
         type="text"
         value={searchTerm}
-        onChange={event => {
-          setSearchTerm(event.target.value);
-        }}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button>
+      <button onClick={() => setSearchTerm("I'm from button click ")}>
         Search!
       </button>
     </div>

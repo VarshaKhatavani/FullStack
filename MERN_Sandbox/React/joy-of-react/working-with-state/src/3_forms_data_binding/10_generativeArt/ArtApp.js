@@ -38,7 +38,14 @@ function ArtApp() {
               <label htmlFor="num-of-lines" className="control-heading">
                 Number of Lines:
               </label>
-              <input id="num-of-lines" type="range" min="1" max="15" />
+              <input
+                id="num-of-lines"
+                type="range"
+                min="1"
+                max="15"
+                value={numOfLines}
+                onChange={(e) => setNumOfLines(e.target.value)}
+              />
             </div>
           </div>
           <div className="row">
@@ -46,7 +53,11 @@ function ArtApp() {
               <label className="control-heading" htmlFor="color-theme">
                 Color Theme:
               </label>
-              <select id="color-theme">
+              <select
+                id="color-theme"
+                value={colorTheme}
+                onChange={(e) => setColorTheme(e.target.value)}
+              >
                 <option value="basic">Basic</option>
                 <option value="monochrome">Monochrome</option>
                 <option value="froot-loops">Froot Loops</option>
@@ -57,11 +68,27 @@ function ArtApp() {
               <div className="control-heading">Shape:</div>
               <div className="radio-wrapper">
                 <div className="radio-option">
-                  <input type="radio" />
+                  <input
+                    type="radio"
+                    name="shape"
+                    value="circles"
+                    checked={shape === "circles"}
+                    onChange={(e) => {
+                      setShape(e.target.value);
+                    }}
+                  />
                   <label>Circles</label>
                 </div>
                 <div className="radio-option">
-                  <input type="radio" />
+                  <input
+                    type="radio"
+                    name="shape"
+                    checked={shape === "polygons"}
+                    value="polygons"
+                    onChange={(e) => {
+                      setShape(e.target.value);
+                    }}
+                  />
                   <label>Polygons</label>
                 </div>
               </div>

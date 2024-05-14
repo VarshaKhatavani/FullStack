@@ -18,9 +18,8 @@ function CheckboxApp() {
           onChange={(event) => {
             setValue(event.target.value);
           }}
-        />{" "}
+        />
         <label htmlFor="agreed-yes">Yes</label>
-        <br />
         <input
           type="radio"
           name="agreed-to-terms"
@@ -30,7 +29,7 @@ function CheckboxApp() {
           onChange={(event) => {
             setValue(event.target.value);
           }}
-        />{" "}
+        />
         <label htmlFor="agreed-no">No</label>
       </fieldset>
     </form>
