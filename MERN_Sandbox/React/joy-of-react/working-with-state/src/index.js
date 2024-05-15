@@ -10,7 +10,11 @@ import ReactDOM from "react-dom/client";
 // import RenderCountries from "./3_forms_data_binding/7_render_dropdown/RenderCountries";
 // import CheckboxApp from "./3_forms_data_binding/8_checkbox/CheckboxApp";
 // import TwoFactorApp from "./3_forms_data_binding/9_authentication_validate/TwoFactorApp";
-import ArtApp from "./3_forms_data_binding/10_generativeArt/ArtApp";
+// import ArtApp from "./3_forms_data_binding/10_generativeArt/ArtApp";
+
+// import StatePropsApp from "./4_props_vs_state/StatePropsApp";
+import ComplexStateApp from "./5_complex_state/ComplexStateApp";
+// import StickerApp from "./6_dynamic_key_generation/StickerApp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -30,6 +34,9 @@ root.render(
     <br />
     <CheckboxApp /> */}
     {/* <TwoFactorApp /> */}
-    <ArtApp />
+    {/* <ArtApp /> */}
+    {/* <StatePropsApp /> */}
+    <ComplexStateApp />
+    {/* <StickerApp /> */}
   </>
 );
