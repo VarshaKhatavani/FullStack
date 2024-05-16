@@ -8,7 +8,7 @@ import ReactDOM from "react-dom/client";
 // import SearchTermApp from "./3_forms_data_binding/6_search-term/SearchTermApp";
 // import DropDownApp from "./3_forms_data_binding/7_dropdown/DropDownApp";
 // import RenderCountries from "./3_forms_data_binding/7_render_dropdown/RenderCountries";
-// import CheckboxApp from "./3_forms_data_binding/8_checkbox/CheckboxApp";
+// import RadioApp from "./3_forms_data_binding/8_radio/RadioApp";
 // import TwoFactorApp from "./3_forms_data_binding/9_authentication_validate/TwoFactorApp";
 // import ArtApp from "./3_forms_data_binding/10_generativeArt/ArtApp";
 
@@ -32,7 +32,7 @@ root.render(
     <RenderCountries />
     <br />
     <br />
-    <CheckboxApp /> */}
+    <RadioApp /> */}
     {/* <TwoFactorApp /> */}
     {/* <ArtApp /> */}
     {/* <StatePropsApp /> */}
