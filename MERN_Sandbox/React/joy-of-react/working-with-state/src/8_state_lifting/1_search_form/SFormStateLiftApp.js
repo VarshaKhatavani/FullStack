@@ -5,16 +5,18 @@ import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
 
 function SFormStateLiftApp() {
+  const [searchTerm, setSearchTerm] = React.useState("");
+
   return (
     <>
       <header>
         <a className="logo" href="/">
           Wanda’s Fruits
         </a>
-        <SearchForm />
+        <SearchForm searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </header>
       <main>
-        <SearchResults />
+        <SearchResults searchTerm={searchTerm} />
       </main>
     </>
   );

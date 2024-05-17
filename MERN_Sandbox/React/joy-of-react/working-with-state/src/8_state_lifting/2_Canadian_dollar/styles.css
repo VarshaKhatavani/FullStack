@@ -20,29 +20,28 @@
     25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
 }
 body {
-  background: hsl(286deg 15% 83%);
   padding: 0;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 16px;
-  background: white;
-  box-shadow: var(--shadow-elevation-medium);
+html, body, #root {
+  height: 100%;
 }
-.logo {
-  text-decoration: none;
-  font-weight: 500;
-  color: black;
-  font-size: 1.125rem;
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 main {
-  padding: 32px 16px;
+  flex: 1;
+  display: grid;
+  place-content: center;
 }
-form {
+footer {
   display: flex;
+  justify-content: center;
   gap: 8px;
+  padding: 16px;
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 .visually-hidden {
   clip: rect(0 0 0 0);
