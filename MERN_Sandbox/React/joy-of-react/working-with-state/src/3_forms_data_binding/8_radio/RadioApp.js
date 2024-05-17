@@ -2,7 +2,7 @@ import React from "react";
 import "./reset.css";
 import "./styles.css";
 
-function CheckboxApp() {
+function RadioApp() {
   const [value, setValue] = React.useState("no");
 
   return (
@@ -36,4 +36,4 @@ function CheckboxApp() {
   );
 }
 
-export default CheckboxApp;
+export default RadioApp;

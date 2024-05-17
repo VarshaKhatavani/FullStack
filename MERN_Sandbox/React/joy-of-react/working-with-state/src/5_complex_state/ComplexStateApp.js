@@ -28,9 +28,10 @@ function ComplexStateApp() {
                 type="color"
                 value={color}
                 onChange={(event) => {
-                  colors[index] = event.target.value;
-
-                  setColors(colors);
+                  // array, objects can be updated using new array only
+                  const nextColor = [...colors];
+                  nextColor[index] = event.target.value;
+                  setColors(nextColor);
                 }}
               />
             </div>
