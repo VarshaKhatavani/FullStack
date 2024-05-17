@@ -1,34 +1,26 @@
-import React from 'react';
+import React from "react";
 
-function SearchForm() {
-  const [searchTerm, setSearchTerm] = React.useState('');
-  
+function SearchForm({ searchTerm, setSearchTerm }) {
   function runSearch(event) {
     event.preventDefault();
-    
     // Actual search stuff omitted from
     // this example.
   }
-  
+
   return (
     <form onSubmit={runSearch}>
-      <label
-        className="visually-hidden"
-        htmlFor="search-input"
-      >
+      <label className="visually-hidden" htmlFor="search-input">
         Search term:
       </label>
       <input
         id="search-input"
         className="search-input"
         value={searchTerm}
-        onChange={event => {
+        onChange={(event) => {
           setSearchTerm(event.target.value);
         }}
       />
-      <button>
-        Search
-      </button>
+      <button>Search</button>
     </form>
   );
 }
