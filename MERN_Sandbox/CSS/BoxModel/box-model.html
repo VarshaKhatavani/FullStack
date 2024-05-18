@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box Model</title>
+    <style>
+      * {
+        box-sizing: content-box;
+        /* only includes the width and height of the element's content, and not the padding and border.*/
+      }
+      section {
+        width: 400px;
+        height: 400px;
+      }
+      .box {
+        width: 50%;
+        height: 75%;
+        border: 10px solid;
+      }
+
+      p {
+        width: 100%;
+        padding: 16px;
+        border: 2px solid;
+        /* Toggle this on and off in the devtools! */
+        /* box-sizing: border-box; */
+        /* box-sizing property controls how the width and height of an element are calculated. */
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <p>Hello World</p>
+      <div class="box"></div>
+      <!-- 220 x 320 -->
+    </section>
+  </body>
+</html>
