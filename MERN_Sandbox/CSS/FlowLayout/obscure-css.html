@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      strong {
+        /* Our obscure magic trick: */
+        -webkit-box-decoration-break: clone; /*slice */
+        box-decoration-break: clone;
+
+        /* padding-inline-start: 8px;
+        padding-inline-end: 8px; */
+        padding-left: 8px;
+        padding-right: 8px;
+        background: peachpuff;
+      }
+
+      p {
+        max-width: 125px;
+      }
+    </style>
+  </head>
+  <!-- obscure magic -->
+  <!-- obscure magic put the padding left-right to all lines -->
+  <body>
+    <p>
+      <strong> These words are broken up across many lines. </strong>
+    </p>
+  </body>
+</html>
