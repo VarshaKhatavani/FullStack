@@ -20,7 +20,7 @@ function Game() {
   return (
     <>
       {/* Display Result */}
-      <GuessResult guessList={inputGuessList} />
+      <GuessResult guessList={inputGuessList} answer={answer} />
       {/* Input Form mentioned in this component  */}
       <GuessInput handleSubmitGuess={handleSubmitGuess} />
     </>
