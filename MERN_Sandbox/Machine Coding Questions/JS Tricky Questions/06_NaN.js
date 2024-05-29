@@ -2,6 +2,14 @@
 // console.log(NaN==NaN);
 // Q.2) What is the difference between isNaN() and isFinite() method?
 
+/**
+ * isFinite function determines if the passed argument is finite value. 
+ * It checks if its argument is not NaN , or negative infinity or positive positive infinity. 
+ * isNaN on the other hand determines whether the argument passed is a NaN or not.
+
+   isFiniteNumber = function(num) { return isFinite(num) && !isNaN(num); }; 
+ */
+
 let a = 5;
 let b = "value";
 console.log(a * b);
