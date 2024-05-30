@@ -11,11 +11,19 @@ function getLettersStatus() {}
 const Keyboard = ({ validatedGuesses }) => {
   return (
     <div className="keyboard">
-      <div className="keyboard-row">
-        {Rows.map((letter) => {
-          return <div className="letter correct">{letter}</div>;
-        })}
-      </div>
+      {Rows.map((row, index) => {
+        return (
+          <div className="keyboard-row" key={index}>
+            {row.map((letter) => {
+              return (
+                <div key={letter} className="letter">
+                  {letter}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
     </div>
   );
 };
