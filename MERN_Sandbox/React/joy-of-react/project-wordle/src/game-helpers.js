@@ -1,6 +1,6 @@
 export function checkGuess(guess, answer) {
-  console.log("guess", guess);
-  console.log("answer", answer);
+  console.log("guess...", guess);
+  console.log("answer...", answer);
   // This constant is a placeholder that indicates we've successfully
   // dealt with this character (it's correct, or misplaced).
   const SOLVED_CHAR = "✓";
@@ -65,11 +65,13 @@ export function checkGuess(guess, answer) {
     const misplacedIndex = answerChars.findIndex(
       (char) => char === guessChars[i]
     );
-
+    console.log(misplacedIndex);
     if (misplacedIndex >= 0) {
       status = "misplaced";
       answerChars[misplacedIndex] = SOLVED_CHAR;
     }
+    console.log(answerChars); // check if char is misplaced found in string
+    //  ["✓", "✓", "✓", "✓", "✓"];
 
     /**Iteration 1: D is not found in answerChars, marked as incorrect.
     Iteration 2: U is not found in answerChars, marked as incorrect.
