@@ -6,6 +6,7 @@ import GuessResult from "../GuessResult/GuessResult";
 import WonBanner from "../WonBanner/WonBanner";
 import LostBanner from "../LostBanner/LostBanner";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import Keyboard from "../Keyboard/Keyboard";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -33,10 +34,13 @@ function Game() {
   return (
     <>
       {/* Display Result */}
-      {gameStatus}
       <GuessResult guessList={inputGuessList} answer={answer} />
       {/* Input Form mentioned in this component  */}
-      <GuessInput handleSubmitGuess={handleSubmitGuess} />
+      <GuessInput
+        handleSubmitGuess={handleSubmitGuess}
+        gameStatus={gameStatus}
+      />
+      <Keyboard />
       {gameStatus === "won" && (
         <WonBanner noOfGuesses={inputGuessList.length} />
       )}
