@@ -5,3 +5,5 @@
  * Q.4) Explain the use of “yield*”
  * Q.5) Can you prevent return() from terminating the generator ?
  */
+
+// * Helps you to pause and resume the code
