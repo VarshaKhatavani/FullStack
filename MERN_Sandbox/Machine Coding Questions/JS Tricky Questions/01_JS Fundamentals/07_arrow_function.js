@@ -16,3 +16,10 @@ Q.5) Can you write IIFE with arrow function syntax? */
 // ** earliar function also has a job of class. used to call using new keyword.
 // ** But arrow function only works as function as in ES6 classes are introduced.
 // ** We do not need arrow function to act as class
+
+const obj = {
+  method: () => {
+    console.log(this);
+  },
+};
+obj.method();
