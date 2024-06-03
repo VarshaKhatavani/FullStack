@@ -10,3 +10,9 @@ Q.2)  Get sum of a key field of an object literal
 Q.3)  Find avg value of all elements of an array ? 
 Q.4) Find the sum or product of all elements ?
 Q.5) What is the difference between reduce() and reduceRight() ? */
+
+/**
+ * const twoDimArray = [[1, 2], [3, 4, 5], [6, [7, 8]]];
+ * const flattenedArray = twoDimArray.flat(Infinity);
+ * console.log(flattenedArray); // Output: [1, 2, 3, 4, 5, 6, 7, 8]
+ */

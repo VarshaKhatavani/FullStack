@@ -4,5 +4,11 @@ Q.3) How can you insert an element at a given position ?
 Q.4) How can you remove  a specific element ?
 Q.5) What does splice() return ?
 Q.6)  If there is not element removed then what will splice() method return ?
+
 => let arr=["One","Two","Three","Four","Five"];
-     console.log(arr.splice(2,0,"New"));  */
+     console.log(arr.splice(2,0,"New"));      
+
+=> Ans : splice() method will return [] array
+*/
+
+// array.push() method returns the count of array
