@@ -1,0 +1,28 @@
+body {
+  padding: 24px;
+  background: hsl(250deg 80% 85%);
+}
+form {
+  padding: 24px;
+  border-radius: 8px;
+  border-bottom: 3px solid hsl(250deg 100% 40% / 0.35);
+  background: white;
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+label {
+  display: block;
+  margin-bottom: 4px;
+}
+input {
+  padding: 4px 8px;
+}
+button {
+  display: block;
+  font-size: 1.125rem;
+  padding: 8px 32px;
+  margin: 32px auto 0px;
+}
