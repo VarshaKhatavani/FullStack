@@ -7,7 +7,7 @@ function UsernamePasswordApp() {
   return (
     <>
       <header>
-        <LoginForm />
+        <LoginForm /> {/** ID :r1:-username :r1:-password */}
       </header>
       <main>
         <h1>Some Website</h1>
@@ -27,7 +27,7 @@ function UsernamePasswordApp() {
         </p>
       </main>
       <footer>
-        <LoginForm />
+        <LoginForm /> {/** ID :r3:-username :r3:-password */}
       </footer>
     </>
   );

@@ -2,13 +2,12 @@ import React from "react";
 
 function LoginForm({ isLoggedIn, handleLogin }) {
   const id = React.useId();
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   if (isLoggedIn) {
     return <p>You're already logged in!</p>;
   }
-
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
 
   return (
     <form onSubmit={handleLogin}>

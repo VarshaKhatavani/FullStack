@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function TextInput({ id, label, type }) {
   // Here's the original code, violating the rule:
@@ -9,18 +9,16 @@ function TextInput({ id, label, type }) {
   //   }
   //
   // ...and here's the fixed code:
+
+  // Note :  Do not use hooks in conditions as react will not understand
+  // when to use & what to hold
   const generatedId = React.useId();
   const appliedId = id || generatedId;
 
   return (
     <div className="text-input">
-      <label htmlFor={appliedId}>
-        {label}
-      </label>
-      <input
-        id={appliedId}
-        type={type}
-      />
+      <label htmlFor={appliedId}>{label}</label>
+      <input id={appliedId} type={type} />
     </div>
   );
 }
