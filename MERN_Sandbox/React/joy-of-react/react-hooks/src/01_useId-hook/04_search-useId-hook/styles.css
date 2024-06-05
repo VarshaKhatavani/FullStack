@@ -1,0 +1,53 @@
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+form {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-toggle-button {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  background: hsl(260deg 20% 20%);
+  border: none;
+  color: white;
+  display: grid;
+  place-content: center;
+  border-radius: 1000px;
+  cursor: pointer;
+}
+
+.search-field-wrapper {
+  /*
+    The input slides in, but we want to
+    truncate it so that it appears to
+    slide in from nowhere.
+  */
+  overflow: hidden;
+  padding: 4px;
+}
+
+.search-field {
+  display: block;
+  padding: 4px 16px;
+  border: none;
+  border-bottom: 3px solid hsl(260deg 20% 20%);
+  border-radius: 3px;
+  font-size: 1.25rem;
+  outline-offset: 2px;
+  animation: slideIn 1000ms
+    cubic-bezier(0.15, 0.85, 0.47, 1.02);
+}

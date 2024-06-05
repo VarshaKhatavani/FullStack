@@ -1,0 +1,12 @@
+html, body, #root {
+  height: 100%;
+}
+body {
+  padding: 16px;
+  background: hsl(0deg 10% 92.5%);
+}
+.text-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
