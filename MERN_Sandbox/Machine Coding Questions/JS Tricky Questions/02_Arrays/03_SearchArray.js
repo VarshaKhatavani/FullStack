@@ -20,10 +20,10 @@ let arr = ["One", "Two", "One", "Three", "Four", "One", "Five"];
 // indexOf() method
 // If it matches, return index else -1
 console.log(arr.indexOf("One", 3)); // 5
-
 // Starts searching from index 3 ["Three", "Four", "One", "Five"]
 // returns position 2 from subarray
 // returns  5 from original array
+
 console.log(arr.indexOf("Five")); // 6
 
 // lastIndexOf() method
@@ -47,7 +47,6 @@ const indexVal = numArr.findIndex((elem) => {
 console.log(indexVal); // 1
 
 // filter
-
 const filterVal = numArr.filter((ele) => {
   return ele > 2000;
 });
