@@ -3,7 +3,7 @@ import React from "react";
 function ArtGallery() {
   // 1. Create a “ref”, a box that holds a value.
   const canvasRef = React.useRef(); // { current: undefined }
-  console.log(canvasRef); // it will set the reference/pointer to located tag [canvad here]
+  console.log(canvasRef); // it will set the reference/pointer to located tag [canvas here]
   return (
     <main>
       <div className="canvas-wrapper">
