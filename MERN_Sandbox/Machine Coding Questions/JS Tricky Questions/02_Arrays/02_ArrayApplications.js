@@ -53,6 +53,7 @@ console.log(arr); // [ 'one', 'two', 'New', 'Another' ]
 // "New" : to be add at 2nd positiom
 // "Another" : to be add after New
 
+// add New at last as start position is array length
 console.log(arr.splice(arr.length, 0, "New")); // []
 console.log(arr); // [ 'one', 'two', 'New', 'Another', 'New' ]
 
