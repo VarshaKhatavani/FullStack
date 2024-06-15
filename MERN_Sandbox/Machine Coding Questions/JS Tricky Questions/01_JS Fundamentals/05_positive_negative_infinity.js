@@ -1,10 +1,15 @@
-// Q.1) How will you put a validation for positive or negative Infinity?
-// Q.2) What will be the output of this code?
-// Code:
-// console.log(1/0);
+/*
+Q.1) How will you put a validation for positive or negative Infinity?
+Ans : 
 
-//Any value which can not fit into 64-bit then JS returns infinity
+Q.2) What will be the output of this code?
+Code:
+console.log(1/0);
+Ans : 
 
+Any value which can not fit into 64-bit then JS returns infinity
+
+*/
 console.log(Number.MAX_VALUE);
 
 console.log(Number.POSITIVE_INFINITY); //Infinity

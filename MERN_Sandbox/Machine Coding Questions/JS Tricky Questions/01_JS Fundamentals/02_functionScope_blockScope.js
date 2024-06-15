@@ -1,6 +1,15 @@
-// Q.1) What is hoisting in javascript ?
-// Q.2) How does block scope work ?
-// Q.3) What is the scope of a variable ?
+/*
+Q.1) What is hoisting in javascript ?
+Ans : A process which is happening behind the scene, internally it is bringing
+      declarations on the top.
+
+Q.2) How does block scope work ?
+Ans : Any variable declared inside the {} considered as block scope which creates
+      seperate scope for declarations existing in that block. 
+
+Q.3) What is the scope of a variable ?
+Ans : Scope is a lifetime or availability of a variable.
+*/
 
 // ****** code 1 ******
 function a() {

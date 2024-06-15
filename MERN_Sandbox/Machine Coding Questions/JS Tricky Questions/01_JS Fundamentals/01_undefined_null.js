@@ -1,6 +1,14 @@
-// Q.1) What is "undefined" in JavaScript ?
-// Q.2) What will be the output of undefined==null & undefined===null ? Why ?
-// Q.3) Can you explicitly assign "undefined" to a variable ? (let i = undefined)
+/*
+Q.1) What is "undefined" in JavaScript ?
+Ans : A variable which is not assigned a value is "undefined"
+
+Q.2) What will be the output of undefined==null & undefined===null ? Why ?
+Ans : undefined==null; => returns true
+      undefined === null;   => return false
+
+Q.3) Can you explicitly assign "undefined" to a variable ? (let i = undefined)
+Ans : yes, we can assign "undefined" to a variable.
+*/
 
 let x;
 console.log(x); // undefined
@@ -14,7 +22,7 @@ let z = null;
 console.log(z); // null
 
 console.log(x == z); // true
-console.log(x === z); // false
+console.log(x === z); // strict equality operator - false
 
 let x1 = 10;
 function a() {
