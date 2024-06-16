@@ -1,4 +1,5 @@
-/* Q.1) How can you access private variable or function outside the scope ?
+/*
+ * Q.1) How can you access private variable or function outside the scope ?
  *
  * Ans : Using Closure
  *

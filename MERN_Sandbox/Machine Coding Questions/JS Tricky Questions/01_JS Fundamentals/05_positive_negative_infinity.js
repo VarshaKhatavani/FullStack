@@ -1,11 +1,24 @@
 /*
 Q.1) How will you put a validation for positive or negative Infinity?
-Ans : 
+Ans :  
+
+if (num === Number.POSITIVE_INFINITY) {
+  console.log("Positive Infinite Value");
+} else {
+  console.log(num);
+} 
+
+
+if (num === Number.NEGATIVE_INFINITY) {
+  console.log("Negative Infinite Value");
+} else {
+  console.log(num);
+}
 
 Q.2) What will be the output of this code?
 Code:
 console.log(1/0);
-Ans : 
+Ans : Infinity
 
 Any value which can not fit into 64-bit then JS returns infinity
 

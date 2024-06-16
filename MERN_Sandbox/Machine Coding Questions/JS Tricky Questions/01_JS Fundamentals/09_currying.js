@@ -1,8 +1,47 @@
 /**
  * * Q.1) What is function currying?
- * * Q.2) const multiplication=a=>b=>c=>return a*b*c. What will this statement do? Explain in detail.
- * * Q.3) Explain practical usage of function currying. */
+ *  Ans : 
+ * 
+ *  "Currying allows you to partially apply a function, which means that you can 
+ *   pass some of the arguments of the function later."
+ * 
+ * 
+ * * Q.2) const multiplication=a=>b=>c=>return a*b*c. 
+ *        What will this statement do? Explain in detail.
+ *  Ans : 
+ * 
+ *    function multiplication(a){
+ *       return function(b){
+ *          return function(c){
+ *              return a * b * c ;
+ *        }
+ *      }
+ *    }
+ * 
+ *    const multiplyA = multiplication(2);
+      const multiplyAB = multiplyA(3);
+      const result = multiplyAB(4);
 
+      console.log(result); // 24
+ * 
+ * * Q.3) Explain practical usage of function currying. 
+*  Ans :  
+
+   Currying is an incredibly useful technique of functional programming which 
+   solves various purposes like passing partial parameters or avoiding unwanted 
+   repetations. 
+
+    const priceCalculation = (price) => {
+      return (discountedPrice) => {
+        return price * discountedPrice;
+      };
+    };
+
+    const price = priceCalculation(2000);
+    console.log(price(0.05)); // 100
+    console.log(price(0.03)); // 60
+
+*/
 // ** closure vs curring
 
 // * Currying breaks down a complex function into smaller, reusable units.
