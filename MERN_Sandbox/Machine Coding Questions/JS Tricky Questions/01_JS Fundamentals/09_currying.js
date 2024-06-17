@@ -44,9 +44,10 @@
 */
 // ** closure vs curring
 
+// closure are used to create private variables or functions, and to maintain state between function calls.
+
 // * Currying breaks down a complex function into smaller, reusable units.
-// * Currying allows you to pre-fill some arguments of a function and
-// * create a new function with the remaining arguments
+// * Currying allows you to pre-fill some arguments of a function an create a new function with the remaining arguments
 
 // * currying is useful in such cases to pass the partial parameters
 

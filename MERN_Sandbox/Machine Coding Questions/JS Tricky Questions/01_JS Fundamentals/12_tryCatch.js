@@ -1,9 +1,36 @@
-/**Q.1) When do you need try...catch ? 
+/**
+Q.1) When do you need try...catch ? 
+Ans : try...catch is handled at runtime. Sometimes it happens that due to some unforseen 
+      situation code stopped executing To avoid such scenarios try..catch block is used.
+
+      Handling the error without breaking the code execution
+
 Q.2) How can you generate an error ?
+Ans : We can generate custom errors using "throw" statements
+
+      let ageError = new Error("Age must be greater than or equal to 18");
+      try{
+          if(age<18)
+              throw ageError ; 
+      }
+      catch(err){
+          console.log(err.message);
+      }
+
+
 Q.3) Can you generate SyntaxError or ReferenceError kind of errors ?
+Ans : 
+
 Q.4) What is the purpose of the finally block ?
+Ans : 
+
 Q.5) How can you refer to the name or description of error ?
-Q.6) Can we have finally without a catch block as well ? */
+Ans : 
+
+Q.6) Can we have finally without a catch block as well ? 
+Ans : 
+
+*/
 
 // let a = 10;
 // console.log(`value of ${a}`); // value of 10
