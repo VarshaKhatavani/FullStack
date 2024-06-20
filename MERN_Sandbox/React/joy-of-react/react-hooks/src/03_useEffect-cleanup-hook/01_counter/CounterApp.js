@@ -5,7 +5,7 @@ import "./reset.css";
 import "./styles.css";
 
 function CounterApp() {
-  const [name, setName] = React.useState("Yuka");
+  const [name, setName] = React.useState("Varsha");
 
   return (
     <>

@@ -45,3 +45,29 @@
 ## Media Player
 
 ![alt text](image-8.png)
+
+<h1> React.useEffect() hook </h1>
+
+## Counter App
+
+<h3>Update the document title using useEffect</h3>
+
+![alt text](image-10.png)
+
+## Sign Up Form
+
+<h3>Use of useEffect form</h3>
+
+![alt text](image-9.png)
+
+## Toggle Darkmode
+
+<h3>Toggle darkmode / Store value to the local storage</h3>
+
+![alt text](image-11.png)
+
+## Input Focus on mount
+
+<h3>On page load set input focus</h3>
+
+![alt text](image-12.png)

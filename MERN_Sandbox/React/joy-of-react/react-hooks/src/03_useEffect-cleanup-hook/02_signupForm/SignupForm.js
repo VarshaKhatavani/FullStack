@@ -1,12 +1,18 @@
-import React from 'react';
+import React from "react";
 
 function SignupForm() {
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [city, setCity] = React.useState('');
-  const [postalCode, setPostalCode] = React.useState(
-    ''
-  );
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [city, setCity] = React.useState("");
+  const [postalCode, setPostalCode] = React.useState("");
+
+  React.useEffect(() => {
+    console.log({ name, email });
+  }, [email]);
+
+  React.useEffect(() => {
+    console.log({ name, email });
+  }, [name]);
 
   return (
     <form>
@@ -52,26 +58,11 @@ function SignupForm() {
   );
 }
 
-function Field({
-  id,
-  label,
-  type = 'text',
-  grow,
-  value,
-  onChange,
-}) {
+function Field({ id, label, type = "text", grow, value, onChange }) {
   return (
-    <div
-      className="field"
-      style={{ '--grow': grow }}
-    >
+    <div className="field" style={{ "--grow": grow }}>
       <label htmlFor={id}>{label}</label>
-      <input
-        type={type}
-        id={id}
-        value={value}
-        onChange={onChange}
-      />
+      <input type={type} id={id} value={value} onChange={onChange} />
     </div>
   );
 }

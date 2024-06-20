@@ -1,10 +1,10 @@
 /*
 Local Storage cheatsheet:
 
-// To save an item:
+To save an item:
 window.localStorage.setItem('is-dark-mode', true);
 
-// To retrieve the value:
+To retrieve the value:
 JSON.parse(window.localStorage.getItem('is-dark-mode'));
 */
 
@@ -15,7 +15,17 @@ import "./reset.css";
 import "./styles.css";
 
 function DarkModeApp() {
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isDarkMode, setIsDarkMode] = React.useState(() => {
+    // local storage stored value in string format
+    const storedValue = window.localStorage.getItem("is-dark-mode");
+    console.log(storedValue);
+    const parsedVal = JSON.parse(storedValue) || false;
+    return parsedVal;
+  });
+
+  React.useEffect(() => {
+    window.localStorage.setItem("is-dark-mode", isDarkMode);
+  }, [isDarkMode]);
 
   return (
     <div

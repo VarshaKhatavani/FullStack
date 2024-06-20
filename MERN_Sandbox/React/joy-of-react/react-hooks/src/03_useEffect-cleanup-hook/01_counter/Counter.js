@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   ChevronUp,
   ChevronsUp,
@@ -6,16 +6,16 @@ import {
   ChevronsDown,
   RotateCcw,
   Hash,
-} from 'react-feather';
+} from "react-feather";
 
 function Counter({ name, initialVal = 0 }) {
   const [count, setCount] = React.useState(initialVal);
-  
+
   React.useEffect(() => {
     document.title = `(${count}) — Counter 2.0`;
-    console.log('Document title is:', document.title);
+    console.log("Document title is:", document.title);
   }, [count]);
-  
+
   return (
     <>
       <h2>Hi {name}!</h2>
@@ -27,15 +27,11 @@ function Counter({ name, initialVal = 0 }) {
         <div className="button-row">
           <button onClick={() => setCount(count + 1)}>
             <ChevronUp />
-            <span className="visually-hidden">
-              Increase slightly
-            </span>
+            <span className="visually-hidden">Increase slightly</span>
           </button>
           <button onClick={() => setCount(count + 10)}>
             <ChevronsUp />
-            <span className="visually-hidden">
-              Increase a lot
-            </span>
+            <span className="visually-hidden">Increase a lot</span>
           </button>
           <button onClick={() => setCount(initialVal)}>
             <RotateCcw />
@@ -43,28 +39,20 @@ function Counter({ name, initialVal = 0 }) {
           </button>
           <button
             onClick={() => {
-              const nextCount = Math.ceil(
-                Math.random() * 100
-              );
+              const nextCount = Math.ceil(Math.random() * 100);
               setCount(nextCount);
             }}
           >
             <Hash />
-            <span className="visually-hidden">
-              Set to random value
-            </span>
+            <span className="visually-hidden">Set to random value</span>
           </button>
           <button onClick={() => setCount(count - 10)}>
             <ChevronsDown />
-            <span className="visually-hidden">
-              Decrease a lot
-            </span>
+            <span className="visually-hidden">Decrease a lot</span>
           </button>
           <button onClick={() => setCount(count - 1)}>
             <ChevronDown />
-            <span className="visually-hidden">
-              Decrease slightly
-            </span>
+            <span className="visually-hidden">Decrease slightly</span>
           </button>
         </div>
       </div>

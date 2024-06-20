@@ -9,7 +9,12 @@ import "./App.css";
 // import NameApp from "./02_useRef-hook/01_retain-stateValues/NameApp";
 // import CanvasApp from "./02_useRef-hook/02_render-canvas/CanvasApp";
 // import VideoPlayerApp from "./02_useRef-hook/03_videoplayer/VideoPlayerApp";
-import MediaPlayerApp from "./02_useRef-hook/04_mediaplayer/MediaPlayerApp";
+// import MediaPlayerApp from "./02_useRef-hook/04_mediaplayer/MediaPlayerApp";
+
+// import CounterApp from "./03_useEffect-cleanup-hook/01_counter/CounterApp";
+// import SignupFormApp from "./03_useEffect-cleanup-hook/02_signupForm/SignupFormApp";
+// import DarkModeApp from "./03_useEffect-cleanup-hook/03_darkMode-localStorage/DarkModeApp";
+import InputFocusApp from "./03_useEffect-cleanup-hook/04_inputFocus/InputFocusApp";
 
 function App() {
   return (
@@ -22,7 +27,11 @@ function App() {
       {/* <NameApp /> */}
       {/* <CanvasApp /> */}
       {/* <VideoPlayerApp /> */}
-      <MediaPlayerApp />
+      {/* <MediaPlayerApp /> */}
+      {/* <CounterApp /> */}
+      {/* <SignupFormApp /> */}
+      {/* <DarkModeApp /> */}
+      <InputFocusApp />
     </>
   );
 }
