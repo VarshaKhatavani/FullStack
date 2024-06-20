@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-function App() {
-  const [
-    searchTerm,
-    setSearchTerm,
-  ] = React.useState('');
+import "./reset.css";
+import "./styles.css";
+
+function InputFocusApp() {
+  const [searchTerm, setSearchTerm] = React.useState("");
 
   const inputRef = React.useRef();
 
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default InputFocusApp;

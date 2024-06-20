@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-function WindowSize() {
-  const [
-    windowDimensions,
-    setWindowDimensions,
-  ] = React.useState({
+import "./reset.css";
+import "./styles.css";
+
+function WindowSizeApp() {
+  const [windowDimensions, setWindowDimensions] = React.useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  
+
   return (
     <div className="wrapper">
       <p>
@@ -18,4 +18,4 @@ function WindowSize() {
   );
 }
 
-export default WindowSize;
+export default WindowSizeApp;

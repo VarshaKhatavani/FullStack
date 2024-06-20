@@ -8,11 +8,13 @@ window.localStorage.setItem('is-dark-mode', true);
 JSON.parse(window.localStorage.getItem('is-dark-mode'));
 */
 
-import React from 'react';
+import React from "react";
+import Toggle from "./Toggle";
 
-import Toggle from './Toggle';
+import "./reset.css";
+import "./styles.css";
 
-function App() {
+function DarkModeApp() {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
 
   return (
@@ -21,8 +23,8 @@ function App() {
       style={{
         // NOTE: This is a just-for-fun mini demo, not a
         // full-featured Dark Mode implementation!
-        '--color-bg': isDarkMode ? 'black' : 'white',
-        '--color-text': isDarkMode ? 'white' : 'black',
+        "--color-bg": isDarkMode ? "black" : "white",
+        "--color-text": isDarkMode ? "white" : "black",
       }}
     >
       <Toggle
@@ -34,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default DarkModeApp;
