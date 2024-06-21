@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
 function ArtGallery() {
   // 1. Create a “ref”, a box that holds a value.
   const canvasRef = React.useRef(); // { current: undefined }
-
+  console.log(canvasRef); // it will set the reference/pointer to located tag [canvas here]
   return (
     <main>
       <div className="canvas-wrapper">
@@ -32,36 +32,36 @@ function ArtGallery() {
 }
 
 function draw(canvas) {
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext("2d");
 
   ctx.clearRect(0, 0, 200, 200);
 
   ctx.beginPath();
   ctx.rect(30, 90, 140, 20);
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = "black";
   ctx.fill();
   ctx.closePath();
 
   ctx.beginPath();
   ctx.arc(100, 97, 75, 1 * Math.PI, 2 * Math.PI);
-  ctx.fillStyle = 'tomato';
+  ctx.fillStyle = "tomato";
   ctx.fill();
   ctx.closePath();
 
   ctx.beginPath();
   ctx.arc(100, 103, 75, 0, 1 * Math.PI);
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = "white";
   ctx.fill();
   ctx.closePath();
-  
+
   ctx.beginPath();
   ctx.arc(100, 100, 25, 0, 2 * Math.PI);
-  ctx.fillStyle = 'black';
+  ctx.fillStyle = "black";
   ctx.fill();
   ctx.closePath();
   ctx.beginPath();
   ctx.arc(100, 100, 19, 0, 2 * Math.PI);
-  ctx.fillStyle = 'white';
+  ctx.fillStyle = "white";
   ctx.fill();
   ctx.closePath();
 }

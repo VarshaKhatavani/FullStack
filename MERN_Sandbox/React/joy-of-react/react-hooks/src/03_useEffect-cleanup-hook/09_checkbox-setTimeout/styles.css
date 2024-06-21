@@ -1,0 +1,14 @@
+html, body, #root {
+  height: 100%;
+}
+body {
+  padding: 0px;
+  background-color: hsl(200deg 1000% 88%);
+}
+#root {
+  display: grid;
+  place-content: center;
+}
+input {
+  transform: scale(8);
+}

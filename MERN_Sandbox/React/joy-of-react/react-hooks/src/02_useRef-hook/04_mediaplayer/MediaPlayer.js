@@ -1,9 +1,14 @@
-import React from 'react';
-import { Play, Pause } from 'react-feather';
+import React from "react";
+import { Play, Pause } from "react-feather";
 
-import VisuallyHidden from './VisuallyHidden';
+import VisuallyHidden from "./VisuallyHidden";
 
 function MediaPlayer({ src }) {
+  const [isPlaying, setIsPlaying] = React.useState(false);
+
+  const audioRef = React.useRef();
+  console.log(audioRef);
+
   return (
     <div className="wrapper">
       <div className="media-player">
@@ -15,14 +20,27 @@ function MediaPlayer({ src }) {
           <h2>Take It Easy</h2>
           <p>Bvrnout ft. Mia Vaile</p>
         </div>
-        <button>
-          <Play />
-          <VisuallyHidden>
-            Toggle playing
-          </VisuallyHidden>
+        <button
+          onClick={() => {
+            // const isPlaying = !audioRef.current.pause;
+            console.log(isPlaying);
+
+            if (isPlaying) {
+              audioRef.current.pause();
+            } else {
+              audioRef.current.play();
+            }
+
+            setIsPlaying(!isPlaying);
+          }}
+        >
+          {/* it didn't work as it needs to render the comp to updtae UI */}
+          {/* {!audioRef.current.pause ? <Pause /> : <Play />} */}
+          {isPlaying ? <Pause /> : <Play />}
+          <VisuallyHidden>Toggle playing</VisuallyHidden>
         </button>
-        
-        <audio src={src} />
+
+        <audio src={src} ref={audioRef} />
       </div>
     </div>
   );

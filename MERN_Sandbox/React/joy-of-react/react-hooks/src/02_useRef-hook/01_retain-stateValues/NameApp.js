@@ -17,6 +17,7 @@ function NameApp() {
           };
 
           setUser(nextUser);
+          // add values to state
           window.stateValues.push(nextUser);
         }}
       >
