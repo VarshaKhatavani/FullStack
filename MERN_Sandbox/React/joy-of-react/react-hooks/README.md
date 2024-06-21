@@ -86,3 +86,9 @@
 <h4>Used useState having object { width, height }</h4>
 
 ![alt text](image-14.png)
+
+## Intersection Observer
+
+<h3>Slide left the character when division intersect</h3>
+
+<video controls src="src/03_useEffect-cleanup-hook/SlideCharacter_InterSectionObserver.mp4"></video>

@@ -35,7 +35,10 @@ function Toasty() {
         setIsShown(false);
       }
     });
-    observer.observe(wrapperRef.current);
+    // Observe the wrapper element
+    if (wrapperRef.current) {
+      observer.observe(wrapperRef.current);
+    }
   }, []);
 
   return (
