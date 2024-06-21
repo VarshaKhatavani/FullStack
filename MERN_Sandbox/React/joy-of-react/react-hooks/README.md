@@ -63,6 +63,7 @@
 ## Toggle Darkmode
 
 <h3>Toggle darkmode / Store value to the local storage</h3>
+<h4>Used callback funcion inside the useState state variable</h4>
 
 ![alt text](image-11.png)
 
@@ -71,3 +72,17 @@
 <h3>On page load set input focus</h3>
 
 ![alt text](image-12.png)
+
+## Mouse Pointer
+
+<h3>Track the mouse pointer on mouse move</h3>
+<h4>Used useState having object { x, y }</h4>
+
+![alt text](image-13.png)
+
+## Window Resize
+
+<h3>Set Window Dimensions according to Window Size</h3>
+<h4>Used useState having object { width, height }</h4>
+
+![alt text](image-14.png)

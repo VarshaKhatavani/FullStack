@@ -14,7 +14,10 @@ import "./App.css";
 // import CounterApp from "./03_useEffect-cleanup-hook/01_counter/CounterApp";
 // import SignupFormApp from "./03_useEffect-cleanup-hook/02_signupForm/SignupFormApp";
 // import DarkModeApp from "./03_useEffect-cleanup-hook/03_darkMode-localStorage/DarkModeApp";
-import InputFocusApp from "./03_useEffect-cleanup-hook/04_inputFocus/InputFocusApp";
+// import InputFocusApp from "./03_useEffect-cleanup-hook/04_inputFocus/InputFocusApp";
+// import MouseCoordsApp from "./03_useEffect-cleanup-hook/05_mousePointer/MouseCoordsApp";
+// import WindowSizeApp from "./03_useEffect-cleanup-hook/06_windowSize/WindowSizeApp";
+import SlideCharacterApp from "./03_useEffect-cleanup-hook/07_interSection-observer/SlideCharacterApp";
 
 function App() {
   return (
@@ -24,14 +27,20 @@ function App() {
       {/* <TextInputApp /> */}
       {/* <SearchApp /> */}
       {/* <LoginApp /> */}
+
       {/* <NameApp /> */}
       {/* <CanvasApp /> */}
       {/* <VideoPlayerApp /> */}
       {/* <MediaPlayerApp /> */}
+
       {/* <CounterApp /> */}
       {/* <SignupFormApp /> */}
       {/* <DarkModeApp /> */}
-      <InputFocusApp />
+      {/* <InputFocusApp /> */}
+      {/* <MouseCoordsApp /> */}
+      {/* <WindowSizeApp /> */}
+
+      <SlideCharacterApp />
     </>
   );
 }
