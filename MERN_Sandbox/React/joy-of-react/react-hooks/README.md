@@ -102,3 +102,8 @@
 <h3> Clock Interval - Remove Interval using useEffect return </h3>
 
 ![alt text](image-16.png)
+
+<h3> Automatically turn on the checkbox if it's unchecked </h3>
+<h4> based on the timeout of 500 ms it will work</h4>
+
+![alt text](image-17.png)
