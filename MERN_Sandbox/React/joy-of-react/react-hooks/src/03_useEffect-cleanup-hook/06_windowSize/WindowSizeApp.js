@@ -1,30 +1,19 @@
 import React from "react";
-
+import WindowSize from "./WindowResize";
 import "./reset.css";
 import "./styles.css";
 
 function WindowSizeApp() {
-  const [windowDimensions, setWindowDimensions] = React.useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  const [isTrackingWindowSize, setIsTrackingWindowSize] = React.useState(true);
 
-  React.useEffect(() => {
-    function handleWindowSize() {
-      setWindowDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
-    window.addEventListener("resize", handleWindowSize);
-  }, []);
+  function toggleWindowSize() {
+    setIsTrackingWindowSize(!isTrackingWindowSize);
+  }
 
   return (
     <div className="wrapper">
-      <p>
-        {windowDimensions.width} / {windowDimensions.height}
-      </p>
+      <button onClick={toggleWindowSize}>Toggle Window Size</button>
+      {isTrackingWindowSize && <WindowSize />}
     </div>
   );
 }

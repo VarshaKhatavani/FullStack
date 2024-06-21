@@ -39,6 +39,11 @@ function Toasty() {
     if (wrapperRef.current) {
       observer.observe(wrapperRef.current);
     }
+
+    //clean up
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (

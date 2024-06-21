@@ -17,7 +17,10 @@ import "./App.css";
 // import InputFocusApp from "./03_useEffect-cleanup-hook/04_inputFocus/InputFocusApp";
 // import MouseCoordsApp from "./03_useEffect-cleanup-hook/05_mousePointer/MouseCoordsApp";
 // import WindowSizeApp from "./03_useEffect-cleanup-hook/06_windowSize/WindowSizeApp";
-import SlideCharacterApp from "./03_useEffect-cleanup-hook/07_interSection-observer/SlideCharacterApp";
+
+// import SlideCharacterApp from "./03_useEffect-cleanup-hook/07_interSection-observer/SlideCharacterApp";
+import ClockApp from "./03_useEffect-cleanup-hook/08_clock-setInterval/ClockApp";
+// import UselessMachineApp from "./03_useEffect-cleanup-hook/09_checkbox-setTimeout/UselessMachineApp";
 
 function App() {
   return (
@@ -40,7 +43,14 @@ function App() {
       {/* <MouseCoordsApp /> */}
       {/* <WindowSizeApp /> */}
 
-      <SlideCharacterApp />
+      {/* <SlideCharacterApp /> */}
+
+      {/* Clean Up Activity */}
+      {/* <MouseCoordsApp /> */}
+      {/* <WindowSizeApp /> */}
+      {/* <SlideCharacterApp /> */}
+      <ClockApp />
+      {/* <UselessMachineApp /> */}
     </>
   );
 }

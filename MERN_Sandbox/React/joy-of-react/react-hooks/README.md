@@ -92,3 +92,13 @@
 <h3>Slide left the character when division intersect</h3>
 
 <video controls src="src/03_useEffect-cleanup-hook/SlideCharacter_InterSectionObserver.mp4"></video>
+
+<h1> Use of return in useEffect : Clean Up Activity </h1>
+
+<h3>Enable/Disable Mouse Tracking based on button click</h3>
+
+![alt text](image-15.png)
+
+<h3> Clock Interval - Remove Interval using useEffect return </h3>
+
+![alt text](image-16.png)
