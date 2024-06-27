@@ -20,7 +20,10 @@ import "./App.css";
 
 // import SlideCharacterApp from "./03_useEffect-cleanup-hook/07_interSection-observer/SlideCharacterApp";
 // import ClockApp from "./03_useEffect-cleanup-hook/08_clock-setInterval/ClockApp";
-import UselessMachineApp from "./03_useEffect-cleanup-hook/09_checkbox-setTimeout/UselessMachineApp";
+// import UselessMachineApp from "./03_useEffect-cleanup-hook/09_checkbox-setTimeout/UselessMachineApp";
+
+// import MediaPlayerApp from "./04_code-optimization/01_media-player/MediaPlayerApp";
+import TimerApp from "./04_code-optimization/02_timer/TimerApp";
 
 function App() {
   return (
@@ -50,7 +53,9 @@ function App() {
       {/* <WindowSizeApp /> */}
       {/* <SlideCharacterApp /> */}
       {/* <ClockApp /> */}
-      <UselessMachineApp />
+      {/* <UselessMachineApp /> */}
+      {/* <MediaPlayerApp /> */}
+      <TimerApp />
     </>
   );
 }
