@@ -1,0 +1,31 @@
+body {
+  padding: 0px;
+}
+header {
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 16px;
+  background: hsl(0deg 0% 90% / 0.8);
+  backdrop-filter: blur(10px);
+}
+#root {
+  padding-top: 130vh;
+  padding-bottom: 150vh;
+}
+.box {
+  background: tomato;
+  width: min(75%, 300px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.box.red {
+  background: tomato;
+}
+.box.purple {
+  background: mediumpurple;
+  margin-top: 32px;
+}

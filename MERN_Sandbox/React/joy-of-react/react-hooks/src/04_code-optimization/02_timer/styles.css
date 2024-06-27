@@ -1,0 +1,20 @@
+#root {
+  height: 200px;
+}
+body {
+  background: hsl(145deg 80% 85%);
+}
+#root {
+  display: grid;
+  place-content: center;
+}
+.timer {
+  text-align: center;
+}
+.timer h1 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.timer p {
+  font-size: 3rem;
+}
