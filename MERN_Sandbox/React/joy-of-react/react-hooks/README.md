@@ -107,3 +107,14 @@
 <h4> based on the timeout of 500 ms it will work</h4>
 
 ![alt text](image-17.png)
+
+## Media Player (Spacebar)
+
+<h3>Added functionality of space bar & button click</h3>
+<h2> callback function in state variable </h2>
+
+## Timer (setInterval / setTimeout)
+
+<h3> Update the counter value</h3>
+
+![alt text](image-18.png)
