@@ -1,5 +1,5 @@
 import React from "react";
-import useMousePosition from "./hooks/use-mouse-position.js";
+import useMousePosition from "./hooks/use-mouse-position";
 
 import "./reset.css";
 import "./styles.css";
@@ -8,25 +8,7 @@ import "./styles.css";
 // the use-mouse-position.js file!
 
 function MousePositionApp() {
-  const [mousePosition, setMousePosition] = React.useState({
-    x: 0,
-    y: 0,
-  });
-
-  React.useEffect(() => {
-    function handleMouseMove(event) {
-      setMousePosition({
-        x: event.clientX,
-        y: event.clientY,
-      });
-    }
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
+  const mousePosition = useMousePosition();
 
   return (
     <div className="wrapper">

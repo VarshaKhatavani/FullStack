@@ -5,13 +5,14 @@ import "./reset.css";
 import "./styles.css";
 
 function OnscreenApp() {
-  const isOnscreen = useIsOnscreen();
+  const elementRef = React.useRef();
+  const isOnscreen = useIsOnscreen(elementRef);
 
   return (
     <>
       <header>Red box visible: {isOnscreen ? "YES" : "NO"}</header>
       <div className="wrapper">
-        <div className="red box" />
+        <div ref={elementRef} className="red box" />
       </div>
     </>
   );

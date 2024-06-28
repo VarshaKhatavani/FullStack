@@ -23,7 +23,11 @@ import "./App.css";
 // import UselessMachineApp from "./03_useEffect-cleanup-hook/09_checkbox-setTimeout/UselessMachineApp";
 
 // import MediaPlayerApp from "./04_code-optimization/01_media-player/MediaPlayerApp";
-import TimerApp from "./04_code-optimization/02_timer/TimerApp";
+// import TimerApp from "./04_code-optimization/02_timer/TimerApp";
+
+// import ClockApp from "./05_custom-hook-SWR/01_toggle-clock/ClockApp";
+// import MousePositionApp from "./05_custom-hook-SWR/02_mouse-position/MousePositionApp";
+import OnscreenApp from "./05_custom-hook-SWR/03_intersection-observer-redbox/OnscreenApp";
 
 function App() {
   return (
@@ -55,7 +59,12 @@ function App() {
       {/* <ClockApp /> */}
       {/* <UselessMachineApp /> */}
       {/* <MediaPlayerApp /> */}
-      <TimerApp />
+      {/* <TimerApp /> */}
+
+      {/* cusom hooks */}
+      {/* <ClockApp /> */}
+      {/* <MousePositionApp /> */}
+      <OnscreenApp />
     </>
   );
 }

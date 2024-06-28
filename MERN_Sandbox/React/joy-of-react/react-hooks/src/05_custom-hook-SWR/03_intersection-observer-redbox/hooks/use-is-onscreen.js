@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 /*
 Here's the “pure JS” version once again:
@@ -22,9 +22,22 @@ To unsubscribe, you can call:
   observer.disconnect();
 */
 
-function useIsOnscreen() {
+function useIsOnscreen(elementRef) {
   // TODO
-  return false;
+
+  const [isOnScreen, setIsOnScreen] = React.useState(false);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const [entry] = entries;
+
+      setIsOnScreen(entry.isIntersecting);
+    });
+
+    observer.observe(elementRef.current);
+  }, [elementRef]);
+
+  return isOnScreen;
 }
 
 export default useIsOnscreen;
