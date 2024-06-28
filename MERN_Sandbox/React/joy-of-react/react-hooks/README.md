@@ -118,3 +118,21 @@
 <h3> Update the counter value</h3>
 
 ![alt text](image-18.png)
+
+<h1> Custom Hooks </h1>
+
+## Toggle Clock
+
+![alt text](image-19.png)
+
+## Mouse Position
+
+<h3> with use of custom hooks handle the mouse pointer movements  </h3>
+
+![alt text](image-20.png)
+
+## Observe the box division avaialblility
+
+<h3> Used Intersection Observer & custom hooks </h3>
+
+![alt text](image-21.png)
