@@ -30,11 +30,30 @@ const ENDPOINT = "https://jor-test-api.vercel.app/api/book-search";
 function BookSearchApp() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState(null);
+  const [status, setStatus] = React.useState("idle");
+
+  async function handleSearch(event) {
+    event.preventDefault();
+    const url = `${ENDPOINT}?searchTerm=${searchTerm}`;
+
+    setStatus("loading");
+
+    const response = await fetch(url);
+    const json = await response.json();
+    console.log(json);
+    setSearchResults(json.results);
+
+    if (json.ok) {
+      setStatus("success");
+    } else {
+      setStatus("error");
+    }
+  }
 
   return (
     <>
       <header>
-        <form>
+        <form onSubmit={handleSearch}>
           <TextInput
             required={true}
             label="Search"
@@ -49,19 +68,25 @@ function BookSearchApp() {
       </header>
 
       <main>
-        <div className="search-results">
-          <h2>Search Results:</h2>
-          {/*
-            Here's an example of the element
-            we want to render:
-          */}
-          <SearchResult result={EXAMPLE} />
-        </div>
+        {status === "idle" && <p>Welcome to book search!</p>}
+        {status === "loading" && <p>Seraching...!</p>}
+        {status === "error" && <p>Something went wrong!</p>}
+        {status === "success" && (
+          <div className="search-results">
+            <h2>Search Results:</h2>
+            {searchResults.length === 0 && <p>No Result!</p>}
+            {searchResults &&
+              searchResults?.map((result) => {
+                return <SearchResult result={result} />;
+              })}
+          </div>
+        )}
       </main>
     </>
   );
 }
 
+// eslint-disable-next-line
 const EXAMPLE = {
   isbn: "9781473621442",
   name: "A Closed and Common Orbit",

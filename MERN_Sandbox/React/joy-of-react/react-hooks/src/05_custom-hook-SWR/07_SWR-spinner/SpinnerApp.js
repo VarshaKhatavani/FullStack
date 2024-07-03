@@ -18,8 +18,25 @@ import "./styles.css";
 
 const ENDPOINT = "https://jor-test-api.vercel.app/api/get-current-user";
 
+async function fetcher(endpoint) {
+  const response = await fetch(ENDPOINT);
+  const data = await response.json();
+  return data;
+}
+
 function SpinnerApp() {
-  return <UserCard name="Name here" email="Email here" />;
+  const { data, error } = useSWR(ENDPOINT, fetcher);
+  console.log(data);
+  console.log(error);
+
+  const isLoading = !data && !error;
+
+  if (isLoading) return <Spinner />;
+
+  if (error) return <p>Something went wrong!</p>;
+
+  if (data && data?.user)
+    return <UserCard name={data.user.name} email={data.user.email} />;
 }
 
 export default SpinnerApp;

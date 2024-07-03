@@ -5,8 +5,8 @@ import "./reset.css";
 import "./styles.css";
 
 function OnscreenApp() {
-  const elementRef = React.useRef();
-  const isOnscreen = useIsOnscreen(elementRef);
+  const [isOnscreen, elementRef] = useIsOnscreen();
+  console.log(isOnscreen, elementRef);
 
   return (
     <>
