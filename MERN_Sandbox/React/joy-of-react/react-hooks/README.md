@@ -136,3 +136,23 @@
 <h3> Used Intersection Observer & custom hooks </h3>
 
 ![alt text](image-21.png)
+
+<h1> Stale While Revalidate(SWR) Library && Async Await</h1>
+
+## installed package : npm i swr
+
+<h3>Use of async await & according to status display message </h3>
+
+![alt text](image-22.png)
+
+<h3>Fetch Temprature using SWR Library</h3>
+
+![alt text](image-24.png)
+
+<h3>Search Book </h3>
+
+![alt text](image-23.png)
+
+<h3>Load user details using SWR library & show spinner before data load</h3>
+
+![alt text](image-25.png)
