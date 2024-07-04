@@ -1,22 +1,29 @@
-import React from 'react';
+import React from "react";
 
-import CartTable from './CartTable';
+import CartTable from "./CartTable";
 
 function ShoppingCart({ items }) {
-  const [postalCode, setPostalCode] = React.useState('');
+  const [postalCode, setPostalCode] = React.useState("");
   const postalCodeId = React.useId();
 
-  const inStockItems = items.filter(
-    (item) => item.inStock
-  );
-  const outOfStockItems = items.filter(
-    (item) => !item.inStock
-  );
+  // this approach could lead to performance issues due to repeated calculations on every render.
+  // const inStockItems = items.filter((item) => item.inStock);
+
+  // optimized
+  // React.useMemo memoizes the result of the computation
+  // It avoids recomputing inStockItems on every render unless items has changed.
+  const inStockItems = React.useMemo(() => {
+    return items.filter((item) => item.inStock);
+  }, [items]);
+
+  const outOfStockItems = React.useMemo(() => {
+    return items.filter((item) => !item.inStock);
+  }, [items]);
 
   return (
     <>
       <h2>Shopping cart</h2>
-      
+
       <form>
         <label htmlFor={postalCodeId}>
           Enter Postal / ZIP code for shipping estimate:
@@ -30,7 +37,7 @@ function ShoppingCart({ items }) {
           }}
         />
       </form>
-      
+
       <CartTable items={inStockItems} />
 
       <div className="actions">

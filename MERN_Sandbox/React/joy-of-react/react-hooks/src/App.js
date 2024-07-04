@@ -41,12 +41,19 @@ import "./App.css";
 // import MousePositionApp from "./05_custom-hook-SWR/02_mouse-position/MousePositionApp";
 // import OnscreenApp from "./05_custom-hook-SWR/03_intersection-observer-redbox/OnscreenApp";
 
-// ***** Async Await *****
+// ***** Async Await & SWR *****
 
 // import ContactFormApp from "./05_custom-hook-SWR/04_contact-form-async-await/ContactFormApp";
 // import TempratureApp from "./05_custom-hook-SWR/05_SWR-temprature/TempratureApp";
 // import BookSearchApp from "./05_custom-hook-SWR/06_book-search/BookSearchApp";
-import SpinnerApp from "./05_custom-hook-SWR/07_SWR-spinner/SpinnerApp";
+// import SpinnerApp from "./05_custom-hook-SWR/07_SWR-spinner/SpinnerApp";
+
+// ***** Memoization using useMemo() hook *****
+
+import PrimeNumApp from "./06_useMemo/01_primeno/PrimeNumApp";
+// import MousePositionApp from "./06_useMemo/02_mouse-pointer-rowscols/MousePositionApp";
+// import ShoppingCartApp from "./06_useMemo/03_shopping-cart/ShoppingCartApp";
+// import ClockApp from "./06_useMemo/04_clock/ClockApp";
 
 function App() {
   return (
@@ -88,7 +95,12 @@ function App() {
       {/* <ContactFormApp /> */}
       {/* <TempratureApp /> */}
       {/* <BookSearchApp /> */}
-      <SpinnerApp />
+      {/* <SpinnerApp /> */}
+
+      <PrimeNumApp />
+      {/* <MousePositionApp /> */}
+      {/* <ShoppingCartApp /> */}
+      {/* <ClockApp /> */}
     </>
   );
 }

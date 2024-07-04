@@ -1,20 +1,22 @@
 import React from "react";
-
 import "./reset.css";
 import "./styles.css";
+import { getAllPrimes } from "./PrimeCalculator";
 
 function PrimeNumApp() {
   // We hold the user's selected number in state.
   const [selectedNum, setSelectedNum] = React.useState(100);
+  const [allPrimes, setAllPrimes] = React.useState([]);
+
+  console.log("Prime Calculator");
 
   // We calculate all of the prime numbers between 0 and the
   // user's chosen number, `selectedNum`:
-  const allPrimes = [];
-  for (let counter = 2; counter < selectedNum; counter++) {
-    if (isPrime(counter)) {
-      allPrimes.push(counter);
-    }
-  }
+  console.log(selectedNum);
+
+  React.useEffect(() => {
+    setAllPrimes(getAllPrimes(selectedNum));
+  }, [selectedNum]);
 
   return (
     <>
@@ -28,7 +30,6 @@ function PrimeNumApp() {
             // To prevent computers from exploding,
             // we'll max out at 100k
             const num = Math.min(100_000, Number(event.target.value));
-
             setSelectedNum(num);
           }}
         />
@@ -43,20 +44,4 @@ function PrimeNumApp() {
 
 // Helper function that calculates whether a given
 // number is prime or not.
-function isPrime(n) {
-  const max = Math.ceil(Math.sqrt(n));
-
-  if (n === 2) {
-    return true;
-  }
-
-  for (let counter = 2; counter <= max; counter++) {
-    if (n % counter === 0) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
 export default PrimeNumApp;

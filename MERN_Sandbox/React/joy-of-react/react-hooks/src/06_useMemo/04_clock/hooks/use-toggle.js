@@ -1,19 +1,22 @@
-import React from 'react';
+import React from "react";
 
 function useToggle(initialValue = false) {
-  if (typeof initialValue !== 'boolean') {
-    console.warn('Invalid type for useToggle');
+  if (typeof initialValue !== "boolean") {
+    console.warn("Invalid type for useToggle");
   }
 
-  const [value, setValue] = React.useState(
-    initialValue
-  );
+  const [value, setValue] = React.useState(initialValue);
 
-  function toggleValue() {
-    setValue((currentValue) => !currentValue);
-  }
+  // Optimize the function which updates value
+  const toggleValue = React.useMemo(() => {
+    return function toggleValue() {
+      setValue((currentValue) => !currentValue);
+    };
+  }, []);
 
-  return [value, toggleValue];
+  // console.log(toggleValue);
+
+  return [value, toggleValue]; // return value & function
 }
 
 export default useToggle;

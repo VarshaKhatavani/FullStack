@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 function CartTable({ items }) {
-  console.info('CartTable render');
-  
+  console.info("CartTable render");
+
   return (
     <table className="shopping-cart">
       <thead>
@@ -13,30 +13,18 @@ function CartTable({ items }) {
         </tr>
       </thead>
       <tbody>
-        {items.map(
-          ({
-            id,
-            imageSrc,
-            imageAlt,
-            title,
-            price,
-          }) => (
-            <tr key={id} className="cart-row">
-              <td>
-                <img
-                  className="product-thumb"
-                  src={imageSrc}
-                  alt={imageAlt}
-                />
-              </td>
-              <td>{title}</td>
-              <td>${price}</td>
-            </tr>
-          )
-        )}
+        {items.map(({ id, imageSrc, imageAlt, title, price }) => (
+          <tr key={id} className="cart-row">
+            <td>
+              <img className="product-thumb" src={imageSrc} alt={imageAlt} />
+            </td>
+            <td>{title}</td>
+            <td>${price}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
 }
 
-export default CartTable;
+export default React.memo(CartTable);
