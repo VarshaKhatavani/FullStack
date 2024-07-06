@@ -1,0 +1,11 @@
+/* Basic theme styles */
+body {
+  padding: 16px;
+  font-family: 'Wotfard', sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: flex-end;
+  gap: 32px;
+}

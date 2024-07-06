@@ -1,0 +1,4 @@
+html {
+  --color-success: hsl(130deg 100% 80%);
+  --color-error: hsl(350deg 100% 75%);
+}
