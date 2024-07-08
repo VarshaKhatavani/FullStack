@@ -1,20 +1,20 @@
 import React from "react";
 
-import Banner from "./Banner";
+import { LoggedInBanner } from "./Banner";
 
 import "./reset.css";
 import "./styles.css";
 
 const EXAMPLE_USER = {
-  name: "Sayen",
+  name: "Varsha",
   registrationStatus: "verified",
 };
 
 function BannerApp() {
   return (
-    <Banner type="success" user={EXAMPLE_USER}>
+    <LoggedInBanner type="success" user={EXAMPLE_USER}>
       Successfully logged in! Welcome aboard, {EXAMPLE_USER.name}!
-    </Banner>
+    </LoggedInBanner>
   );
 }
 

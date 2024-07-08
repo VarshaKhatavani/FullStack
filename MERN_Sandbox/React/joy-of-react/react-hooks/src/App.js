@@ -50,7 +50,7 @@ import "./App.css";
 
 // ***** Memoization using useMemo() hook *****
 
-import PrimeNumApp from "./06_useMemo/01_primeno/PrimeNumApp";
+// import PrimeNumApp from "./06_useMemo/01_primeno/PrimeNumApp";
 // import MousePositionApp from "./06_useMemo/02_mouse-pointer-rowscols/MousePositionApp";
 // import ShoppingCartApp from "./06_useMemo/03_shopping-cart/ShoppingCartApp";
 // import ClockApp from "./06_useMemo/04_clock/ClockApp";
@@ -97,7 +97,7 @@ function App() {
       {/* <BookSearchApp /> */}
       {/* <SpinnerApp /> */}
 
-      <PrimeNumApp />
+      {/* <PrimeNumApp /> */}
       {/* <MousePositionApp /> */}
       {/* <ShoppingCartApp /> */}
       {/* <ClockApp /> */}
