@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react";
 
-function SectionWithHeading({ title, children }) {
+function SectionWithHeading({ level, title, children }) {
+  if (typeof level !== "number" || level < 0 || level > 6) {
+    throw new Error(`Unrecognized heading level : ${level}`);
+  }
+
+  const HeadingTag = `h${level}`;
+
   return (
     <section>
-      <h2>{title}</h2>
+      <HeadingTag>{title}</HeadingTag>
       {children}
     </section>
   );

@@ -1,16 +1,22 @@
-import React from 'react';
+import React from "react";
 
-import styles from './List.module.css';
+import styles from "./List.module.css";
 
-function List({ className = '', children, ...delegated }) {
+const VALID_TAGS = ["ul", "ol"];
+
+function List({ as: Tag = "ul", className = "", children, ...delegated }) {
+  // or add { as : Tag } inside param
+
+  if (!VALID_TAGS.includes(Tag)) {
+    throw new Error(`Unrecognized tag: ${Tag}. Expected: ${VALID_TAGS}`);
+  }
+
   return (
-    <ul
-      {...delegated}
-      className={`${styles.wrapper} ${className}`}
-    >
+    <Tag {...delegated} className={`${styles.wrapper} ${className}`}>
+      {" "}
       {children}
-    </ul>
-  )
+    </Tag>
+  );
 }
 
 export default List;

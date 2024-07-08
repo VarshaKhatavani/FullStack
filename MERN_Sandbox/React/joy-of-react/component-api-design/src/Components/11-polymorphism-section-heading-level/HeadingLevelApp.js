@@ -7,7 +7,7 @@ import "./styles.css";
 
 function HeadingLevelApp() {
   return (
-    <SectionWithHeading title="George Mouzalon">
+    <SectionWithHeading level="1" title="George Mouzalon">
       <p>
         George Mouzalon (Greek: Γεώργιος Μουζάλων, romanized: Geōrgios Mouzalōn;
         c. 1220 – 25 August 1258) was a high official of the Empire of Nicaea

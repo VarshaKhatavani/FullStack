@@ -17,7 +17,7 @@ function Toggle({ label, checked, onClick, className = "", ...delegated }) {
       </label>
       <button
         id={id}
-        className={`toggle ${className} `}
+        className={`toggle ${className} `} /* "toggle green-toggle" */
         type="button"
         aria-pressed={checked}
         onClick={onClick}

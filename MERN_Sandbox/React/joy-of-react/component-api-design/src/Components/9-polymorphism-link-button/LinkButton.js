@@ -1,15 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import styles from './LinkButton.module.css';
+import styles from "./LinkButton.module.css";
 
-function LinkButton({ href, children }) {
+function LinkButton({ href, children, ...delegated }) {
   // TODO: render an <a> tag if “href” is provided.
-  
+
+  const Tag = typeof href === "string" ? "a" : "button";
+
   return (
-    <button className={styles.button}>
+    <Tag href={href} className={styles.button} {...delegated}>
       {children}
-    </button>
-  )
+    </Tag>
+  );
 }
 
 export default LinkButton;
