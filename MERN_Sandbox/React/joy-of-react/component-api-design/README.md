@@ -30,8 +30,32 @@
 
 <h3>Use of delegation as a property inside the Toggle component</h3>
 
-![alt text](image.png)
+![alt text](public/Images/image-5.png)
 
 <h1> ForwardRef </h1>
 
+## Example : Slider Component
+
+![alt text](public/Images/image-6.png)
+
+## Example : Hover Button
+
+![alt text](public/Images/image-7.png)
+
+## Example : Slider Square
+
+![alt text](public/Images/image-8.png)
+
 <h1> Polymorphism </h1>
+
+## Example : Render anchor or Button tag
+
+<h3>Dynamically render < a > tag or < button > tag based on href </h3>
+
+![alt text](public/Images/image-9.png)
+
+## Example : Passing ListItem as="ol" or "ul"
+
+![alt text](public/Images/image-10.png)
+
+## Eaxmple : Dynamic header
