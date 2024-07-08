@@ -1,1 +1,12 @@
 /* TODO */
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  /*
+    This CSS variable is defined in the
+    “styles.css” file.
+  */
+  box-shadow: var(--elevation-1);
+}
