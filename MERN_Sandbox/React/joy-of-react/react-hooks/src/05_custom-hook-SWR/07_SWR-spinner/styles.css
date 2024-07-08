@@ -1,0 +1,23 @@
+body {
+  background: hsl(260deg 80% 40%);
+  padding: 32px;
+  color: white;
+}
+#root {
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+.user-card {
+  background: white;
+  color: black;
+  border-radius: 16px;
+  padding: 24px 48px;
+  border: 2px dashed hsl(260deg 100% 80%);
+  outline: 2px solid white;
+  text-align: center;
+}
+.user-card .name {
+  font-size: 1.25rem;
+  font-weight: 500;
+}

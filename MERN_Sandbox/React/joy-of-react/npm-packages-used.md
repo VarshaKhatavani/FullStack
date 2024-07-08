@@ -1,4 +1,4 @@
-<h3> Installed Packages </h3>
+<h1> Installed Packages </h1>
 
-<li>npm date-fns :  ls node_modules/date-fns </li>
-<li>npm install react-feather</li>
+<h4>npm date-fns :  ls node_modules/date-fns </h4>
+<h4>npm install react-feather</h4>
