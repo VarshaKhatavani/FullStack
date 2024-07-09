@@ -8,8 +8,8 @@ function PropDrillingApp() {
 
   return (
     <>
-      <AccountDropdown user={user} />
-      <CourseIndexLayout />
+      <AccountDropdown userInfo={user} />
+      <CourseIndexLayout userInfo={user} />
     </>
   );
 }

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-function AccountDropdown() {
-  return null;
+function AccountDropdown({ userInfo }) {
+  return <p>{userInfo.email}</p>;
 }
 
 export default AccountDropdown;

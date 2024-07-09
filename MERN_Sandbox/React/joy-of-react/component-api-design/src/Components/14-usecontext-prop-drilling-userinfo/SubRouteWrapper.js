@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import CourseModuleBlock from './CourseModuleBlock';
+import CourseModuleBlock from "./CourseModuleBlock";
 
-function SubRouteWrapper() {
+function SubRouteWrapper({ userInfo }) {
   return (
     <>
-      <CourseModuleBlock />
+      <CourseModuleBlock userInfo={userInfo} />
     </>
   );
 }

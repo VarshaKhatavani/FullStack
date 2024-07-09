@@ -8,6 +8,8 @@
   background-color: hsl(270deg 40% 20%);
   font-size: 1.125rem;
   cursor: pointer;
+  margin: auto;
+  margin-top: 1rem;
 }
 
 .iconWrapper {

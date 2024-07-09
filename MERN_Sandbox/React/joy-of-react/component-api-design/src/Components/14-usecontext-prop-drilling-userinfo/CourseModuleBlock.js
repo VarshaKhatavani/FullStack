@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import ModuleLessons from './ModuleLessons';
+import ModuleLessons from "./ModuleLessons";
 
-function CourseModuleBlock() {
+function CourseModuleBlock({ userInfo }) {
   return (
     <>
-      <ModuleLessons />
+      <ModuleLessons userInfo={userInfo} />
     </>
   );
 }

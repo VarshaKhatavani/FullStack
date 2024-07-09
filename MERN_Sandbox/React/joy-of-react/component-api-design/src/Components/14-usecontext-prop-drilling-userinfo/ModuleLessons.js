@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-function ModuleLessons({ user }) {
-  return (
-    <>
-      User email: {user?.email || 'Not provided'}
-    </>
-  );
+function ModuleLessons({ userInfo }) {
+  return <>User email: {userInfo?.email || "Not provided"}</>;
 }
 
 export default ModuleLessons;

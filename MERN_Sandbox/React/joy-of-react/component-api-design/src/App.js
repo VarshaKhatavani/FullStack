@@ -21,7 +21,13 @@ import "./App.css";
 
 // import LinkButtonApp from "./Components/9-polymorphism-link-button/LinkButtonApp";
 // import ListItemApp from "./Components/10-polymorphism-list-item/ListItemApp";
-import HeadingLevelApp from "./Components/11-polymorphism-section-heading-level/HeadingLevelApp";
+// import HeadingLevelApp from "./Components/11-polymorphism-section-heading-level/HeadingLevelApp";
+// import ImageApp from "./Components/12-polmorphic-slot-section-image/ImageApp";
+// import IconButtonApp from "./Components/13-polymorhism-icon/IconButtonApp";
+
+// **** Prop Drilling & use of context provider ****
+
+import PropDrillingApp from "./Components/14-usecontext-prop-drilling-userinfo/PropDrillingApp";
 
 function App() {
   return (
@@ -37,7 +43,11 @@ function App() {
       {/* <SliderSquareApp /> */}
       {/* <LinkButtonApp /> */}
       {/* <ListItemApp /> */}
-      <HeadingLevelApp />
+      {/* <HeadingLevelApp /> */}
+      {/* <ImageApp /> */}
+      {/* <IconButtonApp /> */}
+
+      <PropDrillingApp />
     </>
   );
 }

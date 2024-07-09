@@ -1,13 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Hero from './Hero';
-import SubRouteWrapper from './SubRouteWrapper';
+import Hero from "./Hero";
+import SubRouteWrapper from "./SubRouteWrapper";
 
-function CoursePage() {
+function CoursePage({ userInfo }) {
+  console.log(userInfo);
   return (
     <>
       <Hero />
-      <SubRouteWrapper />
+      <SubRouteWrapper userInfo={userInfo} />
     </>
   );
 }
