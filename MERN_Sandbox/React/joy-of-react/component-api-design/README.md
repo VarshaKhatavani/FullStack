@@ -58,4 +58,30 @@
 
 ![alt text](public/Images/image-10.png)
 
-## Eaxmple : Dynamic header
+## Example : Dynamic header
+
+<h3>Concept of Polymorphism : According to props passed, dynamica header will be applied</h3>
+
+![alt text](public/Images/image-11.png)
+
+## Example : Different Source of Picture
+
+<h3> Polymorphic way of passing image & caption tag. (Using multiple source of image - render based on user's device capability) </h3>
+
+![alt text](public/Images/image-12.png)
+
+## Example : Icon Button
+
+<h3> Concept Used : Passed component as prop & used in another component </h3>
+
+![alt text](public/Images/image-13.png)
+
+## Example : Props Drilling
+
+<h3> Access user info from App component to ModuleLessons component.
+At each level it needs to pass the infomation to get access user info in ModuleLessons component. 
+</h3>
+
+![alt text](public/Images/image-15.png)
+
+![alt text](public/Images/image-14.png)
