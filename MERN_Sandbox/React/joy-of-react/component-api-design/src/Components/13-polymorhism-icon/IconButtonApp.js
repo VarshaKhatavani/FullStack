@@ -3,6 +3,9 @@ import { Award, Camera, Frown, Slash, XCircle } from "react-feather";
 
 import IconButton from "./IconButton";
 
+import "./reset.css";
+import "./styles.css";
+
 function IconButtonApp() {
   // TODO: Render an “IconButton”.
   return (

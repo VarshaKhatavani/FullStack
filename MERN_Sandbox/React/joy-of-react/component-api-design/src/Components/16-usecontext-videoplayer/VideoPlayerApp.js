@@ -2,30 +2,36 @@ import React from "react";
 
 import VideoPlayer from "./VideoPlayer";
 
+import "./reset.css";
+import "./styles.css";
+
+export const PlaybackRateContext = React.createContext();
+
 function VideoPlayerApp() {
   const [playbackRate, setPlaybackRate] = React.useState("1");
 
   return (
-    <main>
-      <h1>Video Archives</h1>
-
-      {DATA.map(({ id, video, createdBy, license }) => (
-        <article key={id}>
-          <VideoPlayer
-            src={video.src}
-            caption={video.caption}
-            playbackRate={playbackRate}
-            setPlaybackRate={setPlaybackRate}
-          />
-          <dl>
-            <dt>Created by</dt>
-            <dd>{createdBy}</dd>
-            <dt>Licensed under</dt>
-            <dd>{license}</dd>
-          </dl>
-        </article>
-      ))}
-    </main>
+    <PlaybackRateContext.Provider value={{ playbackRate, setPlaybackRate }}>
+      <main>
+        <h1>Video Archives</h1>
+        {DATA.map(({ id, video, createdBy, license }) => (
+          <article key={id}>
+            <VideoPlayer
+              src={video.src}
+              caption={video.caption}
+              playbackRate={playbackRate}
+              setPlaybackRate={setPlaybackRate}
+            />
+            <dl>
+              <dt>Created by</dt>
+              <dd>{createdBy}</dd>
+              <dt>Licensed under</dt>
+              <dd>{license}</dd>
+            </dl>
+          </article>
+        ))}
+      </main>
+    </PlaybackRateContext.Provider>
   );
 }
 

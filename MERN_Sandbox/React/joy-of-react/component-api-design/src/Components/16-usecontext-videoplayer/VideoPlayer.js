@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import { PlaybackRateContext } from "./VideoPlayerApp";
 
-function VideoPlayer({
-  src,
-  caption,
-  playbackRate,
-  setPlaybackRate,
-}) {
+function VideoPlayer({ src, caption }) {
+  console.log(PlaybackRateContext);
+
+  const { playbackRate, setPlaybackRate } =
+    React.useContext(PlaybackRateContext);
+
   const playbackRateSelectId = React.useId();
 
   const videoRef = React.useRef();
@@ -22,9 +23,7 @@ function VideoPlayer({
       </figure>
 
       <div className="actions">
-        <label htmlFor={playbackRateSelectId}>
-          Select playback speed:
-        </label>
+        <label htmlFor={playbackRateSelectId}>Select playback speed:</label>
         <select
           id={playbackRateSelectId}
           value={playbackRate}

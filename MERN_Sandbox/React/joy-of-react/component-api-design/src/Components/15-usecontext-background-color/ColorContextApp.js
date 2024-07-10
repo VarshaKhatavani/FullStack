@@ -2,6 +2,9 @@ import React from "react";
 
 import Home from "./Home";
 
+import "./reset.css";
+import "./styles.css";
+
 export const FavouriteColorContext = React.createContext();
 
 function ColorContextApp() {

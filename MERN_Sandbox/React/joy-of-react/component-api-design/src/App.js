@@ -27,7 +27,11 @@ import "./App.css";
 
 // **** Prop Drilling & use of context provider ****
 
-import PropDrillingApp from "./Components/14-usecontext-prop-drilling-userinfo/PropDrillingApp";
+// import PropDrillingApp from "./Components/14-usecontext-prop-drilling-userinfo/PropDrillingApp";
+// import ColorContextApp from "./Components/15-usecontext-background-color/ColorContextApp";
+// import VideoPlayerApp from "./Components/16-usecontext-videoplayer/VideoPlayerApp";
+import UserApp from "./Components/17-usecontext-modularity/UserApp";
+import ColorPickerApp from "./Components/18-performance-colorpicker/ColorPickerApp";
 
 function App() {
   return (
@@ -36,18 +40,27 @@ function App() {
       {/* <BannerApp /> */}
       {/* <ProductApp /> */}
       {/* <ProductInfoApp /> */}
+
       {/* <SliderApp /> */}
       {/* <ToggleApp /> */}
+
       {/* <SliderApp /> */}
       {/* <ButtonHoverApp /> */}
       {/* <SliderSquareApp /> */}
+
       {/* <LinkButtonApp /> */}
       {/* <ListItemApp /> */}
       {/* <HeadingLevelApp /> */}
       {/* <ImageApp /> */}
       {/* <IconButtonApp /> */}
 
-      <PropDrillingApp />
+      {/* <PropDrillingApp /> */}
+      {/* <ColorContextApp /> */}
+      {/* <VideoPlayerApp /> */}
+
+      {/* <UserApp /> */}
+
+      <ColorPickerApp />
     </>
   );
 }

@@ -3,6 +3,9 @@ import React from "react";
 import AccountDropdown from "./AccountDropdown";
 import CourseIndexLayout from "./CourseIndexLayout";
 
+import "./reset.css";
+import "./styles.css";
+
 function PropDrillingApp() {
   const user = useUser();
 

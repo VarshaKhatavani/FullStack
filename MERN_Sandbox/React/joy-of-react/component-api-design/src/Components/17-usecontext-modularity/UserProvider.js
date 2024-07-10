@@ -1,14 +1,14 @@
-import React from 'react';
-import useSWR from 'swr';
+import React from "react";
+import useSWR from "swr";
 
 export const UserContext = React.createContext();
 
-const ENDPOINT =
-  'https://jor-test-api.vercel.app/api/get-current-user';
+const ENDPOINT = "https://jor-test-api.vercel.app/api/get-current-user";
 
 async function fetcher(endpoint) {
   const response = await fetch(endpoint);
   const json = await response.json();
+  console.log(json);
 
   if (!json.ok) {
     throw json;
@@ -18,10 +18,11 @@ async function fetcher(endpoint) {
 }
 
 function UserProvider({ children }) {
-  const { data: user, error: userError, mutate: mutateUser } = useSWR(
-    ENDPOINT,
-    fetcher
-  );
+  const {
+    data: user,
+    error: userError,
+    mutate: mutateUser,
+  } = useSWR(ENDPOINT, fetcher);
 
   const logOut = React.useCallback(() => {
     mutateUser({
@@ -42,9 +43,7 @@ function UserProvider({ children }) {
   );
 
   return (
-    <UserContext.Provider
-      value={{ user, logOut, editProfile }}
-    >
+    <UserContext.Provider value={{ user, logOut, editProfile }}>
       {children}
     </UserContext.Provider>
   );
