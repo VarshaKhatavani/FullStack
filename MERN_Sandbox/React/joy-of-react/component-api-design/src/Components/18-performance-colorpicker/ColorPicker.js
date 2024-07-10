@@ -1,28 +1,30 @@
-import React from 'react';
+import React from "react";
 
-import { FavouriteColorContext } from './FavouriteColorProvider';
+import { FavouriteColorContext } from "./FavouriteColorProvider";
 
 function ColorPicker() {
   const id = React.useId();
-  
-  const {
-    favouriteColor,
-    setFavouriteColor,
-  } = React.useContext(FavouriteColorContext);
-  
-  console.log('ColorPicker rendered!')
-  
+
+  const value = React.useContext(FavouriteColorContext);
+
+  const { favouriteColor, setFavouriteColor } = value;
+
+  // const {
+  //   favouriteColor,
+  //   setFavouriteColor,
+  // } = React.useContext(FavouriteColorContext);
+
+  console.log("ColorPicker rendered!");
+
   return (
     <div className="color-picker">
-      <label htmlFor={id}>
-        Select a color:
-      </label>
+      <label htmlFor={id}>Select a color:</label>
       <input
         id={id}
         type="color"
         value={favouriteColor}
         onChange={(event) => {
-          setFavouriteColor(event.target.value)
+          setFavouriteColor(event.target.value);
         }}
       />
     </div>

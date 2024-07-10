@@ -4,6 +4,9 @@ import FavouriteColorProvider from "./FavouriteColorProvider";
 import Counter from "./Counter";
 import ColorPicker from "./ColorPicker";
 
+import "./reset.css";
+import "./styles.css";
+
 function ColorPickerApp() {
   const [count, setCount] = React.useState(0);
 
