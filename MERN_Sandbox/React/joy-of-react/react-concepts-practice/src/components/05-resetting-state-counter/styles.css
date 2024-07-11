@@ -1,0 +1,16 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+}
+#root > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 32px;
+}
+button {
+  width: 64px;
+  height: 64px;
+  font-size: 2rem;
+}
