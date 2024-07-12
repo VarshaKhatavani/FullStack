@@ -1,7 +1,7 @@
 // **** Use of Key ****
 
-import PriceDisplayApp from "./components/01-price-radio-selection-keys/PriceDisplayApp";
-// import DuplicatePriceApp from "./components/02-price-radio-selection-classname/DuplicatePriceApp";
+// import PriceDisplayApp from "./components/01-price-radio-selection-keys/PriceDisplayApp";
+import DuplicatePriceApp from "./components/02-price-radio-selection-classname/DuplicatePriceApp";
 
 // **** Use of State Variable  ****
 // import BigCoinApp from "./components/03-canadian-dollar/BigCoinApp";
@@ -14,8 +14,8 @@ import PriceDisplayApp from "./components/01-price-radio-selection-keys/PriceDis
 function App() {
   return (
     <>
-      <PriceDisplayApp />
-      {/*   <DuplicatePriceApp /> *}
+      {/* <PriceDisplayApp /> */}
+      <DuplicatePriceApp />
       {/*  <BigCoinApp /> */}
       {/* <PiggyBankApp /> */}
       {/* <CounterResetApp /> */}
