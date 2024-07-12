@@ -12,3 +12,9 @@
 > Solution : Added unique key instead of price
 
 ![alt text](public/Images/image-2.png)
+
+## Example 3 : On click of coin display floating text
+
+> Solution : added coin value as key to floating text component
+
+![alt text](public/Images/image-3.png)
