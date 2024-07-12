@@ -6,3 +6,9 @@
 > Solution 2 : Using State show or hide class
 
 ![alt text](public/Images/image-1.png)
+
+## Example 2 : when two prices are same animation doesn't work
+
+> Solution : Added unique key instead of price
+
+![alt text](public/Images/image-2.png)
