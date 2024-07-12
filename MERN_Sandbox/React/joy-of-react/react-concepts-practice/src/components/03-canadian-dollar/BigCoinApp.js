@@ -15,7 +15,7 @@ function BigCoinApp() {
       <main>
         <BigCoin numOfCoins={numOfCoins} setNumOfCoins={setNumOfCoins} />
         <div className={styles.floatingNumWrapper}>
-          <FloatingText>+2</FloatingText>
+          <FloatingText retriggerId={numOfCoins}>+2</FloatingText>
         </div>
       </main>
       <footer>

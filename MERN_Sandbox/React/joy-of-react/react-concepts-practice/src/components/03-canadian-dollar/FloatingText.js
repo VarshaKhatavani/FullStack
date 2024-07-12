@@ -1,9 +1,9 @@
-import React from 'react';
-import styles from './FloatingText.module.css';
+import React from "react";
+import styles from "./FloatingText.module.css";
 
-function FloatingText({ children }) {
+function FloatingText({ retriggerId, children }) {
   return (
-    <div className={styles.wrapper}>
+    <div key={retriggerId} className={styles.wrapper}>
       {children}
     </div>
   );
