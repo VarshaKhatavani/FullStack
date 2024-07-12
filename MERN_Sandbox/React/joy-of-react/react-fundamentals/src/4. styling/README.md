@@ -1,6 +1,9 @@
-<h1> Add ClassName using Conditions</h1>
-<h3> Your mission: </h3>
-<h4> Render an unordered list with the class “badge-list” when the user has at least 1 badge.. </h4>
-<h4>If the user has 3+ badges, the “golden”  class should be added to the unordered list (in addition to “badge-list”).</h4>
+# Adding Class Names Conditionally
+
+## Example :
+
+<p>
+Render an unordered list styled with the class "badge-list" when the user possesses at least one badge.
+If the user holds three or more badges, include the additional "golden" class to the unordered list.</p>
 
 ![alt text](<dynamic class.png>)
