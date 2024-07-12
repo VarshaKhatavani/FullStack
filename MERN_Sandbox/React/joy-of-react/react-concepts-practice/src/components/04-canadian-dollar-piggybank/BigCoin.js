@@ -3,13 +3,10 @@ import React from "react";
 import VisuallyHidden from "./VisuallyHidden";
 import styles from "./BigCoin.module.css";
 
-function BigCoin({ numOfCoins, setNumOfCoins }) {
+function BigCoin({ handleCoinUpdate }) {
   return (
     <div className={styles.coinWrapper}>
-      <button
-        className={styles.coin}
-        onClick={() => setNumOfCoins(numOfCoins + 2)}
-      >
+      <button className={styles.coin} onClick={handleCoinUpdate}>
         <VisuallyHidden>Add 2 coins</VisuallyHidden>
         <img
           className={styles.coinImage}

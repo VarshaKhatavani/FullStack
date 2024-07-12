@@ -13,6 +13,13 @@ function PiggyBankApp() {
   const [numOfCoins, setNumOfCoins] = React.useState(0);
   const [numOfPiggyBanks, setNumOfPiggyBanks] = React.useState(0);
 
+  const [floatingTextKey, setFloatingTextKey] = React.useState("initial");
+
+  function coinUpdate() {
+    setNumOfCoins(numOfCoins + 2);
+    setFloatingTextKey(crypto.randomUUID());
+  }
+
   function buyPiggyBank() {
     setNumOfCoins(numOfCoins - PIGGY_BANK_COST);
     setNumOfPiggyBanks(numOfPiggyBanks + 1);
@@ -21,11 +28,11 @@ function PiggyBankApp() {
   return (
     <div className={styles.wrapper}>
       <main>
-        <BigCoin numOfCoins={numOfCoins} setNumOfCoins={setNumOfCoins} />
+        <BigCoin handleCoinUpdate={coinUpdate} />
 
         {numOfCoins > 0 && (
           <div className={styles.floatingNumWrapper}>
-            <FloatingText key={numOfCoins}>+2</FloatingText>
+            <FloatingText key={floatingTextKey}>+2</FloatingText>
           </div>
         )}
 

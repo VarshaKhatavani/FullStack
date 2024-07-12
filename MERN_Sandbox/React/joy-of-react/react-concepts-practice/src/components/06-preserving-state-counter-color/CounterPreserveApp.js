@@ -1,3 +1,17 @@
+/**
+ * How to preserve the state ? 
+ *
+ * In the CounterPreserveApp example, the Counter component is rendered conditionally,
+ * but it does not change the key or cause the component to unmount and remount.
+ * Therefore, the state of the Counter component is preserved across re-renders.
+ * 
+ * Key Principles for Preserving State : 
+ 
+ 1) Avoid Changing the Key Prop
+ 2) Consistent Conditional Rendering
+ 3) Lifting State Up (if necessary)
+ */
+
 import React from "react";
 
 import "../../utils/reset.css";
