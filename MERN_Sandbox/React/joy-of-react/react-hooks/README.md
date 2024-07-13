@@ -1,36 +1,40 @@
-<h1> React.useId() hook </h1>
+# React.useId() Hook
 
 ## Example : Login Form
 
-<h3>Used in header and footer but react adds unique id using React.useId()</h3>
+<h3>This hook is utilized in both the header and footer components to dynamically assign unique IDs using React.useId().</h3>
 
 ![alt text](image-2.png)
 
 ![alt text](image-1.png)
 
-## Example : use of React.useId()
+## Example : Using React.useId()
 
 ![alt text](image.png)
 
 ## Example : SearchApp
 
-<p>#Package Install : npm i react-feather</p>
-<p>Icons : https://feathericons.com/</p>
+#### Package Install : npm i react-feather
+
+#### Icons : https://feathericons.com/
 
 ![alt text](image-3.png)
 
 ## Example : LoginForm
 
-<p> Use hooks at top of the declaration of component not after condition. </p>
+`Usage Tip:` Place hooks at the top of the component declaration, not within conditional statements.
 
 ![alt text](image-4.png)
 
 ![alt text](image-5.png)
 
-<h1> React.useRef() hook </h1>
+# React.useRef() Hook
 
-<p>React.useRef() hook will contain the current properties of selected element. </p>
+The React.useRef() hook stores the current properties of the selected element.
+
 ## use of window.stateValues
+
+`window.stateValues` refers to a global variable in JavaScript that can store and access state-related data across different parts of an application. It allows for centralized state management and can be particularly useful in applications where state needs to be shared and accessed globally.
 
 ![alt text](image-6.png)
 
@@ -48,80 +52,91 @@
 
 ![alt text](image-8.png)
 
-<h1> React.useEffect() hook </h1>
+# React.useEffect() Hook
+
+`React.useEffect()` is a hook in React that allows you to perform side effects in function components. It is used to manage effects like data fetching, subscriptions, or manually changing the DOM from within React components. This hook runs after every render of the component by default, and you can optionally specify cleanup for effects returned by the hook.
+
+It replaces lifecycle methods like componentDidMount, componentDidUpdate, and componentWillUnmount in function components.
 
 ## Example : Counter App
 
-<h3>Update the document title using useEffect</h3>
+<p>This example demonstrates how to use the useEffect hook in React to update the document title dynamically based on the current count value.</p>
 
 ![alt text](image-10.png)
 
 ## Example : Sign Up Form
 
-<h3>Use of useEffect form</h3>
+<p>Use of useEffect in Form Handling</p>
 
 ![alt text](image-9.png)
 
-## Example : Toggle Darkmode
+## Example : Toggle Dark Mode / Store Value to Local Storage
 
-<h3>Toggle darkmode / Store value to the local storage</h3>
-<h4>Used callback funcion inside the useState state variable</h4>
+<p>This example demonstrates using a callback function inside the useState hook to toggle dark mode and store the mode value in local storage.</p>
 
 ![alt text](image-11.png)
 
 ## Example : Input Focus on mount
 
-<h3>On page load set input focus</h3>
+<p>Set focus on an input element when the page loads.</p>
 
 ![alt text](image-12.png)
 
-## Example : Mouse Pointer
+## Example : Track the Mouse Pointer on Mouse Move
 
-<h3>Track the mouse pointer on mouse move</h3>
-<h4>Used useState having object { x, y }</h4>
+Demonstrates using the `useState` hook with an object `{ x, y }` to track the position of the mouse pointer as it moves.
 
 ![alt text](image-13.png)
 
 ## Example : Window Resize
 
-<h3>Set Window Dimensions according to Window Size</h3>
-<h4>Used useState having object { width, height }</h4>
+### Set Window Dimensions According to Window Size
+
+Utilizes the `useState` hook with an object `{ width, height }` to dynamically update and track the dimensions of the window as it is resized.
 
 ![alt text](image-14.png)
 
 ## Example : Intersection Observer
 
-<h3>Slide left the character when division intersect</h3>
+### Slide Left Animation on Intersection
+
+Demonstrates sliding a character left when a specified division intersects using the `Intersection Observer API`.
 
 <video controls src="src/03_useEffect-cleanup-hook/SlideCharacter_InterSectionObserver.mp4"></video>
 
-<h1> Use of return in useEffect : Clean Up Activity </h1>
+# Use of return in useEffect: Clean Up Activity
 
-<h3>Enable/Disable Mouse Tracking based on button click</h3>
+## Example : Enable/Disable Mouse Tracking based on button click
+
+This example illustrates how to use the clean-up function in `useEffect` to enable or disable mouse tracking based on a button click event.
 
 ![alt text](image-15.png)
 
-<h3> Clock Interval - Remove Interval using useEffect return </h3>
+## Example : Clock Interval - Removing Interval with useEffect's return
+
+This example demonstrates how to manage a clock interval and properly clean it up using the `return` function in `useEffect`.
 
 ![alt text](image-16.png)
 
-<h3> Automatically turn on the checkbox if it's unchecked </h3>
-<h4> based on the timeout of 500 ms it will work</h4>
+## Example : Automatically Turn On Checkbox if Unchecked
+
+Automatically checks the checkbox after a timeout of 500 ms if it's currently unchecked.
 
 ![alt text](image-17.png)
 
 ## Example : Media Player (Spacebar)
 
-<h3>Added functionality of space bar & button click</h3>
-<h2> callback function in state variable </h2>
+### Enhanced Functionality: Space Bar and Button Click Interaction
+
+Implements a callback function within a state variable to enhance functionality, allowing interaction through both space bar presses and button clicks.
 
 ## Example : Timer (setInterval / setTimeout)
 
-<h3> Update the counter value</h3>
+Update the counter value
 
 ![alt text](image-18.png)
 
-<h1> Custom Hooks </h1>
+# Custom Hooks
 
 ## Example : Toggle Clock
 
@@ -129,68 +144,71 @@
 
 ## Example : Mouse Position
 
-<h3>with use of custom hooks handle the mouse pointer movements  </h3>
+Handling Mouse Pointer Movements with Custom Hooks
 
 ![alt text](image-20.png)
 
-## Example : Observe the box division avaialblility
+## Example: Observing Box Division Availability
 
-<h3> Used Intersection Observer & custom hooks </h3>
+Using Intersection Observer and Custom Hooks </h3>
 
 ![alt text](image-21.png)
 
-<h1> Stale While Revalidate(SWR) Library && Async Await</h1>
+# Stale While Revalidate (SWR) Library and Async Await
 
-## installed package : npm i swr
+## Example : Use of Async Await and Display Message Based on Status
 
-<h3> Use of async await & according to status display message </h3>
+Demonstrates the usage of async await with the SWR library to fetch data and display messages based on the fetch status.
+
+#### installed package : `npm i swr`
 
 ![alt text](image-22.png)
 
 ## Example : Fetch Temprature using SWR Library
 
-<h3> Fetch Temprature using SWR Library</h3>
+Demonstrates fetching temperature data using the SWR library.
 
 ![alt text](image-24.png)
 
 ## Example : Search Book
 
-<h3> Search Book </h3>
-
 ![alt text](image-23.png)
 
-## Example : Display Spinner while loading Usernames
+## Example : Display Spinner while Loading Usernames
 
-<h3>Load user details using SWR library & show spinner before data load.</h3>
+Illustrates how to use the SWR library to fetch user details and display a spinner while the data is loading.
 
 ![alt text](image-25.png)
 
-<h1> Memoization using useMemo() hook </h1>
+# Memoization Using useMemo() Hook
 
 ## Example : Rows & Columns
 
-<h3> Optimized the re-rendering on mouse pointer move using useMemo() hook </h3>
+Demonstrates how to improve performance by memoizing the computation of rows and columns based on mouse pointer movements using the useMemo() hook.
 
 ![alt text](image-26.png)
 
 ## Example : Shopping Cart
 
-<h3> Optimzed the Re-rendering issue of component on ZIP code updation </h3>
+Addresses and optimizes re-rendering issues of components when updating the ZIP code in a shopping cart application.
 
 ![alt text](image-27.png)
 
 ## Example : ToggleClock
 
-<h3> Optimized the Toggle Clock function which updates </h3>
-<h4> React concept : Reference a function in another component </h4>
-<p> ClockToggle.js : Call the Function </p>
-<p> ClockApp.js    : Reference a function from use-toggle.js</p>
-<p> use-toggle.js  : where function is actually defined</p>
+Optimizing the Toggle Clock function with React Function Reference
+
+**Files Involved:**
+
+_React concept :_ Reference a function in another component
+_ClockToggle.js :_ Calls the Function
+_ClockApp.js :_ References a function from use-toggle.js
+_use-toggle.js :_ Defines a function
 
 ![alt text](image-28.png)
 
 ## Example : Prime Numbers
 
-<h3>Display prime numbers of inputed numbers</h3>
+Demonstrates how to calculate and display prime numbers from a list of inputed numbers.
 
 ![alt text](image-29.png)
