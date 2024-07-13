@@ -1,11 +1,13 @@
-<h1>Use of functions</h1>
-<h3>Your mission : </h3>
-<h4>explore calling functions.</h4>
+# Functions in Use
+
+## Example : Explore the invocation of functions.
 
 ![alt text](image-1.png)
 
-<h1>Function Parameter</h1>
-<h3>Your mission : </h3>
-<h4>passing arguents to functions. On click of ball passing "win" as an argument </h4>
+# Function Parameter
+
+## Example :
+
+**Pass arguments to functions :** When clicking on the ball, pass "win" as an argument.
 
 ![alt text](image-2.png)

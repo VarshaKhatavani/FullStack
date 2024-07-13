@@ -1,6 +1,8 @@
-<h1>Props Vs. State</h1>
-<h3>Your mission : </h3>
-<h4>Onclick of checkbox enable confirm button (Update state & pass props to component) </h4>
+# Props Vs. State
+
+## Example :
+
+<p> Enable the confirm button on checkbox click (Update state and pass props to the component).</p>
 
 ![alt text](image.png)
 

@@ -1,33 +1,37 @@
-## Form Elements
+# Form Elements
 
-<h1>Input Field (One way Binding) </h1>
-<h3>Your mission : </h3>
-<h4> Use of input field to take data from user.  </h4>
+## Example : Input Field (One-way Binding)
+
+<p>Utilize an input field to accept data from the user.</p>
 
 ![alt text](image.png)
 
-<h1>Input Field (Two way Binding)</h1>
-<h3>Your mission : </h3>
-<h4> Use of input field to take data from user & update input box on click of button  </h4>
+## Example : Input Field (Two-way Binding)
+
+<p> Utilize an input field to accept data from the user and update the input box upon clicking a button. </p>
 
 ![alt text](image-1.png)
 
-<h1>Use of dropdown</h1>
+## Example : Dropdown Usage
 
 ![alt text](image-2.png)
 
-<h1>Render dropdown value from object</h1>
+## Example : Rendering Dropdown Values from an Object
 
 ![alt text](image-3.png)
 
-<h1>Use of Checkbox</h1>
+## Example : Checkbox Usage
 
 ![alt text](image-4.png)
 
-<h1>Authentication using form submit</h1>
+## Example : Authentication Form with Form Submission
+
+<p>Create an authentication form that utilizes form submission in React.</p>
 
 ![alt text](image-5.png)
 
-<h1>Generative Art (form of input, dropdown and radio button)</h1>
+## Example : Generative Art with Form Inputs
+
+<p>Explore generative art using form inputs, dropdowns, and radio buttons.</p>
 
 ![alt text](image-6.png)

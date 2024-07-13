@@ -1,14 +1,13 @@
-## Use of Hooks
+# Understanding Hooks
 
-<h1>Asynchronous Updates</h1>
-<h3>Your mission : </h3>
-<h4>Intro to state variables. (React handles state updates asynchronously rather than synchronous
-)</h4>
+## Example : Asynchronous State Updates
+
+<p> Introduction to state variables. React manages state updates asynchronously rather than synchronously.</p>
 
 ![alt text](image.png)
 
-<h1>Counter App</h1>
-<h3>Your mission : </h3>
-<h4> Create a counter app to add, subtract and generate random number. </h4>
+## Example : Counter Application
+
+<p>Develop a counter application that allows adding, subtracting, and generating random numbers.</p>
 
 ![alt text](image-1.png)

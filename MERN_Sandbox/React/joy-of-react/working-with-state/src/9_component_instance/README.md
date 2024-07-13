@@ -1,4 +1,5 @@
-<h1>Component Instance (Mount/Unmount)</h1>
-<h2> Based on input checkbox value component will mount & set to initial. </h2>
+# Component Instance (Mount/Unmount)
+
+## Example : Based on input checkbox value, component will mount & reset to initial state.
 
 ![alt text](image.png)
