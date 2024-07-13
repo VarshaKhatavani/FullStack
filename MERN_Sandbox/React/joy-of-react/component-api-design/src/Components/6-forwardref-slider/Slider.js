@@ -1,19 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import styles from './Slider.module.css';
+import styles from "./Slider.module.css";
 
-function Slider({ label, ...delegated }) {
+function Slider({ label, ...delegated }, ref) {
   const id = React.useId();
-  
+
   return (
     <div className={styles.wrapper}>
-      <label
-        htmlFor={id}
-        className={styles.label}
-      >
+      <label htmlFor={id} className={styles.label}>
         {label}
       </label>
       <input
+        ref={ref}
         {...delegated}
         type="range"
         id={id}
@@ -23,4 +21,4 @@ function Slider({ label, ...delegated }) {
   );
 }
 
-export default Slider;
+export default React.forwardRef(Slider);

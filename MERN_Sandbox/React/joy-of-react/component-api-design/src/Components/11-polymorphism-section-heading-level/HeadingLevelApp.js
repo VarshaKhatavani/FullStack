@@ -7,7 +7,7 @@ import "./styles.css";
 
 function HeadingLevelApp() {
   return (
-    <SectionWithHeading title="George Mouzalon">
+    <SectionWithHeading level={1} title="George Mouzalon">
       <p>
         George Mouzalon (Greek: Γεώργιος Μουζάλων, romanized: Geōrgios Mouzalōn;
         c. 1220 – 25 August 1258) was a high official of the Empire of Nicaea
@@ -22,8 +22,11 @@ function HeadingLevelApp() {
         Laskaris (r. 1258–1261).
       </p>
 
-      <SectionWithHeading title="Biography">
-        <SectionWithHeading title="Early life and service under Theodore II">
+      <SectionWithHeading level={1} title="Biography">
+        <SectionWithHeading
+          level={2}
+          title="Early life and service under Theodore II"
+        >
           <p>
             The Mouzalon family is first attested in the 11th century, but
             produced few notable members until the mid-13th century, with
@@ -42,7 +45,10 @@ function HeadingLevelApp() {
             family.[5]
           </p>
         </SectionWithHeading>
-        <SectionWithHeading title="Appointment as regent and assassination">
+        <SectionWithHeading
+          level={2}
+          title="Appointment as regent and assassination"
+        >
           <p>
             Shortly before Theodore II died on 16 August 1258, he left George
             Mouzalon as regent and guardian of his eight-year-old son John IV.

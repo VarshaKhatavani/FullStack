@@ -32,7 +32,8 @@ Render each guesses of a user.
 
 ## Step 3: Guess slots
 
-<p> In the real Wordle game, the initial screen shows 6 rows of 5 squares : </p>Display words in a grid. Show 6 rows of guesses, no matter how many guesses the user has submitted, and each row will consist of 5 cells.
+**In the real Wordle game, the initial screen shows 6 rows of 5 squares :**
+Display words in a grid. Show 6 rows of guesses, no matter how many guesses the user has submitted, and each row will consist of 5 cells.
 
 As the user submits guesses, their guess will populate the cells:
 

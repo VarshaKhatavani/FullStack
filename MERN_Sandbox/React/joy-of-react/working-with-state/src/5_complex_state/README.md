@@ -1,6 +1,6 @@
-<h1>Use of Complex State</h1>
-<h3>Your mission</h3>
-<h4>Generate Gradient using two colors.</h4>
+# Using Complex State
+
+## Example : Generate Gradient using two colors.
 
 ![alt text](image.png)
 

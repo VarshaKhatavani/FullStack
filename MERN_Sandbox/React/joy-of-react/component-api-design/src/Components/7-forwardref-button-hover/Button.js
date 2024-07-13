@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import styles from './Button.module.css';
+import styles from "./Button.module.css";
 
-function Button({ children }) {
+function Button({ children, ...delegated }, ref) {
   return (
-    <button className={styles.btn}>
+    <button className={styles.btn} ref={ref} {...delegated}>
       {children}
     </button>
   );
 }
 
-export default Button;
+export default React.forwardRef(Button);
