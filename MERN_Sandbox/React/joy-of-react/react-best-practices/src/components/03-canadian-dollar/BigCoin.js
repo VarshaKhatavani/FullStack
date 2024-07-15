@@ -1,6 +1,6 @@
 import React from "react";
 
-import VisuallyHidden from "./VisuallyHidden";
+import VisuallyHidden from "../../utils/VisuallyHidden";
 import styles from "./BigCoin.module.css";
 
 function BigCoin({ numOfCoins, setNumOfCoins }) {

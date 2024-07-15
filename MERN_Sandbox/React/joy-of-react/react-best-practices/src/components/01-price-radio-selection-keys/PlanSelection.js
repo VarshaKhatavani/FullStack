@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import PriceDisplay from './PriceDisplay';
-import styles from './PlanSelection.module.css';
+import PriceDisplay from "./PriceDisplay";
+import styles from "./PlanSelection.module.css";
 
 function PlanSelection({ plans }) {
   const id = React.useId();
-  
+
   const [selectedPlan, setSelectedPlan] = React.useState(plans[0]);
 
   return (
@@ -17,7 +17,7 @@ function PlanSelection({ plans }) {
         <div className={styles.optionGroup}>
           {plans.map((plan) => {
             const uniquePlanId = `${id}-${plan.id}`;
-  
+
             return (
               <div className={styles.option} key={plan.id}>
                 <input
@@ -27,9 +27,7 @@ function PlanSelection({ plans }) {
                   checked={plan === selectedPlan}
                   onChange={() => setSelectedPlan(plan)}
                 />
-                <label htmlFor={uniquePlanId}>
-                  {plan.label}
-                </label>
+                <label htmlFor={uniquePlanId}>{plan.label}</label>
               </div>
             );
           })}

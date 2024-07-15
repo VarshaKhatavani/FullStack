@@ -1,0 +1,35 @@
+h1 {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.shopping-cart {
+  --image-width: 64px;
+  border-bottom: 3px solid hsl(0deg 0% 25%);
+}
+
+.cart-row td {
+  padding: 8px 0px;
+}
+.cart-row td:first-of-type {
+  width: var(--image-width);
+  padding-right: 8px;
+}
+.cart-row td:last-of-type {
+  width: 75px;
+}
+
+.product-thumb {
+  width: var(--image-width);
+}
+
+.checkout-totals {
+  max-width: 300px;
+  margin-left: auto;
+}
+.checkout-totals td {
+  width: 100px;
+}
+.checkout-totals td, .checkout-totals th {
+  padding: 8px 16px;
+}

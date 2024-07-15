@@ -1,0 +1,92 @@
+:root {
+  --shadow-color: 5deg 37% 71%;
+  --shadow-elevation-low:
+    0px -0.3px 0.2px hsl(var(--shadow-color) / 0.38),
+    0px -0.4px 0.3px -2.5px hsl(var(--shadow-color) / 0.25),
+    0px -1px 0.8px -5px hsl(var(--shadow-color) / 0.13);
+  --shadow-elevation-medium:
+    0px -0.3px 0.2px hsl(var(--shadow-color) / 0.39),
+    0px -0.5px 0.4px -1.7px hsl(var(--shadow-color) / 0.3),
+    0px -1.6px 1.2px -3.3px hsl(var(--shadow-color) / 0.2),
+    0px -4.8px 3.6px -5px hsl(var(--shadow-color) / 0.1);
+  --shadow-elevation-high:
+    0px 1px 1.5px hsl(var(--shadow-color) / 0.6),
+    0px 2px 3px hsl(var(--shadow-color) / 0.4),
+    0px 4px 6px hsl(var(--shadow-color) / 0.25),
+    0px 8px 12px hsl(var(--shadow-color) / 0.15),
+    0px 16px 24px hsl(var(--shadow-color) / 0.1);
+}
+body {
+  padding: 4px;
+  background: #ffd9d6;
+}
+html, body, #root {
+  height: 100%;
+}
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.list-wrapper {
+  flex: 1;
+}
+.shopping-list {
+  background: white;
+  box-shadow: var(--shadow-elevation-high);
+  border-radius: 8px;
+  padding: 16px;
+  margin: 0 auto;
+  max-width: 400px;
+  list-style-type: none;
+}
+.shopping-list li {
+  padding: 8px 0px;
+  border-bottom: 1px dashed hsl(4deg 75% 65%);
+}
+.shopping-list li:first-of-type {
+  padding-top: 0;
+}
+.shopping-list li:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.shopping-list li::marker {
+  color: hsl(4deg 75% 65%);
+}
+.new-list-item-form {
+  background: white;
+  box-shadow: var(--shadow-elevation-high);
+  padding: 4px;
+  border-radius: 8px;
+}
+.new-list-item-form form {
+  border: 2px dashed hsl(4deg 75% 65%);
+  border-radius: 4px;
+  padding: 16px;
+  text-align: center;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.row input, .row button {
+  height: 2.5rem;
+  font-size: 1.125rem;
+}
+.row input {
+  flex: 4;
+  min-width: 220px;
+}
+.row button {
+  flex: 1;
+  min-width: 90px;
+}

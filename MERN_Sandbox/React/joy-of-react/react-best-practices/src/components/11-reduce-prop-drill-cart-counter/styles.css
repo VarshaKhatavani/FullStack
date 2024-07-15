@@ -1,0 +1,75 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* This class applies the keyframe animation: */
+.cart-number {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -40%);
+  font-size: 0.75rem;
+  background: hsl(260deg 100% 50%);
+  color: white;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1000px;
+  border: 2px solid white;
+  font-weight: 900;
+  animation: fadeIn 500ms;
+}
+
+body {
+  padding: 0;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+header h1 {
+  font-size: 1.75rem;
+}
+header .cart-button {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+.artist-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.shop {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(180px, 1fr) );
+  grid-gap: 32px 16px;
+  padding: 16px;
+}
+figure img {
+  border-radius: 8px;
+}
+figure figcaption {
+  text-align: center;
+  padding: 16px;
+  font-size: 0.875rem;
+}
+.painting-name {
+  display: block;
+  font-style: italic;
+  font-size: 1rem;
+}
+figure button {
+  display: block;
+  margin: auto;
+  margin-top: -8px;
+}
