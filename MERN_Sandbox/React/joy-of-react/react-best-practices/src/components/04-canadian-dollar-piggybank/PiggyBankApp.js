@@ -15,6 +15,7 @@ function PiggyBankApp() {
 
   const [floatingTextKey, setFloatingTextKey] = React.useState("initial");
 
+  // Created separate states for the coinUpdate button and the buyPiggyBank button.
   function coinUpdate() {
     setNumOfCoins(numOfCoins + 2);
     setFloatingTextKey(crypto.randomUUID());

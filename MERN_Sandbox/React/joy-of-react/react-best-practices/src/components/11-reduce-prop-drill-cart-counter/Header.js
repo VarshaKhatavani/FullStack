@@ -1,17 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import CartButton from './CartButton';
-
-function Header({ numOfItemsInCart }) {
+function Header({ actions }) {
   return (
     <header>
       <h1>
         Pintor Famoso
-        <span className="artist-title">
-          Abstract Expressionist
-        </span>
+        <span className="artist-title">Abstract Expressionist</span>
       </h1>
-      <CartButton numOfItems={numOfItemsInCart} />
+      {actions}
     </header>
   );
 }

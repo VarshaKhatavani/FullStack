@@ -1,16 +1,16 @@
-import React from 'react';
-import { ShoppingCart } from 'react-feather';
+import React from "react";
+import { ShoppingCart } from "react-feather";
 
 function CartButton({ numOfItems }) {
   return (
-    <a href="/" className="cart-button">
+    <span className="cart-button">
       <ShoppingCart />
       {numOfItems > 0 && (
-        <span className="cart-number">
+        <span className="cart-number" key={numOfItems}>
           {numOfItems}
         </span>
       )}
-    </a>
+    </span>
   );
 }
 

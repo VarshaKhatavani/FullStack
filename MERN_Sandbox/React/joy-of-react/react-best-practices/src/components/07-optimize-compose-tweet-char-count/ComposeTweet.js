@@ -1,18 +1,19 @@
-import React from 'react';
+import React from "react";
 
-import VisuallyHidden from './VisuallyHidden';
-import styles from './ComposeTweet.module.css';
+import VisuallyHidden from "../../utils/VisuallyHidden";
+import styles from "./ComposeTweet.module.css";
 
 function ComposeTweet({ maxChars, handleSubmit }) {
-  const [message, setMessage] = React.useState('');
-  const [charsRemaining, setCharsRemaining] =
-    React.useState(maxChars);
+  const [message, setMessage] = React.useState("");
+  // const [charsRemaining, setCharsRemaining] = React.useState(maxChars);
 
   const id = React.useId();
 
-  React.useEffect(() => {
-    setCharsRemaining(maxChars - message.length);
-  }, [maxChars, message]);
+  const charsRemaining = maxChars - message.length;
+
+  // React.useEffect(() => {
+  //   setCharsRemaining(maxChars - message.length);
+  // }, [maxChars, message]);
 
   return (
     <form
@@ -20,7 +21,7 @@ function ComposeTweet({ maxChars, handleSubmit }) {
       onSubmit={(event) => {
         event.preventDefault();
         handleSubmit(message);
-        setMessage('');
+        setMessage("");
       }}
     >
       <div className={styles.header}>
@@ -28,14 +29,11 @@ function ComposeTweet({ maxChars, handleSubmit }) {
         <span
           className={styles.count}
           style={{
-            color: getCharacterColor(
-              charsRemaining
-            ),
+            color: getCharacterColor(charsRemaining),
+            fontSize: "12px",
           }}
         >
-          <VisuallyHidden>
-            Characters remaining:{' '}
-          </VisuallyHidden>
+          <VisuallyHidden>Characters remaining: </VisuallyHidden>
           {charsRemaining}
         </span>
       </div>
@@ -47,26 +45,26 @@ function ComposeTweet({ maxChars, handleSubmit }) {
         required={true}
         value={message}
         onChange={(event) => {
-          setMessage(event.target.value);
+          if (event.target.value.length <= maxChars) {
+            setMessage(event.target.value);
+          }
         }}
       />
 
       <div className={styles.footer}>
-        <button className={styles.tweetBtn}>
-          Tweet
-        </button>
+        <button className={styles.tweetBtn}>Tweet</button>
       </div>
     </form>
   );
 }
 
 function getCharacterColor(charsRemaining) {
-  if (charsRemaining < 0) {
-    return 'hsl(0deg 100% 50%)';
-  } else if (charsRemaining < 15) {
-    return 'hsl(30deg 80% 40%)';
+  if (charsRemaining < 10) {
+    return "hsl(0deg 100% 50%)";
+  } else if (charsRemaining < 75) {
+    return "hsl(30deg 80% 40%)";
   } else {
-    return 'black';
+    return "black";
   }
 }
 
