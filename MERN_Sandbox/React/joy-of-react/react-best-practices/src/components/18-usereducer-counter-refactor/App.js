@@ -1,6 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import Counter from './Counter';
+import Counter from "./Counter";
+
+import "../../utils/reset.css";
+import "./styles.css";
 
 function App() {
   return (

@@ -1,36 +1,32 @@
-import React from 'react';
-import { produce } from 'immer';
+import React from "react";
+
+import { produce } from "immer";
+
+import "../../utils/reset.css";
+import "./styles.css";
 
 const INITIAL_STATE = {
-  colors: [
-    '#FFD500',
-    '#FF0040',
-    '#FF0040',
-    '#FF0040',
-    '#FF0040',
-  ],
+  colors: ["#FFD500", "#FF0040", "#FF0040", "#FF0040", "#FF0040"],
   numOfVisibleColors: 2,
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'add-color': {
+    case "add-color": {
       return {
         ...state,
-        numOfVisibleColors:
-          state.numOfVisibleColors + 1,
+        numOfVisibleColors: state.numOfVisibleColors + 1,
       };
     }
 
-    case 'remove-color': {
+    case "remove-color": {
       return {
         ...state,
-        numOfVisibleColors:
-          state.numOfVisibleColors - 1,
+        numOfVisibleColors: state.numOfVisibleColors - 1,
       };
     }
 
-    case 'change-color': {
+    case "change-color": {
       const nextColors = [...state.colors];
       nextColors[action.index] = action.value;
 
@@ -43,51 +39,37 @@ function reducer(state, action) {
 }
 
 function App() {
-  const [state, dispatch] = React.useReducer(
-    reducer,
-    INITIAL_STATE
-  );
+  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
   const { colors, numOfVisibleColors } = state;
 
-  const visibleColors = colors.slice(
-    0,
-    numOfVisibleColors
-  );
+  const visibleColors = colors.slice(0, numOfVisibleColors);
 
-  const colorStops = visibleColors.join(', ');
+  const colorStops = visibleColors.join(", ");
   const backgroundImage = `linear-gradient(${colorStops})`;
 
   function addColor() {
     if (numOfVisibleColors >= 5) {
-      window.alert(
-        'There is a maximum of 5 colors'
-      );
+      window.alert("There is a maximum of 5 colors");
       return;
     }
 
-    dispatch({ type: 'add-color' });
+    dispatch({ type: "add-color" });
   }
 
   function removeColor() {
     if (numOfVisibleColors <= 2) {
-      window.alert(
-        'There is a minimum of 2 colors'
-      );
+      window.alert("There is a minimum of 2 colors");
       return;
     }
 
-    dispatch({ type: 'remove-color' });
+    dispatch({ type: "remove-color" });
   }
 
   return (
     <div className="wrapper">
       <div className="actions">
-        <button onClick={removeColor}>
-          Remove color
-        </button>
-        <button onClick={addColor}>
-          Add color
-        </button>
+        <button onClick={removeColor}>Remove color</button>
+        <button onClick={addColor}>Add color</button>
       </div>
 
       <div
@@ -101,13 +83,8 @@ function App() {
         {visibleColors.map((color, index) => {
           const colorId = `color-${index}`;
           return (
-            <div
-              key={colorId}
-              className="color-wrapper"
-            >
-              <label htmlFor={colorId}>
-                Color {index + 1}:
-              </label>
+            <div key={colorId} className="color-wrapper">
+              <label htmlFor={colorId}>Color {index + 1}:</label>
               <div className="input-wrapper">
                 <input
                   id={colorId}
@@ -115,7 +92,7 @@ function App() {
                   value={color}
                   onChange={(event) => {
                     dispatch({
-                      type: 'change-color',
+                      type: "change-color",
                       value: event.target.value,
                       index,
                     });

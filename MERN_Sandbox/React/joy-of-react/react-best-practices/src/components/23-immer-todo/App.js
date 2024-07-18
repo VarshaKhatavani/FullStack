@@ -1,12 +1,16 @@
-import React from 'react';
-import { produce } from 'immer';
+import React from "react";
 
-import CreateNewTodo from './CreateNewTodo';
-import TodoList from './TodoList';
+import { produce } from "immer";
+
+import "../../utils/reset.css";
+import "./styles.css";
+
+import CreateNewTodo from "./CreateNewTodo";
+import TodoList from "./TodoList";
 
 function reducer(todos, action) {
   switch (action.type) {
-    case 'create-todo': {
+    case "create-todo": {
       return [
         ...todos,
         {
@@ -15,20 +19,20 @@ function reducer(todos, action) {
         },
       ];
     }
-    
-    case 'toggle-todo': {
+
+    case "toggle-todo": {
       return todos.map((todo) => {
         if (todo.id !== action.id) {
           return todo;
         }
-  
+
         return {
           ...todo,
           isCompleted: !todo.isCompleted,
         };
       });
     }
-    case 'delete-todo': {
+    case "delete-todo": {
       return todos.filter((todo) => todo.id !== action.id);
     }
   }
@@ -39,21 +43,21 @@ function App() {
 
   function handleCreateTodo(value) {
     dispatch({
-      type: 'create-todo',
+      type: "create-todo",
       value,
     });
   }
 
   function handleToggleTodo(id) {
     dispatch({
-      type: 'toggle-todo',
+      type: "toggle-todo",
       id,
     });
   }
 
   function handleDeleteTodo(id) {
     dispatch({
-      type: 'delete-todo',
+      type: "delete-todo",
       id,
     });
   }

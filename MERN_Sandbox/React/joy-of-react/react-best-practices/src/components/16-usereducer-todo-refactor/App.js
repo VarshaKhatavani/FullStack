@@ -1,7 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import CreateNewTodo from './CreateNewTodo';
-import TodoList from './TodoList';
+import CreateNewTodo from "./CreateNewTodo";
+import TodoList from "./TodoList";
+
+import "../../utils/reset.css";
+import "./styles.css";
 
 function App() {
   const [todos, setTodos] = React.useState([]);
@@ -44,9 +47,7 @@ function App() {
           handleDeleteTodo={handleDeleteTodo}
         />
       </div>
-      <CreateNewTodo
-        handleCreateTodo={handleCreateTodo}
-      />
+      <CreateNewTodo handleCreateTodo={handleCreateTodo} />
     </div>
   );
 }

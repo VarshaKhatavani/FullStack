@@ -1,6 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import updateState from './updateState';
+import "../../utils/reset.css";
+import "./styles.css";
+
+import updateState from "./updateState";
 
 function TestResult({ index, input, expected, actual }) {
   const expectedString = JSON.stringify(expected, null, 2);
@@ -8,21 +11,16 @@ function TestResult({ index, input, expected, actual }) {
 
   const isPristine = actual === input;
   const isCorrect =
-    !isPristine &&
-    expectedString.trim() === actualString.trim();
+    !isPristine && expectedString.trim() === actualString.trim();
 
-  const status = isPristine
-    ? 'pristine'
-    : isCorrect
-    ? 'correct'
-    : 'incorrect';
-  
+  const status = isPristine ? "pristine" : isCorrect ? "correct" : "incorrect";
+
   return (
     <li className="test-result">
       <header className={`${status}`}>
         <h2>Result</h2>
-        {status === 'correct' && '✅ You did it!'}
-        {status === 'incorrect' && '🚫 Not right'}
+        {status === "correct" && "✅ You did it!"}
+        {status === "incorrect" && "🚫 Not right"}
       </header>
       <div className="row">
         <div className="col">
@@ -40,41 +38,41 @@ function TestResult({ index, input, expected, actual }) {
 
 const expected = [
   {
-    eventId: 'coffee-with-samantha',
-    date: '2023-01-01T12:30:00.000Z',
+    eventId: "coffee-with-samantha",
+    date: "2023-01-01T12:30:00.000Z",
     metadata: {
       invitees: [
         {
-          name: 'Samantha',
-          email: 'samboombox123@aol.com',
+          name: "Samantha",
+          email: "samboombox123@aol.com",
         },
       ],
     },
   },
   {
-    eventId: 'focus-time',
-    date: '2023-01-01T15:00:00.000Z',
+    eventId: "focus-time",
+    date: "2023-01-01T15:00:00.000Z",
     metadata: {
-      notes: 'Time for me to focus!',
+      notes: "Time for me to focus!",
     },
   },
   {
-    eventId: 'team-meeting',
-    date: '2023-01-02T10:00:00.000Z',
+    eventId: "team-meeting",
+    date: "2023-01-02T10:00:00.000Z",
     metadata: {
-      notes: 'Weekly team catch-up call!',
+      notes: "Weekly team catch-up call!",
       invitees: [
         {
-          name: 'Sadb Fabian',
-          email: 'sfabian@widgetco.com',
+          name: "Sadb Fabian",
+          email: "sfabian@widgetco.com",
         },
         {
-          name: 'Sagit Edvaldo',
-          email: 'sedvaldo@widgetco.com',
+          name: "Sagit Edvaldo",
+          email: "sedvaldo@widgetco.com",
         },
         {
-          name: 'Denis Seppo',
-          email: 'dseppo@widgetco.com',
+          name: "Denis Seppo",
+          email: "dseppo@widgetco.com",
         },
       ],
     },
@@ -83,45 +81,45 @@ const expected = [
 
 const input = Object.freeze([
   Object.freeze({
-    eventId: 'coffee-with-samantha',
-    date: '2023-01-01T12:30:00.000Z',
+    eventId: "coffee-with-samantha",
+    date: "2023-01-01T12:30:00.000Z",
     metadata: Object.freeze({
       invitees: Object.freeze([
         Object.freeze({
-          name: 'Samantha',
-          email: 'samboombox123@aol.com',
+          name: "Samantha",
+          email: "samboombox123@aol.com",
         }),
       ]),
     }),
   }),
   Object.freeze({
-    eventId: 'focus-time',
-    date: '2023-01-01T15:00:00.000Z',
+    eventId: "focus-time",
+    date: "2023-01-01T15:00:00.000Z",
     metadata: Object.freeze({
-      notes: 'Time for me to focus!',
+      notes: "Time for me to focus!",
     }),
   }),
   Object.freeze({
-    eventId: 'team-meeting',
-    date: '2023-01-02T10:00:00.000Z',
+    eventId: "team-meeting",
+    date: "2023-01-02T10:00:00.000Z",
     metadata: Object.freeze({
-      notes: 'Weekly team catch-up call!',
+      notes: "Weekly team catch-up call!",
       invitees: Object.freeze([
         Object.freeze({
-          name: 'Sadb Fabian',
-          email: 'sfabian@widgetco.com',
+          name: "Sadb Fabian",
+          email: "sfabian@widgetco.com",
         }),
         Object.freeze({
-          name: 'Gerarda Nicomedes',
-          email: 'gnicomedes@widgetco.com',
+          name: "Gerarda Nicomedes",
+          email: "gnicomedes@widgetco.com",
         }),
         Object.freeze({
-          name: 'Sagit Edvaldo',
-          email: 'sedvaldo@widgetco.com',
+          name: "Sagit Edvaldo",
+          email: "sedvaldo@widgetco.com",
         }),
         Object.freeze({
-          name: 'Denis Seppo',
-          email: 'dseppo@widgetco.com',
+          name: "Denis Seppo",
+          email: "dseppo@widgetco.com",
         }),
       ]),
     }),
@@ -133,11 +131,7 @@ function App() {
 
   return (
     <ul className="test-list">
-      <TestResult
-        input={input}
-        expected={expected}
-        actual={actual}
-      />
+      <TestResult input={input} expected={expected} actual={actual} />
     </ul>
   );
 }

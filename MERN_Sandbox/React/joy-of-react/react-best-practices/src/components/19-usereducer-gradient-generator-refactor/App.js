@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
+
+import "../../utils/reset.css";
+import "./styles.css";
 
 function App() {
   const [colors, setColors] = React.useState([
-    '#FFD500',
-    '#FF0040',
-    '#FF0040',
-    '#FF0040',
-    '#FF0040',
+    "#FFD500",
+    "#FF0040",
+    "#FF0040",
+    "#FF0040",
+    "#FF0040",
   ]);
-  const [
-    numOfVisibleColors,
-    setNumOfVisibleColors,
-  ] = React.useState(2);
+  const [numOfVisibleColors, setNumOfVisibleColors] = React.useState(2);
 
   const visibleColors = colors.slice(0, numOfVisibleColors);
 
-  const colorStops = visibleColors.join(', ');
+  const colorStops = visibleColors.join(", ");
   const backgroundImage = `linear-gradient(${colorStops})`;
 
   function addColor() {
     if (numOfVisibleColors >= 5) {
-      window.alert('There is a maximum of 5 colors');
+      window.alert("There is a maximum of 5 colors");
       return;
     }
 
@@ -29,7 +29,7 @@ function App() {
 
   function removeColor() {
     if (numOfVisibleColors <= 2) {
-      window.alert('There is a minimum of 2 colors');
+      window.alert("There is a minimum of 2 colors");
       return;
     }
 
@@ -55,9 +55,7 @@ function App() {
           const colorId = `color-${index}`;
           return (
             <div key={colorId} className="color-wrapper">
-              <label htmlFor={colorId}>
-                Color {index + 1}:
-              </label>
+              <label htmlFor={colorId}>Color {index + 1}:</label>
               <div className="input-wrapper">
                 <input
                   id={colorId}

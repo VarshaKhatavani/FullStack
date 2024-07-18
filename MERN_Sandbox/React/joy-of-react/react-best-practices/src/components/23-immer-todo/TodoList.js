@@ -1,7 +1,7 @@
-import React from 'react';
-import { X } from 'react-feather';
+import React from "react";
+import { X } from "react-feather";
 
-import VisuallyHidden from './VisuallyHidden';
+import VisuallyHidden from "../../utils/VisuallyHidden";
 
 function TodoList({ todos, handleToggleTodo, handleDeleteTodo }) {
   return (
@@ -11,7 +11,7 @@ function TodoList({ todos, handleToggleTodo, handleDeleteTodo }) {
           <button
             className={`
               toggle
-              ${isCompleted ? 'completed' : undefined}
+              ${isCompleted ? "completed" : undefined}
             `}
             onClick={() => {
               handleToggleTodo(id);
@@ -19,9 +19,7 @@ function TodoList({ todos, handleToggleTodo, handleDeleteTodo }) {
             aria-label="toggle item"
           >
             {value}
-            {isCompleted && (
-              <VisuallyHidden> (Completed)</VisuallyHidden>
-            )}
+            {isCompleted && <VisuallyHidden> (Completed)</VisuallyHidden>}
           </button>
           <button
             className="delete-btn"
