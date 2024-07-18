@@ -38,7 +38,7 @@ function reducer(todos, action) {
   }
 }
 
-function App() {
+function TodoImmerApp() {
   const [todos, dispatch] = React.useReducer(reducer, []);
 
   function handleCreateTodo(value) {
@@ -76,4 +76,4 @@ function App() {
   );
 }
 
-export default App;
+export default TodoImmerApp;

@@ -6,7 +6,7 @@ import TodoList from "./TodoList";
 import "../../utils/reset.css";
 import "./styles.css";
 
-function App() {
+function TodoApp() {
   const [todos, setTodos] = React.useState([]);
 
   function handleCreateTodo(value) {
@@ -52,4 +52,4 @@ function App() {
   );
 }
 
-export default App;
+export default TodoApp;

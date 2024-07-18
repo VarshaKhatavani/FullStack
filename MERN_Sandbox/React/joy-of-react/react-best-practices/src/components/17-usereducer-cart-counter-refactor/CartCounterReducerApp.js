@@ -7,7 +7,7 @@ import CartButton from "./CartButton";
 import "../../utils/reset.css";
 import "./styles.css";
 
-function App() {
+function CartCounterReducerApp() {
   const [cartItems, setCartItems] = React.useState([]);
 
   function addToCart(item) {
@@ -61,4 +61,4 @@ const DATA = [
   },
 ];
 
-export default App;
+export default CartCounterReducerApp;

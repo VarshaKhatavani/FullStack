@@ -126,7 +126,7 @@ const input = Object.freeze([
   }),
 ]);
 
-function App() {
+function StateUpdateReducerApp() {
   const actual = updateState(input || null);
 
   return (
@@ -136,4 +136,4 @@ function App() {
   );
 }
 
-export default App;
+export default StateUpdateReducerApp;

@@ -5,7 +5,7 @@ import Counter from "./Counter";
 import "../../utils/reset.css";
 import "./styles.css";
 
-function App() {
+function CounterReducerApp() {
   return (
     <>
       <Counter initialVal={10} />
@@ -13,4 +13,4 @@ function App() {
   );
 }
 
-export default App;
+export default CounterReducerApp;

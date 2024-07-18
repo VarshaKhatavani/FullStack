@@ -5,7 +5,7 @@ import { produce } from "immer";
 import "../../utils/reset.css";
 import "./styles.css";
 
-function App() {
+function AddNumbersReducerApp() {
   const [numbers, setNumbers] = React.useState([0, 1, 2]);
 
   function handleClick() {
@@ -29,4 +29,4 @@ function App() {
   );
 }
 
-export default App;
+export default AddNumbersReducerApp;

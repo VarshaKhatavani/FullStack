@@ -1,46 +1,17 @@
 import React from "react";
 
-import { produce } from "immer";
-
 import "../../utils/reset.css";
 import "./styles.css";
 
-const INITIAL_STATE = {
-  colors: ["#FFD500", "#FF0040", "#FF0040", "#FF0040", "#FF0040"],
-  numOfVisibleColors: 2,
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "add-color": {
-      return {
-        ...state,
-        numOfVisibleColors: state.numOfVisibleColors + 1,
-      };
-    }
-
-    case "remove-color": {
-      return {
-        ...state,
-        numOfVisibleColors: state.numOfVisibleColors - 1,
-      };
-    }
-
-    case "change-color": {
-      const nextColors = [...state.colors];
-      nextColors[action.index] = action.value;
-
-      return {
-        ...state,
-        colors: nextColors,
-      };
-    }
-  }
-}
-
-function App() {
-  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
-  const { colors, numOfVisibleColors } = state;
+function GradientReducerApp() {
+  const [colors, setColors] = React.useState([
+    "#FFD500",
+    "#FF0040",
+    "#FF0040",
+    "#FF0040",
+    "#FF0040",
+  ]);
+  const [numOfVisibleColors, setNumOfVisibleColors] = React.useState(2);
 
   const visibleColors = colors.slice(0, numOfVisibleColors);
 
@@ -53,7 +24,7 @@ function App() {
       return;
     }
 
-    dispatch({ type: "add-color" });
+    setNumOfVisibleColors(numOfVisibleColors + 1);
   }
 
   function removeColor() {
@@ -62,7 +33,7 @@ function App() {
       return;
     }
 
-    dispatch({ type: "remove-color" });
+    setNumOfVisibleColors(numOfVisibleColors - 1);
   }
 
   return (
@@ -91,11 +62,10 @@ function App() {
                   type="color"
                   value={color}
                   onChange={(event) => {
-                    dispatch({
-                      type: "change-color",
-                      value: event.target.value,
-                      index,
-                    });
+                    const nextColors = [...colors];
+                    nextColors[index] = event.target.value;
+
+                    setColors(nextColors);
                   }}
                 />
               </div>
@@ -107,4 +77,4 @@ function App() {
   );
 }
 
-export default App;
+export default GradientReducerApp;
