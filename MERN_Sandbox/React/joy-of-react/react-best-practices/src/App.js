@@ -19,7 +19,14 @@
 
 // **** prop drilling ****
 // import NewsArticleApp from "./components/10-lifting-content-news-website/NewsArticleApp";
-import CartCounterApp from "./components/11-reduce-prop-drill-cart-counter/CartCounterApp";
+// import CartCounterApp from "./components/11-reduce-prop-drill-cart-counter/CartCounterApp";
+
+//**** Controlled vs Uncontrolled components ****/
+//import TemperatureApp from "./components/12-controlled-uncontrolled-temperture/TemperatureApp";
+// import CounterApp from "./components/13-controlled-uncontrolled-counter/CounterApp";
+// import ItemListApp from "./components/14-principleofleastpriviledge-listitem/ItemListApp";
+// import TodoApp from "./components/15-centralized-app-todo/TodoApp";
+import TodoApp from "./components/16-usereducer-todo-refactor/TodoApp";
 
 function App() {
   return (
@@ -38,7 +45,16 @@ function App() {
       {/* <TemperatureApp /> */}
 
       {/* <NewsArticleApp /> */}
-      <CartCounterApp />
+      {/* <CartCounterApp /> */}
+
+      {/* <TemperatureApp /> */}
+      {/* <CounterApp /> */}
+      {/* <ItemListApp /> */}
+
+      {/* <TodoApp /> */}
+
+      {/* use reducer */}
+      <TodoApp />
     </>
   );
 }

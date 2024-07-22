@@ -80,3 +80,39 @@ In the CounterPreserveApp example, the Counter component is rendered conditional
 > Solution : demonstrates the technique of passing a component `<CartButton />` as a prop (actions) to another component `<Header />`
 
 ![alt text](public/Images/image-11.png)
+
+## Example : Temprature (Single Source of Truth)
+
+> Issue : Optimized the code by limiting use of hooks and made it in sync.
+
+> Solution : Using Single Source of Truth
+
+![alt text](public/Images/image-12.png)
+
+## Example : Counter App
+
+> Note : By giving the prop a name like initialVal, we're making clear that this prop is only used for the initialized value of the count state variable and and that changes to that prop won't affect the state.
+
+```
+ function CounterApp() {
+    return (
+        <>
+            <Counter initialVal={10} />
+        </>
+    );
+}
+```
+
+![alt text](public/Images/image-13.png)
+
+## Example : Shopping List
+
+> Note : The AddNewItemForm component is controlled because the input's value is supplied and managed via state.
+
+![alt text](public/Images/image-14.png)
+
+## Example : Todo App
+
+> Enhanced the application logic to achieve greater modularity and maintainability.
+
+![alt text](public/Images/image-15.png)

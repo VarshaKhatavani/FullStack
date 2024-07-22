@@ -1,9 +1,9 @@
-import React from 'react';
-import { X } from 'react-feather';
+import React from "react";
+import { X } from "react-feather";
 
-import VisuallyHidden from './VisuallyHidden';
+import VisuallyHidden from "./VisuallyHidden";
 
-function TodoList({ todos, setTodos }) {
+function TodoList({ todos, handleToggleTodo, handleDeleteTodo }) {
   return (
     <ol className="todo-list">
       {todos.map(({ id, value, isCompleted }) => (
@@ -11,41 +11,24 @@ function TodoList({ todos, setTodos }) {
           <button
             className={`
               toggle
-              ${isCompleted ? 'completed' : undefined}
+              ${isCompleted ? "completed" : undefined}
             `}
             onClick={() => {
-              setTodos(todos.map(todo => {
-                if (todo.id !== id) {
-                  return todo;
-                }
-                
-                return {
-                  ...todo,
-                  isCompleted: !todo.isCompleted,
-                }
-              }));
+              handleToggleTodo(id);
             }}
             aria-label="toggle item"
           >
             {value}
-            {isCompleted && (
-              <VisuallyHidden>
-                {' '}(Completed)
-              </VisuallyHidden>
-            )}
+            {isCompleted && <VisuallyHidden> (Completed)</VisuallyHidden>}
           </button>
           <button
             className="delete-btn"
             onClick={() => {
-              setTodos(todos.filter(todo => (
-                todo.id !== id
-              )));
+              handleDeleteTodo(id);
             }}
           >
             <X />
-            <VisuallyHidden>
-              Delete Item
-            </VisuallyHidden>
+            <VisuallyHidden>Delete Item</VisuallyHidden>
           </button>
         </li>
       ))}

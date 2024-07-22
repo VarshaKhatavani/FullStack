@@ -1,38 +1,30 @@
-import React from 'react';
+/** If todo.isCompleted is "undefined", the expression !todo.isCompleted
+ *  will evaluate to "true". This is because the logical NOT operator (!)
+ *  converts any "falsy" value to true. */
 
-function CreateNewTodo({ setTodos }) {
-  const [value, setValue] = React.useState('');
-  
+import React from "react";
+
+function CreateNewTodo({ handleCreateTodo }) {
+  const [value, setValue] = React.useState("");
+
   return (
     <div className="create-new-todo-wrapper">
       <form
         onSubmit={(event) => {
           event.preventDefault();
-
-          setTodos(todos => {
-            return [
-              ...todos,
-              {
-                value,
-                id: crypto.randomUUID(),
-              },
-            ];
-          });
-
-          setValue('');
+          handleCreateTodo(value);
+          setValue("");
         }}
       >
-        <label htmlFor="new-list-form-input">
-          New item:
-        </label>
+        <label htmlFor="new-list-form-input">New item:</label>
 
         <div className="row">
           <input
             id="new-list-form-input"
             type="text"
             value={value}
-            onChange={event => {
-              setValue(event.target.value)
+            onChange={(event) => {
+              setValue(event.target.value);
             }}
           />
           <button>Add</button>
