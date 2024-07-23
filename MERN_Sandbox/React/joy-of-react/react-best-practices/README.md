@@ -139,8 +139,47 @@ In the CounterPreserveApp example, the Counter component is rendered conditional
 
 # Immer
 
+The produce function we get from Immer takes two arguments:
+
+The state we'd like to edit (currentState)
+A callback function ((draftState) => {})
+
+draftState is a special “wrapped” version of currentState.
+I like to think of it as a shielded version: Immer is its guardian, and will make sure that the original object is never mutated,
+no matter what we try to do to this wrapped version.
+
+After running the code in our callback function, produce will resolve to a brand-new object, with all of the modifications applied.
+
 It allows us to write code that looks like it mutates the data. Using some modern JS trickery, however, the data is never actually mutated.
+
+Performance :
+
+Fortunately, Immer doesn't do anything as mundane as a deep copy. It does something much more impressive.
+Immer uses a technique known as structural sharing,
+and it's made possible using Proxies.
+
+Specifically, proxies are special object wrappers that allow us to "intercept" mutations. We wrap the React state in a Proxy, and then when we try to mutate that object, the Proxy swoops in and converts our mutation into an immutable operation.
+
+Note : If Immer was doing a typical “deep copy” operation, everything would be reconstructed from scratch. But thanks to this “structural sharing” magic with Proxies, we only reconstruct the parts of the state that change.
 
 ## Example : UpdateState using Immer(produce)
 
 ## Example : AddNumbers In Array
+
+## Example : Gradient Generator
+
+## Example : Todo App
+
+## Example : Order Pizza
+
+> Task : Manage the state using useReducer and Immer.
+
+**Acceptance Criteria:**
+
+<li>When the user submits the form, a window.alert should show us what size and toppings they've selected.</li>
+<li>The radio buttons and checkboxes should be controlled by the reducer's state.</li>
+<li>The “Select All” button should add all of the toppings.</li>
+<li>If all of the toppings are selected, however, the button label should flip to "Remove All", and it should toggle all of the toppings off.
+</li>
+
+![alt text](public/Images/orderPizza.png)
