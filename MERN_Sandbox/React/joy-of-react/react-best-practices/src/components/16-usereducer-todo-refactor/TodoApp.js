@@ -6,36 +6,54 @@ import TodoList from "./TodoList";
 import "../../utils/reset.css";
 import "./styles.css";
 
-function TodoApp() {
-  const [todos, setTodos] = React.useState([]);
-
-  function handleCreateTodo(value) {
-    setTodos([
+function reducer(todos, action) {
+  if (action.type === "create-todo") {
+    return [
       ...todos,
       {
-        value,
-        id: crypto.randomUUID(),
+        value: action.value,
+        id: action.id,
       },
-    ]);
+    ];
+  } else if (action.type === "toggle-todo") {
+    return todos.map((todo) => {
+      if (todo.id !== action.id) {
+        return todo;
+      }
+
+      return {
+        ...todo,
+        isCompleted: !todo.isCompleted,
+      };
+    });
+  } else if (action.type === "delete-todo") {
+    return todos.filter((todo) => todo.id !== action.id);
+  }
+}
+
+function TodoApp() {
+  const [todos, dispatch] = React.useReducer(reducer, []);
+
+  function handleCreateTodo(value) {
+    dispatch({
+      type: "create-todo",
+      id: crypto.randomUUID(),
+      value,
+    });
   }
 
   function handleToggleTodo(id) {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id !== id) {
-          return todo;
-        }
-
-        return {
-          ...todo,
-          isCompleted: !todo.isCompleted,
-        };
-      })
-    );
+    dispatch({
+      type: "toggle-todo",
+      id,
+    });
   }
 
   function handleDeleteTodo(id) {
-    setTodos(todos.filter((todo) => todo.id !== id));
+    dispatch({
+      type: "delete-todo",
+      id,
+    });
   }
 
   return (

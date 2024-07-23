@@ -3,19 +3,50 @@ import React from "react";
 import "../../utils/reset.css";
 import "./styles.css";
 
+const INITIAL_STATE = {
+  colors: ["#FFD500", "#FF0040", "#FF0040", "#FF0040", "#FF0040"],
+  numOfVisibleColors: 2,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "add-color":
+      return {
+        ...state,
+        numOfVisibleColors: state.numOfVisibleColors + 1,
+      };
+
+    case "remove-color":
+      return {
+        ...state,
+        numOfVisibleColors: state.numOfVisibleColors - 1,
+      };
+
+    case "change-color":
+      const nextColors = [...state.colors];
+      nextColors[action.index] = action.value;
+      return {
+        ...state,
+        colors: nextColors,
+      };
+
+    default:
+      break;
+  }
+}
+
 function GradientReducerApp() {
-  const [colors, setColors] = React.useState([
-    "#FFD500",
-    "#FF0040",
-    "#FF0040",
-    "#FF0040",
-    "#FF0040",
-  ]);
-  const [numOfVisibleColors, setNumOfVisibleColors] = React.useState(2);
+  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE);
+
+  console.log("state....", state);
+
+  const { colors, numOfVisibleColors } = state;
 
   const visibleColors = colors.slice(0, numOfVisibleColors);
-
   const colorStops = visibleColors.join(", ");
+
+  console.log("visibleColors...", visibleColors);
+
   const backgroundImage = `linear-gradient(${colorStops})`;
 
   function addColor() {
@@ -23,8 +54,7 @@ function GradientReducerApp() {
       window.alert("There is a maximum of 5 colors");
       return;
     }
-
-    setNumOfVisibleColors(numOfVisibleColors + 1);
+    dispatch({ type: "add-color" });
   }
 
   function removeColor() {
@@ -32,8 +62,7 @@ function GradientReducerApp() {
       window.alert("There is a minimum of 2 colors");
       return;
     }
-
-    setNumOfVisibleColors(numOfVisibleColors - 1);
+    dispatch({ type: "remove-color" });
   }
 
   return (
@@ -62,10 +91,11 @@ function GradientReducerApp() {
                   type="color"
                   value={color}
                   onChange={(event) => {
-                    const nextColors = [...colors];
-                    nextColors[index] = event.target.value;
-
-                    setColors(nextColors);
+                    dispatch({
+                      type: "change-color",
+                      value: event.target.value,
+                      index,
+                    });
                   }}
                 />
               </div>

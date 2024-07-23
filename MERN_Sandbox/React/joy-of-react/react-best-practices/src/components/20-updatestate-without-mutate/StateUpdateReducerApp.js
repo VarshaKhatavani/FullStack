@@ -8,7 +8,7 @@ import updateState from "./updateState";
 function TestResult({ index, input, expected, actual }) {
   const expectedString = JSON.stringify(expected, null, 2);
   const actualString = JSON.stringify(actual, null, 2);
-
+  console.log(input);
   const isPristine = actual === input;
   const isCorrect =
     !isPristine && expectedString.trim() === actualString.trim();
@@ -128,7 +128,7 @@ const input = Object.freeze([
 
 function StateUpdateReducerApp() {
   const actual = updateState(input || null);
-
+  console.log(actual);
   return (
     <ul className="test-list">
       <TestResult input={input} expected={expected} actual={actual} />

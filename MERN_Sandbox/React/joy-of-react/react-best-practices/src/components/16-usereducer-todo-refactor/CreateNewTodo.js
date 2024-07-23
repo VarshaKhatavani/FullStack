@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 
 function CreateNewTodo({ handleCreateTodo }) {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState("");
 
   return (
     <div className="create-new-todo-wrapper">
       <form
         onSubmit={(event) => {
           event.preventDefault();
-
           handleCreateTodo(value);
-
-          setValue('');
+          setValue("");
         }}
       >
         <label htmlFor="new-list-form-input">New item:</label>

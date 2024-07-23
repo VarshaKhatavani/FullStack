@@ -26,7 +26,13 @@
 // import CounterApp from "./components/13-controlled-uncontrolled-counter/CounterApp";
 // import ItemListApp from "./components/14-principleofleastpriviledge-listitem/ItemListApp";
 // import TodoApp from "./components/15-centralized-app-todo/TodoApp";
-import TodoApp from "./components/16-usereducer-todo-refactor/TodoApp";
+
+// **** use Reducer  ****
+// import TodoApp from "./components/16-usereducer-todo-refactor/TodoApp";
+// import CartCounterReducerApp from "./components/17-usereducer-cart-counter-refactor/CartCounterReducerApp";
+// import CounterReducerApp from "./components/18-usereducer-counter-refactor/CounterReducerApp";
+// import GradientReducerApp from "./components/19-usereducer-gradient-generator-refactor/GradientReducerApp";
+// import StateUpdateReducerApp from "./components/20-updatestate-without-mutate/StateUpdateReducerApp";
 
 function App() {
   return (
@@ -54,7 +60,11 @@ function App() {
       {/* <TodoApp /> */}
 
       {/* use reducer */}
-      <TodoApp />
+      {/* <TodoApp /> */}
+      {/* <CartCounterReducerApp /> */}
+      {/* <CounterReducerApp /> */}
+      {/* <GradientReducerApp /> */}
+      {/* <StateUpdateReducerApp /> */}
     </>
   );
 }
