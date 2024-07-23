@@ -136,3 +136,11 @@ In the CounterPreserveApp example, the Counter component is rendered conditional
 ## Example : Update State without mutate any array or objects
 
 ![alt text](public/Images/updateState.png)
+
+# Immer
+
+It allows us to write code that looks like it mutates the data. Using some modern JS trickery, however, the data is never actually mutated.
+
+## Example : UpdateState using Immer(produce)
+
+## Example : AddNumbers In Array
