@@ -33,3 +33,16 @@ function updateState(currentState) {
 }
 
 export default updateState;
+
+/** Solution 2 : Using Immer
+ * 
+  import { produce } from 'immer';
+
+  function updateState(currentState) {
+    return produce(currentState, (draftState) => {
+      draftState[2].metadata.invitees.splice(1, 1);
+    });
+  }
+
+  export default updateState;
+ */

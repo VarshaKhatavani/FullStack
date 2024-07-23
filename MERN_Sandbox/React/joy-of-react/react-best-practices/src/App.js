@@ -12,7 +12,6 @@
 // import CounterPreserveApp from "./components/06-preserving-state-counter-color/CounterPreserveApp";
 
 // **** Optimize ****
-
 // import ComposeTweetApp from "./components/07-optimize-compose-tweet-char-count/ComposeTweetApp";
 // import CartTotalApp from "./components/08-optimize-shopping-cart-total-issue/CartTotalApp";
 // import TemperatureApp from "./components/09-optimize-tempreture-cel-fah/TemperatureApp";
@@ -34,6 +33,7 @@
 // import GradientReducerApp from "./components/19-usereducer-gradient-generator-refactor/GradientReducerApp";
 // import StateUpdateReducerApp from "./components/20-updatestate-without-mutate/StateUpdateReducerApp";
 
+import AddNumbersReducerApp from "./components/21-Immer-add-numbers/AddNumbersReducerApp";
 function App() {
   return (
     <>
@@ -42,29 +42,35 @@ function App() {
       {/* <BigCoinApp /> */}
       {/* <PiggyBankApp /> */}
 
+      {/* ----- Preserving and Resetting State -----  */}
       {/* <CounterResetApp /> */}
       {/* <CounterPreserveApp /> */}
 
-      {/* Optimize */}
+      {/* ----- Optimize ----- */}
       {/* <ComposeTweetApp /> */}
       {/* <CartTotalApp /> */}
       {/* <TemperatureApp /> */}
 
+      {/* ----- prop drilling ----- */}
       {/* <NewsArticleApp /> */}
       {/* <CartCounterApp /> */}
 
+      {/* ----- Controlled vs Uncontrolled components ----- */}
       {/* <TemperatureApp /> */}
       {/* <CounterApp /> */}
       {/* <ItemListApp /> */}
-
       {/* <TodoApp /> */}
 
-      {/* use reducer */}
+      {/* ----- use reducer ----- */}
       {/* <TodoApp /> */}
       {/* <CartCounterReducerApp /> */}
       {/* <CounterReducerApp /> */}
       {/* <GradientReducerApp /> */}
       {/* <StateUpdateReducerApp /> */}
+
+      {/* ----- Immer Introduced ----- */}
+      {/* <StateUpdateReducerApp /> */}
+      <AddNumbersReducerApp />
     </>
   );
 }
