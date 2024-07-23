@@ -111,8 +111,28 @@ In the CounterPreserveApp example, the Counter component is rendered conditional
 
 ![alt text](public/Images/image-14.png)
 
-## Example : Todo App
+## Example : Todo App (Centralized Logic in App)
 
 > Enhanced the application logic to achieve greater modularity and maintainability.
 
 ![alt text](public/Images/image-15.png)
+
+# useReducer Hook
+
+## Example : Todo App (Updated code using useReducer)
+
+## Example : Cart Counter App (Updated code using useReducer)
+
+## Example : Counter App (Updated code using useReducer)
+
+## Example : Gradient Generator (Utilized two state variables and updated logic using useReducer)
+
+> Overview
+
+1. State Management: The component uses a reducer function to handle the state changes.
+2. State: It includes a list of colors and the number of visible colors.
+3. Actions: Users can add or remove colors from the gradient and change the colors.
+
+## Example : Update State without mutate any array or objects
+
+![alt text](public/Images/updateState.png)
