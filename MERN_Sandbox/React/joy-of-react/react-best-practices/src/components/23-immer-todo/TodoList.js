@@ -6,7 +6,7 @@ import VisuallyHidden from "../../utils/VisuallyHidden";
 function TodoList({ todos, handleToggleTodo, handleDeleteTodo }) {
   return (
     <ol className="todo-list">
-      {todos.map(({ id, value, isCompleted }) => (
+      {todos.map(({ id, value, isCompleted }, index) => (
         <li key={id}>
           <button
             className={`
@@ -14,7 +14,7 @@ function TodoList({ todos, handleToggleTodo, handleDeleteTodo }) {
               ${isCompleted ? "completed" : undefined}
             `}
             onClick={() => {
-              handleToggleTodo(id);
+              handleToggleTodo(index);
             }}
             aria-label="toggle item"
           >

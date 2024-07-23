@@ -33,7 +33,11 @@
 // import GradientReducerApp from "./components/19-usereducer-gradient-generator-refactor/GradientReducerApp";
 // import StateUpdateReducerApp from "./components/20-updatestate-without-mutate/StateUpdateReducerApp";
 
-import AddNumbersReducerApp from "./components/21-Immer-add-numbers/AddNumbersReducerApp";
+// import AddNumbersReducerApp from "./components/21-Immer-add-numbers/AddNumbersReducerApp";
+// import GradientImmerApp from "./components/22-immer-gradient-generator/GradientImmerApp";
+// import TodoImmerApp from "./components/23-immer-todo/TodoImmerApp";
+import OrderPizzaImmerApp from "./components/24-immer-orderpizza-upbeat/OrderPizzaImmerApp";
+
 function App() {
   return (
     <>
@@ -41,36 +45,33 @@ function App() {
       {/* <DuplicatePriceApp /> */}
       {/* <BigCoinApp /> */}
       {/* <PiggyBankApp /> */}
-
       {/* ----- Preserving and Resetting State -----  */}
       {/* <CounterResetApp /> */}
       {/* <CounterPreserveApp /> */}
-
       {/* ----- Optimize ----- */}
       {/* <ComposeTweetApp /> */}
       {/* <CartTotalApp /> */}
       {/* <TemperatureApp /> */}
-
       {/* ----- prop drilling ----- */}
       {/* <NewsArticleApp /> */}
       {/* <CartCounterApp /> */}
-
       {/* ----- Controlled vs Uncontrolled components ----- */}
       {/* <TemperatureApp /> */}
       {/* <CounterApp /> */}
       {/* <ItemListApp /> */}
       {/* <TodoApp /> */}
-
       {/* ----- use reducer ----- */}
       {/* <TodoApp /> */}
       {/* <CartCounterReducerApp /> */}
       {/* <CounterReducerApp /> */}
       {/* <GradientReducerApp /> */}
       {/* <StateUpdateReducerApp /> */}
-
       {/* ----- Immer Introduced ----- */}
       {/* <StateUpdateReducerApp /> */}
-      <AddNumbersReducerApp />
+      {/* <AddNumbersReducerApp /> */}
+      {/* <GradientImmerApp /> */}
+      {/* <TodoImmerApp /> */}
+      <OrderPizzaImmerApp />
     </>
   );
 }

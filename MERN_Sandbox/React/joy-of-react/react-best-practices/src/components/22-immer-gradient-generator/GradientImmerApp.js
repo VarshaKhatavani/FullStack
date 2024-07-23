@@ -11,31 +11,29 @@ const INITIAL_STATE = {
 };
 
 function reducer(state, action) {
-  switch (action.type) {
-    case "add-color": {
-      return {
-        ...state,
-        numOfVisibleColors: state.numOfVisibleColors + 1,
-      };
-    }
+  return produce(state, (draftState) => {
+    console.log(state);
 
-    case "remove-color": {
-      return {
-        ...state,
-        numOfVisibleColors: state.numOfVisibleColors - 1,
-      };
-    }
+    switch (action.type) {
+      case "add-color": {
+        draftState.numOfVisibleColors += 1;
+        break;
+      }
 
-    case "change-color": {
-      const nextColors = [...state.colors];
-      nextColors[action.index] = action.value;
+      case "remove-color": {
+        draftState.numOfVisibleColors -= 1;
+        break;
+      }
 
-      return {
-        ...state,
-        colors: nextColors,
-      };
+      case "change-color": {
+        draftState.colors[action.index] = action.value;
+        break;
+      }
+
+      default:
+        console.error("Incorrect");
     }
-  }
+  });
 }
 
 function GradientImmerApp() {

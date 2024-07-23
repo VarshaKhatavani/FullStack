@@ -9,33 +9,30 @@ import CreateNewTodo from "./CreateNewTodo";
 import TodoList from "./TodoList";
 
 function reducer(todos, action) {
-  switch (action.type) {
-    case "create-todo": {
-      return [
-        ...todos,
-        {
+  return produce(todos, (draftTodos) => {
+    switch (action.type) {
+      case "create-todo": {
+        draftTodos.push({
           value: action.value,
           id: crypto.randomUUID(),
-        },
-      ];
-    }
+        });
+        break;
+      }
 
-    case "toggle-todo": {
-      return todos.map((todo) => {
-        if (todo.id !== action.id) {
-          return todo;
-        }
+      case "toggle-todo": {
+        draftTodos[action.index].isCompleted =
+          !draftTodos[action.index].isCompleted;
+        break;
+      }
+      case "delete-todo": {
+        draftTodos.splice(action.index, 1);
+        break;
+      }
 
-        return {
-          ...todo,
-          isCompleted: !todo.isCompleted,
-        };
-      });
+      default:
+        console.error("error");
     }
-    case "delete-todo": {
-      return todos.filter((todo) => todo.id !== action.id);
-    }
-  }
+  });
 }
 
 function TodoImmerApp() {
@@ -44,14 +41,15 @@ function TodoImmerApp() {
   function handleCreateTodo(value) {
     dispatch({
       type: "create-todo",
+      id: crypto.randomUUID(),
       value,
     });
   }
 
-  function handleToggleTodo(id) {
+  function handleToggleTodo(index) {
     dispatch({
       type: "toggle-todo",
-      id,
+      index,
     });
   }
 
