@@ -37,6 +37,7 @@
 // import GradientImmerApp from "./components/22-immer-gradient-generator/GradientImmerApp";
 // import TodoImmerApp from "./components/23-immer-todo/TodoImmerApp";
 import OrderPizzaImmerApp from "./components/24-immer-orderpizza-upbeat/OrderPizzaImmerApp";
+// import ErrorBoundaryApp from "./components/25_error-boundaries-hopeful-maxwell/ErrorBoundryApp";
 
 function App() {
   return (
@@ -72,6 +73,8 @@ function App() {
       {/* <GradientImmerApp /> */}
       {/* <TodoImmerApp /> */}
       <OrderPizzaImmerApp />
+
+      {/* <ErrorBoundaryApp /> */}
     </>
   );
 }
