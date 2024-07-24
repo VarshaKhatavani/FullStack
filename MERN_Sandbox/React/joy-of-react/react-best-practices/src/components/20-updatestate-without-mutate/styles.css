@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "Source Code Pro";
+  src: url("/fonts/source-code-pro/regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+.test-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.test-result {
+  border-bottom: 1px solid hsl(0deg 0% 0% / 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.col {
+  flex: 1;
+  min-width: 450px;
+}
+
+.box {
+  padding: 16px;
+  background: hsl(0deg 0% 0% / 0.06);
+  font-family: "Source Code Pro", monospace;
+  border-radius: 8px;
+  margin-top: 8px;
+  white-space: pre-wrap;
+}
+
+.correct {
+  background: hsl(130deg 100% 40% / 0.3);
+}
+
+.incorrect {
+  background: hsl(345deg 100% 50% / 0.25);
+}
