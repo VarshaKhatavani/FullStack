@@ -183,3 +183,9 @@ Note : If Immer was doing a typical “deep copy” operation, everything would 
 </li>
 
 ![alt text](public/Images/orderPizza.png)
+
+## Example - Use of Error Boundry
+
+If application throws an error during rendering, React will remove its UI from the screen. To prevent this, you can wrap a part of your UI into an error boundary. An error boundary is a special component that lets you display some fallback UI instead of the part that crashed—for example, an error message.
+
+![alt text](public/Images/ErrorBoundry-25.png)
