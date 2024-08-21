@@ -5,6 +5,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDebian } from "@fortawesome/free-brands-svg-icons";
+import { CDN_URL } from "../utils/constants.js";
 
 const RestaurantMenu = () => {
   // const [isVegOnly, setIsVegOnly ] = useState(false);
@@ -29,6 +30,8 @@ const RestaurantMenu = () => {
   console.log(resHeaderInfo);
 
   let offers = resInfo[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
+
+  console.log(offers);
   let menuList = resInfo[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
   // I have used slice method (newMenuList)  but it isn't optimized way so to achieve filter method
@@ -96,29 +99,35 @@ const RestaurantMenu = () => {
           </span>
         </div>
       </div>
-      <div className="delivery-info p-4 scroll-smooth overflow-x-scroll whitespace-nowrap custom-scrollbar">
+      <div className="delivery-info p-4 scroll-smooth ">
         <div className="distance font-bold text-xl">
           <span>Deals for you </span>
         </div>
-        <div className="latest-offers flex  justify-starts py-4">
+        <div className="latest-offers flex justify-start py-4 overflow-x-scroll  whitespace-nowrap  custom-scrollbar  ">
           {offers != undefined &&
-            offers.map((offer, index) => {
+            offers.map((offer) => {
               return (
                 <div
                   key={offer?.info?.offerIds}
-                  className="offers relative border border-solid mr-8 rounded-lg "
+                  className="offers relative border border-solid mr-8 mb-4 rounded-xl w-[20rem] flex-shrink-0"
                 >
-                  <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-[11px] text-red-500 font-bold border-b-[1px]">
-                    {offer?.info?.offerTag}
-                  </span>
-                  <div className="offer-container p-4">
-                    <span className="offer font-bold text-xs ml-8">
-                      {offer?.info?.header}
-                    </span>
-                    <br />
-                    <span className="coupon-offer text-xs ml-2">
-                      {offer?.info?.couponCode} | {offer?.info?.description}
-                    </span>
+                  <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-[11px] text-red-500 font-bold border-b-[1px]"></span>
+                  <div className="offer-container p-4 flex ">
+                    <img
+                      className="h-10 w-10"
+                      src={CDN_URL + offer?.info?.offerLogo}
+                    ></img>
+
+                    <div>
+                      <div className="offer font-bold text-xl ml-2">
+                        {offer?.info?.header}
+                      </div>
+                      <div className="coupon-offer block text-xs ml-2">
+                        {offer?.info?.couponCode
+                          ? offer?.info?.couponCode
+                          : offer?.info?.description}
+                      </div>
+                    </div>
                   </div>
                 </div>
               );
@@ -133,17 +142,15 @@ const RestaurantMenu = () => {
                     )}         */}
         {/* </div> */}
 
-        <div className="font-semibold text-base justify-center flex">
+        <div className="font-semibold text-sm justify-center flex">
           <FontAwesomeIcon
             icon={faDebian}
-            style={{ color: "#FFD43B" }}
-            className="px-4 mt-[1px] -rotate-45"
+            className="px-4 mt-[1px] -rotate-45 text-orange-500"
           />
-          <span>MENU</span>
+          MENU
           <FontAwesomeIcon
             icon={faDebian}
-            style={{ color: "#FFD43B" }}
-            className="px-4 mt-[1px] rotate-90"
+            className="px-4 mt-[1px] rotate-90 text-orange-500"
           />
         </div>
 
