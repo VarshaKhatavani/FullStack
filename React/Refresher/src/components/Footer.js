@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="sm:w-1/4 items-center mb-8">
             <div className="flex">
               <img src={myImage} alt="Swiggy Logo" style={{ height: "3rem" }} />
-              <span className="font-bold text-3xl mt-2">Swiggy</span>
+              <span className="font-bold text-3xl mt-2">Flavours Fusion</span>
             </div>
             <div className="ml-4 text-white-500 mt-2">
               <p>&copy; {new Date().getFullYear()} Swiggy Clone by Varsha</p>

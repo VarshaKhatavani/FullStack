@@ -10,6 +10,7 @@ import SignIn from "./src/components/SignInPage";
 import SignUp from "./src/components/SignUpPage";
 import Footer from "./src/components/Footer";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import ScrollToTop from "./src/components/ScrollToTop";
 
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import UserContext from "./src/utils/UserContext";
@@ -40,12 +41,12 @@ const AppLayout = () => {
       <RestaurantProvider>
         <div className="body">
           <UserContext.Provider value={{ loggedInUser: userName }}>
+            <ScrollToTop />
             <Header />
             <Outlet />
           </UserContext.Provider>
         </div>
-        <div className="">
-          {" "}
+        <div>
           <Footer />
         </div>
       </RestaurantProvider>

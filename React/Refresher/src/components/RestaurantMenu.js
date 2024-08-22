@@ -13,14 +13,13 @@ const RestaurantMenu = () => {
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
   const [showIndex, setShowIndex] = useState(0);
-  const [showIndices, setShowIndices] = useState([]);
 
   const handleShowIndex = (index) => {
-    const updatedIndex = showIndices.includes(index)
-      ? showIndices.filter((i) => i !== index)
-      : [...showIndices, index];
-    setShowIndices(updatedIndex);
-    console.log(showIndices);
+    console.log("index...", index);
+    setShowIndex((prevIndex) => {
+      console.log("prevIndex...", prevIndex);
+      return prevIndex === index ? null : index;
+    });
   };
 
   if (resInfo === null) return;
@@ -105,10 +104,10 @@ const RestaurantMenu = () => {
         </div>
         <div className="latest-offers flex justify-start py-4 overflow-x-scroll  whitespace-nowrap  custom-scrollbar  ">
           {offers != undefined &&
-            offers.map((offer) => {
+            offers.map((offer, index) => {
               return (
                 <div
-                  key={offer?.info?.offerIds}
+                  key={offer?.info?.offerIds || index}
                   className="offers relative border border-solid mr-8 mb-4 rounded-xl w-[20rem] flex-shrink-0"
                 >
                   <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-[11px] text-red-500 font-bold border-b-[1px]"></span>
@@ -135,13 +134,6 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <div className="menu-list">
-        {/* <div className="vegan-header">  */}
-        {/* { menuList!= undefined && menuList[0]?.card?.card?.isPureVeg ?  "pure veg" : "veg only" }                */}
-        {/* { menuList!= undefined && menuList[0].card.card.isPureVeg && (
-                        <button onClick={toggleVegType}>Toggle</button>
-                    )}         */}
-        {/* </div> */}
-
         <div className="font-semibold text-sm justify-center flex">
           <FontAwesomeIcon
             icon={faDebian}
@@ -160,29 +152,20 @@ const RestaurantMenu = () => {
               console.log(category);
               return (
                 <>
-                  {/* controlled component */}
-                  <RestaurantCategory
-                    key={index}
-                    data={category?.card?.card}
-                    showItems={showIndices.includes(index)}
-                    setShowIndex={() => {
-                      console.log("before", index);
-                      console.log("showIndex", showIndex);
-                      //setShowIndex(index);
-                      console.log("after", index);
-                      handleShowIndex(index);
-                    }}
-                  />
+                  <div key={category?.card?.card?.id || index}>
+                    {/* controlled component */}
+                    <RestaurantCategory
+                      key={index}
+                      data={category?.card?.card}
+                      showItems={showIndex === index}
+                      setShowIndex={() => {
+                        handleShowIndex(index);
+                      }}
+                    />
+                  </div>
                 </>
               );
             })}
-            {/* <div className="bg-green-500 w-8/12 ml-2 m-auto justify-between text-white font-semibold rounded-sm flex items-center p-2 absolute bottom-0">
-                                     <div className='flex'>
-                                        <div className=' p-[1px]'> 2 items  </div>
-                                        <div className=' p-[1px]'> &nbsp; | 350 </div>
-                                     </div>
-                                     <div> View Cart</div>
-                              </div>                                               */}
           </div>
         </div>
       </div>
