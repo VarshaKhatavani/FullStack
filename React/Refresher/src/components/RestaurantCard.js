@@ -16,7 +16,7 @@ const RestaurantCard = (props) => {
     aggregatedDiscountInfoV3,
   } = resData?.info;
 
-  console.log(CDN_URL + cloudinaryImageId);
+  // console.log(CDN_URL + cloudinaryImageId);
 
   // const starCount = Math.round(avgRating);
 
