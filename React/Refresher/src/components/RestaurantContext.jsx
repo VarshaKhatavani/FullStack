@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 // create context
 const RestaurantContext = createContext();
@@ -20,6 +26,9 @@ export const RestaurantProvider = ({ children }) => {
   const [locale, setLocale] = useState([]);
   const [error, setError] = useState(null);
 
+  // Ref to track if fetch has been initiated
+  // const hasFetchedData = useRef(false);
+
   console.log(listOfRestaurants);
 
   useEffect(() => {
@@ -39,15 +48,22 @@ export const RestaurantProvider = ({ children }) => {
     } else {
       setError("Geolocation is not supported by browser.");
     }
-    console.log("location.....", location);
-    // fetch restuarants list
-    fetchData();
-
-    //fetch localeinfo from latitude & longitude
-    //fetchLocaleInfo();
   }, []);
 
-  const fetchData = async () => {
+  // !hasFetchedData.current
+  // hasFetchedData.current = true; // Prevent further fetches
+
+  useEffect(() => {
+    if (location.latitude && location.longitude) {
+      // fetch restuarants list
+      fetchData();
+
+      //fetch localeinfo from latitude & longitude
+      //fetchLocaleInfo();
+    }
+  }, [location]);
+
+  const fetchData = useCallback(async () => {
     try {
       const data = await fetch(
         `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}&page_type=DESKTOP_WEB_LISTING`,
@@ -61,25 +77,26 @@ export const RestaurantProvider = ({ children }) => {
       if (!data.ok) {
         throw new Error("Network response was not ok");
       }
-      const json = await data.json();
+      const restData = await data.json();
       console.log("Hey, I looking for restaurants");
-      console.log(json);
+      console.log(restData);
       console.log(
-        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
-      setListOfRestaurants(
-        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
-      setFilteredRestaurant(
-        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
+
+      const restaurantList =
+        restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants;
+
+      if (restaurantList) {
+        setListOfRestaurants(restaurantList);
+        setFilteredRestaurant(restaurantList);
+      }
     } catch (error) {
       console.error("An error occurred while fetching data:", error);
     }
-  };
+  }, [location.latitude, location.longitude]);
 
   return (
     <>
