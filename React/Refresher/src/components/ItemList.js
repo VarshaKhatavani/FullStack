@@ -2,6 +2,11 @@ import { useParams } from "react-router-dom";
 import { addItem, removeItem } from "../utils/cartSlice.js";
 import { CDN_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
+import VegIcon from "../../images/veg-icon.jpg";
+import NonVegIcon from "../../images/non-veg-icon.png";
+import bestSeller from "../../images/best-seller.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const ItemList = ({ items, setShowItemCount }) => {
   console.log(items);
@@ -142,13 +147,79 @@ const ItemList = ({ items, setShowItemCount }) => {
                 className="w-full flex justify-between py-4 border-b-[1px]"
               >
                 <div className="py-2 w-11/12">
-                  <div className="font-bold">{item?.card?.info?.name}</div>
+                  <div className="flex space-x-4">
+                    {item?.card?.info?.isBestseller ? (
+                      <img
+                        src={bestSeller}
+                        className="w-36 flex  ml-[-20px]"
+                        alt={item?.card?.info?.name}
+                        style={{ width: "110px", height: "75px" }}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <div className="flex space-x-2 ">
+                    {item?.card?.info?.itemAttribute?.vegClassifier == "VEG" ? (
+                      <img
+                        src={VegIcon}
+                        className="w-36 mt-1"
+                        alt={item?.card?.info?.name}
+                        style={{ width: "18px", height: "18px" }}
+                      />
+                    ) : (
+                      <img
+                        src={NonVegIcon}
+                        className="w-36 mt-1"
+                        alt={item?.card?.info?.name}
+                        style={{
+                          width: "18px",
+                          height: "18px",
+                        }}
+                      />
+                    )}
+                    <div className="font-bold">{item?.card?.info?.name}</div>
+                  </div>
 
-                  <div className="text-sm mt-2">
+                  <div className="text-sm mt-2 font-semibold">
                     {formatCurrency(
                       item?.card?.info?.price || item?.card?.info?.defaultPrice
                     )}
                   </div>
+                  {item?.card?.info?.ratings?.aggregatedRating?.rating ? (
+                    <div className="text-xs font-bold mt-1">
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        className={
+                          item?.card?.info?.ratings?.aggregatedRating?.rating >
+                          3
+                            ? "text-green-600"
+                            : "text-yellow-600"
+                        }
+                      />{" "}
+                      {""}
+                      <span
+                        className={
+                          item?.card?.info?.ratings?.aggregatedRating?.rating >
+                          3
+                            ? "text-green-600"
+                            : "text-yellow-600"
+                        }
+                      >
+                        {" "}
+                        {
+                          item?.card?.info?.ratings?.aggregatedRating?.rating
+                        }{" "}
+                      </span>{" "}
+                      (
+                      {
+                        item?.card?.info?.ratings?.aggregatedRating
+                          ?.ratingCountV2
+                      }
+                      )
+                    </div>
+                  ) : null}
+
                   <div className="mt-4 text-sm mb-8 text-gray-500">
                     {item?.card?.info?.description}
                   </div>
