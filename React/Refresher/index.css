@@ -2,59 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* For WebKit browsers (Chrome, Safari, Edge) */
 .custom-scrollbar::-webkit-scrollbar {
-    width: 0 !important;
-}
-  
-  /* For Firefox */
-.custom-scrollbar {
-    scrollbar-width: none;
+  scrollbar-width: thin;
 }
 
-.shimmer-card{
-    width: 240px;
-    border-radius: 15px;
-    height: 30vh;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    margin-right: 20px; /* Add margin to separate cards */
-    margin-bottom: 40px;
-    margin-top: 16px;
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cdcdcd #f1f1f1;
+}
+
+.shimmer-card {
+  width: 240px;
+  border-radius: 15px;
+  height: 30vh;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin-right: 20px; /* Add margin to separate cards */
+  margin-bottom: 40px;
+  margin-top: 16px;
 }
 
 @keyframes shimmer {
   0% {
-      background-position: -200% 0;
+    background-position: -200% 0;
   }
   100% {
-      background-position: 200% 0;
+    background-position: 200% 0;
   }
 }
 
 .shimmer-text {
-    width: 240px;
-    height: 10px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    margin-bottom: 10px;    
+  width: 240px;
+  height: 10px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin-bottom: 10px;
 }
 
 .shimmer-text.long {
-    width: 70%;
+  width: 70%;
 }
 
 .shimmer-content {
   width: 100%;
   margin-bottom: 20px; /* Add margin to separate content blocks */
-  margin-top:12rem;
+  margin-top: 12rem;
 }
 
-.add-btn-image{
-    margin-top: 5rem;
+.add-btn-image {
+  margin-top: 5rem;
 }
 
-.add-btn{
-    
+.add-btn {
 }
