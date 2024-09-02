@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 console.log(useForm);
@@ -11,13 +11,26 @@ const SignIn = () => {
 
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const onSubmit = (data) => {
     const { email, password } = data;
     const user = JSON.parse(localStorage.getItem("user"));
     console.log("user from local..SignIn...", user);
-    if (user && user.email === email && user.password === password) {
+    if (
+      user &&
+      user?.data?.email === email &&
+      user?.data?.password === password
+    ) {
       setError("");
+      setIsLoggedIn(true);
       navigate("/");
       // alert("Sign in successful!");
       // Redirect to a protected page or home page
@@ -29,7 +42,10 @@ const SignIn = () => {
   return (
     <div className="flex min-h-screen bg-gray-100 items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center mb-2">Sign In</h2>
+        <h2 className="text-3xl font-bold text-center mb-2">
+          {isLoggedIn ? "Welcome Back!" : "Sign In"}
+        </h2>
+
         <div className="flex items-center">
           <span className="ml-48"> or</span>{" "}
           <h4 className="ml-2 text-red-500 font-bold">
@@ -63,7 +79,9 @@ const SignIn = () => {
               type="password"
               // value={password}
               // onChange={(e) => setPassword(e.target.value)}
-              {...register("password", { required: "Password  is required" })}
+              {...register("password", {
+                required: "Password  is required",
+              })}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder="Enter your password"
               // required

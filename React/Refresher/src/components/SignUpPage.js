@@ -25,12 +25,33 @@ const SignUp = () => {
       return;
     }
 
-    localStorage.setItem("user", JSON.stringify(data));
+    const expiryTime = 86400; // 1 hour
+    const currentTime = Date.now(); // current time
+    const expiryTimeStamp = currentTime + expiryTime * 1000;
+
+    const dataToStore = {
+      data,
+      expiry: expiryTimeStamp,
+    };
+
+    /* {
+        "data":
+          {
+            "username":"Varsha",
+            "email":"khatvani.varsha@yahoo.com",
+            "password":"123",
+            "confirmPassword":"123"
+          },
+        "expiry":1725269084633
+      }
+    */
+
+    localStorage.setItem("user", JSON.stringify(dataToStore));
     setSuccessMessage("Account Created Successfully");
     setErrorMessage("");
 
     setTimeout(() => {
-      navigate("/"); // Navigate to the homepage (adjust the path as needed)
+      navigate("/signin"); // Navigate to the homepage (adjust the path as needed)
     }, 1000); // Delay for a better user experience (optional)
   };
   const password = watch("password");
