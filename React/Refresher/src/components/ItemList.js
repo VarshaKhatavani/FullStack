@@ -72,6 +72,7 @@ const ItemList = ({ items, setShowItemCount }) => {
                   {
                     //let arr = [...item.itemCards];
                     item.itemCards.map((nestedItem, nestedIndex) => {
+                      console.log(nestedItem);
                       const quantity = getItemQuantity(
                         nestedItem?.card?.info?.id
                       );
@@ -81,26 +82,98 @@ const ItemList = ({ items, setShowItemCount }) => {
                       return (
                         <div
                           key={nestedItem?.card?.info?.id}
-                          className="w-full px-4 flex justify-between py-4 border-b-[1px]"
+                          className="w-full justify-between flex px-4 py-4 border-b-[1px]"
                         >
-                          <div className="py-2 w-9/12">
-                            <div className="font-bold">
-                              {nestedItem?.card?.info?.name}
-                            </div>
-
-                            <div className="text-sm  mt-2">
-                              {formatCurrency(
-                                nestedItem?.card?.info?.price ||
-                                  nestedItem?.card?.info?.defaultPrice
+                          <div className="w-9/12">
+                            <div>
+                              {nestedItem?.card?.info?.isBestseller && (
+                                <img
+                                  src={bestSeller}
+                                  className="w-36 flex  ml-[-20px]"
+                                  alt={nestedItem?.card?.info?.name}
+                                  style={{ width: "110px", height: "75px" }}
+                                />
                               )}
                             </div>
-                            <div className="mt-4 text-sm mb-8 text-gray-500">
-                              {nestedItem?.card?.info?.description}
+
+                            <div className="py-2 ">
+                              <div className="flex space-x-2 ">
+                                {nestedItem?.card?.info?.itemAttribute
+                                  ?.vegClassifier == "VEG" ? (
+                                  <img
+                                    src={VegIcon}
+                                    className="w-36 mt-1"
+                                    alt={nestedItem?.card?.info?.name}
+                                    style={{ width: "18px", height: "18px" }}
+                                  />
+                                ) : (
+                                  <img
+                                    src={NonVegIcon}
+                                    className="w-36 mt-1"
+                                    alt={nestedItem?.card?.info?.name}
+                                    style={{
+                                      width: "18px",
+                                      height: "18px",
+                                    }}
+                                  />
+                                )}
+                                <div className="font-bold">
+                                  {nestedItem?.card?.info?.name}
+                                </div>
+                              </div>
+
+                              <div className="text-sm  mt-2">
+                                {formatCurrency(
+                                  nestedItem?.card?.info?.price ||
+                                    nestedItem?.card?.info?.defaultPrice
+                                )}
+                              </div>
+
+                              {nestedItem?.card?.info?.ratings?.aggregatedRating
+                                ?.rating ? (
+                                <div className="text-xs font-bold mt-1">
+                                  <FontAwesomeIcon
+                                    icon={faStar}
+                                    className={
+                                      nestedItem?.card?.info?.ratings
+                                        ?.aggregatedRating?.rating > 3
+                                        ? "text-green-600"
+                                        : "text-yellow-600"
+                                    }
+                                  />{" "}
+                                  {""}
+                                  <span
+                                    className={
+                                      nestedItem?.card?.info?.ratings
+                                        ?.aggregatedRating?.rating > 3
+                                        ? "text-green-600"
+                                        : "text-yellow-600"
+                                    }
+                                  >
+                                    {" "}
+                                    {
+                                      nestedItem?.card?.info?.ratings
+                                        ?.aggregatedRating?.rating
+                                    }{" "}
+                                  </span>{" "}
+                                  (
+                                  {
+                                    nestedItem?.card?.info?.ratings
+                                      ?.aggregatedRating?.ratingCountV2
+                                  }
+                                  )
+                                </div>
+                              ) : null}
+
+                              <div className="mt-4 text-sm mb-8 text-gray-500  ">
+                                {nestedItem?.card?.info?.description}
+                              </div>
                             </div>
                           </div>
-                          <div className="w-3/12 p-8 relative">
+
+                          <div className="p-8 relative w-3/12">
                             {quantity > 0 ? (
-                              <div className="flex items-center absolute left-10 mt-[70px] rounded-md bg-white shadow-lg cursor-pointer">
+                              <div className="flex items-center absolute left-10 mt-[70px] rounded-md bg-white shadow-lg cursor-pointer ml-4">
                                 <button
                                   className="p-2 bg-white text-xs text-green-500 rounded-md border-0 w-8 "
                                   onClick={() => handleRemoveItem(nestedItem)}
@@ -119,7 +192,7 @@ const ItemList = ({ items, setShowItemCount }) => {
                               </div>
                             ) : (
                               <button
-                                className="p-2 absolute shadow-lg border border-solid bg-white text-xs text-green-500 rounded-md w-16 left-10 mt-[70px] cursor-pointer"
+                                className="p-2 absolute shadow-lg border border-solid bg-white text-xs text-green-500 rounded-md w-16 left-10 mt-[70px] cursor-pointer ml-6"
                                 id={nestedItem.card.info.id}
                                 onClick={() => handleAddItem(nestedItem)}
                               >
