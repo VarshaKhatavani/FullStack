@@ -29,13 +29,13 @@ export const RestaurantProvider = ({ children }) => {
   // Ref to track if fetch has been initiated
   // const hasFetchedData = useRef(false);
 
-  console.log(listOfRestaurants);
+  //console.log(listOfRestaurants);
 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log(position);
+          //console.log(position);
           setLocation({
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -78,12 +78,12 @@ export const RestaurantProvider = ({ children }) => {
         throw new Error("Network response was not ok");
       }
       const restData = await data.json();
-      console.log("Hey, I looking for restaurants");
-      console.log(restData);
-      console.log(
-        restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
+      //console.log("Hey, I looking for restaurants");
+      //console.log(restData);
+      // console.log(
+      //   restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      //     ?.restaurants
+      // );
 
       const restaurantList =
         restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle

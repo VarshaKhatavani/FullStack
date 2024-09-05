@@ -1,37 +1,115 @@
-import React, { useState } from "react";
-import { useRestaurantContext } from "./RestaurantContext";
-import { fetchBaseQuery } from "@reduxjs/toolkit/query";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useRestaurantContext } from "../utils/RestaurantContext";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { CDN_URL } from "../utils/constants";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Search = () => {
-  const {
-    listOfRestaurants,
-    setFilteredRestaurant,
-    filteredRestaurant,
-    fetchData,
-  } = useRestaurantContext();
+  const { listOfRestaurants, setFilteredRestaurant, filteredRestaurant } =
+    useRestaurantContext();
 
   console.log("I am search component");
-  console.log(listOfRestaurants);
+  //console.log(listOfRestaurants);
   const [searchText, setsearchText] = useState("");
   const [showNoResult, setShowNoResult] = useState(false);
   const [flag, setFlag] = useState(false);
+  const [recentList, setRecentList] = useState([]);
 
-  const handleSearch = () => {
-    console.log(searchText);
+  const searchTextRef = useRef(searchText);
+
+  // Debounce function using useCallback to memoize it
+  const debounce = (func, delay) => {
+    let timer;
+    return (...args) => {
+      console.log("Debounce called:", args);
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        console.log("Executing debounced function");
+        func(...args);
+      }, delay);
+    };
+  };
+
+  const handleSearch = useCallback(() => {
+    console.log("handleSerach..ref..", searchTextRef.current);
+    //console.log("handleSerach....", searchText);
     const filterRestaurant = listOfRestaurants.filter((res) =>
-      res.info.name.toLowerCase().includes(searchText.toLowerCase())
+      res.info.name.toLowerCase().includes(searchTextRef.current.toLowerCase())
     );
     setFilteredRestaurant(filterRestaurant);
     // Show no result message if no restaurants match the search
     setShowNoResult(filterRestaurant.length === 0);
     setFlag(true);
+  }, [searchText, listOfRestaurants]);
+
+  useEffect(() => {
+    const storedRecentList = localStorage.getItem("searchlist");
+    console.log(storedRecentList);
+
+    if (storedRecentList) {
+      const parseData = JSON.parse(storedRecentList);
+      const recentListFromStorage =
+        parseData.searchedRestaurantList.limitedList;
+      setRecentList(recentListFromStorage);
+    }
+  }, []);
+
+  const updateRecentList = useCallback(
+    (search) => {
+      // console.log("updateRecentList called......", search);
+
+      if (search.trim()) {
+        const newList =
+          recentList.length > 0 ? [...recentList, search] : [search];
+        // recent 5 searches
+        const limitedList = newList.slice(-5);
+        console.log("recentList....", newList);
+        setRecentList(limitedList);
+
+        const expiryTimeStamp = Date.now() + 3600 * 1000; // 1 hour
+        const searchedRestaurantList = {
+          limitedList,
+          expiry: expiryTimeStamp,
+        };
+        localStorage.setItem(
+          "searchlist",
+          JSON.stringify({ searchedRestaurantList })
+        );
+      }
+    },
+    [recentList]
+  );
+
+  // debouncing search func
+  const debouncedSearch = useCallback(
+    debounce(() => {
+      handleSearch();
+      // Only call updateRecentList with the final search term
+      updateRecentList(searchTextRef.current);
+    }, 1500),
+    [searchText]
+  );
+
+  const handleInputChange = (e) => {
+    let value = e.target.value;
+    //console.log("value...", value);
+    searchTextRef.current = value;
+    setsearchText(value);
+    if (value.trim() === "") {
+      setFilteredRestaurant([]);
+      setShowNoResult(false); // Hide no result msg
+      setFlag(false);
+    } else {
+      setShowNoResult(false); // Hide no result message while typing
+      setFlag(false); // Reset flag for recent list view
+      debouncedSearch(); // Call debounced search function
+    }
   };
 
+  // result div format
   function searchItemList(restaurant) {
-    console.log(restaurant);
+    //console.log(restaurant);
     return (
       <div
         key={restaurant.info.id}
@@ -59,70 +137,74 @@ const Search = () => {
 
   return (
     <>
-      <div className="container p-1">
-        {/* <div className="filter flex px-4 py-4 ">
-          <button
-            onClick={() => {
-              const filteredlist = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4.5
-              );
-              console.log(filteredlist);
-              setListOfRestaurants(filteredlist);
-            }}
-            className="filter-btn px-6 py-2 mr-8 items-center font-semibold rounded-lg bg-orange-50 "
-          >
-            Top Rated Restaurants
-          </button>
-        </div> */}
-
-        {/* Search Input */}
-        <div className="search-box p-4 ml-8 flex justify-center mx-auto">
-          <input
-            type="text"
-            className="search-input p-2 border w-1/2 border-solid border-slate-400 rounded-md"
-            placeholder="Search for restaurants and food"
-            value={searchText}
-            onChange={(e) => {
-              setsearchText(e.target.value);
-              setShowNoResult(false); // Hide no result message while typing
-            }}
-          ></input>
-          &nbsp;&nbsp;
-          <button
-            className="search-btn ml-4 p-2 w-24 rounded-lg font-semibold bg-orange-50"
-            onClick={() => {
-              handleSearch();
-            }}
-          >
-            Search
-          </button>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <div className="container p-1">
+          {/* Search Input */}
+          <div className="search-box p-4 ml-8 flex justify-center mx-auto">
+            <div className="flex items-center border border-solid border-slate-400 rounded-md w-1/2">
+              {" "}
+              {/* Flex container for input and icon */}
+              {/* Search Icon */}
+              <FontAwesomeIcon icon={faSearch} className="ml-3 text-gray-500" />
+              {/* Search Input */}
+              <input
+                type="text"
+                className="search-input p-2 w-full rounded-md outline-none border-0"
+                placeholder="Search for restaurants.."
+                value={searchText}
+                onChange={handleInputChange}
+              />
+            </div>
+          </div>
+          {/* filter result */}
+          {showNoResult ? (
+            <div className="res-container px-72 mt-10 mb-40 justify-start flex-wrap">
+              {" "}
+              No match found for "
+              <span className="font-semibold">{searchText}</span>"
+            </div>
+          ) : (
+            <div className="res-container px-40 mb-28 justify-start flex-wrap">
+              {flag ? (
+                filteredRestaurant != undefined &&
+                filteredRestaurant.length > 0 &&
+                filteredRestaurant.map((restaurant) => (
+                  <Link
+                    key={restaurant.info.id}
+                    to={`/restaurants/${restaurant?.info?.id}`}
+                  >
+                    {searchItemList(restaurant)}
+                  </Link>
+                ))
+              ) : (
+                <div className="text-gray-700">
+                  <strong>Recent Searches</strong>
+                  {recentList.length > 0 ? (
+                    recentList.map((text, index) => {
+                      return (
+                        <div
+                          className="mt-2 p-2 cursor-pointer  border-b-[1px] "
+                          key={index}
+                          onClick={() => {
+                            setsearchText(text);
+                            searchTextRef.current = text;
+                            handleSearch(text);
+                          }}
+                        >
+                          <FontAwesomeIcon icon={faSearch} />
+                          <span className="ml-4">{text}</span>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <div className="py-6">No Search Results Found..</div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </div>
-        {/* filter result */}
-        {showNoResult ? (
-          <div className="res-container px-72 mt-10 mb-40 justify-start flex-wrap">
-            {" "}
-            No match found for "
-            <span className="font-semibold">{searchText}</span>"
-          </div>
-        ) : (
-          <div className="res-container px-40 mb-28 justify-start flex-wrap">
-            {flag ? (
-              filteredRestaurant != undefined &&
-              filteredRestaurant.length > 0 &&
-              filteredRestaurant.map((restaurant) => (
-                <Link
-                  key={restaurant.info.id}
-                  to={`/restaurants/${restaurant?.info?.id}`}
-                >
-                  {searchItemList(restaurant)}
-                </Link>
-              ))
-            ) : (
-              <div>Recent List</div>
-            )}
-          </div>
-        )}
-      </div>
+      </form>
     </>
   );
 };

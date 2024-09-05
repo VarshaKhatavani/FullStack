@@ -4,7 +4,7 @@ import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { useRestaurantContext } from "./RestaurantContext";
+import { useRestaurantContext } from "../utils/RestaurantContext";
 
 const Content = () => {
   const { listOfRestaurants, filteredRestaurant, fetchData } =

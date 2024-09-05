@@ -15,7 +15,7 @@ import ScrollToTop from "./src/components/ScrollToTop";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import UserContext from "./src/utils/UserContext";
 import { Provider } from "react-redux";
-import { RestaurantProvider } from "./src/components/RestaurantContext";
+import { RestaurantProvider } from "./src/utils/RestaurantContext";
 
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 
@@ -27,14 +27,14 @@ import { RestaurantProvider } from "./src/components/RestaurantContext";
 const Grocery = lazy(() => import("./src/components/Grocery"));
 
 const AppLayout = () => {
-  const [userName, setUserName] = useState();
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    const data = {
-      name: "Varsha Khatavani",
-    };
-    setUserName(data.name);
-  });
+    const userData = JSON.parse(localStorage.getItem("user"));
+    console.log("user from local.....", userData?.data?.username);
+    const username = userData?.data?.username;
+    setUserName(username);
+  }, []);
 
   return (
     <Provider store={appStore}>
