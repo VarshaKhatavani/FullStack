@@ -1,535 +1,175 @@
-import { useState } from 'react';
-import myImage from '../../Swiggy-2.png';
-import { useParams } from 'react-router-dom';
-import useRestaurantMenu from '../utils/useRestaurantMenu';
-import RestaurantCategory from './RestaurantCategory';
+import { useState } from "react";
+import myImage from "../../images/Swiggy-2.png";
+import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDebian } from "@fortawesome/free-brands-svg-icons";
+import { CDN_URL } from "../utils/constants.js";
 
-const RestaurantMenu = () =>{
+const RestaurantMenu = () => {
+  // const [isVegOnly, setIsVegOnly ] = useState(false);
 
-    // const [isVegOnly, setIsVegOnly ] = useState(false);
+  const { resId } = useParams();
+  const resInfo = useRestaurantMenu(resId);
+  const [showIndex, setShowIndex] = useState(0);
 
-    const {resId} = useParams();
-    const resInfo = useRestaurantMenu(resId);
-    const [showIndex, setShowIndex] = useState(0);    
-    const [showIndices, setShowIndices] = useState([]);
-
-    const handleShowIndex = (index) =>{
-        const updatedIndex = showIndices.includes(index) ? showIndices.filter((i)=> i !== index) :
-                           [...showIndices, index];
-        setShowIndices(updatedIndex);           
-        console.log(showIndices) ;              
-    }
-    
-    if(resInfo === null)
-        return;
-
-    //console.log(resInfo)
-    let resHeaderInfo = resInfo[0]?.card?.card.info;
-    let offers = resInfo[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
-    let menuList = resInfo[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-
-    let newMenuList ;
-    if(menuList != undefined)
-        newMenuList = menuList.slice(1);
-    
-    // I have used slice method (newMenuList)  but it isn't optimized way so to achieve filter method 
-    // is using @type : itemCategory
-
-    let category = menuList.filter((c)=>{
-        return c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" || c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory" ;
+  const handleShowIndex = (index) => {
+    console.log("index...", index);
+    setShowIndex((prevIndex) => {
+      console.log("prevIndex...", prevIndex);
+      return prevIndex === index ? null : index;
     });
+  };
 
-    console.log(category);
-    
-    // console.log(resHeaderInfo);
-    // console.log(offers);
+  if (resInfo === null) return;
 
-    // const toggleVegType = () => {
-    //     setIsVegOnly(!isVegOnly);
-    // }    
+  console.log(resInfo);
+  let resHeaderInfo = resInfo[2]?.card?.card.info;
+  console.log(resHeaderInfo);
 
-    if (resInfo === null) return;
+  let offers = resInfo[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
 
-    return(
-        <div className="res-detail-info px-48 py-8 mt-0 ">
-            <div className="res-info  p-4 border-dashed border-b-[1px] flex justify-between m-auto"> 
-                <div className="detail-info centered-border ">
-                    <h3 className="res-title text-xl font-bold">{resHeaderInfo?.name}</h3>
-                    <span className="res-subtitle text-sm text-gray-500">{resHeaderInfo?.cuisines.join(", ")}</span><br/>
-                    <span className="res-subtitle text-sm text-gray-500">{resHeaderInfo?.areaName}, {resHeaderInfo?.sla?.lastMileTravelString}</span>  <br/><br/>              
-                    <span className="res-subtitle text-sm">
-                    {resHeaderInfo?.feeDetails?.message} </span>
-                </div>
-                <div className="detail-rating border border-solid border-gray-300 px-2 py-4 rounded-lg justify-center h-fit shadow-md">
-                  <span className="rate flex justify-center text-sm font-bold border-gray-300 border-dashed border-b-[1px] p-1 ">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20">
-                        <path d="M10 1l2.4 6.6h7.6l-6 4.8 2.4 6.6-6-4.8-6 4.8 2.4-6.6-6-4.8h7.6z" fill="green"/>
-                    </svg>&nbsp; 
-                    <span className='items-center text-sm text-green-950'>{resHeaderInfo?.avgRatingString}</span>
-                    </span>                      
-                    <span className="rate-info text-xs">{resHeaderInfo?.totalRatingsString}</span>         
-                </div>              
-            </div>            
-            <div className="delivery-info p-4 scroll-smooth overflow-x-scroll whitespace-nowrap custom-scrollbar">
-                <div className="distance font-bold"><span>{resHeaderInfo?.sla?.slaString}</span> &nbsp;&nbsp; <span>{resHeaderInfo?.costForTwoMessage}</span></div>                
-                 <div className="latest-offers flex  justify-starts py-4">                            
-                 {                    
-                    offers != undefined && offers.map((offer, index)=>{
-                        return( 
-                            <div key={offer?.info?.offerIds} className="offers relative border border-solid mr-8 rounded-lg ">
-                                <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-[11px] text-red-500 font-bold border-b-[1px]">{offer?.info?.offerTag}</span>
-                                <div className="offer-container p-4">
-                                    <span className="offer font-bold text-xs ml-8">{offer?.info?.header}</span><br/>
-                                    <span className="coupon-offer text-xs ml-2">{offer?.info?.couponCode} | {offer?.info?.description}</span>
-                                </div>
-                            </div> 
-                        );
-                })}                    
-                </div>
-            </div>
-            <div className="menu-list">
-                {/* <div className="vegan-header">  */}
-                    {/* { menuList!= undefined && menuList[0]?.card?.card?.isPureVeg ?  "pure veg" : "veg only" }                */}
-                    {/* { menuList!= undefined && menuList[0].card.card.isPureVeg && (
-                        <button onClick={toggleVegType}>Toggle</button>
-                    )}         */}
-                {/* </div> */}
-                 
-                    <div className="menu p-2 ">
-                        <div className="left-menu">                
-                              {
-                                category.map((category, index)=>{
-                                  //  console.log(category);
-                                  return(
-                                    <>
-                                     {/* controlled component */}
-                                    <RestaurantCategory key = {category?.card?.card.title}  
-                                        data = {category?.card?.card}
-                                        showItems = { showIndices.includes(index) }
-                                        setShowIndex = {()=> {
-                                              console.log('before' , index); 
-                                              console.log('showIndex', showIndex);  
-                                              //setShowIndex(index);
-                                              console.log('after', index); 
-                                              handleShowIndex(index);
-                                            }
-                                        }
-                                    />
-                                    
-                                  
-                                  </>
-                                  )
-                                })
-                              }   
-                              {/* <div className="bg-green-500 w-8/12 ml-2 m-auto justify-between text-white font-semibold rounded-sm flex items-center p-2 absolute bottom-0">
-                                     <div className='flex'>
-                                        <div className=' p-[1px]'> 2 items  </div>
-                                        <div className=' p-[1px]'> &nbsp; | 350 </div>
-                                     </div>
-                                     <div> View Cart</div>
-                              </div>                                               */}
-                        </div>                    
-                    </div>
-                
-            </div>
+  console.log(offers);
+  let menuList = resInfo[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+  // I have used slice method (newMenuList)  but it isn't optimized way so to achieve filter method
+  // is using @type : itemCategory
+
+  let category = menuList.filter((c) => {
+    return (
+      c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+      c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+    );
+  });
+
+  console.log(category);
+
+  // console.log(resHeaderInfo);
+  // console.log(offers);
+
+  // const toggleVegType = () => {
+  //     setIsVegOnly(!isVegOnly);
+  // }
+
+  if (resInfo === null) return;
+
+  return (
+    <div className="res-detail-info px-48 py-8 mt-0 ">
+      <div className="res-info  p-4 border-dashed border-b-[1px] flex justify-between m-auto">
+        <div className="detail-info centered-border ">
+          <h3 className="res-title text-xl font-bold">{resHeaderInfo?.name}</h3>
+          <span className="res-subtitle text-sm text-orange-600 font-semibold">
+            {resHeaderInfo?.cuisines.join(", ")}
+          </span>
+          <br />
+          <span className="res-subtitle text-sm text-gray-500">
+            {resHeaderInfo?.areaName},{" "}
+            {resHeaderInfo?.sla?.lastMileTravelString}
+          </span>{" "}
+          <br />
+          <br />
+          <span className="res-subtitle text-sm">
+            {resHeaderInfo?.feeDetails?.message}{" "}
+          </span>
         </div>
-    )
-}
-export default RestaurantMenu; 
+        <div className="detail-rating border border-solid border-gray-300 px-2 py-4 rounded-lg justify-center h-fit shadow-md">
+          <span className="rate flex justify-center text-sm font-bold border-gray-300 border-dashed border-b-[1px] p-1 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M10 1l2.4 6.6h7.6l-6 4.8 2.4 6.6-6-4.8-6 4.8 2.4-6.6-6-4.8h7.6z"
+                fill="green"
+              />
+            </svg>
+            &nbsp;
+            <span className="items-center text-sm text-green-950">
+              {resHeaderInfo?.avgRatingString}
+            </span>
+          </span>
+          <span className="rate-info text-xs">
+            {resHeaderInfo?.totalRatingsString}
+          </span>
+        </div>
+      </div>
+      <div className="delivery-info p-4 scroll-smooth ">
+        <div className="distance font-bold text-xl">
+          <span>Deals for you </span>
+        </div>
+        <div className="latest-offers flex justify-start py-4 overflow-x-scroll  whitespace-nowrap  custom-scrollbar  ">
+          {offers != undefined &&
+            offers.map((offer, index) => {
+              return (
+                <div
+                  key={offer?.info?.offerIds || index}
+                  className="offers relative border border-solid mr-8 mb-4 rounded-xl w-[20rem] flex-shrink-0"
+                >
+                  <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-[11px] text-red-500 font-bold border-b-[1px]"></span>
+                  <div className="offer-container p-4 flex ">
+                    <img
+                      className="h-10 w-10"
+                      src={CDN_URL + offer?.info?.offerLogo}
+                    ></img>
 
-/**
- * Header JSON
- * 
- * {
-    "id": "378117",
-    "name": "Chocolate Biclate",
-    "city": "Pune",
-    "slugs": {
-        "restaurant": "chocolate-biclate-shivaji-nagar-shivaji-nagar-2",
-        "city": "pune"
-    },
-    "uniqueId": "e51e6528-4859-48c8-8fed-e84c17dc2d76",
-    "cloudinaryImageId": "nz4ifkepwxbdsnrrm5gp",
-    "locality": "Sud Nagar",
-    "areaName": "Shivajinagar",
-    "costForTwo": "25000",
-    "costForTwoMessage": "₹250 for two",
-    "cuisines": [
-        "Bakery",
-        "Desserts"
-    ],
-    "avgRating": 4,
-    "veg": true,
-    "feeDetails": {
-        "restaurantId": "378117",
-        "fees": [
-            {
-                "name": "distance",
-                "fee": 4000
-            },
-            {
-                "name": "time"
-            },
-            {
-                "name": "special"
-            }
-        ],
-        "totalFee": 4000,
-        "icon": "v1648635511/Delivery_fee_new_cjxumu",
-        "message": "2 kms | ₹40 Delivery fee will apply"
-    },
-    "parentId": "62386",
-    "avgRatingString": "4.0",
-    "totalRatingsString": "500+ ratings",
-    "sla": {
-        "restaurantId": "378117",
-        "deliveryTime": 22,
-        "minDeliveryTime": 22,
-        "maxDeliveryTime": 22,
-        "lastMileTravel": 2.1,
-        "serviceability": "SERVICEABLE",
-        "stressFactor": 1,
-        "rainMode": "RAIN_MODE_NONE",
-        "longDistance": "LONG_DISTANCE_NOT_LONG_DISTANCE",
-        "zoneId": 94,
-        "slaString": "22 MINS",
-        "lastMileTravelString": "2.0 km",
-        "iconType": "ICON_TYPE_EMPTY"
-    },
-    "availability": {
-        "nextCloseTime": "2023-10-31 23:00:00",
-        "visibility": true,
-        "opened": true,
-        "restaurantClosedMeta": {}
-    },
-    "aggregatedDiscountInfo": {
-        "header": "20% off",
-        "shortDescriptionList": [
-            {
-                "meta": "20% off | Use PARTY",
-                "discountType": "Percentage",
-                "operationType": "RESTAURANT"
-            },
-            {
-                "meta": "FLAT100 off | Use FLATDEAL",
-                "discountType": "Flat",
-                "operationType": "RESTAURANT"
-            }
-        ],
-        "descriptionList": [
-            {
-                "meta": "20% off | Use code PARTY",
-                "discountType": "Percentage",
-                "operationType": "RESTAURANT"
-            },
-            {
-                "meta": "FLAT100 off | Use FLATDEAL",
-                "discountType": "Flat",
-                "operationType": "RESTAURANT"
-            }
-        ],
-        "visible": true
-    },
-    "badges": {},
-    "slugString": "chocolate-biclate-shivaji-nagar-shivaji-nagar-2",
-    "multiOutlet": true,
-    "isOpen": true,
-    "labels": [
-        {
-            "title": "Timings",
-            "message": "null"
-        },
-        {
-            "title": "Address",
-            "message": "Shop No 3, Dnyaneshwar Paduka Chowk, Fergusson College Rd, Sud Nagar, Shivajinagar, Pune, Maharashtra 411004, India"
-        },
-        {
-            "title": "Cuisines",
-            "message": "Bakery,Desserts"
-        }
-    ],
-    "totalRatings": 500,
-    "aggregatedDiscountInfoV2": {
-        "header": "20% off",
-        "shortDescriptionList": [
-            {
-                "meta": "20% off | Use PARTY",
-                "discountType": "Percentage",
-                "operationType": "RESTAURANT"
-            },
-            {
-                "meta": "FLAT100 off | Use FLATDEAL",
-                "discountType": "Flat",
-                "operationType": "RESTAURANT"
-            }
-        ],
-        "descriptionList": [
-            {
-                "meta": "20% off | Use code PARTY",
-                "discountType": "Percentage",
-                "operationType": "RESTAURANT"
-            },
-            {
-                "meta": "FLAT100 off | Use FLATDEAL",
-                "discountType": "Flat",
-                "operationType": "RESTAURANT"
-            }
-        ],
-        "couponDetailsCta": "View coupon details"
-    },
-    "type": "F",
-    "nudgeBanners": [
-        {
-            "minValue": 490,
-            "maxValue": 700,
-            "priority": 1,
-            "couponCode": "PARTY",
-            "discountInfo": {
-                "discountType": "Percentage",
-                "value": 20
-            },
-            "lockedMessage": "Add items worth ₹<amount> to unlock flat 20% off | Code PARTY",
-            "unlockedMessage": "PARTY Coupon Unlocked! Use it to save flat 20% off",
-            "logoCtx": {}
-        },
-        {
-            "minValue": 335,
-            "maxValue": 479,
-            "priority": 6,
-            "couponCode": "JUMBO",
-            "discountInfo": {
-                "discountType": "Percentage",
-                "value": 15
-            },
-            "lockedMessage": "Add items worth ₹<amount> to save upto ₹80 | Code JUMBO",
-            "unlockedMessage": "JUMBO Coupon Unlocked! Use it to save upto ₹80",
-            "logoCtx": {}
-        }
-    ],
-    "headerBanner": {
-        "url": "swiggy://webview?is_external=false&webview_url=https://www.swiggy.com/restaurant-info/378117"
-    },
-    "expectationNotifiers": [
-        {
-            "text": "2 kms | ₹40 Delivery fee will apply",
-            "icon": {
-                "imageId": "v1648635511/Delivery_fee_new_cjxumu"
-            },
-            "popup": {
-                "cta": {}
-            },
-            "type": "DISTANCE_FEE_NON_FOOD_LM",
-            "enrichedText": "<b>2 kms</b> | ₹40 Delivery fee will apply",
-            "halfCardPopup": {
-                "halfCardPopupHeader": {}
-            }
-        }
-    ],
-    "ratingSlab": "RATING_SLAB_4",
-    "orderabilityCommunication": {
-        "title": {},
-        "subTitle": {},
-        "message": {},
-        "customIcon": {}
-    },
-    "hasBestsellerItems": true,
-    "cartOrderabilityNudgeBanner": {
-        "parameters": {},
-        "presentation": {}
-    },
-    "latLong": "18.52668836,73.84211808"
-}
- * 
- */
+                    <div>
+                      <div className="offer font-bold text-xl ml-2">
+                        {offer?.info?.header}
+                      </div>
+                      <div className="coupon-offer block text-xs ml-2">
+                        {offer?.info?.couponCode
+                          ? offer?.info?.couponCode
+                          : offer?.info?.description}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </div>
+      <div className="menu-list">
+        <div className="font-semibold text-sm justify-center flex">
+          <FontAwesomeIcon
+            icon={faDebian}
+            className="px-4 mt-[1px] -rotate-45 text-orange-500"
+          />
+          MENU
+          <FontAwesomeIcon
+            icon={faDebian}
+            className="px-4 mt-[1px] rotate-90 text-orange-500"
+          />
+        </div>
 
-/**
- * menulist JSON
- * 
- * [
-  {
-    "card": {
-      "card": {
-        "@type": "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
-        "title": "Recommended",
-        "itemCards": [
-          {
-            "card": {
-              "@type": "type.googleapis.com/swiggy.presentation.food.v2.Dish",
-              "info": {
-                "id": "75543628",
-                "name": "Fererro Rocher Cake",
-                "category": "Celebrations Cake",
-                "description": "Experience bliss in every bite with our best seller chocolate cake generously layered and topped with ferrero rocher \n",
-                "imageId": "ghqf40fiqrxqj7ksllyd",
-                "inStock": 1,
-                "isVeg": 1,
-                "price": 69900,
-                "variants": {
-                  "variantGroups": [
-                    {
-                      "groupId": "11414070",
-                      "name": "Quantity",
-                      "variations": [
-                        {
-                          "name": "Half Kg",
-                          "default": 1,
-                          "id": "37527421",
-                          "inStock": 1,
-                          "isVeg": 1,
-                          "isEnabled": 1
-                        },
-                        {
-                          "name": "1 Kg",
-                          "price": 69900,
-                          "id": "37527422",
-                          "inStock": 1,
-                          "isVeg": 1,
-                          "isEnabled": 1
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "variantsV2": {},
-                "itemAttribute": {
-                  "vegClassifier": "VEG"
-                },
-                "ribbon": {},
-                "showImage": true,
-                "itemBadge": {},
-                "badgesV2": {},
-                "ratings": {
-                  "aggregatedRating": {
-                    "rating": "4.4",
-                    "ratingCount": "4 ratings",
-                    "ratingCountV2": "4"
-                  }
-                }
-              },
-              "analytics": {},
-              "hideRestaurantDetails": true
-            }
-          },
-          {
-            "card": {
-              "@type": "type.googleapis.com/swiggy.presentation.food.v2.Dish",
-              "info": {
-                "id": "75543638",
-                "name": "Chocolate Chip Cake",
-                "category": "Celebrations Cake",
-                "description": "A shortcut to heaven, this cake is drenched in delectable chocolate that is sinful.\n",
-                "imageId": "nsndznhhjzhvgihq6z8w",
-                "inStock": 1,
-                "isVeg": 1,
-                "price": 49900,
-                "variants": {
-                  "variantGroups": [
-                    {
-                      "groupId": "11414079",
-                      "name": "Quantity",
-                      "variations": [
-                        {
-                          "name": "Half Kg",
-                          "default": 1,
-                          "id": "37527439",
-                          "inStock": 1,
-                          "isVeg": 1,
-                          "isEnabled": 1
-                        },
-                        {
-                          "name": "1 Kg",
-                          "price": 49900,
-                          "id": "37527440",
-                          "inStock": 1,
-                          "isVeg": 1,
-                          "isEnabled": 1
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "variantsV2": {},
-                "itemAttribute": {
-                  "vegClassifier": "VEG"
-                },
-                "ribbon": {
-                  "text": "Bestseller",
-                  "textColor": "#ffffff",
-                  "topBackgroundColor": "#d53d4c",
-                  "bottomBackgroundColor": "#b02331"
-                },
-                "showImage": true,
-                "itemBadge": {},
-                "badgesV2": {},
-                "isBestseller": true,
-                "ratings": {
-                  "aggregatedRating": {
-                    "rating": "4.1",
-                    "ratingCount": "42 ratings",
-                    "ratingCountV2": "42"
-                  }
-                }
-              },
-              "analytics": {},
-              "hideRestaurantDetails": true
-            }
-          }
-        ],
-        "type": "CATEGORY_TYPE_RECOMMENDED"
-      }
-    }
-  },
-  {
-    "card": {
-      "card": {
-        "@type": "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
-        "title": "Dessert Jar",
-        "itemCards": [
-          {
-            "card": {
-              "@type": "type.googleapis.com/swiggy.presentation.food.v2.Dish",
-              "info": {
-                "id": "75543663",
-                "name": "Ferrero Rocher Dessert Jar",
-                "category": "Dessert Jar",
-                "description": "The crunch of the delicious ferrero rocher chocolate makes this such an enticing dessert. \n",
-                "imageId": "mdcjxactvmqstuxkpjms",
-                "inStock": 1,
-                "isVeg": 1,
-                "price": 15900,
-                "variants": {},
-                "variantsV2": {},
-                "itemAttribute": {
-                  "vegClassifier": "VEG"
-                },
-                "ribbon": {
-                  "text": "Bestseller",
-                  "textColor": "#ffffff",
-                  "topBackgroundColor": "#d53d4c",
-                  "bottomBackgroundColor": "#b02331"
-                },
-                "type": "ITEM",
-                "itemBadge": {},
-                "badgesV2": {},
-                "isBestseller": true,
-                "ratings": {
-                  "aggregatedRating": {
-                    "rating": "4.3",
-                    "ratingCount": "14 ratings",
-                    "ratingCountV2": "14"
-                  }
-                }
-              },
-              "analytics": {},
-              "hideRestaurantDetails": true
-            }
-          }
-        ]
-      }
-    }
-  }
-]
- * 
- * 
- */
-
+        <div className="menu p-2 ">
+          <div className="left-menu">
+            {category.map((category, index) => {
+              console.log(category);
+              return (
+                <>
+                  <div key={category?.card?.card?.id || index}>
+                    {/* controlled component */}
+                    <RestaurantCategory
+                      key={index}
+                      data={category?.card?.card}
+                      showItems={showIndex === index}
+                      setShowIndex={() => {
+                        handleShowIndex(index);
+                      }}
+                    />
+                  </div>
+                </>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default RestaurantMenu;
