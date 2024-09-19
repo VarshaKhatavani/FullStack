@@ -13,7 +13,7 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 import ScrollToTop from "./src/components/ScrollToTop";
 
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import UserContext from "./src/utils/UserContext";
+import { UserProvider } from "./src/utils/UserContext";
 import { Provider } from "react-redux";
 import { RestaurantProvider } from "./src/utils/RestaurantContext";
 
@@ -40,11 +40,13 @@ const AppLayout = () => {
     <Provider store={appStore}>
       <RestaurantProvider>
         <div className="body">
-          <UserContext.Provider value={{ loggedInUser: userName }}>
+          <UserProvider>
             <ScrollToTop />
             <Header />
             <Outlet />
-          </UserContext.Provider>
+            <SignIn />
+            <SignUp />
+          </UserProvider>
         </div>
         <div>
           <Footer />

@@ -8,6 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  console.log(loggedInUser);
+
   const onlineStatus = useOnlineStatus();
   const [btnLogin, setBtnLoginLogout] = useState("Sign In");
   const [userName, setUserName] = useState("");
@@ -21,20 +24,15 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user && user?.data && user?.data?.username) {
-      setBtnLoginLogout("Sign Out");
-      setUserName(user?.data?.username);
-    }
-  }, []);
+    setBtnLoginLogout(loggedInUser ? "Sign Out" : "Sign In");
+  }, [loggedInUser]);
 
   const handleSignInOut = () => {
     if (btnLogin === "Sign In") {
       navigate("/signin");
     } else {
       localStorage.removeItem("user");
-      setBtnLoginLogout("Sign In");
-      setUserName("");
+      setLoggedInUser(null);
       navigate("/");
     }
   };
@@ -62,7 +60,7 @@ const Header = () => {
           <li className="px-4 hover:text-orange-500">
             <button onClick={handleSignInOut}>{btnLogin}</button>
           </li>
-          {userName && <li className="px-4 font-bold"> {userName}</li>}
+          {loggedInUser && <li className="px-4 font-bold"> {loggedInUser}</li>}
           <li className="px-4 hover:text-orange-500 cursor-pointer nav-items-menu">
             <Link to={"/cart"}>
               {" "}

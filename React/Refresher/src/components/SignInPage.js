@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../utils/UserContext.js";
 console.log(useForm);
+
 const SignIn = () => {
+  const { setLoggedInUser } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -31,6 +35,7 @@ const SignIn = () => {
     ) {
       setError("");
       setIsLoggedIn(true);
+      setLoggedInUser(user.data.username);
       navigate("/");
       // alert("Sign in successful!");
       // Redirect to a protected page or home page
