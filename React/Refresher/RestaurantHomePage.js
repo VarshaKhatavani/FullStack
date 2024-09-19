@@ -44,8 +44,6 @@ const AppLayout = () => {
             <ScrollToTop />
             <Header />
             <Outlet />
-            <SignIn />
-            <SignUp />
           </UserProvider>
         </div>
         <div>
