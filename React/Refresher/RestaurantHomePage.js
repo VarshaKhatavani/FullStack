@@ -14,8 +14,11 @@ import ScrollToTop from "./src/components/ScrollToTop";
 
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { UserProvider } from "./src/utils/UserContext";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { RestaurantProvider } from "./src/utils/RestaurantContext";
+import CartSlice from "./src/utils/cartSlice.js";
+import CartList from "./src/components/CartList";
+import { setCart } from "./src/utils/cartSlice.js";
 
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 
@@ -29,6 +32,8 @@ const Grocery = lazy(() => import("./src/components/Grocery"));
 const AppLayout = () => {
   const [userName, setUserName] = useState("");
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("user"));
     console.log("user from local.....", userData?.data?.username);
@@ -36,21 +41,24 @@ const AppLayout = () => {
     setUserName(username);
   }, []);
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    console.log("storedCart.....");
+    console.log(storedCart);
+    if (storedCart) {
+      dispatch(setCart(storedCart));
+    }
+  }, [dispatch]);
+
   return (
-    <Provider store={appStore}>
-      <RestaurantProvider>
-        <div className="body">
-          <UserProvider>
-            <ScrollToTop />
-            <Header />
-            <Outlet />
-          </UserProvider>
-        </div>
-        <div>
-          <Footer />
-        </div>
-      </RestaurantProvider>
-    </Provider>
+    <div className="body">
+      <UserProvider>
+        <ScrollToTop />
+        <Header />
+        <Outlet />
+      </UserProvider>
+      <Footer />
+    </div>
   );
 };
 
@@ -106,4 +114,10 @@ const AppRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={AppRouter} />);
+root.render(
+  <Provider store={appStore}>
+    <RestaurantProvider>
+      <RouterProvider router={AppRouter}></RouterProvider>
+    </RestaurantProvider>
+  </Provider>
+);

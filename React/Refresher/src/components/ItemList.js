@@ -7,18 +7,52 @@ import NonVegIcon from "../../images/non-veg-icon.png";
 import bestSeller from "../../images/best-seller.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import Modal from "./Modal.js";
 
 const ItemList = ({ items, setShowItemCount }) => {
-  console.log(items);
-  console.log("setShowItemCount....", setShowItemCount);
+  //Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [itemToAdd, setItemToAdd] = useState(null); // State to store item to add after confirmation
+
   const { resId } = useParams();
   console.log("resId...", resId);
-
+  const cartState = useSelector((state) => state.cart);
+  const storedCartID = cartState.items[0]?.resId;
   const dispatch = useDispatch();
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setItemToAdd(null); // Clear the stored item on close
+  };
+
+  const handleConfirm = () => {
+    // Logic to reset the cart
+    console.log("Cart reset!");
+    dispatch(removeItem({ itemId: null, restaurantId: storedCartID }));
+    closeModal(); // Close the modal after confirming
+
+    // Add the stored item after resetting the cart
+    if (itemToAdd) {
+      const restArr = { ...itemToAdd, resId: resId };
+      dispatch(addItem(restArr));
+      setShowItemCount(true);
+      setTimeout(() => {
+        console.log("Hiding item count");
+        setShowItemCount(false);
+      }, 4000);
+      setItemToAdd(null); // Clear the stored item
+    }
+  };
+
   const handleAddItem = (item) => {
-    console.log("button click");
-    console.log(item);
+    // Add the restaurant ID to the item payload
+    console.log("storedCartID.....", storedCartID);
+    if (storedCartID !== resId) {
+      openModal();
+      return;
+    }
     const restArr = { ...item, resId: resId };
     dispatch(addItem(restArr));
     setShowItemCount(true);
@@ -31,11 +65,18 @@ const ItemList = ({ items, setShowItemCount }) => {
 
   const handleRemoveItem = (item) => {
     if (item?.card?.info?.id) {
-      dispatch(removeItem(item.card.info.id));
+      const itemToRemove = {
+        itemId: item.card.info.id,
+        restaurantId: resId, // Include the restaurant ID in the payload
+      };
+      dispatch(removeItem(itemToRemove));
     }
   };
 
-  const cartItems = useSelector((state) => state.cart.items);
+  const cartItems = useSelector(
+    (state) => state.cart.items[resId]?.items || []
+  );
+  console.log(cartItems);
 
   const getItemQuantity = (itemId) => {
     const cartItem = cartItems.find((item) => item?.card?.info?.id === itemId);
@@ -57,6 +98,12 @@ const ItemList = ({ items, setShowItemCount }) => {
   return (
     <>
       <div>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          onConfirm={handleConfirm}
+        />
+
         {items != undefined &&
           items.map((item) => {
             // console.log(item);
