@@ -3,9 +3,10 @@ import myImage from "../../images/Swiggy-2.png";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../utils/UserContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { clearCart } from "../utils/cartSlice";
 
 const Header = () => {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
@@ -18,6 +19,7 @@ const Header = () => {
   const totalItems = useSelector((store) => store.cart.totalItems);
   console.log(totalItems);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +30,8 @@ const Header = () => {
     if (btnLogin === "Sign In") {
       navigate("/signin");
     } else {
-      localStorage.removeItem("user");
+      //localStorage.removeItem("user");
+      dispatch(clearCart());
       setLoggedInUser(null);
       navigate("/");
     }
