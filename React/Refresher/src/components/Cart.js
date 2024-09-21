@@ -3,9 +3,11 @@ import CartList from "./CartList";
 import cartImg from "../../empty-cart.png";
 
 const Cart = () => {
-  const cartItem = useSelector((store) => store.cart.items);
-
+  const cartState = useSelector((state) => state.cart);
+  console.log(cartState);
+  const cartItem = cartState.items;
   console.log(cartItem);
+
   // console.log('-- cart page---');
   // console.log(cartItem);
   // console.log('-----');

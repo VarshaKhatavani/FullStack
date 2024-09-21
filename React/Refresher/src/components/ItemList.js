@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { addItem, removeItem } from "../utils/cartSlice.js";
+import { addItem, clearCart, removeItem } from "../utils/cartSlice.js";
 import { CDN_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import VegIcon from "../../images/veg-icon.jpg";
@@ -7,13 +7,13 @@ import NonVegIcon from "../../images/non-veg-icon.png";
 import bestSeller from "../../images/best-seller.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Modal from "./Modal.js";
 
-const ItemList = ({ items, setShowItemCount }) => {
+const ItemList = React.memo(({ items, setShowItemCount }) => {
   //Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [itemToAdd, setItemToAdd] = useState(null); // State to store item to add after confirmation
+  const [itemToAdd, setItemToAdd] = useState(null); // Item to add after confirmation
 
   const { resId } = useParams();
   console.log("resId...", resId);
@@ -28,16 +28,20 @@ const ItemList = ({ items, setShowItemCount }) => {
   };
 
   const handleConfirm = () => {
+    console.log("handle confirm called....");
     // Logic to reset the cart
     console.log("Cart reset!");
-    dispatch(removeItem({ itemId: null, restaurantId: storedCartID }));
+    dispatch(clearCart());
     closeModal(); // Close the modal after confirming
 
     // Add the stored item after resetting the cart
     if (itemToAdd) {
-      const restArr = { ...itemToAdd, resId: resId };
-      dispatch(addItem(restArr));
+      console.log("again inside the confirm function...");
+      const itemWithResId = { ...itemToAdd, resId: resId };
+      dispatch(addItem(itemWithResId));
       setShowItemCount(true);
+
+      // Hide count after some time
       setTimeout(() => {
         console.log("Hiding item count");
         setShowItemCount(false);
@@ -46,22 +50,30 @@ const ItemList = ({ items, setShowItemCount }) => {
     }
   };
 
-  const handleAddItem = (item) => {
-    // Add the restaurant ID to the item payload
-    console.log("storedCartID.....", storedCartID);
-    if (storedCartID !== resId) {
-      openModal();
-      return;
-    }
-    const restArr = { ...item, resId: resId };
-    dispatch(addItem(restArr));
-    setShowItemCount(true);
-    //hide the div after a few seconds
-    setTimeout(() => {
-      console.log("Hiding item count");
-      setShowItemCount(false);
-    }, 4000);
-  };
+  const handleAddItem = useCallback(
+    (item) => {
+      // Add the restaurant ID to the item payload
+      console.log("storedCartID.....", storedCartID);
+      if (storedCartID !== undefined && storedCartID !== resId) {
+        // Open modal if restaurant IDs don't match
+        setItemToAdd({ ...item, resId: resId });
+        openModal();
+        return;
+      } else {
+        // Add item directly if restaurant IDs match or no cart
+        const itemWithResId = { ...item, resId: resId };
+        dispatch(addItem(itemWithResId));
+        setShowItemCount(true);
+
+        // Hide count after some time
+        setTimeout(() => {
+          console.log("Hiding item count");
+          setShowItemCount(false);
+        }, 4000);
+      }
+    },
+    [storedCartID, resId, dispatch, setShowItemCount]
+  );
 
   const handleRemoveItem = (item) => {
     if (item?.card?.info?.id) {
@@ -73,13 +85,13 @@ const ItemList = ({ items, setShowItemCount }) => {
     }
   };
 
-  const cartItems = useSelector(
-    (state) => state.cart.items[resId]?.items || []
-  );
+  const cartItems = useSelector((state) => state.cart.items);
   console.log(cartItems);
 
   const getItemQuantity = (itemId) => {
-    const cartItem = cartItems.find((item) => item?.card?.info?.id === itemId);
+    const cartItem =
+      cartItems != undefined &&
+      cartItems.find((item) => item?.card?.info?.id === itemId);
     return cartItem ? cartItem?.card?.info?.quantity : 0;
   };
 
@@ -385,6 +397,6 @@ const ItemList = ({ items, setShowItemCount }) => {
       </div>
     </>
   );
-};
+});
 
 export default ItemList;

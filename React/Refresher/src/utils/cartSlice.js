@@ -10,118 +10,131 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
+      console.log("Current state:", state);
       const newItem = action.payload;
       console.log("newItem.....", newItem);
       const restaurantId = newItem?.resId;
 
+      //****  clear the items array if rest match */
+      // If the restaurant IDs don't match, clear the cart (reset items as an array)
       if (
         state.currentRestaurantId &&
         state.currentRestaurantId !== restaurantId
       ) {
-        state.items = {};
+        console.log("Resetting cart for new restaurant");
+        state.items = []; // Reset items to an empty array
         state.totalItems = 0;
+        state.count = 0;
       }
 
       // Set the current restaurant ID
       state.currentRestaurantId = restaurantId;
 
-      // Initialize if the restaurant does not exist in state.items
-      if (!state.items[restaurantId]) {
-        state.items[restaurantId] = {
-          items: [],
-          totalItems: 0,
-        };
-      }
-
-      // Check if item already exists in the restaurant's cart
-      const existingItem = state.items[restaurantId].items.find(
+      // Check if item already exists in the cart
+      const existingItem = state.items.find(
         (item) => item?.card?.info?.id === newItem?.card?.info?.id
       );
 
-      console.log("existingItem...", existingItem);
-
       if (existingItem) {
-        //  const actualExistingItem = existingItem instanceof Proxy ? existingItem.valueOf() : existingItem;
+        // Update quantity if item already exists
         state.count += 1;
         existingItem.card.info.quantity = state.count;
-        state.items.length++;
       } else {
-        // If item doesn't exist, add it to the cart
         state.count = 1;
-        state.items[restaurantId].items.push(newItem);
-        newItem.card.info.quantity = state.count;
+        // If item doesn't exist, set quantity to 1 and add it to the cart
+        newItem.card.info.quantity = 1;
+        state.items.push(newItem);
       }
 
-      // Update total items for the specific restaurant and overall cart
-      state.items[restaurantId].totalItems += 1;
+      // Update total items in the cart
       state.totalItems += 1;
 
       // Save updated cart to local storage
-      localStorage.setItem("cart", JSON.stringify(state.items[restaurantId]));
+      localStorage.setItem("cart", JSON.stringify(state.items));
     },
 
     setCart: (state, action) => {
       const storedCart = action.payload;
       console.log("storedCart..... from cartSlice");
-      console.log(storedCart);
-      state.items = storedCart.items || {};
-      state.currentRestaurantId = storedCart?.items[0]?.resId;
-      state.totalItems = storedCart.totalItems || 0;
+      console.log(typeof storedCart); // object
+      // Check if storedCart.items is an array and is not empty
+      if (Array.isArray(storedCart) && storedCart.length > 0) {
+        // Assign storedCart items to the state
+        state.items = storedCart;
+
+        // Set the restaurant ID from the first item in the array
+        state.currentRestaurantId = storedCart[0].resId;
+
+        // Set totalItems from storedCart or fallback to length of the items array
+        state.totalItems = storedCart.length;
+      } else {
+        // Log or handle the case when storedCart is not valid
+        console.warn("Invalid storedCart structure", storedCart);
+
+        // Initialize state with default values
+        state.items = [];
+        state.currentRestaurantId = null;
+        state.totalItems = 0;
+      }
     },
 
     removeItem: (state, action) => {
-      const { itemId, restaurantId } = action.payload; // expecting itemId and restaurantId in the payload
+      const { itemId } = action.payload; // expecting only itemId in the payload
       console.log(itemId);
-      console.log(restaurantId);
-      // Check if both itemId and restaurantId are defined
-      if (!itemId || !restaurantId || !state.items[restaurantId]) {
-        console.warn(
-          "itemId or restaurantId is missing or invalid:",
-          action.payload
-        );
+
+      // Check if itemId is defined
+      if (!itemId) {
+        console.warn("itemId is missing or invalid:", action.payload);
         return;
       }
 
-      const existingItem = state.items[restaurantId].items.find(
+      // Check if the item exists in the cart
+      const existingItem = state.items.find(
         (item) => item?.card?.info?.id === itemId
       );
 
       if (existingItem) {
+        // Decrease quantity
         if (existingItem.card.info.quantity > 1) {
           existingItem.card.info.quantity -= 1;
-          state.items[restaurantId].totalItems -= 1;
         } else {
           // Remove item if quantity is 1
-          state.items[restaurantId].items = state.items[
-            restaurantId
-          ].items.filter((item) => item?.card?.info?.id !== itemId);
-          state.items[restaurantId].totalItems -= 1;
+          state.items = state.items.filter(
+            (item) => item?.card?.info?.id !== itemId
+          );
         }
 
-        // Update overall cart count
+        // Update total items in the cart
         state.totalItems -= 1;
 
-        // Update local storage
-        localStorage.setItem(
-          `cart-${restaurantId}`,
-          JSON.stringify(state.items[restaurantId])
-        );
-
-        // Remove the restaurant's entry if no items are left
-        if (state.items[restaurantId].items.length === 0) {
-          delete state.items[restaurantId];
-          localStorage.removeItem(`cart-${restaurantId}`);
-        }
+        // Save updated cart to local storage
+        localStorage.setItem("cart", JSON.stringify(state.items));
+      } else {
+        console.warn("Item not found in cart:", itemId);
       }
     },
 
-    clearCart: (state, action) => {
-      const restaurantId = action.payload; // restaurantId to clear the specific restaurant's cart
+    clearCart: (state) => {
+      try {
+        // Log the current state before clearing
+        console.log("Clearing entire cart:", state.items);
 
-      if (state.items[restaurantId]) {
-        state.totalItems -= state.items[restaurantId].totalItems;
-        delete state.items[restaurantId];
-        localStorage.removeItem(`cart-${restaurantId}`);
+        // Reset the totalItems count to zero
+        state.totalItems = 0;
+
+        // Clear all items from the cart state
+        state.items = {};
+
+        // Clear all restaurant-specific cart items from localStorage
+        Object.keys(localStorage).forEach((key) => {
+          if (key.startsWith("cart")) {
+            localStorage.removeItem(key);
+          }
+        });
+
+        console.log("Cart cleared successfully.");
+      } catch (error) {
+        console.error("Error clearing cart:", error);
       }
     },
   },

@@ -10,19 +10,6 @@ const CartList = ({ items }) => {
   console.log("cart list item");
   console.log(items);
 
-  // since currentItems are in the form of object - converted below to array
-
-  // const handleRemove = (itemToRemove) =>{
-  //   setItems((currentItems) => {
-  //           const filteredItems = Object.values(currentItems).filter((menu)=> {
-  //                 console.log(menu)
-  //                 return  menu.card.info.id !== itemToRemove.info.id
-  //           });
-  //       console.log(filteredItems);
-  //       return filteredItems;  { ...currentItems , ...filteredItems}
-  //   });
-  // }
-
   const dispatch = useDispatch();
 
   const totalItems = useSelector((store) => store.cart.totalItems);
@@ -36,21 +23,27 @@ const CartList = ({ items }) => {
   var shipping = 49;
 
   const handleRemove = (item) => {
-    console.log("handleRemove", item);
-    dispatch(removeItem({ restaurantId: currentRestaurantId, itemId }));
+    console.log("handleRemove called... CartList");
+    dispatch(
+      removeItem({
+        itemId: item,
+        restaurantId: currentRestaurantId,
+      })
+    );
   };
 
   return (
     <>
       <div className="w-full flex gap-3">
         <div className="w-8/12">
-          {items != undefined && items.length > 0 ? (
-            items.map((item) => {
-              console.log(item);
+          {console.log(Object.values(items))}
+          {items != undefined ? (
+            Object.values(items).map((item) => {
+              console.log(item.card);
               const { card } = item;
               console.log(card);
               if (!card || !card.info) return null; // Check for card and card.info
-
+              console.log(card.info);
               const { id, name, imageId, price, quantity } = card.info;
               const itemPrice = price || card.info.defaultPrice;
               subTotal += (itemPrice / 100) * quantity;

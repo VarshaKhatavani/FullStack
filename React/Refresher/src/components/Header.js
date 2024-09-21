@@ -15,9 +15,6 @@ const Header = () => {
   const [btnLogin, setBtnLoginLogout] = useState("Sign In");
   const [userName, setUserName] = useState("");
 
-  const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
-
   const totalItems = useSelector((store) => store.cart.totalItems);
   console.log(totalItems);
 
