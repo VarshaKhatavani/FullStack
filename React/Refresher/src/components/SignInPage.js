@@ -26,16 +26,19 @@ const SignIn = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log("user from local..SignIn...", user);
-    if (
-      user &&
-      user?.data?.email === email &&
-      user?.data?.password === password
-    ) {
+    const users = JSON.parse(localStorage.getItem("user"));
+    console.log("user from local..SignIn...", users);
+
+    // Find the user that matches the email and password
+    const user = users?.find(
+      (user) => user.email === email && user.password === password
+    );
+    console.log(user);
+    if (user) {
       setError("");
       setIsLoggedIn(true);
-      setLoggedInUser(user.data.username);
+      setLoggedInUser(user.username);
+      localStorage.setItem("loggedInUser", user.userId);
       navigate("/");
       // alert("Sign in successful!");
       // Redirect to a protected page or home page
