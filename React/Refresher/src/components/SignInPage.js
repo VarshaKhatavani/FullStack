@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../utils/UserContext.js";
+import { useDispatch } from "react-redux";
+import { generateCartId } from "../utils/cartSlice.js";
 console.log(useForm);
 
 const SignIn = () => {
   const { setLoggedInUser } = useContext(UserContext);
-
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -24,11 +26,19 @@ const SignIn = () => {
     }
   }, []);
 
+  useEffect(() => {
+    // Generate a cart ID when the session starts (e.g., after user login)
+    dispatch(generateCartId());
+  }, [dispatch]);
+
   const onSubmit = (data) => {
     const { email, password } = data;
-    const users = JSON.parse(localStorage.getItem("user"));
+    let users = JSON.parse(localStorage.getItem("user"));
     console.log("user from local..SignIn...", users);
-
+    //convert users array to object
+    if (!Array.isArray(users)) {
+      users = users ? [users] : []; // If users exists, make it an array; otherwise, an empty array
+    }
     // Find the user that matches the email and password
     const user = users?.find(
       (user) => user.email === email && user.password === password

@@ -31,7 +31,7 @@ const Header = () => {
       navigate("/signin");
     } else {
       //localStorage.removeItem("user");
-      dispatch(clearCart());
+      //dispatch(clearCart());
       setLoggedInUser(null);
       navigate("/");
     }

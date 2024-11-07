@@ -37,7 +37,14 @@ const SignUp = () => {
     };
 
     // Retrieve existing users from localStorage
-    const existingUsers = JSON.parse(localStorage.getItem("user")) || [];
+    let existingUsers = JSON.parse(localStorage.getItem("user")) || [];
+    console.log(typeof existingUsers);
+    //convert users array to object
+    if (!Array.isArray(existingUsers)) {
+      existingUsers = existingUsers ? [existingUsers] : []; // If users exists, make it an array; otherwise, an empty array
+    }
+    console.log(existingUsers);
+    console.log(typeof existingUsers);
     existingUsers.push(dataToStore);
     /* {
         "data":

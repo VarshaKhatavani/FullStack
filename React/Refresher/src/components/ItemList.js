@@ -21,6 +21,18 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
   const storedCartID = cartState.items[0]?.resId;
   const dispatch = useDispatch();
 
+  let users = JSON.parse(localStorage.getItem("user"));
+  console.log("users itemlist");
+  console.log(typeof users);
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (!Array.isArray(users)) {
+    users = users ? [users] : []; // If users exists, make it an array; otherwise, an empty array
+  }
+  let user;
+  if (loggedInUser) {
+    user = users?.find((user) => user?.userId === loggedInUser);
+  }
+  console.log(typeof user);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
@@ -37,8 +49,15 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
     // Add the stored item after resetting the cart
     if (itemToAdd) {
       console.log("again inside the confirm function...");
-      const itemWithResId = { ...itemToAdd, resId: resId };
-      dispatch(addItem(itemWithResId));
+      //const itemWithResId = { ...itemToAdd, resId: resId };
+      const itemWithUser = {
+        ...itemToAdd,
+        resId: resId,
+        userId: user.userId,
+      };
+      console.log("itemWithUser...");
+      console.log(itemWithUser);
+      dispatch(addItem(itemWithUser));
       setShowItemCount(true);
 
       // Hide count after some time
@@ -56,13 +75,21 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
       console.log("storedCartID.....", storedCartID);
       if (storedCartID !== undefined && storedCartID !== resId) {
         // Open modal if restaurant IDs don't match
-        setItemToAdd({ ...item, resId: resId });
+        setItemToAdd({ ...item, resId: resId, usrId: user?.userId || null });
         openModal();
         return;
       } else {
         // Add item directly if restaurant IDs match or no cart
-        const itemWithResId = { ...item, resId: resId };
-        dispatch(addItem(itemWithResId));
+        //const itemWithResId = { ...item, resId: resId };
+        const itemWithUser = {
+          ...item,
+          resId: resId,
+          usrId: user?.userId || null,
+        };
+        console.log("itemWithUser...");
+        console.log(itemWithUser);
+
+        dispatch(addItem(itemWithUser));
         setShowItemCount(true);
 
         // Hide count after some time

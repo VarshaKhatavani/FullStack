@@ -33,20 +33,36 @@ const AppLayout = () => {
   const [userName, setUserName] = useState("");
 
   const dispatch = useDispatch();
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  let userData = JSON.parse(localStorage.getItem("user"));
+  console.log(typeof userData);
+  if (!Array.isArray(userData)) {
+    userData = userData ? [userData] : []; // If users exists, make it an array; otherwise, an empty array
+  }
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    console.log("user from local.....", userData?.data?.username);
-    const username = userData?.data?.username;
-    setUserName(username);
+    if (loggedInUser) {
+      const user = userData?.find((user) => user?.userId === loggedInUser);
+      console.log("user from local.....", user?.username);
+      const username = user?.username;
+      console.log(username);
+      //***** Note: remove logged out time user id *****
+      setUserName(username);
+    }
   }, []);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart"));
     console.log("storedCart.....");
-    console.log(storedCart);
     if (storedCart) {
-      dispatch(setCart(storedCart));
+      const loginUser = userData?.find((user) => user?.userId === loggedInUser);
+      console.log(loginUser.cartId);
+      const userCart = storedCart.find(
+        (cart) => cart?.cartId == loginUser.cartId
+      );
+      console.log(userCart.items);
+      console.log(storedCart);
+      dispatch(setCart(userCart.items));
     }
   }, [dispatch]);
 

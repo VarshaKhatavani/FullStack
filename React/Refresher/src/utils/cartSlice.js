@@ -3,18 +3,26 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
+    cartId: null,
     items: [],
     count: 1, // maintain quantity
     currentRestaurantId: null,
+    currentUserId: null,
     totalItems: 0, // used to maintain cart counter
   },
   reducers: {
+    generateCartId: (state) => {
+      if (!state.cartId) {
+        state.cartId = crypto.randomUUID();
+      }
+    },
+
     addItem: (state, action) => {
       console.log("Current state:", state);
       const newItem = action.payload;
       console.log("newItem.....", newItem);
       const restaurantId = newItem?.resId;
-
+      const loggedInUserId = newItem?.usrId;
       //****  clear the items array if rest match */
       // If the restaurant IDs don't match, clear the cart (reset items as an array)
       if (
@@ -29,7 +37,7 @@ const cartSlice = createSlice({
 
       // Set the current restaurant ID
       state.currentRestaurantId = restaurantId;
-
+      state.currentUserId = loggedInUserId;
       // Check if item already exists in the cart
       const existingItem = state.items.find(
         (item) => item?.card?.info?.id === newItem?.card?.info?.id
@@ -50,7 +58,59 @@ const cartSlice = createSlice({
       state.totalItems += 1;
 
       // Save updated cart to local storage
-      localStorage.setItem("cart", JSON.stringify(state.items));
+      if (state.currentUserId) {
+        let users = JSON.parse(localStorage.getItem("user"));
+        console.log(users);
+        if (!Array.isArray(users)) {
+          users = users ? [users] : []; // If users exists, make it an array; otherwise, an empty array
+        }
+        // find logged in user to update the cart
+        const userIndex = users?.findIndex(
+          (user) => user?.userId === state.currentUserId
+        );
+        console.log(userIndex);
+        if (userIndex !== -1) {
+          console.log("if block....");
+          users[userIndex].cartId = state.cartId;
+        }
+        console.log(users);
+        // find user & update specific data
+        localStorage.setItem("user", JSON.stringify(users));
+
+        // storing to cart
+        let cartArray = JSON.parse(localStorage.getItem("cart")) || [];
+        console.log(cartArray);
+        // Check if the cart with the current cartId exists in the cart array
+        const existingCartIndex = cartArray.findIndex(
+          (cart) => cart.cartId === state.cartId
+        );
+        console.log(existingCartIndex);
+        if (existingCartIndex !== -1) {
+          // Update the existing cart in the array
+          cartArray[existingCartIndex] = {
+            cartId: state.cartId,
+            items: state.items,
+            restaurantId: state.currentRestaurantId,
+            totalItems: state.totalItems,
+          };
+        } else {
+          // If cart doesn't exist, add a new cart to the array
+          cartArray.push({
+            cartId: state.cartId,
+            items: state.items,
+            restaurantId: state.currentRestaurantId,
+            totalItems: state.totalItems,
+          });
+        }
+
+        // Save the updated cart array back to local storage
+        localStorage.setItem("cart", JSON.stringify(cartArray));
+      }
+
+      // localStorage.setItem(
+      //   "cart_" + `${state.currentUserId}`,
+      //   JSON.stringify(state.items)
+      // );
     },
 
     setCart: (state, action) => {
@@ -126,11 +186,11 @@ const cartSlice = createSlice({
         state.items = {};
 
         // Clear all restaurant-specific cart items from localStorage
-        Object.keys(localStorage).forEach((key) => {
-          if (key.startsWith("cart")) {
-            localStorage.removeItem(key);
-          }
-        });
+        // Object.keys(localStorage).forEach((key) => {
+        //   if (key.startsWith("cart")) {
+        //     localStorage.removeItem(key);
+        //   }
+        // });
 
         console.log("Cart cleared successfully.");
       } catch (error) {
@@ -140,5 +200,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, clearCart, setCart } = cartSlice.actions;
+export const { addItem, removeItem, clearCart, setCart, generateCartId } =
+  cartSlice.actions;
 export default cartSlice.reducer;
