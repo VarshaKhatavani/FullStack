@@ -7,19 +7,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { clearCart } from "../utils/cartSlice";
+import { useRestaurantContext } from "../utils/RestaurantContext";
 
 const Header = () => {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
-  console.log(loggedInUser);
+  // console.log(loggedInUser);
 
+  const { locale } = useRestaurantContext();
+  console.log(locale, "from header");
   const onlineStatus = useOnlineStatus();
   const [btnLogin, setBtnLoginLogout] = useState("Sign In");
-  const [userName, setUserName] = useState("");
 
   const totalItems = useSelector((store) => store.cart.totalItems);
-  console.log(totalItems);
+  // console.log(totalItems);
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,8 +31,7 @@ const Header = () => {
     if (btnLogin === "Sign In") {
       navigate("/signin");
     } else {
-      //localStorage.removeItem("user");
-      //dispatch(clearCart());
+      localStorage.removeItem("loggedInUser");
       setLoggedInUser(null);
       navigate("/");
     }
@@ -41,14 +41,30 @@ const Header = () => {
   // navigation menu
   return (
     <div className="flex justify-between bg-white shadow-lg mb-2 ">
-      <div>
-        <img className="w-26 h-24" src={myImage} alt="" />
+      <div className="flex">
+        <span>
+          <img className="w-26 h-24" src={myImage} alt="" />
+        </span>
+        {/* <span className="flex flex-col justify-end  mb-2 text-base font-bold mr-1 ">
+          {onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}
+        </span> */}
+        {locale !== undefined && locale.length > 0 && (
+          <>
+            <span className="flex flex-col justify-end mb-2 mr-2 text-base font-semibold">
+              {locale[0]}
+              <span className="text-xs font-semibold text-gray-500">
+                {" "}
+                {locale.slice(1, 3).join(" ")}{" "}
+              </span>
+            </span>
+          </>
+        )}
       </div>
       <div className="flex items-center font-semibold ">
         <ul className="flex p-4 m-4 items-center ">
-          <li className="px-4">
+          {/* <li className="px-4">
             {onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}
-          </li>
+          </li> */}
           <li className="px-4 hover:text-orange-500 cursor-pointer">
             <Link to={"/"}>Home</Link>
           </li>

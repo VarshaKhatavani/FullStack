@@ -14,29 +14,6 @@ const Content = () => {
     fetchData();
   }, [fetchData]);
 
-  const fetchLocaleInfo = async () => {
-    try {
-      const response = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${location.latitude}+${location.longitude}&key=afc9ae1d64c34ebabace1ae90062086a`
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const result = await response.json();
-      const cityName = result?.results[0]?.components?.city;
-      const state = result?.results[0]?.components?.state;
-      const country = result?.results[0]?.components?.country;
-      console.log("place...", cityName);
-      const locationInfo = [cityName, state, country];
-      console.log(locationInfo);
-      setLocale(locationInfo);
-    } catch (error) {
-      console.error("An error occurred while fetching data:", error);
-    }
-  };
-
   const onlineStatus = useOnlineStatus();
 
   if (!onlineStatus) {

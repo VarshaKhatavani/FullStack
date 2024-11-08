@@ -17,8 +17,7 @@ export const UserProvider = ({ children }) => {
     // Find the user that matches the email and password
     let loggedInUser = localStorage.getItem("loggedInUser");
     const user = storedUser?.find((user) => user.userId === loggedInUser);
-    console.log("UserContext......");
-    console.log(user);
+    // console.log("UserContext......");
     if (user) {
       setLoggedInUser(user.username);
     }

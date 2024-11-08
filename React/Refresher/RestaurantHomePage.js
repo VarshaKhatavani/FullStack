@@ -35,7 +35,7 @@ const AppLayout = () => {
   const dispatch = useDispatch();
   const loggedInUser = localStorage.getItem("loggedInUser");
   let userData = JSON.parse(localStorage.getItem("user"));
-  console.log(typeof userData);
+  // console.log(typeof userData);
   if (!Array.isArray(userData)) {
     userData = userData ? [userData] : []; // If users exists, make it an array; otherwise, an empty array
   }
@@ -43,9 +43,8 @@ const AppLayout = () => {
   useEffect(() => {
     if (loggedInUser) {
       const user = userData?.find((user) => user?.userId === loggedInUser);
-      console.log("user from local.....", user?.username);
+      // console.log("user from local.....", user?.username);
       const username = user?.username;
-      console.log(username);
       //***** Note: remove logged out time user id *****
       setUserName(username);
     }
@@ -56,7 +55,7 @@ const AppLayout = () => {
     console.log("storedCart.....");
     if (storedCart) {
       const loginUser = userData?.find((user) => user?.userId === loggedInUser);
-      console.log(loginUser.cartId);
+      // console.log(loginUser.cartId);
       const userCart = storedCart.find(
         (cart) => cart?.cartId == loginUser.cartId
       );

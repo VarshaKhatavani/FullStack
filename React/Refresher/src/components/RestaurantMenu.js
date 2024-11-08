@@ -149,7 +149,7 @@ const RestaurantMenu = () => {
         <div className="menu p-2 ">
           <div className="left-menu">
             {category.map((category, index) => {
-              console.log(category);
+              // console.log(category);
               return (
                 <>
                   <div key={category?.card?.card?.id || index}>

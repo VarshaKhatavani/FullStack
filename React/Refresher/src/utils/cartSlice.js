@@ -116,7 +116,7 @@ const cartSlice = createSlice({
     setCart: (state, action) => {
       const storedCart = action.payload;
       console.log("storedCart..... from cartSlice");
-      console.log(typeof storedCart); // object
+      // console.log(typeof storedCart); // object
       // Check if storedCart.items is an array and is not empty
       if (Array.isArray(storedCart) && storedCart.length > 0) {
         // Assign storedCart items to the state

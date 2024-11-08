@@ -22,8 +22,8 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
   const dispatch = useDispatch();
 
   let users = JSON.parse(localStorage.getItem("user"));
-  console.log("users itemlist");
-  console.log(typeof users);
+  // console.log("users itemlist");
+  // console.log(typeof users);
   const loggedInUser = localStorage.getItem("loggedInUser");
   if (!Array.isArray(users)) {
     users = users ? [users] : []; // If users exists, make it an array; otherwise, an empty array
@@ -32,7 +32,7 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
   if (loggedInUser) {
     user = users?.find((user) => user?.userId === loggedInUser);
   }
-  console.log(typeof user);
+  // console.log(typeof user);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../utils/UserContext.js";
 import { useDispatch } from "react-redux";
 import { generateCartId } from "../utils/cartSlice.js";
-console.log(useForm);
 
 const SignIn = () => {
   const { setLoggedInUser } = useContext(UserContext);
