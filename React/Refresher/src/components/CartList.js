@@ -4,6 +4,8 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../utils/cartSlice.js";
 import { faPercentage } from "@fortawesome/free-solid-svg-icons";
+import restaurantMenu from "../utils/useRestaurantMenu.js";
+import { Link } from "react-router-dom";
 
 const CartList = ({ items }) => {
   // handleRemove
@@ -32,6 +34,15 @@ const CartList = ({ items }) => {
     );
   };
 
+  console.log(typeof currentRestaurantId);
+  const resInfo = restaurantMenu(currentRestaurantId);
+  console.log(resInfo);
+  console.log("Cart Page....");
+  if (resInfo === null) return;
+  let resHeaderInfo = resInfo[2]?.card?.card.info;
+  console.log(resHeaderInfo?.name);
+  const imageID = resInfo[2]?.card?.card.info?.cloudinaryImageId;
+  const imageURL = CDN_URL + imageID;
   return (
     <>
       <div className="w-full flex gap-3">
@@ -84,8 +95,27 @@ const CartList = ({ items }) => {
             <div>No items in cart.</div>
           )}
         </div>
+
         {items.length !== 0 && (
-          <div className="bg-white w-4/12 shadow-lg p-4 mt-[16px] rounded-lg h-[314px] ">
+          <div className="bg-white w-4/12 shadow-lg p-4 mt-[16px] rounded-lg h-[370px] ">
+            <Link to={`/restaurants/${resHeaderInfo?.id}`}>
+              <div className="font-bold p-2 flex cursor-pointer">
+                <span>
+                  <img
+                    src={imageURL}
+                    className="w-20 h-14 rounded-sm"
+                    alt={resHeaderInfo?.name}
+                  />
+                </span>
+                <span className="flex flex-col justify-start ml-4 text-base uppercase ">
+                  {resHeaderInfo?.name}
+                  <p className="text-xs font-semibold text-gray-500 normal-case ">
+                    {resHeaderInfo?.locality}
+                  </p>
+                </span>
+              </div>
+            </Link>
+
             <div className="font-bold p-2">
               Order Summary ({totalItems} items)
             </div>

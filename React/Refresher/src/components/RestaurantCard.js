@@ -41,7 +41,7 @@ const RestaurantCard = (props) => {
         <div className="p-2">
           <span className="title font-bold">{name}</span>
           <br />
-          <div className="flex  bg-green-600 w-[18px] h-[18px] items-center rounded-full">
+          <div className="flex bg-green-600 w-[18px] h-[18px] items-center rounded-full">
             <FontAwesomeIcon
               icon={faStar}
               className="text-white text-xs p-1 -ml-[2px]"

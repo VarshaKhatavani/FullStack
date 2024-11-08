@@ -57,7 +57,7 @@ const AppLayout = () => {
       const loginUser = userData?.find((user) => user?.userId === loggedInUser);
       // console.log(loginUser.cartId);
       const userCart = storedCart.find(
-        (cart) => cart?.cartId == loginUser.cartId
+        (cart) => cart?.cartId == loginUser?.cartId
       );
       console.log(userCart.items);
       console.log(storedCart);

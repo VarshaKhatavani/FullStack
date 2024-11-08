@@ -53,7 +53,7 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
       const itemWithUser = {
         ...itemToAdd,
         resId: resId,
-        userId: user.userId,
+        userId: user?.userId,
       };
       console.log("itemWithUser...");
       console.log(itemWithUser);

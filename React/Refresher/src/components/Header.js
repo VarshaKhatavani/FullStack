@@ -54,7 +54,7 @@ const Header = () => {
               {locale[0]}
               <span className="text-xs font-semibold text-gray-500">
                 {" "}
-                {locale.slice(1, 3).join(" ")}{" "}
+                {locale.slice(1, 3).join(" ")}
               </span>
             </span>
           </>
