@@ -16,9 +16,8 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { UserProvider } from "./src/utils/UserContext";
 import { Provider, useDispatch } from "react-redux";
 import { RestaurantProvider } from "./src/utils/RestaurantContext";
-import CartSlice from "./src/utils/cartSlice.js";
+import CartSlice, { setCart } from "./src/utils/cartSlice.js";
 import CartList from "./src/components/CartList";
-import { setCart } from "./src/utils/cartSlice.js";
 
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 
@@ -31,7 +30,7 @@ const Grocery = lazy(() => import("./src/components/Grocery"));
 
 const AppLayout = () => {
   const [userName, setUserName] = useState("");
-
+  console.log("Restaurant Home Page called....");
   const dispatch = useDispatch();
   const loggedInUser = localStorage.getItem("loggedInUser");
   let userData = JSON.parse(localStorage.getItem("user"));
@@ -55,7 +54,6 @@ const AppLayout = () => {
     console.log("storedCart.....");
     if (storedCart) {
       const loginUser = userData?.find((user) => user?.userId === loggedInUser);
-
       if (loginUser) {
         console.log(loginUser?.cartId);
         const userCart = storedCart[loginUser?.cartId];

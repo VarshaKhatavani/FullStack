@@ -6,7 +6,6 @@ import UserContext from "../utils/UserContext";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { clearCart } from "../utils/cartSlice";
 import { useRestaurantContext } from "../utils/RestaurantContext";
 
 const Header = () => {
@@ -15,7 +14,7 @@ const Header = () => {
 
   const { locale } = useRestaurantContext();
   console.log(locale, "from header");
-  const onlineStatus = useOnlineStatus();
+  // const onlineStatus = useOnlineStatus();
   const [btnLogin, setBtnLoginLogout] = useState("Sign In");
 
   const totalItems = useSelector((store) => store.cart.totalItems);
