@@ -13,7 +13,7 @@ const cartSlice = createSlice({
   reducers: {
     generateCartId: (state) => {
       if (!state.cartId) {
-        state.cartId = crypto.randomUUID();
+        state.cartId = `${crypto.randomUUID()}-${Date.now()}`;
       }
     },
 
@@ -78,39 +78,25 @@ const cartSlice = createSlice({
         localStorage.setItem("user", JSON.stringify(users));
 
         // storing to cart
-        let cartArray = JSON.parse(localStorage.getItem("cart")) || [];
-        console.log(cartArray);
-        // Check if the cart with the current cartId exists in the cart array
-        const existingCartIndex = cartArray.findIndex(
-          (cart) => cart.cartId === state.cartId
-        );
-        console.log(existingCartIndex);
-        if (existingCartIndex !== -1) {
-          // Update the existing cart in the array
-          cartArray[existingCartIndex] = {
-            cartId: state.cartId,
+        // let cartData = JSON.parse(localStorage.getItem("cart")) || {};
+        // console.log(cartData);
+        console.log(state.cartId);
+        if (state.cartId) {
+          const cartData = {
             items: state.items,
             restaurantId: state.currentRestaurantId,
             totalItems: state.totalItems,
           };
+          console.log(cartData);
+          let existingCartData = JSON.parse(localStorage.getItem("cart")) || {};
+          existingCartData[state.cartId] = cartData;
+
+          // Save the updated cart array back to local storage
+          localStorage.setItem("cart", JSON.stringify(existingCartData));
         } else {
-          // If cart doesn't exist, add a new cart to the array
-          cartArray.push({
-            cartId: state.cartId,
-            items: state.items,
-            restaurantId: state.currentRestaurantId,
-            totalItems: state.totalItems,
-          });
+          console.error("Cart ID is missing! Unable to save cart data.");
         }
-
-        // Save the updated cart array back to local storage
-        localStorage.setItem("cart", JSON.stringify(cartArray));
       }
-
-      // localStorage.setItem(
-      //   "cart_" + `${state.currentUserId}`,
-      //   JSON.stringify(state.items)
-      // );
     },
 
     setCart: (state, action) => {

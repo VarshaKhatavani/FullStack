@@ -55,13 +55,15 @@ const AppLayout = () => {
     console.log("storedCart.....");
     if (storedCart) {
       const loginUser = userData?.find((user) => user?.userId === loggedInUser);
-      // console.log(loginUser.cartId);
-      const userCart = storedCart.find(
-        (cart) => cart?.cartId == loginUser?.cartId
-      );
-      console.log(userCart.items);
-      console.log(storedCart);
-      dispatch(setCart(userCart.items));
+
+      if (loginUser) {
+        console.log(loginUser?.cartId);
+        const userCart = storedCart[loginUser?.cartId];
+        if (userCart) {
+          console.log(userCart?.items);
+          dispatch(setCart(userCart?.items));
+        }
+      }
     }
   }, [dispatch]);
 
