@@ -117,6 +117,7 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
 
   const getItemQuantity = (itemId) => {
     const cartItem =
+      cartItems.length > 0 &&
       cartItems != undefined &&
       cartItems.find((item) => item?.card?.info?.id === itemId);
     return cartItem ? cartItem?.card?.info?.quantity : 0;

@@ -12,9 +12,11 @@ const cartSlice = createSlice({
   },
   reducers: {
     generateCartId: (state) => {
+      console.log("cart called....");
       if (!state.cartId) {
         state.cartId = `${crypto.randomUUID()}-${Date.now()}`;
       }
+      console.log(state.cartId);
     },
 
     addItem: (state, action) => {
@@ -38,14 +40,22 @@ const cartSlice = createSlice({
       // Set the current restaurant ID
       state.currentRestaurantId = restaurantId;
       state.currentUserId = loggedInUserId;
-      // Check if item already exists in the cart
-      const existingItem = state.items.find(
-        (item) => item?.card?.info?.id === newItem?.card?.info?.id
-      );
 
+      // Update total items in the cart
+      state.totalItems += 1;
+      console.log(state.currentUserId);
+
+      // Check if item already exists in the cart
+      const existingItem =
+        state.items.length > 0 &&
+        state.items.find(
+          (item) => item?.card?.info?.id === newItem?.card?.info?.id
+        );
+      console.log(existingItem);
       if (existingItem) {
         // Update quantity if item already exists
         state.count += 1;
+        console.log(existingItem.card.info.quantity);
         existingItem.card.info.quantity = state.count;
       } else {
         state.count = 1;
@@ -53,9 +63,6 @@ const cartSlice = createSlice({
         newItem.card.info.quantity = 1;
         state.items.push(newItem);
       }
-
-      // Update total items in the cart
-      state.totalItems += 1;
 
       // Save updated cart to local storage
       if (state.currentUserId) {
@@ -69,7 +76,8 @@ const cartSlice = createSlice({
           (user) => user?.userId === state.currentUserId
         );
         console.log(userIndex);
-        if (userIndex !== -1) {
+        let currentUserCart = users[userIndex].cartId;
+        if (userIndex !== -1 && state.cartId !== null) {
           console.log("if block....");
           users[userIndex].cartId = state.cartId;
         }
@@ -80,16 +88,38 @@ const cartSlice = createSlice({
         // storing to cart
         // let cartData = JSON.parse(localStorage.getItem("cart")) || {};
         // console.log(cartData);
-        console.log(state.cartId);
-        if (state.cartId) {
-          const cartData = {
-            items: state.items,
-            restaurantId: state.currentRestaurantId,
-            totalItems: state.totalItems,
-          };
+        console.log(state.cartId, currentUserCart);
+        if (currentUserCart) {
+          const cartData = state.items;
+          // {
+          //   items: state.items,
+          // restaurantId: state.currentRestaurantId,
+          // totalItems: state.totalItems,
+          // };
           console.log(cartData);
           let existingCartData = JSON.parse(localStorage.getItem("cart")) || {};
-          existingCartData[state.cartId] = cartData;
+
+          // Check if the current cartId already exists in the object
+          if (!existingCartData[currentUserCart]) {
+            existingCartData[currentUserCart] = {
+              items: [],
+              restaurantId: state.restaurantId,
+              totalItems: 0,
+              cartId: currentUserCart,
+            };
+          }
+
+          // Add the new item to the appropriate cart
+
+          // Check if item already exists in the cart
+          if (existingItem) {
+            // Update quantity if item already exists
+            existingCartData[currentUserCart].items = state.items;
+          } else {
+            existingCartData[currentUserCart].items.push(newItem);
+          }
+          existingCartData[currentUserCart].totalItems += 1;
+          // existingCartData[state.cartId].cartId = state.cartId;
 
           // Save the updated cart array back to local storage
           localStorage.setItem("cart", JSON.stringify(existingCartData));
@@ -102,25 +132,29 @@ const cartSlice = createSlice({
     setCart: (state, action) => {
       const storedCart = action.payload;
       console.log("storedCart..... from cartSlice");
-      // console.log(typeof storedCart); // object
+      console.log(storedCart); // object
       // Check if storedCart.items is an array and is not empty
-      if (Array.isArray(storedCart) && storedCart.length > 0) {
+      if (
+        storedCart &&
+        Array.isArray(storedCart.items) &&
+        storedCart.items.length > 0
+      ) {
         // Assign storedCart items to the state
-        state.items = storedCart;
+        state.items = storedCart.items;
 
         // Set the restaurant ID from the first item in the array
-        state.currentRestaurantId = storedCart[0].resId;
+        state.currentRestaurantId = storedCart.items[0]?.resId;
 
         // Set totalItems from storedCart or fallback to length of the items array
-        state.totalItems = storedCart.length;
+        state.totalItems = storedCart.totalItems;
       } else {
         // Log or handle the case when storedCart is not valid
         console.warn("Invalid storedCart structure", storedCart);
-
         // Initialize state with default values
         state.items = [];
         state.currentRestaurantId = null;
         state.totalItems = 0;
+        state.count = 0;
       }
     },
 
@@ -169,7 +203,13 @@ const cartSlice = createSlice({
         state.totalItems = 0;
 
         // Clear all items from the cart state
-        state.items = {};
+        state.currentUserId = null; // Clear user ID
+        state.cartId = null; // Clear cartId (if specific to user)
+        state.currentRestaurantId = null; // Clear restaurant data
+        state.items = []; // Reset cart items
+        state.totalItems = 0; // Reset total items count
+        state.count = 0; // Reset quantity count
+        // state.items = {};
 
         // Clear all restaurant-specific cart items from localStorage
         // Object.keys(localStorage).forEach((key) => {

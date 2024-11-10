@@ -57,9 +57,10 @@ const AppLayout = () => {
       if (loginUser) {
         console.log(loginUser?.cartId);
         const userCart = storedCart[loginUser?.cartId];
+        const userItems = { ...userCart };
         if (userCart) {
-          console.log(userCart?.items);
-          dispatch(setCart(userCart?.items));
+          console.log(userItems);
+          dispatch(setCart(userItems));
         }
       }
     }

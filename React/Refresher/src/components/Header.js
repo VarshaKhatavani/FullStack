@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { useRestaurantContext } from "../utils/RestaurantContext";
+import { clearCart } from "../utils/cartSlice.js";
 
 const Header = () => {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
   // console.log(loggedInUser);
 
   const { locale } = useRestaurantContext();
-  console.log(locale, "from header");
+  // console.log(locale, "from header");
   // const onlineStatus = useOnlineStatus();
   const [btnLogin, setBtnLoginLogout] = useState("Sign In");
 
@@ -26,11 +27,13 @@ const Header = () => {
     setBtnLoginLogout(loggedInUser ? "Sign Out" : "Sign In");
   }, [loggedInUser]);
 
+  const dispatch = useDispatch();
   const handleSignInOut = () => {
     if (btnLogin === "Sign In") {
       navigate("/signin");
     } else {
       localStorage.removeItem("loggedInUser");
+      dispatch(clearCart());
       setLoggedInUser(null);
       navigate("/");
     }

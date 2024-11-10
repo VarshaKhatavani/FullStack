@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../utils/UserContext.js";
 import { useDispatch } from "react-redux";
-import { generateCartId } from "../utils/cartSlice.js";
+import { generateCartId, setCart } from "../utils/cartSlice.js";
+import { setCart } from "../utils/cartSlice.js";
 
 const SignIn = () => {
   const { setLoggedInUser } = useContext(UserContext);
@@ -25,10 +26,11 @@ const SignIn = () => {
     }
   }, []);
 
-  useEffect(() => {
-    // Generate a cart ID when the session starts (e.g., after user login)
-    dispatch(generateCartId());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   console.log("SignIn Page.... generateCartID");
+  //   // Generate a cart ID when the session starts (e.g., after user login)
+  //   dispatch(generateCartId());
+  // }, [dispatch]);
 
   const onSubmit = (data) => {
     const { email, password } = data;
@@ -46,8 +48,30 @@ const SignIn = () => {
     if (user) {
       setError("");
       setIsLoggedIn(true);
-      setLoggedInUser(user.username);
-      localStorage.setItem("loggedInUser", user.userId);
+      setLoggedInUser(user?.username);
+      localStorage.setItem("loggedInUser", user?.userId);
+      console.log("SignIn Page.... generateCartID");
+      // Generate a cart ID when the session starts (e.g., after user login)
+      dispatch(generateCartId());
+
+      // set cart initial
+      const loggedInUser = localStorage.getItem("loggedInUser");
+      const storedCart = JSON.parse(localStorage.getItem("cart"));
+      console.log("storedCart.....");
+      if (storedCart) {
+        const loginUser = users?.find((user) => user?.userId === loggedInUser);
+        if (loginUser) {
+          console.log(loginUser?.cartId);
+          const userCart = storedCart[loginUser?.cartId];
+          console.log(userCart);
+          const userItems = { ...userCart };
+          if (userCart) {
+            // console.log(userCart?.items);
+            dispatch(setCart(userItems));
+          }
+        }
+      }
+
       navigate("/");
       // alert("Sign in successful!");
       // Redirect to a protected page or home page
