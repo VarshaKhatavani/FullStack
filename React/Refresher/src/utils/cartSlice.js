@@ -184,11 +184,52 @@ const cartSlice = createSlice({
           );
         }
 
+        const storedCart = JSON.parse(localStorage.getItem("cart"));
+        console.log("storedCart.....");
+        const loggedInUser = localStorage.getItem("loggedInUser");
+        let userData = JSON.parse(localStorage.getItem("user"));
+        // console.log(typeof userData);
+        if (!Array.isArray(userData)) {
+          userData = userData ? [userData] : []; // If users exists, make it an array; otherwise, an empty array
+        }
+
+        if (storedCart && loggedInUser) {
+          const loginUser = userData?.find(
+            (user) => user?.userId === loggedInUser
+          );
+          if (loginUser) {
+            console.log(loginUser?.cartId);
+            if (storedCart[loginUser?.cartId]) {
+              console.log(storedCart[loginUser?.cartId]);
+              let userCart = storedCart[loginUser?.cartId];
+              console.log(userCart?.items);
+              const existingItem = userCart.items.find(
+                (item) => item?.card?.info?.id === itemId
+              );
+              if (existingItem) {
+                // Decrease quantity
+                if (existingItem.card.info.quantity > 1) {
+                  existingItem.card.info.quantity -= 1;
+                } else {
+                  // Remove item if quantity is 1
+                  userCart.items = userCart.items.filter(
+                    (item) => item?.card?.info?.id !== itemId
+                  );
+                }
+              }
+              userCart.totalItems -= 1;
+              console.log(userCart?.items);
+              storedCart[loginUser?.cartId] = userCart;
+              // delete storedCart[loginUser?.cartId];
+            }
+          }
+        }
+
         // Update total items in the cart
         state.totalItems -= 1;
 
         // Save updated cart to local storage
-        localStorage.setItem("cart", JSON.stringify(state.items));
+        localStorage.setItem("cart", JSON.stringify(storedCart));
       } else {
         console.warn("Item not found in cart:", itemId);
       }
