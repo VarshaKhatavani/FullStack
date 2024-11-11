@@ -43,7 +43,7 @@ const ItemList = React.memo(({ items, setShowItemCount }) => {
     console.log("handle confirm called....");
     // Logic to reset the cart
     console.log("Cart reset!");
-    dispatch(clearCart());
+    dispatch(clearCart({ type: "NEW_RESTAURANT" }));
     closeModal(); // Close the modal after confirming
 
     // Add the stored item after resetting the cart

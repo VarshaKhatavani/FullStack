@@ -194,10 +194,17 @@ const cartSlice = createSlice({
       }
     },
 
-    clearCart: (state) => {
+    clearCart: (state, action) => {
       try {
+        // Check the type of action: 'LOGOUT' or 'NEW_RESTAURANT'
+        const { type } = action.payload || {};
         // Log the current state before clearing
-        console.log("Clearing entire cart:", state.items);
+        console.log(
+          "Clear Cart action:",
+          type,
+          "Clearing entire cart:",
+          state.items
+        );
 
         // Reset the totalItems count to zero
         state.totalItems = 0;
@@ -211,12 +218,31 @@ const cartSlice = createSlice({
         state.count = 0; // Reset quantity count
         // state.items = {};
 
-        // Clear all restaurant-specific cart items from localStorage
-        // Object.keys(localStorage).forEach((key) => {
-        //   if (key.startsWith("cart")) {
-        //     localStorage.removeItem(key);
-        //   }
-        // });
+        if ((type = "NEW_RESTAURANT")) {
+          const storedCart = JSON.parse(localStorage.getItem("cart"));
+          console.log("storedCart.....");
+          const loggedInUser = localStorage.getItem("loggedInUser");
+          let userData = JSON.parse(localStorage.getItem("user"));
+          // console.log(typeof userData);
+          if (!Array.isArray(userData)) {
+            userData = userData ? [userData] : []; // If users exists, make it an array; otherwise, an empty array
+          }
+
+          if (storedCart && loggedInUser) {
+            const loginUser = userData?.find(
+              (user) => user?.userId === loggedInUser
+            );
+            if (loginUser) {
+              console.log(loginUser?.cartId);
+              if (storedCart[loginUser?.cartId]) {
+                console.log(storedCart[loginUser?.cartId]);
+                delete storedCart[loginUser?.cartId];
+                console.log("Cart cleared for user:", loginUser.userId);
+                localStorage.setItem("cart", JSON.stringify(storedCart));
+              }
+            }
+          }
+        }
 
         console.log("Cart cleared successfully.");
       } catch (error) {
