@@ -206,9 +206,6 @@ const cartSlice = createSlice({
           state.items
         );
 
-        // Reset the totalItems count to zero
-        state.totalItems = 0;
-
         // Clear all items from the cart state
         state.currentUserId = null; // Clear user ID
         state.cartId = null; // Clear cartId (if specific to user)
@@ -218,7 +215,7 @@ const cartSlice = createSlice({
         state.count = 0; // Reset quantity count
         // state.items = {};
 
-        if ((type = "NEW_RESTAURANT")) {
+        if (type === "NEW_RESTAURANT") {
           const storedCart = JSON.parse(localStorage.getItem("cart"));
           console.log("storedCart.....");
           const loggedInUser = localStorage.getItem("loggedInUser");
