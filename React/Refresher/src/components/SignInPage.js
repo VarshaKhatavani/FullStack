@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-console.log(useForm);
+import UserContext from "../utils/UserContext.js";
+import { useDispatch } from "react-redux";
+import { generateCartId, setCart } from "../utils/cartSlice.js";
+import { setCart } from "../utils/cartSlice.js";
+
 const SignIn = () => {
+  const { setLoggedInUser } = useContext(UserContext);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -20,17 +26,52 @@ const SignIn = () => {
     }
   }, []);
 
+  // useEffect(() => {
+  //   console.log("SignIn Page.... generateCartID");
+  //   // Generate a cart ID when the session starts (e.g., after user login)
+  //   dispatch(generateCartId());
+  // }, [dispatch]);
+
   const onSubmit = (data) => {
     const { email, password } = data;
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log("user from local..SignIn...", user);
-    if (
-      user &&
-      user?.data?.email === email &&
-      user?.data?.password === password
-    ) {
+    let users = JSON.parse(localStorage.getItem("user"));
+    console.log("user from local..SignIn...", users);
+    //convert users array to object
+    if (!Array.isArray(users)) {
+      users = users ? [users] : []; // If users exists, make it an array; otherwise, an empty array
+    }
+    // Find the user that matches the email and password
+    const user = users?.find(
+      (user) => user.email === email && user.password === password
+    );
+    console.log(user);
+    if (user) {
       setError("");
       setIsLoggedIn(true);
+      setLoggedInUser(user?.username);
+      localStorage.setItem("loggedInUser", user?.userId);
+      console.log("SignIn Page.... generateCartID");
+      // Generate a cart ID when the session starts (e.g., after user login)
+      dispatch(generateCartId());
+
+      // set cart initial
+      const loggedInUser = localStorage.getItem("loggedInUser");
+      const storedCart = JSON.parse(localStorage.getItem("cart"));
+      console.log("storedCart.....");
+      if (storedCart) {
+        const loginUser = users?.find((user) => user?.userId === loggedInUser);
+        if (loginUser) {
+          console.log(loginUser?.cartId);
+          const userCart = storedCart[loginUser?.cartId];
+          console.log(userCart);
+          const userItems = { ...userCart };
+          if (userCart) {
+            // console.log(userCart?.items);
+            dispatch(setCart(userItems));
+          }
+        }
+      }
+
       navigate("/");
       // alert("Sign in successful!");
       // Redirect to a protected page or home page

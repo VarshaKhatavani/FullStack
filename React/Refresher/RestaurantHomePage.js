@@ -13,9 +13,11 @@ import RestaurantMenu from "./src/components/RestaurantMenu";
 import ScrollToTop from "./src/components/ScrollToTop";
 
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import UserContext from "./src/utils/UserContext";
-import { Provider } from "react-redux";
+import { UserProvider } from "./src/utils/UserContext";
+import { Provider, useDispatch } from "react-redux";
 import { RestaurantProvider } from "./src/utils/RestaurantContext";
+import CartSlice, { setCart } from "./src/utils/cartSlice.js";
+import CartList from "./src/components/CartList";
 
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 
@@ -28,29 +30,51 @@ const Grocery = lazy(() => import("./src/components/Grocery"));
 
 const AppLayout = () => {
   const [userName, setUserName] = useState("");
+  console.log("Restaurant Home Page called....");
+  const dispatch = useDispatch();
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  let userData = JSON.parse(localStorage.getItem("user"));
+  // console.log(typeof userData);
+  if (!Array.isArray(userData)) {
+    userData = userData ? [userData] : []; // If users exists, make it an array; otherwise, an empty array
+  }
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
-    console.log("user from local.....", userData?.data?.username);
-    const username = userData?.data?.username;
-    setUserName(username);
+    if (loggedInUser) {
+      const user = userData?.find((user) => user?.userId === loggedInUser);
+      // console.log("user from local.....", user?.username);
+      const username = user?.username;
+      //***** Note: remove logged out time user id *****
+      setUserName(username);
+    }
   }, []);
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    console.log("storedCart.....");
+    if (storedCart) {
+      const loginUser = userData?.find((user) => user?.userId === loggedInUser);
+      if (loginUser) {
+        console.log(loginUser?.cartId);
+        const userCart = storedCart[loginUser?.cartId];
+        const userItems = { ...userCart };
+        if (userCart) {
+          console.log(userItems);
+          dispatch(setCart(userItems));
+        }
+      }
+    }
+  }, [dispatch]);
+
   return (
-    <Provider store={appStore}>
-      <RestaurantProvider>
-        <div className="body">
-          <UserContext.Provider value={{ loggedInUser: userName }}>
-            <ScrollToTop />
-            <Header />
-            <Outlet />
-          </UserContext.Provider>
-        </div>
-        <div>
-          <Footer />
-        </div>
-      </RestaurantProvider>
-    </Provider>
+    <div className="body">
+      <UserProvider>
+        <ScrollToTop />
+        <Header />
+        <Outlet />
+      </UserProvider>
+      <Footer />
+    </div>
   );
 };
 
@@ -106,4 +130,10 @@ const AppRouter = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router={AppRouter} />);
+root.render(
+  <Provider store={appStore}>
+    <RestaurantProvider>
+      <RouterProvider router={AppRouter}></RouterProvider>
+    </RestaurantProvider>
+  </Provider>
+);

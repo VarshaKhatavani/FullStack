@@ -3,38 +3,38 @@ import myImage from "../../images/Swiggy-2.png";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../utils/UserContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { useRestaurantContext } from "../utils/RestaurantContext";
+import { clearCart } from "../utils/cartSlice.js";
 
 const Header = () => {
-  const onlineStatus = useOnlineStatus();
-  const [btnLogin, setBtnLoginLogout] = useState("Sign In");
-  const [userName, setUserName] = useState("");
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+  // console.log(loggedInUser);
 
-  const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  const { locale } = useRestaurantContext();
+  // console.log(locale, "from header");
+  // const onlineStatus = useOnlineStatus();
+  const [btnLogin, setBtnLoginLogout] = useState("Sign In");
 
   const totalItems = useSelector((store) => store.cart.totalItems);
-  console.log(totalItems);
+  // console.log(totalItems);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user && user?.data && user?.data?.username) {
-      setBtnLoginLogout("Sign Out");
-      setUserName(user?.data?.username);
-    }
-  }, []);
+    setBtnLoginLogout(loggedInUser ? "Sign Out" : "Sign In");
+  }, [loggedInUser]);
 
+  const dispatch = useDispatch();
   const handleSignInOut = () => {
     if (btnLogin === "Sign In") {
       navigate("/signin");
     } else {
-      localStorage.removeItem("user");
-      setBtnLoginLogout("Sign In");
-      setUserName("");
+      localStorage.removeItem("loggedInUser");
+      dispatch(clearCart());
+      setLoggedInUser(null);
       navigate("/");
     }
   };
@@ -43,14 +43,30 @@ const Header = () => {
   // navigation menu
   return (
     <div className="flex justify-between bg-white shadow-lg mb-2 ">
-      <div>
-        <img className="w-26 h-24" src={myImage} alt="" />
+      <div className="flex">
+        <span>
+          <img className="w-26 h-24" src={myImage} alt="" />
+        </span>
+        {/* <span className="flex flex-col justify-end  mb-2 text-base font-bold mr-1 ">
+          {onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}
+        </span> */}
+        {locale !== undefined && locale.length > 0 && (
+          <>
+            <span className="flex flex-col justify-end mb-2 mr-2 text-base font-semibold">
+              {locale[0]}
+              <span className="text-xs font-semibold text-gray-500">
+                {" "}
+                {locale.slice(1, 3).join(" ")}
+              </span>
+            </span>
+          </>
+        )}
       </div>
       <div className="flex items-center font-semibold ">
         <ul className="flex p-4 m-4 items-center ">
-          <li className="px-4">
+          {/* <li className="px-4">
             {onlineStatus ? <span>&#x1F7E2;</span> : <span>&#x1F534;</span>}
-          </li>
+          </li> */}
           <li className="px-4 hover:text-orange-500 cursor-pointer">
             <Link to={"/"}>Home</Link>
           </li>
@@ -62,7 +78,7 @@ const Header = () => {
           <li className="px-4 hover:text-orange-500">
             <button onClick={handleSignInOut}>{btnLogin}</button>
           </li>
-          {userName && <li className="px-4 font-bold"> {userName}</li>}
+          {loggedInUser && <li className="px-4 font-bold"> {loggedInUser}</li>}
           <li className="px-4 hover:text-orange-500 cursor-pointer nav-items-menu">
             <Link to={"/cart"}>
               {" "}

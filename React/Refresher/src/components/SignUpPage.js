@@ -28,12 +28,24 @@ const SignUp = () => {
     const expiryTime = 86400; // 1 hour
     const currentTime = Date.now(); // current time
     const expiryTimeStamp = currentTime + expiryTime * 1000;
-
+    let uuid = crypto.randomUUID();
     const dataToStore = {
-      data,
+      ...data,
+      userId: uuid,
+      cartId: null,
       expiry: expiryTimeStamp,
     };
 
+    // Retrieve existing users from localStorage
+    let existingUsers = JSON.parse(localStorage.getItem("user")) || [];
+    console.log(typeof existingUsers);
+    //convert users array to object
+    if (!Array.isArray(existingUsers)) {
+      existingUsers = existingUsers ? [existingUsers] : []; // If users exists, make it an array; otherwise, an empty array
+    }
+    console.log(existingUsers);
+    console.log(typeof existingUsers);
+    existingUsers.push(dataToStore);
     /* {
         "data":
           {
@@ -46,7 +58,7 @@ const SignUp = () => {
       }
     */
 
-    localStorage.setItem("user", JSON.stringify(dataToStore));
+    localStorage.setItem("user", JSON.stringify(existingUsers));
     setSuccessMessage("Account Created Successfully");
     setErrorMessage("");
 

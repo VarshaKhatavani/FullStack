@@ -23,7 +23,7 @@ export const RestaurantProvider = ({ children }) => {
     latitude: 20.9467,
     longitude: 72.952,
   });
-  const [locale, setLocale] = useState([]);
+  const [locale, setLocale] = useState(["", "", ""]);
   const [error, setError] = useState(null);
 
   // Ref to track if fetch has been initiated
@@ -57,7 +57,7 @@ export const RestaurantProvider = ({ children }) => {
     if (location.latitude && location.longitude) {
       // fetch restuarants list
       fetchData();
-
+      fetchLocaleInfo();
       //fetch localeinfo from latitude & longitude
       //fetchLocaleInfo();
     }
@@ -98,6 +98,29 @@ export const RestaurantProvider = ({ children }) => {
     }
   }, [location.latitude, location.longitude]);
 
+  const fetchLocaleInfo = async () => {
+    try {
+      const response = await fetch(
+        `https://api.opencagedata.com/geocode/v1/json?q=${location.latitude}+${location.longitude}&key=afc9ae1d64c34ebabace1ae90062086a`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      const cityName = result?.results[0]?.components?.city;
+      const state = result?.results[0]?.components?.state;
+      const country = result?.results[0]?.components?.country;
+      console.log("place...", cityName);
+      const locationInfo = [cityName, state, country];
+      console.log(locationInfo);
+      setLocale(locationInfo);
+    } catch (error) {
+      console.error("An error occurred while fetching data:", error);
+    }
+  };
+
   return (
     <>
       <RestaurantContext.Provider
@@ -107,6 +130,7 @@ export const RestaurantProvider = ({ children }) => {
           filteredRestaurant,
           setFilteredRestaurant,
           fetchData,
+          locale,
         }}
       >
         {children}

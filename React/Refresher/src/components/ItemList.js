@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { addItem, removeItem } from "../utils/cartSlice.js";
+import { addItem, clearCart, removeItem } from "../utils/cartSlice.js";
 import { CDN_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import VegIcon from "../../images/veg-icon.jpg";
@@ -7,38 +7,119 @@ import NonVegIcon from "../../images/non-veg-icon.png";
 import bestSeller from "../../images/best-seller.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import React, { useCallback, useState } from "react";
+import Modal from "./Modal.js";
 
-const ItemList = ({ items, setShowItemCount }) => {
-  console.log(items);
-  console.log("setShowItemCount....", setShowItemCount);
+const ItemList = React.memo(({ items, setShowItemCount }) => {
+  //Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [itemToAdd, setItemToAdd] = useState(null); // Item to add after confirmation
+
   const { resId } = useParams();
   console.log("resId...", resId);
-
+  const cartState = useSelector((state) => state.cart);
+  const storedCartID = cartState.items[0]?.resId;
   const dispatch = useDispatch();
 
-  const handleAddItem = (item) => {
-    console.log("button click");
-    console.log(item);
-    const restArr = { ...item, resId: resId };
-    dispatch(addItem(restArr));
-    setShowItemCount(true);
-    //hide the div after a few seconds
-    setTimeout(() => {
-      console.log("Hiding item count");
-      setShowItemCount(false);
-    }, 4000);
+  let users = JSON.parse(localStorage.getItem("user"));
+  // console.log("users itemlist");
+  // console.log(typeof users);
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (!Array.isArray(users)) {
+    users = users ? [users] : []; // If users exists, make it an array; otherwise, an empty array
+  }
+  let user;
+  if (loggedInUser) {
+    user = users?.find((user) => user?.userId === loggedInUser);
+  }
+  // console.log(typeof user);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setItemToAdd(null); // Clear the stored item on close
   };
+
+  const handleConfirm = () => {
+    console.log("handle confirm called....");
+    // Logic to reset the cart
+    console.log("Cart reset!");
+    dispatch(clearCart({ type: "NEW_RESTAURANT" }));
+    closeModal(); // Close the modal after confirming
+
+    // Add the stored item after resetting the cart
+    if (itemToAdd) {
+      console.log("again inside the confirm function...");
+      //const itemWithResId = { ...itemToAdd, resId: resId };
+      const itemWithUser = {
+        ...itemToAdd,
+        resId: resId,
+        userId: user?.userId,
+      };
+      console.log("itemWithUser...");
+      console.log(itemWithUser);
+      dispatch(addItem(itemWithUser));
+      setShowItemCount(true);
+
+      // Hide count after some time
+      setTimeout(() => {
+        console.log("Hiding item count");
+        setShowItemCount(false);
+      }, 4000);
+      setItemToAdd(null); // Clear the stored item
+    }
+  };
+
+  const handleAddItem = useCallback(
+    (item) => {
+      // Add the restaurant ID to the item payload
+      console.log("storedCartID.....", storedCartID);
+      if (storedCartID !== undefined && storedCartID !== resId) {
+        // Open modal if restaurant IDs don't match
+        setItemToAdd({ ...item, resId: resId, usrId: user?.userId || null });
+        openModal();
+        return;
+      } else {
+        // Add item directly if restaurant IDs match or no cart
+        //const itemWithResId = { ...item, resId: resId };
+        const itemWithUser = {
+          ...item,
+          resId: resId,
+          usrId: user?.userId || null,
+        };
+        console.log("itemWithUser...");
+        console.log(itemWithUser);
+
+        dispatch(addItem(itemWithUser));
+        setShowItemCount(true);
+
+        // Hide count after some time
+        setTimeout(() => {
+          console.log("Hiding item count");
+          setShowItemCount(false);
+        }, 4000);
+      }
+    },
+    [storedCartID, resId, dispatch, setShowItemCount]
+  );
 
   const handleRemoveItem = (item) => {
     if (item?.card?.info?.id) {
-      dispatch(removeItem(item.card.info.id));
+      const itemToRemove = {
+        itemId: item.card.info.id,
+        restaurantId: resId, // Include the restaurant ID in the payload
+      };
+      dispatch(removeItem(itemToRemove));
     }
   };
 
   const cartItems = useSelector((state) => state.cart.items);
+  console.log(cartItems);
 
   const getItemQuantity = (itemId) => {
-    const cartItem = cartItems.find((item) => item?.card?.info?.id === itemId);
+    const cartItem =
+      cartItems.length > 0 &&
+      cartItems != undefined &&
+      cartItems.find((item) => item?.card?.info?.id === itemId);
     return cartItem ? cartItem?.card?.info?.quantity : 0;
   };
 
@@ -57,6 +138,12 @@ const ItemList = ({ items, setShowItemCount }) => {
   return (
     <>
       <div>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          onConfirm={handleConfirm}
+        />
+
         {items != undefined &&
           items.map((item) => {
             // console.log(item);
@@ -338,6 +425,6 @@ const ItemList = ({ items, setShowItemCount }) => {
       </div>
     </>
   );
-};
+});
 
 export default ItemList;
