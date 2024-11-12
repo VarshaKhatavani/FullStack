@@ -43,6 +43,19 @@ const CartList = ({ items }) => {
   console.log(resHeaderInfo?.name);
   const imageID = resInfo[2]?.card?.card.info?.cloudinaryImageId;
   const imageURL = CDN_URL + imageID;
+
+  const formatCurrency = (amount) => {
+    const locale = navigator.language || "en-IN";
+    const currency = new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: "INR", // set fallback currency
+    }).resolvedOptions().currency;
+    return new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency: currency,
+    }).format(amount);
+  };
+
   return (
     <>
       <div className="w-full flex gap-3">
@@ -75,7 +88,7 @@ const CartList = ({ items }) => {
                     <div>
                       <div className="font-bold">{name}</div>
                       <div className="text-sm">
-                        ₹ {(itemPrice / 100).toFixed(2)} x {quantity}
+                        {formatCurrency(itemPrice / 100)} x {quantity}
                       </div>
                     </div>
                     <div
@@ -97,7 +110,7 @@ const CartList = ({ items }) => {
         </div>
 
         {items.length !== 0 && (
-          <div className="bg-white w-4/12 shadow-lg p-4 mt-[16px] rounded-lg h-[370px] ">
+          <div className="bg-white w-4/12 shadow-lg p-4 mt-[16px] rounded-lg h-[455px] ">
             <Link to={`/restaurants/${resHeaderInfo?.id}`}>
               <div className="font-bold p-2 flex cursor-pointer">
                 <span>
@@ -115,11 +128,9 @@ const CartList = ({ items }) => {
                 </span>
               </div>
             </Link>
-
             <div className="font-bold p-2">
               Order Summary ({totalItems} items)
             </div>
-
             <div className="flex justify-between w-full p-3 mt-2 border border-dashed">
               <div className="">
                 <FontAwesomeIcon icon={faPercentage} />
@@ -131,20 +142,28 @@ const CartList = ({ items }) => {
             </div>
             <div className="flex justify-between p-2">
               <div> Sub Total </div>
-              <div> ₹ {subTotal.toFixed(2)}</div>
+              <div>{formatCurrency(subTotal)}</div>
             </div>
             <div className="flex justify-between p-2">
               <div> Delivery Fee </div>
-              <div> ₹ {shipping.toFixed(2)} </div>
+              <div>{formatCurrency(shipping)}</div>
             </div>
+            <div className="flex justify-between p-2">
+              <div> Platform fee</div>
+              <div>{formatCurrency(6)}</div>
+            </div>
+            <div className="flex justify-between p-2">
+              <div> GST and Restaurant Charges</div>
+              <div>{formatCurrency(38)}</div>
+            </div>
+
             <div className="flex justify-between p-2 font-bold border-t-[1px]">
               <div> Total </div>
-              <div> ₹ {(subTotal + shipping).toFixed(2)} </div>
+              <div>{formatCurrency(subTotal + shipping)}</div>
             </div>
             <div className="flex justify-between m-auto w-full mt-2">
               <button className="p-2 bg-black text-white w-full rounded-lg ">
-                {" "}
-                Pay ₹ {(total = subTotal + shipping)}{" "}
+                Pay {formatCurrency((total = subTotal + shipping))}
               </button>
             </div>
           </div>
