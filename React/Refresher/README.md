@@ -2,6 +2,50 @@
 
 This project is a Swiggy Clone built with React JS, designed to replicate key features of Swiggy's food delivery platform with modern web development practices.
 
+## High-Level Design (HLD) Diagram
+
+The following diagram illustrates the high-level architecture of the Swiggy clone app:
+
+![HLD Diagram](../Refresher/images/High%20Level%20Diagram.png)
+
+## Folder Structure 🗂️
+
+```
+src/
+├── Components/
+│ ├── authentication/
+│ │ ├── SignInPage.js
+│ │ └── SignUpPage.js
+│ ├── cart/
+│ │ ├── Cart.js
+│ │ └── CartList.js
+│ ├── common/
+│ │ ├── Error.js
+│ │ ├── Footer.js
+│ │ ├── Header.js
+│ │ ├── Modal.js
+│ │ └── ScrollToTop.js
+│ ├── restaurant/
+│ │ ├── ItemList.js
+│ │ ├── RestaurantCategory.js
+│ │ ├── RestaurantCard.js
+│ │ ├── RestaurantMenu.js
+│ │ └── Search.js
+│ └── Body.js
+│ └── Shimmer.js
+├── utils/
+│ ├── context/
+│ │ ├── RestaurantContext.js
+│ │ └── userContext.js
+│ ├── hooks/
+│ │ └── useRestaurantMenu.js
+│ ├── store/
+│ │ ├── appStore.js
+│ │ └── cartSlice.js
+│ ├── constants.js
+│ ├── mockData.js
+```
+
 It includes dynamic features like:
 
 ## Features
