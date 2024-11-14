@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useRestaurantContext } from "../utils/RestaurantContext";
 import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CDN_URL } from "../utils/constants";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
+import { CDN_URL } from "../../utils/constants";
+import { useRestaurantContext } from "../../utils/context/RestaurantContext";
 
 const Search = () => {
   const { listOfRestaurants, setFilteredRestaurant, filteredRestaurant } =

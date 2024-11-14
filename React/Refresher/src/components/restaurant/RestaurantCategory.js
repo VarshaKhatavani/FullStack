@@ -1,8 +1,9 @@
-import ItemList from "./ItemList";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faBagShopping } from "@fortawesome/free-solid-svg-icons";
+import ItemList from "./ItemList";
 
 const RestaurantCategory = ({ data, showItems, setShowIndex }) => {
   //lifted the state up & now this showItem will be controlled by parent using index

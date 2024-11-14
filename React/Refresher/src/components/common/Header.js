@@ -1,13 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
-import myImage from "../../images/Swiggy-2.png";
-import useOnlineStatus from "../utils/useOnlineStatus";
 import { useContext, useEffect, useState } from "react";
-import UserContext from "../utils/UserContext";
-import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { useRestaurantContext } from "../utils/RestaurantContext";
-import { clearCart } from "../utils/cartSlice.js";
+
+import myImage from "../../../images/Swiggy-2.png";
+import { useDispatch, useSelector } from "react-redux";
+import UserContext from "../../utils/context/UserContext.js";
+import { useRestaurantContext } from "../../utils/context/RestaurantContext.jsx";
+import { clearCart } from "../../utils/store/cartSlice.js";
 
 const Header = () => {
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);

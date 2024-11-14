@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const SignUp = () => {
   const {
@@ -142,6 +142,23 @@ const SignUp = () => {
             />
             {errors.confirmPassword && (
               <p className="text-red-500">{errors.confirmPassword.message}</p>
+            )}
+          </div>
+
+          {/* Address Field */}
+          <div>
+            <label className="block mb-1 text-sm font-medium text-gray-700">
+              Address
+            </label>
+            <textarea
+              {...register("address", { required: "Address is required" })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              placeholder="Enter your address"
+              rows="3" // Number of rows for the textarea
+              style={{ resize: "none", overflow: "hidden" }}
+            />
+            {errors.address && (
+              <p className="text-red-500">{errors.address.message}</p>
             )}
           </div>
 

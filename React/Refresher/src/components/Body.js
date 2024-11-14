@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-// import {resList} from "../utils/mockData";
-import RestaurantCard from "./RestaurantCard";
-import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
-import { useRestaurantContext } from "../utils/RestaurantContext";
+
+import Shimmer from "./Shimmer";
+import RestaurantCard from "./restaurant/RestaurantCard";
+import useOnlineStatus from "../utils/hooks/useOnlineStatus";
+import { useRestaurantContext } from "../utils/context/RestaurantContext";
 
 const Content = () => {
   const { listOfRestaurants, filteredRestaurant, fetchData } =
