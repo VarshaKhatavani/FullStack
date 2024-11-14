@@ -1,14 +1,16 @@
+import React, { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
-import { addItem, clearCart, removeItem } from "../utils/cartSlice.js";
-import { CDN_URL } from "../utils/constants";
-import { useDispatch, useSelector } from "react-redux";
-import VegIcon from "../../images/veg-icon.jpg";
-import NonVegIcon from "../../images/non-veg-icon.png";
-import bestSeller from "../../images/best-seller.jpg";
+
+import VegIcon from "../../../images/veg-icon.jpg";
+import NonVegIcon from "../../../images/non-veg-icon.png";
+import bestSeller from "../../../images/best-seller.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import React, { useCallback, useState } from "react";
-import Modal from "./Modal.js";
+
+import { CDN_URL } from "../../utils/constants";
+import Modal from "../common/Modal.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, clearCart, removeItem } from "../../utils/store/cartSlice.js";
 
 const ItemList = React.memo(({ items, setShowItemCount }) => {
   //Modal

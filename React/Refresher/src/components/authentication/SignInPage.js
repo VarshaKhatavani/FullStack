@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import UserContext from "../utils/UserContext.js";
+import { useForm } from "react-hook-form";
+
 import { useDispatch } from "react-redux";
-import { generateCartId, setCart } from "../utils/cartSlice.js";
-import { setCart } from "../utils/cartSlice.js";
+import { generateCartId, setCart } from "../../utils/store/cartSlice.js";
+import UserContext from "../../utils/context/UserContext.js";
 
 const SignIn = () => {
   const { setLoggedInUser } = useContext(UserContext);

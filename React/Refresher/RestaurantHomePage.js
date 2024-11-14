@@ -1,23 +1,25 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./src/components/Header";
-import Content from "./src/components/Body";
-import Search from "./src/components/Search";
-import Error from "./src/components/Error";
-import appStore from "./src/utils/appStore";
-import Cart from "./src/components/Cart";
-import SignIn from "./src/components/SignInPage";
-import SignUp from "./src/components/SignUpPage";
-import Footer from "./src/components/Footer";
-import RestaurantMenu from "./src/components/RestaurantMenu";
-import ScrollToTop from "./src/components/ScrollToTop";
-
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { UserProvider } from "./src/utils/UserContext";
+
+import Header from "./src/components/common/Header.js";
+import Content from "./src/components/Body.js";
+import Search from "./src/components/restaurant/Search.js";
+import Error from "./src/components/common/Error.js";
+import Footer from "./src/components/common/Footer.js";
+import ScrollToTop from "./src/components/common/ScrollToTop.js";
+
+import SignIn from "./src/components/authentication/SignInPage.js";
+import SignUp from "./src/components/authentication/SignUpPage.js";
+import Cart from "./src/components/cart/Cart.js";
+import RestaurantMenu from "./src/components/restaurant/RestaurantMenu.js";
+
+import { UserProvider } from "./src/utils/context/UserContext";
+import { RestaurantProvider } from "./src/utils/context/RestaurantContext";
+
 import { Provider, useDispatch } from "react-redux";
-import { RestaurantProvider } from "./src/utils/RestaurantContext";
-import CartSlice, { setCart } from "./src/utils/cartSlice.js";
-import CartList from "./src/components/CartList";
+import appStore from "./src/utils/store/appStore.js";
+import { setCart } from "./src/utils/store/cartSlice.js";
 
 //import Grocery from "./src/components/Grocery"; // removed as imported as lazy loading
 

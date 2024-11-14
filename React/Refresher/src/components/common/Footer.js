@@ -1,6 +1,6 @@
-import myImage from "../../images/Swiggy-2.png";
-import linkin from "../../images/icons8-linkedin-50.png";
-import github from "../../images/icons8-github-64.png";
+import myImage from "../../../images/Swiggy-2.png";
+import linkin from "../../../images/icons8-linkedin-50.png";
+import github from "../../../images/icons8-github-64.png";
 
 const Footer = () => {
   return (

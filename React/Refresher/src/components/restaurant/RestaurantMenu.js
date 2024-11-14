@@ -1,11 +1,12 @@
 import { useState } from "react";
-import myImage from "../../images/Swiggy-2.png";
 import { useParams } from "react-router-dom";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
-import RestaurantCategory from "./RestaurantCategory";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDebian } from "@fortawesome/free-brands-svg-icons";
-import { CDN_URL } from "../utils/constants.js";
+
+import RestaurantCategory from "./RestaurantCategory";
+import { CDN_URL } from "../../utils/constants.js";
+import useRestaurantMenu from "../../utils/hooks/useRestaurantMenu.js";
 
 const RestaurantMenu = () => {
   // const [isVegOnly, setIsVegOnly ] = useState(false);

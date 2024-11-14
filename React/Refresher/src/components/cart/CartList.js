@@ -1,11 +1,14 @@
-import { CDN_URL } from "../utils/constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { removeItem } from "../utils/cartSlice.js";
-import { faPercentage } from "@fortawesome/free-solid-svg-icons";
-import restaurantMenu from "../utils/useRestaurantMenu.js";
 import { Link } from "react-router-dom";
+
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPercentage } from "@fortawesome/free-solid-svg-icons";
+
+import { CDN_URL } from "../../utils/constants";
+import restaurantMenu from "../../utils/hooks/useRestaurantMenu.js";
+
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem } from "../../utils/store/cartSlice.js";
 
 const CartList = ({ items }) => {
   // handleRemove
