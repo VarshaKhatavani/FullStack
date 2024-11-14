@@ -26,6 +26,7 @@ const CartList = ({ items }) => {
   console.log("currentRestaurantId....", currentRestaurantId);
   var subTotal = 0;
   var shipping = 49;
+  var total = 0;
 
   const handleRemove = (item) => {
     console.log("handleRemove called... CartList");
