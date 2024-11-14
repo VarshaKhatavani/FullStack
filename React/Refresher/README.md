@@ -1,6 +1,6 @@
-# Swiggy Clone App - React JS ⚛️
+# Flavours-Fustion-React-App ⚛️
 
-This project is a Swiggy Clone built with React JS, designed to replicate key features of Swiggy's food delivery platform with modern web development practices.
+A Swiggy-like food delivery app built using React JS, Redux, and modern React features, including Hooks, Context API, and custom hooks for efficient state management, designed to replicate key features of Swiggy's food delivery platform with modern web development practices.
 
 ## High-Level Design (HLD) Diagram
 
@@ -101,3 +101,30 @@ It includes dynamic features like:
 - **LocalStorage**: Used for maintaining cart and search history.
 - **Debouncing**: Implemented for Search functionality to optimize performance.
 - **Intl API**: Used for dynamic currency formatting based on browser language.
+
+# Some of the Screen Captures
+
+## App Home Page
+
+![Resturant List](images/app-screenshots/res-homePage.png)
+
+## Restaurant Menu Page
+
+![Restaurant Menu 1](images/app-screenshots/res-menu.png)
+![Restaurant Menu 2](images/app-screenshots/res-menu-1.png)
+![Restaurant Menu 3](images/app-screenshots/res-menu-2.png)
+![Restaurant Menu Validation](images/app-screenshots/res-menu-validate.png)
+
+## Search Page
+
+![Search Page](images/app-screenshots/search.png)
+
+## Search History
+
+![Search History](images/app-screenshots/search-history.png)
+
+## Cart Page
+
+![Empty Cart](images/app-screenshots/empty-cart.png)
+
+![Cart Page](images/app-screenshots/cart-page.png)

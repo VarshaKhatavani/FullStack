@@ -14,8 +14,8 @@ import SignUp from "./src/components/authentication/SignUpPage.js";
 import Cart from "./src/components/cart/Cart.js";
 import RestaurantMenu from "./src/components/restaurant/RestaurantMenu.js";
 
-import { UserProvider } from "./src/utils/context/UserContext";
-import { RestaurantProvider } from "./src/utils/context/RestaurantContext";
+import { UserProvider } from "./src/utils/context/UserContext.js";
+import { RestaurantProvider } from "./src/utils/context/RestaurantContext.jsx";
 
 import { Provider, useDispatch } from "react-redux";
 import appStore from "./src/utils/store/appStore.js";
@@ -28,7 +28,7 @@ import { setCart } from "./src/utils/store/cartSlice.js";
 // Moved Header Component to Header.js
 
 //lazy loading
-const Grocery = lazy(() => import("./src/components/Grocery"));
+const Grocery = lazy(() => import("./src/components/Grocery.js"));
 
 const AppLayout = () => {
   const [userName, setUserName] = useState("");
@@ -101,10 +101,6 @@ const AppRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      // {
-      //   path:"/contact",
-      //   element:<Contact/>
-      // },
       {
         path: "/restaurants/:resId",
         element: <RestaurantMenu />,
