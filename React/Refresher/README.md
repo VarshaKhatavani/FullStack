@@ -6,7 +6,7 @@ This project is a Swiggy Clone built with React JS, designed to replicate key fe
 
 The following diagram illustrates the high-level architecture of the Swiggy clone app:
 
-![HLD Diagram](/images/High-Level-Diagram.png)
+![HLD Diagram](images/High-Level-Diagram.png)
 
 ## Folder Structure 🗂️
 
