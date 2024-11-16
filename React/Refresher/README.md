@@ -128,3 +128,15 @@ It includes dynamic features like:
 ![Empty Cart](images/app-screenshots/empty-cart.png)
 
 ![Cart Page](images/app-screenshots/cart-page.png)
+
+## Note : Known Issues - CORS Blocking
+
+When running the app locally, encounter CORS (Cross-Origin Resource Sharing) issues when attempting to fetch live data from the Swiggy API. This happens because the Swiggy API restricts cross-origin requests for security reasons.
+
+### Workaround
+
+1. Used a **CORS Proxy**
+
+   const API_URL = "https://cors-anywhere.herokuapp.com/<SWIGGY_API_ENDPOINT>";
+
+2. Install Browser Extentension to bypass CORS restrictions.

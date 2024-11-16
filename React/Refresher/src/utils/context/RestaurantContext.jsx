@@ -66,7 +66,7 @@ export const RestaurantProvider = ({ children }) => {
   const fetchData = useCallback(async () => {
     try {
       const data = await fetch(
-        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}&page_type=DESKTOP_WEB_LISTING`,
+        `https://cors-anywhere.herokuapp.com/www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}&page_type=DESKTOP_WEB_LISTING`,
         {
           headers: {
             Origin: "http://localhost:1234/", // Replace with your React app's origin
@@ -131,6 +131,7 @@ export const RestaurantProvider = ({ children }) => {
           setFilteredRestaurant,
           fetchData,
           locale,
+          location,
         }}
       >
         {children}
