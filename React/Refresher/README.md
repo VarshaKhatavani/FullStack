@@ -135,8 +135,4 @@ When running the app locally, encounter CORS (Cross-Origin Resource Sharing) iss
 
 ### Workaround
 
-1. Used a **CORS Proxy**
-
-   const API_URL = "https://cors-anywhere.herokuapp.com/<SWIGGY_API_ENDPOINT>";
-
-2. Install Browser Extentension to bypass CORS restrictions.
+1. Install Browser Extentension to bypass CORS restrictions.
