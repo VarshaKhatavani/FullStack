@@ -28,7 +28,7 @@ export default function WatchList(props) {
 
   let { watchList, setWatchList, handleRemoveFromWatchList } = props;
   let [genreList, setGenreList] = useState(["All Genres"]);
-  let [currGenre, setCurrGenre] = useState("All Genre");
+  let [currGenre, setCurrGenre] = useState("All Genres");
   let [search, setSearch] = useState("");
 
   useEffect(() => {
