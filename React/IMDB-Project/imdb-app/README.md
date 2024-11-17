@@ -21,18 +21,18 @@ This is a React-based movie application that integrates with the TMDB (The Movie
 
 # Low Level Design Overview
 
-![Low Level Diagram](/public/LLD.png)
+![Low Level Diagram](public/LLD.png)
 
 # Screen Captures
 
 ### Home Page
 
-![Home Page](/public/TMDB_HomePage.png)
+![Home Page](public/TMDB_HomePage.png)
 
 ### Movie Detail
 
-![Movie Detail](/public/TMDB_MovieDetail.png)
+![Movie Detail](public/TMDB_MovieDetail.png)
 
 ### WatchList
 
-![WatchList](/public/TMDB_Watchlist.png)
+![WatchList](public/TMDB_Watchlist.png)
