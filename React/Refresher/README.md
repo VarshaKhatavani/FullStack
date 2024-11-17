@@ -2,7 +2,7 @@
 
 A Swiggy-like food delivery app built using React JS, Redux, and modern React features, including Hooks, Context API, and custom hooks for efficient state management, designed to replicate key features of Swiggy's food delivery platform with modern web development practices.
 
-## High-Level Design (HLD) Diagram
+## High-Level Design (HLD) Overview
 
 The following diagram illustrates the high-level architecture of the Swiggy clone app:
 
@@ -129,10 +129,10 @@ It includes dynamic features like:
 
 ![Cart Page](images/app-screenshots/cart-page.png)
 
-## Note : Known Issues - CORS Blocking
+## <span style="color:maroon;"> Note : Known Issues - CORS Blocking </span>
 
 When running the app locally, encounter CORS (Cross-Origin Resource Sharing) issues when attempting to fetch live data from the Swiggy API. This happens because the Swiggy API restricts cross-origin requests for security reasons.
 
 ### Workaround
 
-1. Install Browser Extentension to bypass CORS restrictions.
+1. Install Browser Extentension to bypass CORS restrictions
