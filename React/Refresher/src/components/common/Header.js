@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 
 import myImage from "../../../images/Swiggy-2.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -75,11 +75,15 @@ const Header = () => {
             <Link to={"/search"}>Search</Link>
           </li>
           {/* <li className='px-4 hover:text-orange-500 cursor-pointer'><Link to={"/contact"}>Contact Us</Link></li> */}
-
-          <li className="px-4 hover:text-orange-500">
+          <li className="px-4 pr-6 hover:text-orange-500">
             <button onClick={handleSignInOut}>{btnLogin}</button>
           </li>
-          {loggedInUser && <li className="px-4 font-bold"> {loggedInUser}</li>}
+          <FontAwesomeIcon icon={faUser} className="text-base" />
+          {loggedInUser ? (
+            <li className="pl-2 font-bold"> {loggedInUser}</li>
+          ) : (
+            <li className="pl-2 font-bold"> Guest</li>
+          )}
           <li className="px-4 hover:text-orange-500 cursor-pointer nav-items-menu">
             <Link to={"/cart"}>
               {" "}

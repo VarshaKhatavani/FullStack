@@ -1,5 +1,7 @@
 import cartImg from "../../../images/empty-cart.png";
 import CartList from "./CartList";
+import UserContext from "../../utils/context/UserContext.js";
+import { useContext } from "react";
 
 import { useSelector } from "react-redux";
 
@@ -9,27 +11,22 @@ const Cart = () => {
   const cartItem = cartState.items;
   console.log(cartItem);
 
+  const { userObj } = useContext(UserContext);
+  console.log(userObj);
+
   // console.log('-- cart page---');
   // console.log(cartItem);
   // console.log('-----');
 
-  // remove item from arry | used state lifting
-
-  // const [itemss, setItems] = useState([]);
-
-  // useEffect(() => {
-  //     setItems(cartItem);
-  // },[cartItem]);
-
-  // const handleRemove = (itemToRemove) => {
-  //     const filteredItems = itemss.filter((menu) => menu.card.info.id !== itemToRemove.info.id);
-  //     console.log('filteredItems called')
-  //     console.log(filteredItems)
-  //     setItems(filteredItems);
-  // };
-
   return (
     <div className="p-2 m-2">
+      {userObj != undefined && cartItem.length > 0 && (
+        <div className="bg-white w-full shadow-lg p-4 mt-[16px] rounded-lg h-auto ">
+          <p className="font-bold mb-2">Delivery Address</p>
+          <p className="text-wrap flex-wrap w-40"> {userObj.address} </p>
+        </div>
+      )}
+
       <div className="w-full flex">
         {cartItem.length === 0 ? (
           <div className="m-auto font-bold p-4">
