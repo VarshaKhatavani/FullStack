@@ -106,28 +106,29 @@ It includes dynamic features like:
 
 ## App Home Page
 
-![Resturant List](images/app-screenshots/res-homePage.png)
+![Resturant List](images/app-screenshots/home-page.png)
 
-## Restaurant Menu Page
+## Search History
 
-![Restaurant Menu 1](images/app-screenshots/res-menu.png)
-![Restaurant Menu 2](images/app-screenshots/res-menu-1.png)
-![Restaurant Menu 3](images/app-screenshots/res-menu-2.png)
-![Restaurant Menu Validation](images/app-screenshots/res-menu-validate.png)
+![Search History](images/app-screenshots/search-history.png)
 
 ## Search Page
 
 ![Search Page](images/app-screenshots/search.png)
 
-## Search History
+## Restaurant Menu Page
 
-![Search History](images/app-screenshots/search-history.png)
+![Restaurant Menu 1](images/app-screenshots/menu-page.png)
 
 ## Cart Page
 
 ![Empty Cart](images/app-screenshots/empty-cart.png)
 
 ![Cart Page](images/app-screenshots/cart-page.png)
+
+## Login User Cart Page
+
+![Cart Page](images/app-screenshots/cart-page-login.png)
 
 ## <span style="color:maroon;"> Note : Known Issues - CORS Blocking </span>
 
