@@ -126,7 +126,7 @@ It includes dynamic features like:
 
 ![Cart Page](images/app-screenshots/cart-page.png)
 
-## Login User Cart Page
+## Cart Page (Post-Registration) for Logged-In Users
 
 ![Cart Page](images/app-screenshots/cart-page-login.png)
 
