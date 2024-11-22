@@ -25,8 +25,8 @@ const RestaurantCard = (props) => {
   const { deliveryTime } = sla || {};
 
   return (
-    <div className="res-content flex m-3 cursor-default">
-      <div className="foodCard w-[250px] h-68 ml-8 cursor-pointer hover:scale-90 ease-in-out duration-300">
+    <div className="res-content flex m-2 p-3 cursor-default">
+      <div className="foodCard w-[230px] h-68 p-1 cursor-pointer hover:scale-90 ease-in-out duration-300">
         <img
           alt="cuisine-pic"
           className="h-40 bg-cover rounded-xl"

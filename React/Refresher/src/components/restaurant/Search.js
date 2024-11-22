@@ -13,6 +13,8 @@ const Search = () => {
 
   console.log("I am search component");
   //console.log(listOfRestaurants);
+  let listRestaurant =
+    listOfRestaurants?.gridElements?.infoWithStyle?.restaurants;
   const [searchText, setsearchText] = useState("");
   const [showNoResult, setShowNoResult] = useState(false);
   const [flag, setFlag] = useState(false);
@@ -36,14 +38,14 @@ const Search = () => {
   const handleSearch = useCallback(() => {
     console.log("handleSerach..ref..", searchTextRef.current);
     //console.log("handleSerach....", searchText);
-    const filterRestaurant = listOfRestaurants.filter((res) =>
+    const filterRestaurant = listRestaurant.filter((res) =>
       res.info.name.toLowerCase().includes(searchTextRef.current.toLowerCase())
     );
     setFilteredRestaurant(filterRestaurant);
     // Show no result message if no restaurants match the search
     setShowNoResult(filterRestaurant.length === 0);
     setFlag(true);
-  }, [searchText, listOfRestaurants]);
+  }, [searchText, listRestaurant]);
 
   useEffect(() => {
     const storedRecentList = localStorage.getItem("searchlist");

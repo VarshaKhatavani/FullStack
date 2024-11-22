@@ -44,6 +44,7 @@ const CartList = ({ items }) => {
   console.log("Cart Page....");
   if (resInfo === null) return;
   let resHeaderInfo = resInfo[2]?.card?.card.info;
+  console.log(resHeaderInfo);
   console.log(resHeaderInfo?.name);
   const imageID = resInfo[2]?.card?.card.info?.cloudinaryImageId;
   const imageURL = CDN_URL + imageID;
@@ -114,63 +115,65 @@ const CartList = ({ items }) => {
         </div>
 
         {items.length !== 0 && (
-          <div className="bg-white w-4/12 shadow-lg p-4 mt-[16px] rounded-lg h-[455px] ">
-            <Link to={`/restaurants/${resHeaderInfo?.id}`}>
-              <div className="font-bold p-2 flex cursor-pointer">
-                <span>
-                  <img
-                    src={imageURL}
-                    className="w-20 h-14 rounded-sm"
-                    alt={resHeaderInfo?.name}
-                  />
-                </span>
-                <span className="flex flex-col justify-start ml-4 text-base uppercase ">
-                  {resHeaderInfo?.name}
-                  <p className="text-xs font-semibold text-gray-500 normal-case ">
-                    {resHeaderInfo?.locality}
-                  </p>
-                </span>
+          <>
+            <div className="bg-white w-4/12 shadow-lg p-4 mt-[16px] rounded-lg h-[455px] ">
+              <Link to={`/restaurants/${resHeaderInfo?.id}`}>
+                <div className="font-bold p-2 flex cursor-pointer">
+                  <span>
+                    <img
+                      src={imageURL}
+                      className="w-20 h-14 rounded-sm"
+                      alt={resHeaderInfo?.name}
+                    />
+                  </span>
+                  <span className="flex flex-col justify-start ml-4 text-base uppercase ">
+                    {resHeaderInfo?.name}
+                    <p className="text-xs font-semibold text-gray-500 normal-case ">
+                      {resHeaderInfo?.locality}
+                    </p>
+                  </span>
+                </div>
+              </Link>
+              <div className="font-bold p-2">
+                Order Summary ({totalItems} items)
               </div>
-            </Link>
-            <div className="font-bold p-2">
-              Order Summary ({totalItems} items)
-            </div>
-            <div className="flex justify-between w-full p-3 mt-2 border border-dashed">
-              <div className="">
-                <FontAwesomeIcon icon={faPercentage} />
-                <span className="ml-2 font-semibold text-sm">
-                  {" "}
-                  Apply Coupon{" "}
-                </span>
+              <div className="flex justify-between w-full p-3 mt-2 border border-dashed">
+                <div className="">
+                  <FontAwesomeIcon icon={faPercentage} />
+                  <span className="ml-2 font-semibold text-sm">
+                    {" "}
+                    Apply Coupon{" "}
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="flex justify-between p-2">
-              <div> Sub Total </div>
-              <div>{formatCurrency(subTotal)}</div>
-            </div>
-            <div className="flex justify-between p-2">
-              <div> Delivery Fee </div>
-              <div>{formatCurrency(shipping)}</div>
-            </div>
-            <div className="flex justify-between p-2">
-              <div> Platform fee</div>
-              <div>{formatCurrency(6)}</div>
-            </div>
-            <div className="flex justify-between p-2">
-              <div> GST and Restaurant Charges</div>
-              <div>{formatCurrency(38)}</div>
-            </div>
+              <div className="flex justify-between p-2">
+                <div> Sub Total </div>
+                <div>{formatCurrency(subTotal)}</div>
+              </div>
+              <div className="flex justify-between p-2">
+                <div> Delivery Fee </div>
+                <div>{formatCurrency(shipping)}</div>
+              </div>
+              <div className="flex justify-between p-2">
+                <div> Platform fee</div>
+                <div>{formatCurrency(6)}</div>
+              </div>
+              <div className="flex justify-between p-2">
+                <div> GST and Restaurant Charges</div>
+                <div>{formatCurrency(38)}</div>
+              </div>
 
-            <div className="flex justify-between p-2 font-bold border-t-[1px]">
-              <div> Total </div>
-              <div>{formatCurrency(subTotal + shipping)}</div>
+              <div className="flex justify-between p-2 font-bold border-t-[1px]">
+                <div> Total </div>
+                <div>{formatCurrency(subTotal + shipping)}</div>
+              </div>
+              <div className="flex justify-between m-auto w-full mt-2">
+                <button className="p-2 bg-black text-white w-full rounded-lg ">
+                  Pay {formatCurrency((total = subTotal + shipping))}
+                </button>
+              </div>
             </div>
-            <div className="flex justify-between m-auto w-full mt-2">
-              <button className="p-2 bg-black text-white w-full rounded-lg ">
-                Pay {formatCurrency((total = subTotal + shipping))}
-              </button>
-            </div>
-          </div>
+          </>
         )}
       </div>
     </>

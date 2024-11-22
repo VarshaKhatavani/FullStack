@@ -9,27 +9,25 @@ const Cart = () => {
   const cartItem = cartState.items;
   console.log(cartItem);
 
-  // console.log('-- cart page---');
-  // console.log(cartItem);
-  // console.log('-----');
+  let storedUser = JSON.parse(localStorage.getItem("user"));
 
-  // remove item from arry | used state lifting
+  if (!Array.isArray(storedUser)) {
+    storedUser = storedUser ? [storedUser] : []; // If users exists, make it an array; otherwise, an empty array
+  }
 
-  // const [itemss, setItems] = useState([]);
-
-  // useEffect(() => {
-  //     setItems(cartItem);
-  // },[cartItem]);
-
-  // const handleRemove = (itemToRemove) => {
-  //     const filteredItems = itemss.filter((menu) => menu.card.info.id !== itemToRemove.info.id);
-  //     console.log('filteredItems called')
-  //     console.log(filteredItems)
-  //     setItems(filteredItems);
-  // };
+  let loggedInUser = localStorage.getItem("loggedInUser");
+  const user = storedUser?.find((user) => user.userId === loggedInUser);
+  console.log(user);
 
   return (
     <div className="p-2 m-2">
+      {user !== undefined && cartItem.length > 0 && (
+        <div className="bg-white w-full shadow-lg p-4 mt-[16px] rounded-lg h-auto ">
+          <p className="font-bold mb-2">Delivery Address</p>
+          <p className="text-wrap flex-wrap w-40"> {user.address} </p>
+        </div>
+      )}
+
       <div className="w-full flex">
         {cartItem.length === 0 ? (
           <div className="m-auto font-bold p-4">

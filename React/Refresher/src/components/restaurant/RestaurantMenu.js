@@ -105,10 +105,10 @@ const RestaurantMenu = () => {
         </div>
         <div className="latest-offers flex justify-start py-4 overflow-x-scroll  whitespace-nowrap  custom-scrollbar  ">
           {offers != undefined &&
-            offers.map((offer, index) => {
+            offers.map((offer) => {
               return (
                 <div
-                  key={offer?.info?.offerIds || index}
+                  key={offer?.info?.offerIds || `offer-${index}`}
                   className="offers relative border border-solid mr-8 mb-4 rounded-xl w-[20rem] flex-shrink-0"
                 >
                   <span className="beverages inline-block transform -rotate-90 justify-start absolute -ml-5 mt-8 text-[11px] text-red-500 font-bold border-b-[1px]"></span>
@@ -153,10 +153,10 @@ const RestaurantMenu = () => {
               // console.log(category);
               return (
                 <>
-                  <div key={category?.card?.card?.id || index}>
+                  <div key={category?.card?.card?.id || `category-${index}`}>
                     {/* controlled component */}
                     <RestaurantCategory
-                      key={index}
+                      key={category?.card?.card || `category-item-${index}`}
                       data={category?.card?.card}
                       showItems={showIndex === index}
                       setShowIndex={() => {

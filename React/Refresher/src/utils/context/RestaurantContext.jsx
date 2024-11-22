@@ -17,6 +17,8 @@ export const useRestaurantContext = () => {
 // Provider Component
 export const RestaurantProvider = ({ children }) => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [itemCards, setItemCards] = useState([]);
+
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
   const [location, setLocation] = useState({
@@ -66,7 +68,7 @@ export const RestaurantProvider = ({ children }) => {
   const fetchData = useCallback(async () => {
     try {
       const data = await fetch(
-        `https://cors-anywhere.herokuapp.com/www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}&page_type=DESKTOP_WEB_LISTING`,
+        `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${location.latitude}&lng=${location.longitude}&page_type=DESKTOP_WEB_LISTING`,
         {
           headers: {
             Origin: "http://localhost:1234/", // Replace with your React app's origin
@@ -78,17 +80,14 @@ export const RestaurantProvider = ({ children }) => {
         throw new Error("Network response was not ok");
       }
       const restData = await data.json();
-      //console.log("Hey, I looking for restaurants");
-      //console.log(restData);
-      // console.log(
-      //   restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      //     ?.restaurants
-      // );
+      console.log("Hey, I looking for restaurants");
+      console.log(restData);
 
-      const restaurantList =
-        restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants;
+      const cardItems = restData?.data?.cards[0]?.card?.card;
+      setItemCards(cardItems);
 
+      const restaurantList = restData?.data?.cards[1]?.card?.card;
+      console.log(restaurantList);
       if (restaurantList) {
         setListOfRestaurants(restaurantList);
         setFilteredRestaurant(restaurantList);
@@ -132,6 +131,7 @@ export const RestaurantProvider = ({ children }) => {
           fetchData,
           locale,
           location,
+          itemCards,
         }}
       >
         {children}
