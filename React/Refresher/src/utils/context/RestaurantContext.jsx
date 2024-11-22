@@ -80,12 +80,8 @@ export const RestaurantProvider = ({ children }) => {
         throw new Error("Network response was not ok");
       }
       const restData = await data.json();
-      //console.log("Hey, I looking for restaurants");
+      console.log("Hey, I looking for restaurants");
       console.log(restData);
-      // console.log(
-      //   restData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      //     ?.restaurants
-      // );
 
       const cardItems = restData?.data?.cards[0]?.card?.card;
       setItemCards(cardItems);

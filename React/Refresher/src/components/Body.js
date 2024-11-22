@@ -10,8 +10,11 @@ import { CDN_URL } from "../utils/constants";
 const Content = () => {
   const { listOfRestaurants, filteredRestaurant, fetchData, itemCards } =
     useRestaurantContext();
+
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetchData();
+    fetchData().finally(() => setLoading(false));
   }, [fetchData]);
 
   const onlineStatus = useOnlineStatus();
@@ -19,11 +22,9 @@ const Content = () => {
   let foodCardHeader = itemCards?.header?.title;
   let foodcards = itemCards?.gridElements?.infoWithStyle?.info;
 
-  let resList = listOfRestaurants?.gridElements?.infoWithStyle?.restaurants;
   let restaurantTitle = listOfRestaurants?.header?.title;
   let filterRestaurants =
     filteredRestaurant?.gridElements?.infoWithStyle?.restaurants;
-  console.log(restaurantTitle);
 
   if (!onlineStatus) {
     return (
@@ -35,15 +36,10 @@ const Content = () => {
     );
   }
 
-  //conditional rendering
-  // if(listOfRestaurants.length===0){
-  //     return <Shimmer/>
-  // }
-
-  const scrollContainerRef = useRef(null); // Reference to the scrollable container
+  const scrollRef = useRef(null); // Reference to the scrollable container
   const scroll = (direction) => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
+    if (scrollRef.current) {
+      const container = scrollRef.current;
       const scrollAmount = 300; // Adjust scroll amount as needed
 
       if (direction === "left") {
@@ -54,13 +50,16 @@ const Content = () => {
     }
   };
 
-  return resList != undefined && resList.length === 0 ? (
-    <Shimmer />
-  ) : (
+  // Show shimmer while loading
+  if (loading) {
+    return <Shimmer />;
+  }
+
+  return (
     <>
       {/* Search Component */}
       {itemCards && (
-        <div className="p-14 py-4 overflow-hidden w-full">
+        <div className="p-28 py-4 overflow-hidden w-full">
           <div className="titleDiv">
             <h2 className="title pl-2 font-bold text-2xl">{foodCardHeader}</h2>
           </div>
@@ -68,14 +67,14 @@ const Content = () => {
             {/* Scrollable container */}
             <div
               className="flex overflow-x-scroll scrollbar-hide scroll-smooth snap-x overflow-y-hidden snap-mandatory gap-6 relative "
-              ref={scrollContainerRef}
+              ref={scrollRef}
             >
               {foodcards != undefined &&
                 foodcards.map((curated) => (
                   <div key={curated.id}>
                     <div className="hover:scale-105 transition-all duration-300 ease-in-out transform">
                       <a aria-label="description of food type">
-                        <div className="flex items-center justify-center w-40 h-40 ">
+                        <div className="flex items-center justify-center w-32 h-40 ">
                           <img
                             src={CDN_URL + curated.imageId}
                             alt="description of food type"
@@ -130,10 +129,10 @@ const Content = () => {
         </div>
       )}
       {filterRestaurants != undefined && (
-        <h1 className="font-bold text-2xl px-12 p-2">{restaurantTitle}</h1>
+        <h1 className="font-bold text-2xl px-28 p-2">{restaurantTitle}</h1>
       )}
 
-      <div className="res-container flex justify-start flex-wrap">
+      <div className="res-container flex justify-center flex-wrap">
         {filterRestaurants != undefined &&
           filterRestaurants.map((restaurant) => (
             // console.log(restaurant)

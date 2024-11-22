@@ -1,7 +1,5 @@
 import cartImg from "../../../images/empty-cart.png";
 import CartList from "./CartList";
-import UserContext from "../../utils/context/UserContext.js";
-import { useContext } from "react";
 
 import { useSelector } from "react-redux";
 
@@ -11,19 +9,22 @@ const Cart = () => {
   const cartItem = cartState.items;
   console.log(cartItem);
 
-  const { userObj } = useContext(UserContext);
-  console.log(userObj);
+  let storedUser = JSON.parse(localStorage.getItem("user"));
 
-  // console.log('-- cart page---');
-  // console.log(cartItem);
-  // console.log('-----');
+  if (!Array.isArray(storedUser)) {
+    storedUser = storedUser ? [storedUser] : []; // If users exists, make it an array; otherwise, an empty array
+  }
+
+  let loggedInUser = localStorage.getItem("loggedInUser");
+  const user = storedUser?.find((user) => user.userId === loggedInUser);
+  console.log(user);
 
   return (
     <div className="p-2 m-2">
-      {userObj != undefined && cartItem.length > 0 && (
+      {user !== undefined && cartItem.length > 0 && (
         <div className="bg-white w-full shadow-lg p-4 mt-[16px] rounded-lg h-auto ">
           <p className="font-bold mb-2">Delivery Address</p>
-          <p className="text-wrap flex-wrap w-40"> {userObj.address} </p>
+          <p className="text-wrap flex-wrap w-40"> {user.address} </p>
         </div>
       )}
 

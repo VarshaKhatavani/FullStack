@@ -21,12 +21,11 @@ export const UserProvider = ({ children }) => {
     // console.log("UserContext......");
     if (user) {
       setLoggedInUser(user.username);
-      setUserObj(user);
     }
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser, setLoggedInUser, userObj }}>
+    <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       {children}
     </UserContext.Provider>
   );
